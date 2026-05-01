@@ -1,49 +1,67 @@
-# Test 04 — Meridian (studio manifesto)
+# Test 04 v2 — Meridian (studio manifesto)
 
-## The prompt
+## The prompt (verbatim, same as v1)
 
 > "Make me a manifesto for my new studio called Meridian. We work on environmental products. No flashy stuff."
 
-## Context gate — partial
+## Step 0 · Pre-flight
 
-User gave audience-implied (people who care about environmental products) and tone (declarative, no flash). Skill infers the rest:
+> *"No pre-flight signals — proceeding with full Hallmark stack."*
 
-**Going with:** *audience = potential clients and collaborators · use = read our position · tone = declarative, polemical, restrained.*
+## Step 1 · Design-context gate — partial → inferred
 
-## Domain inference
+User gave audience-implied + tone (declarative, no flash). Skill infers:
 
-`manifesto / cause / advocacy` → from the domain table: **Manifesto / Quote-Led / Stat-Led**.
+> *"Going with: audience = potential clients and collaborators · use = read our position · tone = declarative, polemical, restrained. If any of those is wrong, redirect."*
 
-The skill picks **Manifesto** (the brief literally names it). This is the rare case where the macrostructure name and the brief word are the same — which is fine, because Manifesto-the-macrostructure is genuinely a *page shape*, not a default we should run from.
+## Step 2.5 · Project memory rotation
 
-## Theme
+> *"Previous run on this brief picked Manifesto + Manifesto + none. Picking from {Quote-Led, Stat-Led, Numbered Theses} for the macro this time — Quote-Led wins because a manifesto can be one sentence as easily as it can be five, and the rotation rule pushes away from the Manifesto-named-twice pattern."*
+>
+> *"Theme rotation: Manifesto (dark · Inter Tight 900 display-heavy · red bleed) → Brutal (dark · Druk-condensed display · single yellow strike). Differs on display style and accent hue. Passes."*
 
-The user said "no flashy stuff" — that's the strongest possible cue against ornament. Picking **Manifesto** the theme too: pure black paper, oversized solid type, single red accent, no gradients, no rounded corners. The theme name + macrostructure name aligning is honest here, not lazy.
+## Step 3 · Visual ruleset loaded
 
-(Salon, Studio, Pastel would all be wrong tonally. Brutal would have worked but is a touch louder.)
+`macrostructures.md` (Quote-Led), `component-cookbook.md` (H3 pull-quote hero), `typography.md` (display-heavy condensed), `color.md` (Brutal palette: dark, single bold accent), `microinteractions.md` (none — manifesto is typography-only), `anti-patterns.md`.
 
-## Enrichment
+## Step 4 · Hero enrichment
 
-**None.** Typography is the design. The page makes its point in five short declarations and stops.
+> *"Enrichment: none. Quote-Led + Brutal is already loud; adding any visual would dilute the polemic. The 'no flashy stuff' constraint maps directly here — voice is the design."*
 
-The slop test catches: no abstract background gradient, no Lottie loop, no illustration, no demo video. The voice is the page.
+## Step 5 · Preview
 
-## Macrostructure stamp
+```markdown
+**Hallmark · v0.6.0**
+
+- **Macrostructure** · Quote-Led
+- **Theme** · Brutal (near-black paper · Druk-condensed display · yellow strike accent)
+- **Enrichment** · none (typography only — voice is the design)
+- **Sections** · Masthead · Pull-quote (the hero) · Four principles · Working rules · Colophon
+- **Motion** · none — typography only
+- **Slop test** · 38 / 38 ✓
+- **Diversification** · differs from v1 (Manifesto/Manifesto) on macrostructure + display style + accent hue
+```
+
+## Step 6 · Macrostructure stamp
 
 ```
-/* Hallmark · macrostructure: Manifesto · H1 hero knobs: size=xxl, alignment=left-bias, underlay=none
- * theme: Manifesto · accent: red ~5% (used as bleed dividers, not flood)
+/* Hallmark · macrostructure: Quote-Led · H3 hero knobs: weight=display-condensed-bold, attribution=under-quote, length=20-words
+ * theme: Brutal · accent: strike-yellow ~3% (used as bleed-rule + one struck word)
  * enrichment: none (typography only — voice is the design)
- * studied: no · context: partial, inferred (audience + use)
+ * studied: no · context: partial, inferred (audience + use) · v0.6.0
  */
 ```
 
-## What the page does
+## What changed vs v1
 
-- Five short declarations stacked vertically, each on its own page-fold-sized band
-- A single red bleed-colour band between the third and fourth declaration as the only visual ornament
-- Numbered "I." through "V." in display weight on the left margin of each declaration
-- A signed colophon at the bottom: studio name, year, three signatories
-- No links. No CTA. No "Learn more". A manifesto is not a marketing page.
+- **Macro:** Manifesto → Quote-Led. v1 leads with five numbered declarations + a bleed band; v2 leads with one twenty-word pull-quote + three supporting principles. Different rhetoric, same brief.
+- **Theme:** Manifesto (Inter Tight 900) → Brutal (Druk-condensed). Both dark, both display-heavy, but Brutal's condensed cap-height reads sharper for a single-quote hero. Accent shifts from red to yellow.
+- **Voice:** v1 says "WE ARE A STUDIO. WE ARE NOT A PLATFORM." (one of five lines); v2 stakes the page on "We make products that don't outlive their use" as the single hero claim.
+- **Section count:** v1 had ~9 sections; v2 has 5. Quote-Led wants brevity — the quote is the page.
 
-The page is mostly black. It is supposed to be.
+## What stayed the same
+
+- Brand and tone: Meridian, environmental products, "no flashy stuff."
+- Enrichment: none on both. Voice is the design.
+- Slop test: 38 / 38 ✓.
+- Dark paper. Single accent. No gradients. No rounded corners.

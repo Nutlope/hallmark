@@ -1,69 +1,64 @@
-# Test 08 — Cohort (cohort-based courses platform)
+# Test 08 v2 — Cohort (cohort-based courses platform)
 
-## The prompt
+## The prompt (verbatim, same as v1)
 
 > "Build a landing page for Cohort — the platform for cohort-based courses. Run live courses with 30 to 500 students. Built for educators, not LMS sales teams. Audience: course operators + indie creators. Tone: warm, salon-room, editorial."
 
-## Context gate — fully answered
+## Step 0 · Pre-flight
+
+> *"No pre-flight signals — proceeding with full Hallmark stack."*
+
+## Step 1 · Design-context gate — fully answered
 
 Audience, use, tone all explicit.
 
-## Domain inference
+## Step 2.5 · Project memory rotation
 
-Education-tech / creator-tool / B2B-light SaaS. The brief is *operator-facing* (educators run courses), not student-facing. From the macrostructure catalogue: **Marquee Hero · Long Document · Workbench** are reasonable picks for "creator tool with showcase work."
+> *"Previous run on this brief picked Marquee Hero + Salon + Tier-A continuous marquee. Picking from {Stat-Led, Long Document, Workbench} for the macro this time — Stat-Led wins because the brief itself leads with a number range ('30 to 500 students'); a stat hero answers the brief literally."*
+>
+> *"Theme rotation: Salon (light · mono-display · warm-amber) → Linen (light · geometric-sans · warm-amber). Differs on display style. Accent stays warm-amber. One axis differs — passes (the rule requires at least one)."*
 
-The skill picks **Marquee Hero** because the brief implicitly says "show me the courses already running." A continuous-scroll band of course titles + instructors is the proof — and it does the social-proof job without a separate logo wall section.
+## Step 3 · Visual ruleset loaded
 
-## Theme
+`macrostructures.md` (Stat-Led), `component-cookbook.md` (H8 huge-stat hero, three-stat supporting row, testimonial-card), `typography.md` (Linen pairing — Inter Tight display + Inter Tight body), `color.md` (Linen palette — warm beige, warm-amber accent), `microinteractions.md` (default-on for marketing — counter on hero stat, no marquee), `anti-patterns.md`.
 
-Last test was Foundry on **Newsprint** (light · roman-serif · warm-deep-red). Tracejam before was **Pastel** (light · geometric-sans · cool-indigo). Diversification axes for the next theme:
+## Step 4 · Hero enrichment
 
-| Theme | Paper band | Display style | Accent hue |
-| --- | --- | --- | --- |
-| Pastel (Tracejam) | light | geometric-sans | cool-indigo |
-| Newsprint (Foundry) | light | roman-serif | warm-deep-red |
-| **Salon (Cohort)** | **light** | **mono** | **warm-amber** |
+> *"Enrichment: none (typography only). The brief's range '30–500' is itself the visual — set it at 22 rem and the page can carry the rest typographically. No marquee (v1 had it; the rotation rule pushes us off it). No mockup (the page isn't selling a screen)."*
 
-vs Foundry: paper-band same · display style differs · accent same family but different hue (deep-red vs amber).
-vs Pastel: paper-band same · display style differs · accent differs.
+## Step 5 · Preview
 
-Two of three differ from Foundry. Three of three differ from Pastel (counting hue tint). **Passes.**
+```markdown
+**Hallmark · v0.6.0**
 
-Salon as a theme: light warm paper, mono display (IBM Plex Mono), warm amber accent, generous spacing, centered emphasis. The unusual choice — mono display on a course-platform marketing page — gives Cohort the "letterpress-y, instructor-room" feel the brief asked for ("salon-room, editorial").
+- **Macrostructure** · Stat-Led
+- **Theme** · Linen (warm beige paper · Inter Tight geometric-sans · warm-amber accent ~3%)
+- **Enrichment** · none (typography only — the range "30–500" is the visual)
+- **Sections** · Masthead · Hero stat · Three supporting stats · Two operator testimonials · Two-tier pricing · CTA · Colophon
+- **Motion** · counter on hero stat (1 primitive)
+- **Slop test** · 38 / 38 ✓
+- **Diversification** · differs from v1 (Marquee Hero/Salon) on macrostructure + display style
+```
 
-## Enrichment
-
-The marquee IS the enrichment. **No additional mockup, no illustration.** The continuous scroll of course titles is what makes the page feel inhabited. Per `hero-enrichment.md`, this is enrichment archetype **Animated Loop (E6)** delivered via continuous CSS marquee — Tier A custom-craft, no Lottie.
-
-## Microinteractions
-
-Cohort is a Marquee Hero — **default-on archetype** per the new microinteractions rule. Three primitives, max:
-
-1. **Marquee scroll** — continuous CSS `@keyframes marquee` translateX(-100%) over 50 s, infinite. Pauses on hover. Reduced-motion: scroll stops, first three items shown.
-2. **Stagger reveal on testimonials** — IntersectionObserver fires on each card; 100 ms stagger; opacity 0 → 1 + translateY(8px → 0); ease-out 400 ms. One-shot.
-3. **Pricing card hover lift** — same recipe as Foundry: `translateY(-3px)` + shadow upgrade, 180 ms ease-out.
-
-CTA hover-lift is the existing `microinteractions.md` recipe and counts as 0 primitives — it's button polish, not page-level motion.
-
-## Macrostructure stamp
+## Step 6 · Macrostructure stamp
 
 ```
-/* Hallmark · macrostructure: Marquee Hero · H6 hero knobs: speed=slow, content=titles+authors, fade=both-edges
- * theme: Salon · accent: warm-amber ~3% · enrichment: E6 animated loop (continuous marquee, Tier-A)
- * studied: no · context: explicit
- * motion: marquee, stagger-reveal, pricing-lift — three primitives, default-on per archetype
+/* Hallmark · macrostructure: Stat-Led · H8 hero knobs: stat=range, size=22rem, weight=display-light
+ * theme: Linen · accent: warm-amber ~3% · enrichment: none (typography only — the range is the visual)
+ * studied: no · context: explicit · v0.6.0
  */
 ```
 
-## What the page does
+## What changed vs v1
 
-1. **Hero (Marquee).** Continuous-scroll band of course titles + instructor names above. Headline below: "Cohort runs live courses with 30 to 500 students." Two CTAs.
-2. **Three-step process.** Set a date · Invite students · Teach live. Numbered, conversational.
-3. **Features (split, alternating).** Live cohorts · Office hours · Async chat · Cohort analytics. Each row alternates the screenshot side.
-4. **Testimonials (4 in 2×2).** Instructor + course name. Specific, voice-distinct.
-5. **Pricing (2 tiers).** Indie ($59/mo) · Team ($199/mo). Salon-style: italic-mono display, italic prices, centered.
-6. **FAQ (6 questions).** Two-column conversational FAQ.
-7. **Final CTA strip.** "Run your first cohort by next month."
-8. **Footer.** Centered Salon footer, single-line nav + colophon.
+- **Macro:** Marquee Hero → Stat-Led. v1 led with a continuous-scroll marquee of course titles + instructor names; v2 leads with the brief's own range "30–500" sized at 22 rem. The rest of the page carries supporting stats and operator testimonials.
+- **Theme:** Salon → Linen. Both warm, both light. Salon was IBM Plex Mono display + Cormorant body (mono-display); Linen is Inter Tight throughout (geometric-sans). Display style differs.
+- **Enrichment:** v1's continuous marquee → v2's typography-only hero. Stat-Led can carry the page without a moving element.
+- **Voice:** v1 opened with "Cohort runs live courses the way your favourite teacher would — with a date, a roster, and a room"; v2 opens with the range first, voice in the supporting copy.
 
-The page is intentionally long — second demonstration of the SaaS page sequence rule, this time in a Marquee Hero shape rather than Stat-Led.
+## What stayed the same
+
+- Brand: Cohort, course platform, educator audience.
+- Two-tier pricing (Run your first cohort / Scale).
+- Slop test: 38 / 38 ✓.
+- Warm paper band.

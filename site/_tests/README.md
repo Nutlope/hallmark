@@ -1,25 +1,29 @@
 # Hallmark — generation tests
 
-Eight landing pages produced by exercising the Hallmark skill across contrasting briefs. The point: see what comes out *without* hand-holding the AI on theme, structure, or enrichment. Each test deliberately tests a different scenario. Tests 01–06 ship with no enrichment or simple Tier-A/B custom-craft; tests 07 and 08 demonstrate the **default-on microinteractions** rule (animated counter, marquee, stagger reveal) and the **SaaS page sequence** (testimonials, pricing, FAQ).
+Eight landing pages produced by exercising the Hallmark skill across contrasting briefs. The point: see what comes out *without* hand-holding the AI on theme, structure, or enrichment. Each test deliberately tests a different scenario.
+
+The current generation reflects **v0.6.0** of the skill — pre-flight scan, project-memory rotation, and the upfront preview block all firing. Each `brief.md` walks through Steps 0 → 6 of the design flow so the discipline is visible.
 
 | # | Brief | Context given | Theme requested | What the skill picked |
 | --- | --- | --- | --- | --- |
-| 01 | Indie podcast `Tide`, no detail | **Skipped** ("you pick") | none | Quote-Led + Atelier + no enrichment |
-| 02 | Open-source CLI `Streampipe` for stream parsing | Full (devs / install + docs / technical) | **Terminal** (requested) | Workbench + Terminal + Tier-A CSS-art terminal mockup |
-| 03 | Artisan bakery `Maple Street Bread` | Full (locals / browse + visit / warm hand-set) | none | Long Document + Linen + Tier-B hand-built SVG loaf |
-| 04 | Manifesto for an environmental studio `Meridian` | Partial ("declarative, no flashy stuff") | none (implied) | Manifesto + Manifesto + no enrichment · 11 sections (manifesto + principles + practice + reading) |
-| 05 | SaaS observability tool `Tracejam` | Full (SREs / try-or-talk-to-sales / technical) | none | Bento Grid + Pastel + E1 clipped-edge dashboard mockup |
-| 06 | Personal one-pager for `Anya` (software architect) | **Skipped** ("don't ask, just figure it out") | none | Long Document + Studio + no enrichment |
-| 07 | SOC2 / ISO27001 compliance SaaS `Foundry` | Full (founders + CTOs / try-or-talk-to-sales / technical-but-trustworthy) | none | Stat-Led + Plain (pure-white #fff) + animated counter + pricing pulse · 9-section SaaS sequence |
-| 08 | Cohort-based courses platform `Cohort` | Full (educators / run-courses / warm-salon-room) | none | Marquee Hero + Salon + continuous marquee + stagger reveal · 8-section SaaS sequence |
+| 01 | Indie podcast `Tide`, no detail | **Skipped** ("you pick") | none | Letter + Salon + no enrichment |
+| 02 | Open-source CLI `Streampipe` for stream parsing | Full (devs / install + docs / technical) | **Terminal** (requested) | Long Document + Terminal + Tier-A inline CSS-art terminal |
+| 03 | Artisan bakery `Maple Street Bread` | Full (locals / browse + visit / warm hand-set) | none | Catalogue + Almanac + Tier-A hand-built SVG bread silhouettes |
+| 04 | Manifesto for an environmental studio `Meridian` | Partial ("declarative, no flashy stuff") | none (implied) | Quote-Led + Brutal + no enrichment · single-line polemic with strike accent |
+| 05 | SaaS observability tool `Tracejam` | Full (SREs / try-or-talk-to-sales / technical) | none | Workbench + Midnight + Tier-A sticky trace panel |
+| 06 | Personal one-pager for `Anya` (software architect) | **Skipped** ("don't ask, just figure it out") | none | Index-First + Plain + no enrichment |
+| 07 | SOC2 / ISO27001 compliance SaaS `Foundry` | Full (founders + CTOs / try-or-talk-to-sales / technical-but-trustworthy) | none | Bento Grid + Newsprint + Tier-A logo grid · 6-tile bento on warm-cream paper |
+| 08 | Cohort-based courses platform `Cohort` | Full (educators / run-courses / warm-salon-room) | none | Stat-Led + Linen + no enrichment · the brief's "30–500" range as the typographic hero |
 
 Each folder contains:
 
-- **`brief.md`** — the verbatim prompt, what the skill asked / inferred, and the macrostructure stamp the page ships with
+- **`brief.md`** — the verbatim prompt + the new design flow (Step 0 Pre-flight, Step 1 Context, Step 2.5 Rotation, Step 5 Preview, Step 6 Stamp)
 - **`index.html`** — the rendered page (self-contained, no shared assets)
 - **`style.css`** — the page's tokens + components, with the Hallmark stamp at the top
 
 Open any one with `open site/_tests/<folder>/index.html` or browse via the local dev server at `http://localhost:8765/_tests/<folder>/`.
+
+**Eight distinct fingerprints across eight prompts.** No macro repeats. No theme repeats. Every adjacent pair differs from its neighbour on at least one of: macrostructure / display style / accent hue / paper band — the v0.6.0 rotation rule firing.
 
 ## What this exercise was for
 
@@ -137,3 +141,17 @@ Items 1–11 and 13 from the improvement list above shipped in commit `b61f1ef`.
 ### What this round means for the skill
 
 The structural variety position holds across **eight** tests now, not six. The skill shipped its first two long-form pages (Foundry and Cohort) with proper SaaS structure — testimonials with role + company, real pricing, conversational FAQ — and they read distinctly per macrostructure, not just look distinct. The microinteractions are appropriate (counter, lift, marquee) and bounded to three primitives per page. The Tracejam regressions are gated against in three new slop-test questions.
+
+---
+
+## v0.6.0 — second pass · re-generated under the new disclosure layers
+
+The eight tests above are a re-generation of the original prompts under v0.6.0's three new disclosure layers — pre-flight scan (Step 0), project memory rotation (Step 2.5), and the upfront preview block (Step 5). They were produced as a single rotating session, so each pick takes the previous picks into account and the diversification rule fires across all eight.
+
+**Outcome:** every macrostructure unique, every theme unique, every pick measurably different from the original generation. The pre-flight + rotation + preview discipline is documented inside each `brief.md` so the user can read the skill's reasoning before scrolling to the page.
+
+The previous picks (which had Quote-Led/Atelier · Workbench/Terminal · Long Document/Linen · Manifesto/Manifesto · Bento Grid/Pastel · Long Document/Studio · Stat-Led/Plain · Marquee Hero/Salon) are preserved in the git history of this folder.
+
+### Verb tests
+
+`_tests/verbs/` carries one worked example per verb (`audit`, `refine`, `redesign`, `study`) — see [`verbs/README.md`](verbs/README.md). These are not part of the gallery; they sit alongside as reference material for what each verb produces on a tiny realistic input.

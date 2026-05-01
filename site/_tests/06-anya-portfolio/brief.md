@@ -1,48 +1,65 @@
-# Test 06 — Anya (software architect personal site)
+# Test 06 v2 — Anya (software architect personal site)
 
-## The prompt
+## The prompt (verbatim, same as v1)
 
 > "I'm Anya, a software architect. Build me a one-pager. Don't ask me questions, just figure it out."
 
-## Context gate — skipped (explicit)
+## Step 0 · Pre-flight
 
-The user explicitly opted out. Skill must state inferences in one sentence at the top of the reply.
+> *"No pre-flight signals — proceeding with full Hallmark stack."*
 
-**Going with:** *audience = engineering leaders considering Anya for hire / consult · use = read about Anya, then contact · tone = technical-but-warm, restrained, prose-led.* If any of those is wrong, redirect.
+## Step 1 · Design-context gate — skipped (explicit)
 
-## Domain inference
+> *"Going with: audience = engineering leaders considering Anya for hire / consult · use = read about Anya, then contact · tone = austere, technical, prose-led. If any of those is wrong, redirect."*
 
-`personal / resume / one-pager / individual` → from the domain table: **Long Document / Letter / Index-First**.
+## Step 2.5 · Project memory rotation
 
-The skill picks **Long Document**. Letter was the runner-up and would have produced a warmer page; Long Document is the more credible shape for a senior IC at this career stage.
+> *"Previous run on this brief picked Long Document + Studio + none. Picking from {Index-First, Letter, Specimen} for the macro this time — Index-First wins because a senior IC's one-pager benefits from a tabular structure (years · companies · domains) more than a prose-led essay; the sidebar TOC also makes the page scannable for hiring managers reading on a 30-second window."*
+>
+> *"Theme rotation: Studio (light · italic-serif · chromatic-green) → Plain (light · display-heavy · cool-deep-ink-blue). Differs on display style and accent hue. Passes."*
 
-## Theme
+## Step 3 · Visual ruleset loaded
 
-The default attractor for "personal portfolio" is Specimen, and that's exactly the trap. The skill picks **Studio** — italic Fraunces display, forest-green accent, Geist body. Studio is the modern editorial agency aesthetic, and a senior software architect's one-pager benefits from looking like a small design studio's about page rather than a CV.
+`macrostructures.md` (Index-First), `component-cookbook.md` (sidebar-TOC archetype, prose-block), `typography.md` (Plain pairing — Inter Tight display-heavy + Bricolage wordmark + body sans), `color.md` (Plain palette — pure-white paper, near-neutral cool greys, deep ink-blue), `microinteractions.md` (single primitive: TOC active-section highlight on scroll), `anti-patterns.md`.
 
-## Enrichment
+## Step 4 · Hero enrichment
 
-**None.** Typography only. The decision is deliberate — a personal site that hand-builds a Lottie or commissions a Midjourney portrait of itself reads as overcompensating. Restraint is the credibility signal here.
+> *"Enrichment: none. The page is a TOC + prose. A personal portfolio that builds a Three.js spinning name reads as overcompensating. Restraint is the credibility signal."*
 
-The slop test catches: no abstract gradient background ("decoration without purpose"), no Three.js spinning name ("3D for a still object"), no demo video ("there's nothing to demo"), no aurora-blob ("never").
+## Step 5 · Preview
 
-## Macrostructure stamp
+```markdown
+**Hallmark · v0.6.0**
+
+- **Macrostructure** · Index-First
+- **Theme** · Plain (pure-white paper #fff · Inter Tight display-heavy · deep ink-blue accent ~2%)
+- **Enrichment** · none (typography only — restraint is the credibility signal)
+- **Sections** · Sidebar TOC · 00 Index · 01 Now · 02 Years · 03 Writing · 04 Reach
+- **Motion** · TOC active-section highlight (1 primitive)
+- **Slop test** · 38 / 38 ✓
+- **Diversification** · differs from v1 (Long Document/Studio) on macrostructure + display style + accent hue
+```
+
+## Step 6 · Macrostructure stamp
 
 ```
-/* Hallmark · macrostructure: Long Document · H5 hero knobs: salutation=greeting, body=2 paragraphs, signoff=initials
- * theme: Studio · accent: forest-green ~2% (a single mark)
+/* Hallmark · macrostructure: Index-First · F4 sidebar-toc knobs: width=12rem, sticky=true, numbered=00-04
+ * theme: Plain · accent: deep-ink-blue ~2% (used as section-num + one rule)
  * enrichment: none (typography only — restraint is the credibility signal)
- * studied: no · context: skipped, inferred (personal / portfolio domain)
+ * studied: no · context: skipped, inferred (personal / portfolio domain) · v0.6.0
  */
 ```
 
-## What the page does
+## What changed vs v1
 
-- Italic display salutation: "Hello, I'm Anya."
-- Two short paragraphs, italic display + roman body, on what Anya does and how she works
-- A tabular "selected work" sheet: four projects, each one a single line — year · client · what changed
-- A "currently" line in italic noting present focus
-- A small "elsewhere" line: GitHub · LinkedIn · email
-- Footer: a single dense colophon line
+- **Macro:** Long Document → Index-First. v1 was a salutation-led essay with a tabular work-sheet at the bottom; v2 leads with a numbered TOC on the left and structures the page as 5 sections that match how a hiring manager actually reads. Longer-form information density without losing the editorial feel.
+- **Theme:** Studio → Plain. Studio's italic Fraunces + cool grey paper + forest-green accent had warmth; Plain is pure-white #fff paper + Inter Tight display-heavy + deep ink-blue. The page reads more like a Klim Type Foundry "about" than a small studio's about.
+- **Voice:** v1 opened with "Hello, I'm Anya." (with a green highlighter mark behind "Anya"); v2 opens with the index list and the first section header `01 · NOW`.
+- **Section count:** v1 had ~3 narrative sections; v2 has 5 indexed sections, each tighter.
 
-The page is one fold tall on a 1440 px display. That's the point.
+## What stayed the same
+
+- Brand: Anya, software architect, Lisbon.
+- Enrichment: none on both. Typography only.
+- Slop test: 38 / 38 ✓.
+- Tabular work history (years × companies). v1 had it as a table at the bottom; v2 has it as section 02.

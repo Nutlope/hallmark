@@ -1,239 +1,250 @@
-/* Hallmark · macrostructure: Workbench · F2 sticky-scroll knobs: pinned=right, content=code, steps=3
- * theme: Terminal · accent: phosphor-green ~6% (functional, not decorative) · enrichment: E1 hero — pure-CSS terminal mockup (Tier A)
- * studied: no · context: explicit
+/* Hallmark · macrostructure: Long Document · H5 hero knobs: salutation=command, body=2 paragraphs, signoff=mit-license
+ * theme: Terminal · accent: phosphor-green ~6% (functional, not decorative)
+ * enrichment: Tier-A inline CSS-art terminal blocks (no sticky pin, no Lottie)
+ * studied: no · context: explicit · v0.6.0
  */
 
-@import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap");
-
 :root {
-  --paper:        oklch(11%   0.018 145);   /* deep cool dark, slight green */
-  --paper-2:      oklch(15%   0.020 145);
-  --paper-3:      oklch(20%   0.020 145);
-  --rule:         oklch(28%   0.015 145);
-  --rule-2:       oklch(40%   0.025 145);
-  --muted:        oklch(58%   0.025 145);
-  --ink-2:        oklch(82%   0.020 145);
-  --ink:          oklch(94%   0.012 145);
-  --accent:       oklch(78%   0.19 138);    /* phosphor green */
-  --accent-2:     oklch(86%   0.16 138);
+  --color-paper: oklch(13% 0.020 150);
+  --color-paper-2: oklch(17% 0.022 150);
+  --color-rule: oklch(28% 0.025 150);
+  --color-ink: oklch(86% 0.040 150);
+  --color-ink-soft: oklch(62% 0.040 150);
+  --color-accent: oklch(82% 0.20 150);
+  --color-accent-dim: oklch(58% 0.16 150);
+  --color-amber: oklch(78% 0.18 80);
 
-  --mono:        "Geist Mono", "JetBrains Mono", ui-monospace, monospace;
-  --space-xs:  0.5rem;
-  --space-sm:  0.75rem;
-  --space-md:  1rem;
-  --space-lg:  1.5rem;
-  --space-xl:  2.5rem;
-  --space-2xl: 4rem;
-  --space-3xl: 6rem;
+  --font-mono: "IBM Plex Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --rule-hair: 0.5px;
-  --rule-fine: 1px;
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4.5rem;
+  --space-3xl: 6.5rem;
+
+  --measure-prose: 64ch;
+
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur-micro: 100ms;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; }
 
-html {
-  font-family: var(--mono);
-  font-size: 14px;
-  line-height: 1.55;
-  color: var(--ink-2);
-  background: var(--paper);
+html, body { overflow-x: clip; }
+
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
-body {
-  min-height: 100dvh;
-  padding-inline: clamp(1.5rem, 5vw, 4rem);
-  padding-block: var(--space-2xl);
-  max-width: 76rem;
+.page {
+  max-width: 56rem;
   margin: 0 auto;
+  padding: var(--space-2xl) var(--space-lg) var(--space-3xl);
 }
 
-.nav {
+/* Masthead */
+.masthead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-block-end: 1px solid var(--color-rule);
+  padding-block-end: var(--space-sm);
+  margin-block-end: var(--space-2xl);
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-ink-soft);
+}
+
+.masthead__brand { color: var(--color-accent); }
+.masthead__meta { font-variant-numeric: tabular-nums; }
+
+/* Lede — the salutation-as-command */
+.lede {
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  line-height: 1.4;
+  margin: 0 0 var(--space-xl);
+  color: var(--color-ink);
+  max-width: var(--measure-prose);
+}
+
+.lede__prompt {
+  color: var(--color-accent);
+  margin-inline-end: 0.5ch;
+}
+
+.lede__caret {
+  display: inline-block;
+  width: 0.55ch;
+  height: 1.15em;
+  background: var(--color-accent);
+  vertical-align: -0.18em;
+  margin-inline-start: 0.15em;
+  animation: caret 1s steps(2, jump-none) infinite;
+}
+
+@keyframes caret {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lede__caret { animation: none; opacity: 0.7; }
+}
+
+/* Body prose */
+.prose {
+  max-width: var(--measure-prose);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+.prose p {
+  margin: 0 0 var(--space-md);
+  color: var(--color-ink);
+}
+
+.prose strong { color: var(--color-accent); font-weight: 500; }
+
+.prose a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent-dim);
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--dur-micro) var(--ease-out);
+}
+
+.prose a:hover, .prose a:focus-visible {
+  text-decoration-color: var(--color-accent);
+}
+
+.prose a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Inline terminal blocks */
+.term {
+  background: var(--color-paper-2);
+  border: 1px solid var(--color-rule);
+  border-radius: 4px;
+  padding: var(--space-md);
+  margin: var(--space-lg) 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  overflow-x: auto;
+  position: relative;
+}
+
+.term__line { display: block; white-space: pre; color: var(--color-ink); }
+.term__line .term__prompt { color: var(--color-accent); }
+.term__line .term__flag { color: var(--color-amber); }
+.term__line .term__comment { color: var(--color-ink-soft); }
+.term__line.term__line--out { color: var(--color-ink-soft); }
+
+/* Section headings */
+.section {
+  margin-block-start: var(--space-2xl);
+  padding-block-start: var(--space-md);
+  border-block-start: 1px solid var(--color-rule);
+}
+
+.section__head {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding-block: var(--space-md);
-  border-block-end: var(--rule-hair) solid var(--rule);
-  margin-block-end: var(--space-3xl);
-}
-.nav .wordmark { color: var(--ink); }
-.nav .wordmark::before { content: "$ "; color: var(--accent); }
-.nav__links { display: flex; gap: var(--space-lg); }
-.nav__links a {
-  color: var(--muted);
-  text-decoration: none;
-  text-underline-offset: 4px;
-}
-.nav__links a:hover { color: var(--ink); text-decoration: underline; }
-
-/* Hero — headline + CSS-art terminal mockup */
-.hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-2xl);
-  align-items: start;
-  margin-block-end: var(--space-3xl);
-  padding-block-end: var(--space-2xl);
-  border-block-end: var(--rule-hair) solid var(--rule);
-}
-
-.hero__headline {
-  font-family: var(--mono);
-  font-size: clamp(1.75rem, 3vw + 0.5rem, 2.75rem);
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  color: var(--ink);
-  line-height: 1.1;
-}
-.hero__headline .prompt { color: var(--accent); }
-
-.hero__lede {
-  margin-block-start: var(--space-lg);
-  color: var(--ink-2);
-  max-width: 40ch;
-}
-
-.hero__cta {
-  margin-block-start: var(--space-xl);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-}
-.hero__cta-label {
-  color: var(--muted);
-  font-size: 0.75rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-.cmd {
-  background: var(--paper-2);
-  border: var(--rule-hair) solid var(--rule);
-  padding: var(--space-md) var(--space-lg);
-  color: var(--ink);
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-}
-.cmd .prompt { color: var(--accent); user-select: none; }
-
-/* CSS-art terminal mockup — pure CSS, no images, no Lottie */
-.term {
-  background: var(--paper-3);
-  border: var(--rule-hair) solid var(--rule-2);
-  font-family: var(--mono);
+  margin: 0 0 var(--space-md);
   font-size: 0.8125rem;
-  line-height: 1.7;
-  padding: var(--space-md) var(--space-lg);
-  color: var(--ink-2);
-  display: grid;
-  gap: 0.05rem;
-  position: relative;
-  overflow: hidden;
-}
-.term::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 28px;
-  background: var(--paper-2);
-  border-block-end: var(--rule-hair) solid var(--rule);
-}
-.term::after {
-  content: "streampipe — 80×24";
-  position: absolute;
-  top: 6px; left: 12px;
-  font-size: 0.6875rem;
-  color: var(--muted);
-  letter-spacing: 0.04em;
-}
-.term { padding-block-start: 2.6rem; }
-
-.term .ln { display: block; white-space: pre; }
-.term .prompt { color: var(--accent); }
-.term .flag { color: var(--accent-2); }
-.term .num   { color: var(--ink); font-weight: 500; }
-.term .meta  { color: var(--muted); }
-.term .caret {
-  display: inline-block;
-  width: 0.55em;
-  height: 1em;
-  background: var(--accent);
-  vertical-align: -0.15em;
-  margin-inline-start: 0.05em;
-  animation: blink 1.05s steps(2) infinite;
-}
-@keyframes blink { to { background: transparent; } }
-@media (prefers-reduced-motion: reduce) {
-  .term .caret { animation: none; }
-}
-
-/* Section heads — left-margin numbered (Workbench style) */
-.section {
-  display: grid;
-  grid-template-columns: 6rem 1fr;
-  gap: var(--space-lg);
-  margin-block-end: var(--space-3xl);
-  padding-block-end: var(--space-2xl);
-  border-block-end: var(--rule-hair) solid var(--rule);
-  align-items: baseline;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-ink-soft);
 }
 
 .section__num {
-  font-family: var(--mono);
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+/* Numbered note rows (How it works) */
+.notes { display: grid; gap: var(--space-md); }
+.note {
+  display: grid;
+  grid-template-columns: 4ch 1fr;
+  gap: var(--space-md);
+  align-items: baseline;
+}
+.note__num {
+  color: var(--color-accent);
+  font-variant-numeric: tabular-nums;
+}
+.note__body {
+  color: var(--color-ink);
+  max-width: var(--measure-prose);
+}
+.note__body strong { color: var(--color-accent); font-weight: 500; }
+
+/* Flag spec table */
+.flags {
+  width: 100%;
+  border-collapse: collapse;
   font-size: 0.8125rem;
-  color: var(--muted);
+}
+.flags th, .flags td {
+  text-align: start;
+  padding: var(--space-2xs) var(--space-sm) var(--space-2xs) 0;
+  border-block-end: 1px solid var(--color-rule);
+  vertical-align: baseline;
+}
+.flags th {
+  font-weight: 500;
+  color: var(--color-ink-soft);
+  text-transform: uppercase;
   letter-spacing: 0.06em;
 }
-.section__num span { color: var(--accent); }
+.flags td:first-child { color: var(--color-accent); width: 18ch; }
 
-.section__title {
-  font-family: var(--mono);
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: var(--ink);
-  margin-block-end: var(--space-md);
-  letter-spacing: -0.005em;
-}
-.section__body { color: var(--ink-2); max-width: 60ch; }
-.section__body code { color: var(--accent-2); background: transparent; }
-
-/* Spec sheet (F3) — flags */
-.spec {
-  display: grid;
-  grid-template-columns: 12rem 1fr 1fr;
-  gap: var(--space-md);
-  font-family: var(--mono);
+/* Colophon */
+.colophon {
+  margin-block-start: var(--space-3xl);
+  padding-block-start: var(--space-md);
+  border-block-start: 1px solid var(--color-rule);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md) var(--space-xl);
   font-size: 0.8125rem;
-  margin-block-start: var(--space-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-ink-soft);
 }
-.spec > * {
-  padding-block: var(--space-sm);
-  border-block-start: var(--rule-hair) solid var(--rule);
-}
-.spec dt {
-  color: var(--accent-2);
-}
-.spec dd { margin: 0; color: var(--ink-2); }
-.spec .meta { color: var(--muted); }
 
-/* Footer — dense colophon */
-footer {
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  line-height: 1.7;
-  color: var(--muted);
-  white-space: pre-wrap;
-  padding-block: var(--space-2xl);
-  border-block-start: var(--rule-hair) solid var(--rule);
+.colophon a {
+  color: var(--color-ink-soft);
+  text-decoration: none;
+  transition: color var(--dur-micro) var(--ease-out);
 }
-footer .ink { color: var(--ink); }
-footer a { color: var(--ink-2); text-decoration: underline; text-underline-offset: 4px; }
 
-@media (max-width: 56rem) {
-  .hero { grid-template-columns: 1fr; }
-  .section { grid-template-columns: 1fr; }
-  .section__num { color: var(--accent); }
-  .spec { grid-template-columns: 8rem 1fr; }
-  .spec .meta { display: none; }
+.colophon a:hover, .colophon a:focus-visible {
+  color: var(--color-accent);
+}
+
+.colophon a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Mobile */
+@media (max-width: 40rem) {
+  .page { padding: var(--space-xl) var(--space-md) var(--space-2xl); }
+  .lede { font-size: 1.125rem; }
+  .note { grid-template-columns: 3ch 1fr; gap: var(--space-sm); }
 }

@@ -1,47 +1,64 @@
-# Test 03 — Maple Street Bread (artisan bakery)
+# Test 03 v2 — Maple Street Bread (artisan bakery)
 
-## The prompt
+## The prompt (verbatim, same as v1)
 
 > "Landing page for Maple Street Bread. Audience: locals who want to buy bread. Use: see what's available + visit. Tone: warm, hand-set, considered."
 
-## Context gate — fully answered
+## Step 0 · Pre-flight
 
-Audience, use, tone all explicit. No inference needed.
+> *"No pre-flight signals — proceeding with full Hallmark stack."*
 
-## Domain inference
+## Step 1 · Design-context gate — fully answered
 
-`bakery / kitchen / café / atelier + craft brief` → from the domain table: **Photographic / Long Document / Catalogue**.
+Audience, use, tone all explicit.
 
-The skill picks **Long Document**. The bakery is a story-led brand — there's an owner, a process, a daily rhythm — and a Long Document treats that as prose first, with the menu as a quiet aside. Catalogue (a uniform grid of breads) was the runner-up; Long Document wins because the *narrative* is the differentiator from a corporate bakery chain.
+## Step 2.5 · Project memory rotation
 
-## Theme
+> *"Previous run on this brief picked Long Document + Linen + Tier-B SVG loaf. Picking from {Catalogue, Photographic, Letter} this time — Catalogue wins because the brief says 'see what's available' (the user is shopping a board, not reading a story)."*
+>
+> *"Theme rotation: Linen (light · geometric-sans · warm-amber) → Almanac (light · roman-serif · warm-amber). Differs on display style. Passes."*
 
-No theme requested. Picking **Linen** — warm beige paper, plain serif, hanging headings, generous space. Linen is the only theme that reads as "shop in a real neighbourhood". Salon would be too formal; Garden too literal.
+## Step 3 · Visual ruleset loaded
 
-## Enrichment
+`macrostructures.md` (Catalogue), `component-cookbook.md` (item-card archetypes, market-board headings), `typography.md` (Almanac pairing — IM Fell Display + Source Serif body), `color.md` (warm parchment palette), `microinteractions.md` (single primitive: hover line-rule on item rows), `anti-patterns.md`.
 
-**E5 Custom Illustration Centerpiece, Tier B (hand-built SVG).** The bakery brief is the canonical example for going custom — a hand-drawn loaf in 60 lines of SVG, three paths, with a `@property`-driven subtle breathing animation.
+## Step 4 · Hero enrichment
 
-The decision is *not* to pull a Storyset bakery illustration; that would be the library shortcut. *Not* a Lottie of a baker; that's the Lottie shortcut. *Not* a Midjourney bread photograph; raw output reads as AI. **Hand-built is the right tier here.**
+> *"Enrichment: Tier-A pure-CSS bread silhouettes per item. Each row has a small (96 px) hand-drawn loaf shape rendered as inline SVG with a single accent stroke. No photography (raw bread photos read as Midjourney). No Lottie. Eight breads × eight tiny SVGs = ~140 lines of inline SVG total."*
 
-## Macrostructure stamp
+## Step 5 · Preview
+
+```markdown
+**Hallmark · v0.6.0**
+
+- **Macrostructure** · Catalogue
+- **Theme** · Almanac (warm parchment paper · IM Fell Display roman-serif · warm-amber accent ~3%)
+- **Enrichment** · Tier-A pure-CSS / inline-SVG bread silhouettes (one per item, 96px)
+- **Sections** · Masthead · Today's bake (8-item catalogue grid) · Visit · Colophon
+- **Motion** · row hover-rule (1 primitive)
+- **Slop test** · 38 / 38 ✓
+- **Diversification** · differs from v1 (Long Document/Linen) on macrostructure + display style
+```
+
+## Step 6 · Macrostructure stamp
 
 ```
-/* Hallmark · macrostructure: Long Document · H5 hero knobs: salutation=time-stamp, body=2 paragraphs, signoff=initials
- * theme: Linen · accent: warm-amber ~3%
- * enrichment: E5 Custom Illustration · craft: tier-B hand-built SVG (3 paths, 58 lines)
- * animation: @property --rise · 6s alternate · reduced-motion: static
- * studied: no · context: explicit
+/* Hallmark · macrostructure: Catalogue · F1 catalogue knobs: tiles=8, columns=2, rule=hairline-between
+ * theme: Almanac · accent: warm-amber ~3% · enrichment: tier-A inline SVG bread silhouettes
+ * studied: no · context: explicit · v0.6.0
  */
 ```
 
-## What the page does
+## What changed vs v1
 
-- A time-stamped salutation ("Saturday, 6:14 a.m.") instead of a brand name banner — the bakery introduces itself as a moment in the day
-- A two-paragraph letter-style body about who bakes and what's baked
-- A hand-drawn SVG loaf, animated with a slow breath
-- A small handwritten-feel "today's loaves" list as marginalia
-- Address + hours in italic at the bottom
-- No buttons, no CTA chip, no "Order online" call. Just a phone number, a street address, and an open-hours range.
+- **Macro:** Long Document → Catalogue. v1 was a prose-led page with the menu as a quiet aside; v2 makes the menu the hero. The brief says "see what's available + visit" — Catalogue answers it more directly.
+- **Theme:** Linen → Almanac. Both warm-paper, both light. Linen is geometric-sans display; Almanac is roman-serif display (IM Fell, period almanac feel). Display style differs.
+- **Enrichment:** v1's single hand-built loaf with a `@property --rise` breathing loop becomes eight smaller item-level silhouettes, no animation. The page is busier, which Catalogue can carry; the v1 page would have been overloaded.
+- **Voice:** v1 opened with a time-stamped salutation ("Saturday, 6:14 a.m."); v2 opens with a market-board "Today's bake" with date and a count.
 
-The page is small. It's supposed to be.
+## What stayed the same
+
+- Brand: Maple Street Bread, Lisbon.
+- Tier-A/B custom-craft (no Lottie, no Midjourney).
+- Slop test: 38 / 38 ✓.
+- Footer: visit and hours (no online ordering — same as the brief).

@@ -1,43 +1,63 @@
-# Test 05 — Tracejam (SaaS observability tool)
+# Test 05 v2 — Tracejam (SaaS observability)
 
-## The prompt
+## The prompt (verbatim, same as v1)
 
 > "Build a landing page for Tracejam — a tracing/observability tool for distributed systems. Audience: SREs and platform engineers. Use case: try it / contact sales. Tone: technical."
 
-## Context gate — fully answered
+## Step 0 · Pre-flight
 
-Audience, use, tone all explicit. No inference needed.
+> *"No pre-flight signals — proceeding with full Hallmark stack."*
 
-## Domain inference
+## Step 1 · Design-context gate — fully answered
 
-`platform / tool / infra / dashboard / developer` → from the domain table: **Workbench / Bento Grid / Stat-Led** are reasonable picks.
+Audience, use, tone all explicit.
 
-The skill picks **Bento Grid** because Tracejam has many surfaces (traces, metrics, alerts, logs) and Bento communicates "many entry points" the way Workbench would communicate "one thing, walked through". Workbench was the runner-up.
+## Step 2.5 · Project memory rotation
 
-## Theme
+> *"Previous run on this brief picked Bento Grid + Pastel + Tier-A flame chart. Picking from {Workbench, Stat-Led, Long Document} for the macro this time — Workbench wins because the brief says 'try it' and Workbench is structured to walk an SRE through a single workflow rather than show six surfaces in a tile grid."*
+>
+> *"Theme rotation: Pastel (light · geometric-sans · cool-indigo) → Midnight (dark · geometric-sans · phosphor-cyan). Differs on paper band (light → dark) and accent hue (indigo → phosphor-cyan). Two of three axes differ. Passes."*
 
-The tempting default for a SaaS observability tool is **Midnight** (dark technical). But the skill resists: Midnight has been used elsewhere, and the brief says "technical" not "dark". Picking **Pastel** instead — post-Linear soft tech, low-chroma indigo accent, soft surfaces. The test is whether a Pastel page can still feel rigorous to an SRE; the answer is yes if the typography is exact.
+## Step 3 · Visual ruleset loaded
 
-## Enrichment
+`macrostructures.md` (Workbench), `component-cookbook.md` (F2 sticky-scroll, H1 left-bias hero, code-card archetype), `typography.md` (Midnight pairing — Geist Mono display + Geist body), `color.md` (Midnight palette — dark cool greys), `microinteractions.md` (active-step highlight via `IntersectionObserver`, copy-to-clipboard on code lines, focus-visible rings), `anti-patterns.md`.
 
-**E1 Demo Video — Clipped-Edge** archetype, but with a Tier-A pure-CSS dashboard mockup instead of real video. The mockup is a hand-built CSS-art trace waterfall (a flame chart) — it says "this is real software" without needing to ship a 4 MB video.
+## Step 4 · Hero enrichment
 
-The decision is *not* "embed a Loom". *Not* "use a stock video". *Not* "build a Lottie loop of moving bars". Pure CSS art is the right tier — the dashboard is geometric, the data are coloured rectangles, and CSS does that beautifully.
+> *"Enrichment: Tier-A pure-CSS pinned dashboard panel — a hand-built waterfall trace rendered as flex bars. Different from v1's clipped-edge browser frame: this one sits in the right column, pinned during scroll, swapping its content as the user scrolls past each step. Same Tier-A custom-craft, different layout role."*
 
-## Macrostructure stamp
+## Step 5 · Preview
+
+```markdown
+**Hallmark · v0.6.0**
+
+- **Macrostructure** · Workbench
+- **Theme** · Midnight (dark cool paper · Geist Mono display · phosphor-cyan accent ~3%)
+- **Enrichment** · Tier-A pure-CSS sticky dashboard panel (3-state, swaps on scroll)
+- **Sections** · Masthead · Hero · Sticky-walkthrough (3 steps × pinned panel) · Integrations · Pricing · Colophon
+- **Motion** · sticky-step active highlight · copy-to-clipboard on code (2 primitives)
+- **Slop test** · 38 / 38 ✓
+- **Diversification** · differs from v1 (Bento Grid/Pastel) on macrostructure + paper band + accent hue
+```
+
+## Step 6 · Macrostructure stamp
 
 ```
-/* Hallmark · macrostructure: Bento Grid · F1 bento knobs: tiles=6, spans=irregular, accent=corner-only
- * H7 hero: Demo Video Clipped-Edge · clip=right, aspect=16/10, frame=hairline
- * theme: Pastel · accent: indigo ~3% · enrichment: tier-A CSS art mockup (flame chart trace waterfall)
- * studied: no · context: explicit
+/* Hallmark · macrostructure: Workbench · F2 sticky-scroll knobs: pinned=right, content=trace-panel, steps=3
+ * theme: Midnight · accent: phosphor-cyan ~3% · enrichment: tier-A CSS-art trace panel (sticky-pinned, 3-state)
+ * studied: no · context: explicit · v0.6.0
  */
 ```
 
-## What the page does
+## What changed vs v1
 
-- Hero: clipped-edge browser-frame mockup containing a CSS-art trace waterfall (a flame chart of an HTTP request fanning out into ~20 spans across four services). Headline left, mockup right, mockup extends ~12 vw past the viewport edge.
-- Bento grid below: six asymmetric tiles, each one a feature with its own visual treatment (a numerical stat, a small CSS chart, a code snippet, a quote from a user, a tabular table of integrations, a single sentence)
-- Two CTAs: "Try it" (outlined chip) and "Talk to sales" (typographic link)
-- Footer: index columns
-- Soft 12 px radius on every card. Indigo accent at ~3 % footprint.
+- **Macro:** Bento Grid → Workbench. v1 split Tracejam into six asymmetric tiles (stat / sparkline / quote / code / integrations / spotlight); v2 walks the user through three SRE-shaped steps, each pinned alongside a swapping dashboard panel.
+- **Theme:** Pastel → Midnight. v1's light-cool paper with indigo accent becomes dark cool paper with phosphor-cyan. The dashboard mockup reads more credible on dark surface for a tracing tool.
+- **Enrichment:** v1's right-clipped browser frame becomes a sticky 3-state panel that updates as the user scrolls past each step. Same hand-built CSS-art content; different layout role.
+- **Pricing:** v1 had no pricing on the page; v2 adds a 3-tier table (Free / Team / Scale) — Workbench can carry it without becoming a Bento.
+
+## What stayed the same
+
+- Brand: Tracejam, distributed tracing, SRE audience.
+- Tier-A custom-craft (no Lottie, no real video).
+- Slop test: 38 / 38 ✓.

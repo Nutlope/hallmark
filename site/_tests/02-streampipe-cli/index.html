@@ -3,87 +3,103 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>streampipe — a small CLI for stream parsing</title>
-  <meta name="description" content="Parse log and event streams from stdin. Filter, transform, route. Open source. Single binary." />
+  <title>Streampipe — a small CLI for parsing log and event streams</title>
+  <meta name="description" content="Streampipe is a small, fast, single-binary CLI for parsing log and event streams from stdin. Filter, transform, route." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <main class="page">
+    <header class="masthead">
+      <span class="masthead__brand">streampipe</span>
+      <span class="masthead__meta">v0.4.1 · MIT · 1.2 MB</span>
+    </header>
 
-  <nav class="nav">
-    <span class="wordmark">streampipe</span>
-    <div class="nav__links">
-      <a href="#docs">docs</a>
-      <a href="#install">install</a>
-      <a href="https://github.com/example/streampipe">github</a>
-    </div>
-  </nav>
+    <h1 class="lede">
+      <span class="lede__prompt">$</span>streampipe — a small, fast, single-binary CLI for parsing log and event
+      streams from stdin.<span class="lede__caret" aria-hidden="true"></span>
+    </h1>
 
-  <section class="hero">
-    <div>
-      <h1 class="hero__headline"><span class="prompt">$</span> streampipe<br>--help</h1>
-      <p class="hero__lede">A small, fast, single-binary CLI for parsing log and event streams from stdin. Filter, transform, route. Composes with anything that emits lines.</p>
-      <div class="hero__cta">
-        <span class="hero__cta-label">// install</span>
-        <pre class="cmd"><span class="prompt">$</span><span>brew install streampipe</span></pre>
-        <pre class="cmd"><span class="prompt">$</span><span>npm i -g @streampipe/cli</span></pre>
-        <pre class="cmd"><span class="prompt">$</span><span>curl -sSL streampipe.dev/install.sh | sh</span></pre>
+    <section class="prose" aria-label="What it does">
+      <p>
+        Streampipe reads newline-delimited records (JSON, logfmt, CSV, raw) from stdin, applies a
+        sequence of filters and transforms, and writes the result to stdout. Composes with anything
+        that emits lines — <strong>tail -f</strong>, <strong>kafkacat</strong>, <strong>journalctl</strong>,
+        <strong>kubectl logs</strong>. No daemon, no config file, no telemetry.
+      </p>
+
+      <pre class="term" aria-label="Sample streampipe command and output"><span class="term__line"><span class="term__prompt">$</span> tail -f access.log | streampipe parse <span class="term__flag">--format</span> nginx <span class="term__flag">--filter</span> 'status >= 500' <span class="term__flag">--out</span> json</span><span class="term__line">    </span><span class="term__line term__line--out">{"ts":"2026-04-30T14:01:18Z","ip":"203.0.113.42","method":"POST","path":"/api/v1/checkout","status":502,"ms":4101}</span><span class="term__line term__line--out">{"ts":"2026-04-30T14:01:21Z","ip":"203.0.113.78","method":"GET","path":"/api/v1/orders/9128","status":503,"ms":12}</span><span class="term__line term__line--out">{"ts":"2026-04-30T14:01:21Z","ip":"203.0.113.42","method":"POST","path":"/api/v1/checkout","status":502,"ms":3998}</span></pre>
+
+      <p>
+        Streampipe is written in Rust, ships as a 1.2 MB static binary, and is designed to be the
+        last process in your pipeline before storage. It does not buffer. It does not retain state.
+        It does one thing per invocation, and you can pipe it into another invocation.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="install-h">
+      <h2 class="section__head" id="install-h"><span><span class="section__num">01</span> &nbsp; Install</span><span>3 ways</span></h2>
+      <pre class="term"><span class="term__line"><span class="term__comment"># homebrew</span></span><span class="term__line"><span class="term__prompt">$</span> brew install streampipe</span><span class="term__line">    </span><span class="term__line"><span class="term__comment"># cargo</span></span><span class="term__line"><span class="term__prompt">$</span> cargo install streampipe</span><span class="term__line">    </span><span class="term__line"><span class="term__comment"># curl (Linux/macOS, no sudo)</span></span><span class="term__line"><span class="term__prompt">$</span> curl -sSL https://streampipe.dev/install | sh</span></pre>
+    </section>
+
+    <section class="section" aria-labelledby="how-h">
+      <h2 class="section__head" id="how-h"><span><span class="section__num">02</span> &nbsp; How it works</span><span>3 notes</span></h2>
+      <div class="notes">
+        <div class="note">
+          <span class="note__num">1.0</span>
+          <p class="note__body">
+            <strong>Stream in, stream out.</strong> Streampipe reads stdin line by line and writes stdout
+            line by line. Each record is independent. Memory use is bounded by the largest record, not
+            by the size of the stream. You can pipe a 200 GB log file through a 1.2 MB binary.
+          </p>
+        </div>
+        <div class="note">
+          <span class="note__num">2.0</span>
+          <p class="note__body">
+            <strong>Filters are expressions, not config.</strong> The <code>--filter</code> flag takes a
+            CEL-style expression evaluated against each parsed record: <code>status >= 500</code>,
+            <code>ms > 1000 &amp;&amp; path.startsWith('/api')</code>, <code>!has(headers.x-debug)</code>.
+            No filter file. No filter language to learn beyond the expression.
+          </p>
+        </div>
+        <div class="note">
+          <span class="note__num">3.0</span>
+          <p class="note__body">
+            <strong>Transforms are projections, not migrations.</strong> The <code>--map</code> flag
+            rewrites each record into a new shape: <code>--map '{ts: ts, p99: ms, where: path}'</code>.
+            Records are immutable inside Streampipe; transforms produce new records. There is no
+            in-place edit; debugging is therefore a pipe with one extra stage.
+          </p>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <pre class="term" aria-label="Example terminal session">
-<span class="ln"><span class="prompt">$</span> streampipe parse access.log <span class="flag">--filter</span> status=5xx <span class="flag">--out</span> ndjson</span>
-<span class="ln"><span class="meta">opening access.log (62 MB)…</span></span>
-<span class="ln"><span class="meta">scanning 412,309 lines…</span></span>
-<span class="ln"><span class="meta">match: status ∈ {500, 502, 503, 504}</span></span>
-<span class="ln">{"ts":"2026-04-30T10:14:22Z","status":<span class="num">503</span>,"path":"/api/v2/jobs"}</span>
-<span class="ln">{"ts":"2026-04-30T10:14:24Z","status":<span class="num">502</span>,"path":"/api/v2/users/49"}</span>
-<span class="ln">{"ts":"2026-04-30T10:14:31Z","status":<span class="num">500</span>,"path":"/api/v2/uploads"}</span>
-<span class="ln">{"ts":"2026-04-30T10:14:33Z","status":<span class="num">503</span>,"path":"/api/v2/jobs"}</span>
-<span class="ln"><span class="meta">… 1,184 more</span></span>
-<span class="ln"><span class="meta">duration: 0.42s · throughput: 982k lines/s</span></span>
-<span class="ln"><span class="prompt">$</span> <span class="caret"></span></span></pre>
-  </section>
+    <section class="section" aria-labelledby="flags-h">
+      <h2 class="section__head" id="flags-h"><span><span class="section__num">03</span> &nbsp; Flags</span><span>full reference at <a href="#">streampipe.dev/docs</a></span></h2>
+      <table class="flags">
+        <thead>
+          <tr><th>Flag</th><th>Type</th><th>What it does</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>--format</td><td>nginx | apache | json | logfmt | csv</td><td>Parse stdin as the named format. Default: auto-detect from first 3 lines.</td></tr>
+          <tr><td>--filter</td><td>expression</td><td>Drop records that don't match. CEL-style. Strings, numbers, booleans, arrays.</td></tr>
+          <tr><td>--map</td><td>expression</td><td>Project records into a new shape. Output keys are the keys of the expression.</td></tr>
+          <tr><td>--out</td><td>json | logfmt | csv | raw</td><td>Encode each record. Default: matches input format.</td></tr>
+          <tr><td>--quiet</td><td>flag</td><td>Suppress parse-error lines on stderr. Errors still set exit code on EOF.</td></tr>
+          <tr><td>--help</td><td>flag</td><td>Print usage and exit. Always exit 0.</td></tr>
+        </tbody>
+      </table>
+    </section>
 
-  <section class="section">
-    <span class="section__num"><span>1.0</span> /  parse</span>
-    <div>
-      <h2 class="section__title">Read anything that emits lines.</h2>
-      <p class="section__body">Files, pipes, sockets, kubectl logs. Streampipe reads from stdin by default; <code>--from</code> takes a path or URL. Detects format on the first 100 lines (json, ndjson, syslog, common, custom regex).</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <span class="section__num"><span>2.0</span> /  filter</span>
-    <div>
-      <h2 class="section__title">Express filters in a small language, not in regex.</h2>
-      <p class="section__body">Filters compile to a typed predicate AST: <code>status &gt;= 500</code>, <code>duration_ms &gt; 200 and path ~ "/api/"</code>, <code>host in {a, b, c}</code>. No quoting hell, no shell-specific escaping.</p>
-      <dl class="spec">
-        <dt>--filter</dt><dd>predicate expression</dd><dd class="meta">repeatable</dd>
-        <dt>--from</dt><dd>file path, URL, or `-` for stdin</dd><dd class="meta">default: stdin</dd>
-        <dt>--out</dt><dd>ndjson · csv · text · table</dd><dd class="meta">default: ndjson</dd>
-        <dt>--at</dt><dd>truncate after N records</dd><dd class="meta">optional</dd>
-        <dt>--debug</dt><dd>show parse stats</dd><dd class="meta">optional</dd>
-      </dl>
-    </div>
-  </section>
-
-  <section class="section">
-    <span class="section__num"><span>3.0</span> /  route</span>
-    <div>
-      <h2 class="section__title">Compose with anything that takes lines.</h2>
-      <p class="section__body">Streampipe is line-oriented all the way through. Pipe its output into <code>jq</code>, <code>gron</code>, <code>vmctl</code>, <code>kafkacat</code>, or your own thing. No daemon, no agent, no config file unless you want one.</p>
-    </div>
-  </section>
-
-  <footer>
-<span class="ink"># streampipe · v0.4.2 · 2026-04-30 · MIT</span>
-# repo:   <a href="https://github.com/example/streampipe">github.com/example/streampipe</a>
-# docs:   <a href="https://streampipe.dev/docs">streampipe.dev/docs</a>
-# issues: <a href="https://github.com/example/streampipe/issues">github.com/example/streampipe/issues</a>
-#
-# built by a small group of backend folks who got tired of writing
-# the same awk + jq pipeline at every job.
-  </footer>
-
+    <footer class="colophon">
+      <span><a href="#">github.com/streampipe-cli</a></span>
+      <span><a href="#">docs</a></span>
+      <span><a href="#">changelog</a></span>
+      <span><a href="#">issues</a></span>
+      <span>MIT · © 2026</span>
+    </footer>
+  </main>
 </body>
 </html>

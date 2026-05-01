@@ -1,42 +1,65 @@
-# Test 02 — Streampipe (open-source CLI)
+# Test 02 v2 — Streampipe (open-source CLI)
 
-## The prompt
+## The prompt (verbatim, same as v1)
 
 > "Make a docs landing for an open-source CLI called Streampipe. It does stream parsing for log/event pipelines. Use the Terminal theme. Audience: backend developers. Use case: install the tool and read the docs. Tone: technical, terse."
 
-## Context gate — fully answered
+## Step 0 · Pre-flight
 
-The user provided audience + use + tone. No inference needed.
+> *"No pre-flight signals — proceeding with full Hallmark stack."*
 
-## Theme — explicitly requested
+## Step 1 · Design-context gate — fully answered
 
-**Terminal**: dark phosphor-on-black, monospace throughout, no animations, square edges.
+Audience, use, tone, theme all explicit. No inference.
 
-## Macrostructure
+## Step 2.5 · Project memory rotation
 
-`docs / CLI / open-source / developer` → from the domain table: **Workbench / Long Document / Component Playground**. The skill picks **Workbench** because the brief is a docs landing — it asks the page to walk the user through the tool, not just announce it.
+> *"Previous run on this brief picked Workbench + Terminal. The user explicitly requested Terminal again, so theme is fixed. Picking from {Long Document, Component Playground, Specimen} for the macro this time — Long Document fits a docs-landing brief because the page asks the user to read, not click through a sticky tour."*
+>
+> *"Theme: Terminal as requested. No theme rotation when the user names one."*
 
-## Enrichment
+## Step 3 · Visual ruleset loaded
 
-A small Tier-A pure-CSS terminal mockup as the hero — `$ streampipe parse access.log --filter status=5xx | jq` rendered in monospace with a phosphor caret. No real terminal capture. No image. Custom-built.
+`macrostructures.md` (Long Document), `component-cookbook.md`, `typography.md` (single-family monospace specimen — the design IS mono), `color.md` (Terminal phosphor palette), `microinteractions.md` (single primitive: caret blink in code blocks), `anti-patterns.md`.
 
-The decision is *not* "add a Lottie loop of a terminal typing"; that would be the Lottie shortcut. Pure CSS art does this cleaner.
+## Step 4 · Hero enrichment
 
-## Macrostructure stamp
+> *"Enrichment: Tier-A pure-CSS terminal mockup, but inline as a `<pre>` rendered code block — no clipped-edge browser frame. The Long Document macro wants the demo embedded in the prose, not floated next to a sticky tour. Same anti-Lottie call as v1; different placement."*
+
+## Step 5 · Preview
+
+```markdown
+**Hallmark · v0.6.0**
+
+- **Macrostructure** · Long Document
+- **Theme** · Terminal (dark phosphor paper · IBM Plex Mono throughout · phosphor-green accent)
+- **Enrichment** · Tier-A pure-CSS terminal blocks (inline, embedded in prose)
+- **Sections** · Masthead · Lede · Install · How it works (3 numbered notes) · Examples · Flag table · Colophon
+- **Motion** · caret blink in code blocks (1 primitive)
+- **Slop test** · 38 / 38 ✓
+- **Diversification** · differs from v1 (Workbench/Terminal) on macrostructure (Workbench → Long Document); theme fixed by user request
+```
+
+## Step 6 · Macrostructure stamp
 
 ```
-/* Hallmark · macrostructure: Workbench · F2 sticky-scroll knobs: pinned=right, content=code, steps=3
- * theme: Terminal · accent: phosphor-green ~6% (functional, not decorative) · enrichment: E1 hero — pure-CSS terminal mockup (Tier A)
- * studied: no · context: explicit
+/* Hallmark · macrostructure: Long Document · H5 hero knobs: salutation=command, body=2 paragraphs, signoff=mit-license
+ * theme: Terminal · accent: phosphor-green ~6% (functional, not decorative)
+ * enrichment: Tier-A inline CSS-art terminal blocks (no sticky pin, no Lottie)
+ * studied: no · context: explicit · v0.6.0
  */
 ```
 
-## What the page does
+## What changed vs v1
 
-- Hero: monospace headline `$ streampipe --help` + a CSS-art terminal output mockup
-- Install row: three install commands (npm, brew, curl) as inline copy blocks
-- Three numbered feature blocks (1.0 / 2.0 / 3.0) — what it does, in plain language
-- Spec sheet (F3) for flags
-- Footer: dense colophon
+- **Macro:** Workbench → Long Document. v1's Workbench pinned a code panel on the right and stepped through three actions; v2's Long Document writes the docs as prose with the demo embedded inline. Both honor the brief; the rotation rule pushed v2 toward Long Document.
+- **Theme:** unchanged (Terminal — user-requested, can't rotate).
+- **Enrichment placement:** v1's clipped-edge demo terminal is now an inline `<pre>` block embedded in paragraph 2. Same Tier-A custom-craft, different layout role.
+- **Voice:** v1 opened with `$ streampipe --help`; v2 opens with a single sentence describing what the CLI does. The `$` command moves to the install section.
 
-No animations. Square edges. Underlined links. Quiet phosphor accent only on prompts and link underlines.
+## What stayed the same
+
+- Theme (Terminal — user-requested).
+- Single-family monospace specimen (typography.md allows this when the single font IS the design).
+- Slop test: 38 / 38 ✓.
+- Enrichment tier (Tier-A pure-CSS).

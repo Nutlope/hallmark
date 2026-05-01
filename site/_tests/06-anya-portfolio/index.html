@@ -3,73 +3,157 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Anya Petrov — software architect</title>
-  <meta name="description" content="Anya Petrov, software architect. I help engineering organisations ship hard distributed-systems work without breaking the team." />
+  <title>Anya Reis — software architect, Lisbon</title>
+  <meta name="description" content="Software architect. Distributed systems, payment graphs, eventually-consistent ledgers. Currently consulting. Reachable." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <header class="top">
-    <span class="name">Anya Petrov</span>
-    <span>Software architect · Lisbon &amp; remote · 2026</span>
-  </header>
-
-  <main class="fold">
-
-    <h1 class="salutation">Hello, I'm <strong>Anya.</strong></h1>
-
-    <div class="letter">
-      <p>I help engineering organisations ship hard distributed-systems work — multi-region rollouts, payment graphs, eventually-consistent ledgers — without breaking the people doing the shipping. I write a lot, draw a lot of diagrams, and try not to ship a system the on-call rotation can't run on a Saturday.</p>
-      <p>Twelve years across <em>Stripe, Monzo, and a small infra startup that didn't survive 2023.</em> Currently consulting; selectively taking on three to four engagements per year.</p>
-    </div>
-
-    <section class="work">
-      <h2>Selected work</h2>
-
-      <div class="work__row">
-        <span class="work__year">2024–25</span>
-        <span class="work__what">Designed and led a 14-month payments graph rewrite.<em>From a single Postgres write path to a sharded, replay-safe ledger across three regions.</em></span>
-        <span class="work__where">Fintech, 400 engineers</span>
+  <main class="page">
+    <aside class="toc" aria-label="Table of contents">
+      <p class="toc__brand">Anya Reis</p>
+      <span class="toc__role">Software architect · Lisbon</span>
+      <nav>
+        <ul class="toc__list">
+          <li><a href="#index"><span class="num">00</span><span>Index</span></a></li>
+          <li><a href="#now"><span class="num">01</span><span>Now</span></a></li>
+          <li><a href="#years"><span class="num">02</span><span>Years</span></a></li>
+          <li><a href="#writing"><span class="num">03</span><span>Writing</span></a></li>
+          <li><a href="#reach"><span class="num">04</span><span>Reach</span></a></li>
+        </ul>
+      </nav>
+      <div class="toc__meta">
+        <span>Lisbon · GMT+0</span>
+        <span>v. 26.05</span>
+        <span>set in Inter Tight</span>
       </div>
+    </aside>
 
-      <div class="work__row">
-        <span class="work__year">2023</span>
-        <span class="work__what">Set up the platform team's first SLO programme.<em>Wrote the runbooks, ran the postmortems, retired the dashboard everyone hated.</em></span>
-        <span class="work__where">Marketplace, 80 engineers</span>
-      </div>
+    <article class="main">
+      <section class="section" id="index">
+        <p class="section__num">00 · Index</p>
+        <h1 class="section__head section__head--lede">A small, scannable index of who I am and what I do.</h1>
+        <div class="section__body">
+          <p>
+            I'm <strong>Anya Reis</strong>, a software architect working on distributed systems —
+            payment graphs, eventually-consistent ledgers, multi-region rollouts. Fifteen years in,
+            three companies long enough to ship something real, two short stops that taught me what
+            not to do, and one infra startup that didn't survive the 2023 rate hike.
+          </p>
+          <p>
+            This page is what's left when you remove the photo, the headline animation, and the
+            stack-of-stickers. Five sections. Read what's relevant.
+          </p>
+        </div>
+      </section>
 
-      <div class="work__row">
-        <span class="work__year">2022</span>
-        <span class="work__what">Migrated a 200-service monorepo from one CI to another.<em>Without breaking a single deploy. The PR had 1,800 reviewers.</em></span>
-        <span class="work__where">Infra startup, ~50 engineers</span>
-      </div>
+      <section class="section" id="now">
+        <p class="section__num">01 · Now</p>
+        <h2 class="section__head">Consulting, two clients at a time.</h2>
+        <div class="section__body">
+          <p>
+            I take on two engagements at once, three to nine months each. Mostly: <strong>scaling
+            payment systems past their first regional split</strong>, and <strong>extracting an old
+            monolith into a graph of services without losing the consistency guarantees</strong> the
+            business is actually relying on (which are usually fewer and stranger than the team
+            thinks).
+          </p>
+          <p>
+            I take on a third engagement only if it's pro bono — usually a small co-op or worker
+            collective in Portugal that needs a hand with infra. One month a year I write.
+          </p>
+        </div>
+      </section>
 
-      <div class="work__row">
-        <span class="work__year">2018–21</span>
-        <span class="work__what">Built and ran the on-call programme at a B2B fintech, 0→200 engineers.<em>Wrote the doc that's still pinned in their #incident channel.</em></span>
-        <span class="work__where">Fintech, 0→200 engineers</span>
-      </div>
-    </section>
+      <section class="section" id="years">
+        <p class="section__num">02 · Years</p>
+        <h2 class="section__head">Where I've worked, in tabular form.</h2>
+        <div class="section__body">
+          <table class="years" aria-label="Work history">
+            <thead><tr><th>Years</th><th>Company</th><th>What</th></tr></thead>
+            <tbody>
+              <tr><td>2024 — now</td><td>Independent</td><td>Consulting on payments &amp; distributed systems</td></tr>
+              <tr><td>2021 — 2023</td><td>Knot Infrastructure</td><td>Co-founder · regional load shedding for fintechs (acq-hired, then closed)</td></tr>
+              <tr><td>2018 — 2021</td><td>Monzo</td><td>Senior staff eng · cards, then ledger</td></tr>
+              <tr><td>2015 — 2018</td><td>Stripe</td><td>Software engineer · radar, then payments rails</td></tr>
+              <tr><td>2012 — 2015</td><td>Flywire</td><td>Software engineer · cross-border FX settlement</td></tr>
+              <tr><td>2010 — 2012</td><td>Universidade do Porto</td><td>BSc + MSc CS · distributed systems track</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
 
-    <p class="currently"><strong>Currently:</strong> finishing a long engagement on a multi-region ledger; writing a short book on running on-call as a team practice rather than a heroism contest.</p>
+      <section class="section" id="writing">
+        <p class="section__num">03 · Writing</p>
+        <h2 class="section__head">Five pieces I'd point at first.</h2>
+        <div class="section__body">
+          <ul class="writing">
+            <li>
+              <span class="writing__date">2025-09</span>
+              <div>
+                <a href="#">Idempotency keys are the point. Everything else is a footnote.</a>
+                <span class="writing__sub">On building payment systems that survive partial failure.</span>
+              </div>
+            </li>
+            <li>
+              <span class="writing__date">2024-11</span>
+              <div>
+                <a href="#">Migrations: the org problem first, the schema problem second.</a>
+                <span class="writing__sub">A note from three years of monolith-to-services work.</span>
+              </div>
+            </li>
+            <li>
+              <span class="writing__date">2024-04</span>
+              <div>
+                <a href="#">Reconciliation is not a feature.</a>
+                <span class="writing__sub">Why every ledger team eventually rebuilds the closing job.</span>
+              </div>
+            </li>
+            <li>
+              <span class="writing__date">2023-08</span>
+              <div>
+                <a href="#">The distributed systems book I wish I'd read in 2012.</a>
+                <span class="writing__sub">Annotated bibliography, six entries, no Kleppmann jokes.</span>
+              </div>
+            </li>
+            <li>
+              <span class="writing__date">2022-02</span>
+              <div>
+                <a href="#">A senior engineer's last six months: what changes.</a>
+                <span class="writing__sub">On the shift from writing code to writing decisions.</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
 
-    <p class="elsewhere">
-      <a href="#">github.com/anyap</a>
-      <span class="sep">·</span>
-      <a href="#">linkedin.com/in/anyapetrov</a>
-      <span class="sep">·</span>
-      <a href="mailto:hello@anyapetrov.com">hello@anyapetrov.com</a>
-    </p>
-
+      <section class="section" id="reach">
+        <p class="section__num">04 · Reach</p>
+        <h2 class="section__head">The four places I read mail.</h2>
+        <div class="section__body">
+          <div class="contact">
+            <div class="contact__row">
+              <span class="contact__label">Email</span>
+              <span class="contact__value"><a href="mailto:hello@anya.dev">hello@anya.dev</a></span>
+            </div>
+            <div class="contact__row">
+              <span class="contact__label">GitHub</span>
+              <span class="contact__value"><a href="#">@anyareis</a></span>
+            </div>
+            <div class="contact__row">
+              <span class="contact__label">LinkedIn</span>
+              <span class="contact__value"><a href="#">/in/anyareis</a></span>
+            </div>
+            <div class="contact__row">
+              <span class="contact__label">Mastodon</span>
+              <span class="contact__value"><a href="#">@anya@hachyderm.io</a></span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
   </main>
-
-  <footer>
-    <span class="ink">Anya Petrov</span>
-    <span class="sep">·</span>
-    <span>set in Fraunces &amp; Geist</span>
-    <span class="sep">·</span>
-    <span>this page is one HTML file</span>
-  </footer>
-
 </body>
 </html>

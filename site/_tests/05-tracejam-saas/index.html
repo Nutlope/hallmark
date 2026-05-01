@@ -4,173 +4,164 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tracejam — distributed tracing that explains itself</title>
-  <meta name="description" content="A tracing and observability platform for SREs. Open the trace, find the span, fix the regression. No glossary required." />
+  <meta name="description" content="Open the trace, find the span that regressed, and read why — in plain text — without a glossary, a YAML diff, or a status-page hunt." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600&display=swap" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <main class="page">
+    <header class="masthead">
+      <span class="masthead__brand"><span class="dot"></span>tracejam · v0.4</span>
+      <nav class="masthead__nav">
+        <a href="#walkthrough">Walkthrough</a>
+        <a href="#integrations">Integrations</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#">Docs</a>
+      </nav>
+    </header>
 
-  <nav class="nav">
-    <span class="wordmark">Tracejam</span>
-    <div class="nav__links">
-      <a href="#docs">Docs</a>
-      <a href="#changelog">Changelog</a>
-      <a href="#pricing">Pricing</a>
-      <a class="btn" href="#sign-up">Sign in</a>
-    </div>
-  </nav>
-
-  <section class="hero">
-    <div class="hero__copy">
-      <p class="hero__eyebrow">Tracejam · v0.4 · for SREs</p>
-      <h1 class="hero__title">Distributed tracing that <em>explains itself.</em></h1>
-      <p class="hero__lede">Open the trace, find the span that regressed, and read why — in plain text — without a glossary, a YAML diff, or a status-page hunt.</p>
-      <div class="hero__cta">
-        <a class="btn--primary" href="#try">Try it free</a>
-        <a class="btn--ghost"   href="#sales">Talk to sales</a>
+    <section class="hero">
+      <div class="hero__copy">
+        <p class="hero__eyebrow">For SREs &amp; platform engineers</p>
+        <h1 class="hero__head">Distributed tracing that <em>explains itself.</em></h1>
+        <p class="hero__sub">
+          Open the trace. Find the span that regressed. Read why — in plain text — without a glossary,
+          a YAML diff, or a status-page hunt. The post-mortem starts in the trace, not in a doc.
+        </p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#">Try it free <span aria-hidden="true">→</span></a>
+          <a class="btn" href="#">Talk to sales</a>
+        </div>
       </div>
-    </div>
+      <aside class="hero__panel" aria-label="Sample trace preview">
+        <div class="hero__panel-head"><span>trace · 9c3a72ef</span><span>4.21 s</span></div>
+        <div class="trace">
+          <div class="span"><span class="span__label">api.checkout</span><span class="span__bar" style="--w:100%"><style>.span__bar::after { width: var(--w); }</style></span><span class="span__time">4.21s</span></div>
+          <div class="span"><span class="span__label">↳ auth.verify</span><span class="span__bar"><span style="position:absolute;inset:0;width:18%;background:var(--color-accent)"></span></span><span class="span__time">762ms</span></div>
+          <div class="span span--err"><span class="span__label">↳ pricing.quote</span><span class="span__bar"><span style="position:absolute;inset:0;width:78%;background:var(--color-error)"></span></span><span class="span__time">3.28s</span></div>
+          <div class="span span--warn"><span class="span__label">&nbsp;&nbsp;↳ rates.fx</span><span class="span__bar"><span style="position:absolute;inset:0;width:62%;background:var(--color-warn)"></span></span><span class="span__time">2.71s</span></div>
+          <div class="span"><span class="span__label">↳ ledger.write</span><span class="span__bar"><span style="position:absolute;inset:0;width:6%;background:var(--color-accent)"></span></span><span class="span__time">240ms</span></div>
+        </div>
+      </aside>
+    </section>
 
-    <figure class="mock" aria-hidden="true">
-      <header class="mock__chrome">
-        <span class="mock__dot" aria-hidden="true"></span>
-        <span class="mock__dot" aria-hidden="true"></span>
-        <span class="mock__dot" aria-hidden="true"></span>
-        <span class="mock__url">app.tracejam.io / traces / 7f8e9a</span>
-      </header>
-      <div class="mock__body">
-        <aside class="mock__rail">
-          <span class="mock__rail-item is-active"></span>
-          <span class="mock__rail-item"></span>
-          <span class="mock__rail-item"></span>
-          <span class="mock__rail-item"></span>
-          <span class="mock__rail-item"></span>
-        </aside>
-        <main class="mock__main">
-          <header class="mock__head">
-            <span class="mock__breadcrumb">production / api-edge / <b>POST /v2/checkout</b></span>
-            <span class="mock__pill">trace 7f8e9a</span>
-          </header>
-          <p class="mock__title">Span tree · <span class="meta">23 spans · 4 services · 482 ms</span></p>
+    <section class="workbench" id="walkthrough">
+      <div class="steps">
+        <article class="step">
+          <p class="step__num">step 01 · open</p>
+          <h2 class="step__head">Open the trace, not a dashboard.</h2>
+          <p class="step__body">
+            Drop a trace ID, a request URL, or a five-second time window. Tracejam pulls the spans
+            from your collector and renders them inline — no dashboard hop, no link to Grafana,
+            no separate logs window. The trace is the unit of work.
+          </p>
+          <div class="step__code"><span class="c"># by trace id</span><br/><span class="k">$</span> tracejam open 9c3a72ef</div>
+        </article>
 
-          <div class="trace" role="img" aria-label="Flame chart of a checkout request fanning into 12 spans across 4 services">
-            <div class="trace__row"><span class="trace__label"><b>api-edge</b> · POST /v2/checkout</span>
-              <span class="trace__lane"><span class="trace__bar" style="left:0%; width:96%;"></span></span></div>
-            <div class="trace__row"><span class="trace__label">↳ auth.verify</span>
-              <span class="trace__lane"><span class="trace__bar b" style="left:2%; width:8%;"></span></span></div>
-            <div class="trace__row"><span class="trace__label">↳ rate-limit.check</span>
-              <span class="trace__lane"><span class="trace__bar b" style="left:11%; width:4%;"></span></span></div>
-            <div class="trace__row"><span class="trace__label">↳ <b>orders.create</b></span>
-              <span class="trace__lane"><span class="trace__bar" style="left:16%; width:62%;"></span></span></div>
-            <div class="trace__row"><span class="trace__label">  ↳ inventory.reserve</span>
-              <span class="trace__lane"><span class="trace__bar c" style="left:19%; width:14%;"></span></span></div>
-            <div class="trace__row"><span class="trace__label">  ↳ pricing.compute</span>
-              <span class="trace__lane"><span class="trace__bar c" style="left:34%; width:9%;"></span></span></div>
-            <div class="trace__row"><span class="trace__label">  ↳ <b>payments.charge</b></span>
-              <span class="trace__lane"><span class="trace__bar d" style="left:44%; width:30%;"></span></span></div>
-            <div class="trace__row"><span class="trace__label">    ↳ stripe.tokenize</span>
-              <span class="trace__lane"><span class="trace__bar d" style="left:46%; width:6%;"></span></span></div>
-            <div class="trace__row"><span class="trace__label">    ↳ stripe.charge ⚠</span>
-              <span class="trace__lane"><span class="trace__bar d" style="left:53%; width:20%;"></span></span></div>
-            <div class="trace__row"><span class="trace__label">↳ notify.email</span>
-              <span class="trace__lane"><span class="trace__bar b" style="left:79%; width:8%;"></span></span></div>
-            <div class="trace__row"><span class="trace__label">↳ analytics.write</span>
-              <span class="trace__lane"><span class="trace__bar b" style="left:88%; width:7%;"></span></span></div>
-          </div>
-        </main>
+        <article class="step">
+          <p class="step__num">step 02 · find</p>
+          <h2 class="step__head">Find the regressed span.</h2>
+          <p class="step__body">
+            Tracejam ranks spans by <strong>p99 deviation against your service's seven-day baseline</strong>.
+            The first one in the list is almost always the problem. No filters to set; the baseline
+            is precomputed every five minutes per service.
+          </p>
+          <div class="step__code"><span class="c"># top 3 regressed spans this hour</span><br/><span class="k">$</span> tracejam top --window 1h</div>
+        </article>
+
+        <article class="step">
+          <p class="step__num">step 03 · read</p>
+          <h2 class="step__head">Read why, in plain text.</h2>
+          <p class="step__body">
+            Each span carries an <strong>auto-generated explainer</strong>: which dependency
+            regressed, which version of which service, which deploy correlates, the last clean run,
+            and the diff between then and now. Plain text, copy-paste ready into a post-mortem.
+          </p>
+          <div class="step__code"><span class="c"># dump the explainer</span><br/><span class="k">$</span> tracejam why <span class="s">"pricing.quote"</span></div>
+        </article>
       </div>
-    </figure>
-  </section>
 
-  <section class="bento" aria-label="What Tracejam does">
+      <aside class="pinned" aria-label="Pinned trace panel">
+        <header class="pinned__head">
+          <span>trace · 9c3a72ef</span>
+          <span class="pinned__chip">REGRESSED</span>
+        </header>
+        <div class="pinned__body">
+          <div class="span"><span class="span__label">api.checkout</span><span class="span__bar"><span style="position:absolute;inset:0;width:100%;background:var(--color-accent)"></span></span><span class="span__time">4.21s</span></div>
+          <div class="span"><span class="span__label">↳ auth.verify</span><span class="span__bar"><span style="position:absolute;inset:0;width:18%;background:var(--color-accent)"></span></span><span class="span__time">762ms</span></div>
+          <div class="span span--err"><span class="span__label">↳ pricing.quote</span><span class="span__bar"><span style="position:absolute;inset:0;width:78%;background:var(--color-error)"></span></span><span class="span__time">3.28s</span></div>
+          <div class="span span--warn"><span class="span__label">&nbsp;&nbsp;↳ rates.fx</span><span class="span__bar"><span style="position:absolute;inset:0;width:62%;background:var(--color-warn)"></span></span><span class="span__time">2.71s</span></div>
+          <div class="span"><span class="span__label">↳ ledger.write</span><span class="span__bar"><span style="position:absolute;inset:0;width:6%;background:var(--color-accent)"></span></span><span class="span__time">240ms</span></div>
+        </div>
+        <p class="pinned__why">
+          <strong>WHY:</strong> rates.fx p99 doubled at 14:02 UTC. Correlates with deploy
+          rates-svc@v1.34.2 — which lowered the FX cache TTL from 5 m to 30 s. Roll back, or raise
+          TTL. Last clean run: 13:57 UTC (2.41 s end-to-end).
+        </p>
+      </aside>
+    </section>
 
-    <article class="tile tile-stat">
-      <span class="label">Cold-start</span>
-      <h3>Open a regressed trace in <em>under 4 seconds</em></h3>
-      <span class="stat-num"><span class="accent">4</span>s</span>
-      <p>From the alert link to the slow span, no clicks. Tracejam pre-renders the flame chart for every alert.</p>
-    </article>
-
-    <article class="tile tile-spark">
-      <span class="label">Latency drift</span>
-      <h3>p95 over 24 h, by service.</h3>
-      <div class="spark" aria-hidden="true">
-        <span style="height:30%"></span>
-        <span style="height:42%"></span>
-        <span style="height:38%"></span>
-        <span style="height:55%"></span>
-        <span style="height:48%"></span>
-        <span style="height:60%"></span>
-        <span style="height:72%"></span>
-        <span style="height:64%"></span>
-        <span style="height:80%"></span>
-        <span style="height:55%"></span>
-        <span style="height:46%"></span>
-        <span style="height:40%"></span>
-      </div>
-    </article>
-
-    <article class="tile tile-quote">
-      <p class="quote">It told me the span that regressed, the deploy that caused it, and the engineer to ask. We rolled back in eight minutes.</p>
-      <span class="attribution">— Staff SRE · large fintech · 2026</span>
-    </article>
-
-    <article class="tile tile-code">
-      <span class="label">Drop-in OTLP</span>
-      <pre class="code-mini"><span class="k">export</span> OTEL_EXPORTER_OTLP_ENDPOINT=<span class="s">https://otlp.tracejam.io</span>
-<span class="k">export</span> OTEL_EXPORTER_OTLP_HEADERS=<span class="s">"x-tracejam-key=tj_…"</span></pre>
-    </article>
-
-    <article class="tile tile-integrations">
-      <span class="label">Connects to</span>
-      <h3>OpenTelemetry-native. No agent, no sidecar.</h3>
-      <div class="integrations">
-        <span>OTLP / gRPC</span>
-        <span>OTLP / HTTP</span>
-        <span>Datadog ingest</span>
-        <span>Honeycomb ingest</span>
-        <span>Prometheus</span>
-        <span>kubectl events</span>
-        <span>PagerDuty</span>
-        <span>Slack</span>
-      </div>
-    </article>
-
-  </section>
-
-  <footer>
-    <div class="col brand">
-      <h4>Tracejam</h4>
-      <p>Distributed tracing that explains itself. Built by SREs who got tired of unscrambling stack traces from alerts.</p>
-      <p class="colophon">© 2026 · MIT-licensed agent · SOC 2 Type II</p>
-    </div>
-    <div class="col">
-      <h4>Product</h4>
-      <ul>
-        <li><a href="#">Tracing</a></li>
-        <li><a href="#">Metrics</a></li>
-        <li><a href="#">Alerts</a></li>
-        <li><a href="#">Logs</a></li>
+    <section class="integrations" id="integrations">
+      <h2 class="integrations__head">Reads from</h2>
+      <ul class="integrations__grid">
+        <li>OpenTelemetry</li>
+        <li>Jaeger</li>
+        <li>Zipkin</li>
+        <li>AWS X-Ray</li>
+        <li>Tempo</li>
+        <li>Datadog APM</li>
+        <li>Honeycomb</li>
+        <li>New Relic</li>
       </ul>
-    </div>
-    <div class="col">
-      <h4>Developers</h4>
-      <ul>
-        <li><a href="#">Docs</a></li>
-        <li><a href="#">Changelog</a></li>
-        <li><a href="#">Open-source agent</a></li>
-        <li><a href="#">Status</a></li>
-      </ul>
-    </div>
-    <div class="col">
-      <h4>Company</h4>
-      <ul>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Careers</a></li>
-        <li><a href="#">Security</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </div>
-  </footer>
+    </section>
 
+    <section class="pricing" id="pricing">
+      <h2 class="pricing__head">Pricing</h2>
+      <div class="tiers">
+        <article class="tier">
+          <h3 class="tier__name">Free</h3>
+          <p class="tier__price">$0 <span class="per">forever</span></p>
+          <ul class="tier__list">
+            <li>50 GB trace ingest / month</li>
+            <li>7-day retention</li>
+            <li>Single project</li>
+            <li>Community Slack</li>
+          </ul>
+          <a class="btn" href="#">Start free</a>
+        </article>
+        <article class="tier tier--feature">
+          <h3 class="tier__name">Team</h3>
+          <p class="tier__price">$799 <span class="per">/ month</span></p>
+          <ul class="tier__list">
+            <li>500 GB ingest / month</li>
+            <li>30-day retention</li>
+            <li>Unlimited projects</li>
+            <li>Auto-explainers</li>
+            <li>SLO alerting</li>
+          </ul>
+          <a class="btn btn--primary" href="#">14-day trial</a>
+        </article>
+        <article class="tier">
+          <h3 class="tier__name">Scale</h3>
+          <p class="tier__price">Custom</p>
+          <ul class="tier__list">
+            <li>Custom ingest</li>
+            <li>365-day retention</li>
+            <li>SOC2 / ISO27001</li>
+            <li>Dedicated infra</li>
+            <li>24/7 oncall</li>
+          </ul>
+          <a class="btn" href="#">Talk to sales</a>
+        </article>
+      </div>
+    </section>
+
+    <footer class="colophon">
+      <span>Tracejam · v0.4 · made in Lisbon &amp; Berlin</span>
+      <span><a href="#">docs</a> · <a href="#">changelog</a> · <a href="#">status</a> · <a href="#">github</a></span>
+    </footer>
+  </main>
 </body>
 </html>

@@ -1,253 +1,240 @@
-/* Hallmark · macrostructure: Long Document · H5 hero knobs: salutation=time-stamp, body=2 paragraphs, signoff=initials
- * theme: Linen · accent: warm-amber ~3%
- * enrichment: E5 Custom Illustration · craft: tier-B hand-built SVG (3 paths, 58 lines)
- * animation: @property --rise · 6s alternate · reduced-motion: static
- * studied: no · context: explicit
+/* Hallmark · macrostructure: Catalogue · F1 catalogue knobs: tiles=8, columns=2, rule=hairline-between
+ * theme: Almanac · accent: warm-amber ~3% · enrichment: tier-A inline SVG bread silhouettes
+ * studied: no · context: explicit · v0.6.0
  */
 
-@import url("https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap");
-
 :root {
-  --paper:        oklch(89%   0.022 95);
-  --paper-2:      oklch(86%   0.024 95);
-  --rule:         oklch(78%   0.020 95);
-  --rule-2:       oklch(66%   0.024 95);
-  --muted:        oklch(46%   0.022 90);
-  --ink-2:        oklch(22%   0.025 90);
-  --ink:          oklch(15%   0.025 90);
-  --accent:       oklch(54%   0.16 50);    /* warm amber */
-  --crust:        oklch(72%   0.16 55);
-  --crust-deep:   oklch(48%   0.14 38);
+  --color-paper: oklch(94% 0.022 80);
+  --color-paper-2: oklch(91% 0.024 80);
+  --color-ink: oklch(24% 0.020 50);
+  --color-ink-soft: oklch(40% 0.020 55);
+  --color-rule: oklch(78% 0.020 70);
+  --color-accent: oklch(58% 0.14 50);
 
-  --serif:        "Newsreader", "Tiempos", ui-serif, Georgia, serif;
-  --label:        ui-monospace, "JetBrains Mono", monospace;
+  --font-display: "IM Fell English SC", "IM Fell English", "EB Garamond", "Cormorant Garamond", Georgia, serif;
+  --font-body: "Source Serif 4", "Iowan Old Style", Georgia, serif;
 
-  --space-xs:  0.5rem;
-  --space-sm:  0.75rem;
-  --space-md:  1rem;
-  --space-lg:  1.5rem;
-  --space-xl:  2.5rem;
-  --space-2xl: 4rem;
-  --space-3xl: 7rem;
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4.5rem;
+  --space-3xl: 6.5rem;
 
-  --rule-hair: 0.5px;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur-micro: 140ms;
 }
 
-@property --rise {
-  syntax: "<length>";
-  initial-value: 0px;
-  inherits: false;
-}
+* { box-sizing: border-box; }
+html, body { overflow-x: clip; }
 
-@property --bake {
-  syntax: "<percentage>";
-  initial-value: 0%;
-  inherits: false;
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-html {
-  font-family: var(--serif);
-  font-size: 17px;
-  line-height: 1.65;
-  color: var(--ink-2);
-  background: var(--paper);
+body {
+  margin: 0;
+  background: var(--color-paper);
+  background-image:
+    radial-gradient(circle at 20% 10%, oklch(92% 0.026 75 / 0.5), transparent 40%),
+    radial-gradient(circle at 80% 90%, oklch(92% 0.026 60 / 0.4), transparent 50%);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
 }
 
-body {
-  min-height: 100dvh;
-  padding-inline: clamp(1.5rem, 6vw, 5rem);
-  padding-block: var(--space-3xl) var(--space-2xl);
+.page {
   max-width: 64rem;
   margin: 0 auto;
+  padding: var(--space-2xl) var(--space-lg) var(--space-3xl);
 }
 
-.eyebrow {
-  font-family: var(--label);
-  font-size: 0.75rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted);
+/* Masthead — almanac plate-banner */
+.masthead {
+  text-align: center;
+  border-block-end: 2px double var(--color-rule);
+  padding-block-end: var(--space-lg);
   margin-block-end: var(--space-2xl);
 }
 
-.layout {
-  display: grid;
-  grid-template-columns: 7fr 4fr;
-  gap: var(--space-3xl);
-  align-items: start;
+.masthead__rule {
+  width: 4ch;
+  border: 0;
+  border-block-start: 1px solid var(--color-ink);
+  margin: 0 auto var(--space-md);
 }
 
-@media (max-width: 56rem) {
-  .layout { grid-template-columns: 1fr; gap: var(--space-2xl); }
-}
-
-.salutation {
-  font-family: var(--serif);
-  font-style: italic;
+.masthead__brand {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 400;
-  font-size: clamp(2.25rem, 4vw + 1rem, 3.6rem);
-  line-height: 1.1;
-  letter-spacing: -0.018em;
-  color: var(--ink);
+  letter-spacing: 0.02em;
+  margin: 0 0 var(--space-2xs);
+  color: var(--color-ink);
+  line-height: 1;
+}
+
+.masthead__sub {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  margin: 0;
+}
+
+.masthead__sub strong { color: var(--color-accent); font-weight: 400; }
+
+/* Today's bake — section heading */
+.todays {
+  text-align: center;
   margin-block-end: var(--space-xl);
 }
 
-.letter p {
-  font-size: 1.0625rem;
-  line-height: 1.72;
-  margin-block-end: var(--space-md);
-  max-width: 36rem;
-}
-
-.letter p:first-of-type::first-letter {
-  font-family: var(--serif);
-  font-size: 3.6em;
-  font-weight: 500;
-  line-height: 0.9;
-  float: left;
-  margin-block-start: 0.08em;
-  margin-inline-end: 0.1em;
-  color: var(--accent);
-}
-
-.signoff {
-  margin-block-start: var(--space-xl);
-  font-family: var(--serif);
-  font-style: italic;
-  color: var(--muted);
-}
-
-.signoff strong {
-  display: block;
-  font-style: normal;
-  font-weight: 500;
-  color: var(--ink);
-  margin-block-start: 0.2em;
-  font-size: 1.125rem;
-}
-
-/* The aside — today's loaves + visit */
-.aside {
-  font-family: var(--serif);
-  font-size: 0.9375rem;
-  line-height: 1.65;
-  color: var(--ink-2);
-  border-inline-start: var(--rule-hair) solid var(--rule);
-  padding-inline-start: var(--space-lg);
-  position: sticky;
-  top: var(--space-2xl);
-}
-
-@media (max-width: 56rem) {
-  .aside { border-inline-start: 0; padding-inline-start: 0; padding-block-start: var(--space-xl); border-block-start: var(--rule-hair) solid var(--rule); position: static; }
-}
-
-.aside h3 {
-  font-family: var(--label);
-  font-size: 0.75rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted);
+.todays__head {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 400;
-  margin-block: var(--space-xl) var(--space-md);
+  letter-spacing: 0.02em;
+  margin: 0 0 var(--space-2xs);
+  color: var(--color-ink);
 }
 
-.aside h3:first-child { margin-block-start: 0; }
+.todays__date {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--color-ink-soft);
+  margin: 0;
+}
 
-.aside ul {
-  list-style: none;
+/* Catalogue grid */
+.catalogue {
   display: grid;
-  gap: 0.4em;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border-block-start: 1px solid var(--color-rule);
 }
 
-.aside li {
-  display: flex;
-  justify-content: space-between;
+.bread {
+  display: grid;
+  grid-template-columns: 96px 1fr auto;
+  align-items: center;
   gap: var(--space-md);
-  font-style: italic;
+  padding: var(--space-lg) var(--space-md);
+  border-block-end: 1px solid var(--color-rule);
+  position: relative;
+  transition: background var(--dur-micro) var(--ease-out);
 }
 
-.aside li .price {
-  font-style: normal;
+.bread:nth-child(odd) {
+  border-inline-end: 1px solid var(--color-rule);
+}
+
+.bread:hover { background: var(--color-paper-2); }
+
+.bread__shape {
+  width: 96px;
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-ink-soft);
+}
+
+.bread__shape svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.bread__shape--accent svg { stroke: var(--color-accent); }
+
+.bread__body { min-width: 0; }
+
+.bread__name {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  margin: 0 0 var(--space-3xs);
+  color: var(--color-ink);
+}
+
+.bread__desc {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.9375rem;
+  color: var(--color-ink-soft);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.bread__price {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
   font-variant-numeric: tabular-nums;
-  color: var(--muted);
-  font-family: var(--label);
-  font-size: 0.8125rem;
+  color: var(--color-ink);
+  white-space: nowrap;
 }
 
-.aside p {
+.bread__price--out {
+  color: var(--color-ink-soft);
   font-style: italic;
-  color: var(--ink-2);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
 }
 
-.aside .phone {
-  font-family: var(--label);
-  font-style: normal;
-  font-size: 0.875rem;
-  color: var(--ink);
-}
-
-/* The loaf — hand-built SVG centerpiece */
-.loaf-wrap {
-  margin-block: var(--space-2xl) var(--space-xl);
+/* Visit */
+.visit {
+  margin-block-start: var(--space-2xl);
+  padding: var(--space-xl) var(--space-md);
+  border-block-start: 2px double var(--color-rule);
+  border-block-end: 2px double var(--color-rule);
   text-align: center;
 }
 
-.loaf-svg {
-  width: 100%;
-  max-width: 22rem;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  transform: translateY(var(--rise));
-  animation: rise 6s ease-in-out infinite alternate;
-  filter: drop-shadow(0 14px 18px oklch(28% 0.04 50 / 0.12));
+.visit__head {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 0 0 var(--space-md);
 }
 
-@keyframes rise { to { --rise: -4px; } }
-
-.loaf-body  { fill: var(--crust); }
-.loaf-shade { fill: var(--crust-deep); opacity: 0.18; }
-.loaf-score {
-  stroke: var(--crust-deep);
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  fill: none;
-  stroke-dasharray: 0 240;
-  animation: score 1.6s 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.visit__lines {
+  display: grid;
+  gap: var(--space-2xs);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-ink);
 }
-@keyframes score { to { stroke-dasharray: 240 240; } }
 
-.loaf-cap {
-  font-family: var(--label);
+.visit__lines em {
+  font-style: italic;
+  color: var(--color-ink-soft);
+}
+
+/* Colophon */
+.colophon {
+  margin-block-start: var(--space-2xl);
+  text-align: center;
+  font-family: var(--font-display);
   font-size: 0.75rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--muted);
-  margin-block-start: var(--space-md);
+  color: var(--color-ink-soft);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .loaf-svg { animation: none; --rise: 0px; }
-  .loaf-score { animation: none; stroke-dasharray: 240 240; }
+/* Mobile */
+@media (max-width: 48rem) {
+  .catalogue { grid-template-columns: 1fr; }
+  .bread:nth-child(odd) { border-inline-end: none; }
+  .bread { grid-template-columns: 64px 1fr auto; gap: var(--space-sm); padding: var(--space-md) var(--space-2xs); }
+  .bread__shape { width: 64px; height: 64px; }
+  .bread__name { font-size: 1.125rem; }
 }
-
-footer {
-  margin-block-start: var(--space-3xl);
-  padding-block: var(--space-lg);
-  border-block-start: var(--rule-hair) solid var(--rule);
-  font-family: var(--label);
-  font-size: 0.75rem;
-  letter-spacing: 0.06em;
-  color: var(--muted);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-md);
-}
-
-footer .ink { color: var(--ink); }
-footer .sep { color: var(--rule-2); }

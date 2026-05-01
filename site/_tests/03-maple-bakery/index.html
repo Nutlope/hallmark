@@ -3,83 +3,129 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Maple Street Bread — sourdough, baked overnight, sold fresh</title>
-  <meta name="description" content="A small wood-oven bakery on Maple Street. Sourdough, slow-fermented, baked overnight, sold from 7 a.m. while it lasts." />
+  <title>Maple Street Bread — daily catalogue</title>
+  <meta name="description" content="A small artisan bakery in Lisbon. Sourdough, slow, by hand. Open at seven, thirty loaves, gone by noon, no online orders." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=IM+Fell+English:ital@0;1&family=Source+Serif+4:ital,wght@0,400;0,500;1,400&display=swap" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <main class="page">
+    <header class="masthead">
+      <hr class="masthead__rule" />
+      <h1 class="masthead__brand">Maple Street Bread</h1>
+      <p class="masthead__sub">Lisbon · est. 2026 · n.º 47 · sourdough <strong>by hand</strong></p>
+    </header>
 
-  <p class="eyebrow">Maple Street · est. 2026 · n.º 47</p>
+    <section class="todays">
+      <h2 class="todays__head">Today's bake</h2>
+      <p class="todays__date">Saturday — 6:14 a.m. — eight breads, gone by noon</p>
+    </section>
 
-  <div class="layout">
+    <ul class="catalogue" role="list" aria-label="Today's breads">
+      <!-- 1 -->
+      <li class="bread">
+        <span class="bread__shape bread__shape--accent" aria-hidden="true">
+          <svg viewBox="0 0 96 96"><ellipse cx="48" cy="52" rx="36" ry="22"/><path d="M22 50 q12 -16 26 -16 t26 16"/><path d="M30 50 q4 -8 18 -8" /></svg>
+        </span>
+        <div class="bread__body">
+          <h3 class="bread__name">Country sourdough</h3>
+          <p class="bread__desc">Wild starter, 80 % white, 20 % wholewheat, twenty-four hour cold proof.</p>
+        </div>
+        <span class="bread__price">€5.50</span>
+      </li>
+      <!-- 2 -->
+      <li class="bread">
+        <span class="bread__shape" aria-hidden="true">
+          <svg viewBox="0 0 96 96"><path d="M14 48 L82 48 M14 48 q4 -10 8 0 M30 48 q4 -10 8 0 M46 48 q4 -10 8 0 M62 48 q4 -10 8 0"/><ellipse cx="48" cy="48" rx="38" ry="6"/></svg>
+        </span>
+        <div class="bread__body">
+          <h3 class="bread__name">Baguette tradition</h3>
+          <p class="bread__desc">T65 flour, four hours bulk, scored deep. Two per customer.</p>
+        </div>
+        <span class="bread__price">€2.80</span>
+      </li>
+      <!-- 3 -->
+      <li class="bread">
+        <span class="bread__shape" aria-hidden="true">
+          <svg viewBox="0 0 96 96"><rect x="20" y="32" width="56" height="32" rx="4"/><circle cx="34" cy="44" r="2"/><circle cx="48" cy="40" r="2"/><circle cx="62" cy="48" r="2"/><circle cx="42" cy="56" r="2"/><circle cx="58" cy="52" r="2"/></svg>
+        </span>
+        <div class="bread__body">
+          <h3 class="bread__name">Focaccia, rosemary</h3>
+          <p class="bread__desc">Twenty-eight squares, olive oil, sea-salt, herb from the garden behind.</p>
+        </div>
+        <span class="bread__price">€4.20</span>
+      </li>
+      <!-- 4 -->
+      <li class="bread">
+        <span class="bread__shape bread__shape--accent" aria-hidden="true">
+          <svg viewBox="0 0 96 96"><circle cx="48" cy="48" r="32"/><circle cx="48" cy="48" r="20"/><path d="M48 16 L48 80 M16 48 L80 48"/></svg>
+        </span>
+        <div class="bread__body">
+          <h3 class="bread__name">Boule, miche</h3>
+          <p class="bread__desc">A 2 kg round, kept overnight, eats for three meals. Slice across the grain.</p>
+        </div>
+        <span class="bread__price">€11.00</span>
+      </li>
+      <!-- 5 -->
+      <li class="bread">
+        <span class="bread__shape" aria-hidden="true">
+          <svg viewBox="0 0 96 96"><path d="M16 56 q16 -32 32 -32 t32 32"/><path d="M22 50 L32 50 M40 44 L50 44 M58 48 L68 48"/></svg>
+        </span>
+        <div class="bread__body">
+          <h3 class="bread__name">Rye, dark</h3>
+          <p class="bread__desc">100 % rye, no wheat. Caraway and treacle. Keeps a week, slices thin.</p>
+        </div>
+        <span class="bread__price">€6.20</span>
+      </li>
+      <!-- 6 -->
+      <li class="bread">
+        <span class="bread__shape" aria-hidden="true">
+          <svg viewBox="0 0 96 96"><path d="M20 50 q14 -20 28 -20 t28 20" /><path d="M20 50 q14 18 28 18 t28 -18"/><path d="M48 30 L48 68"/></svg>
+        </span>
+        <div class="bread__body">
+          <h3 class="bread__name">Brioche feuilletée</h3>
+          <p class="bread__desc">Laminated brioche, Friday only. Six per bake.</p>
+        </div>
+        <span class="bread__price bread__price--out">sold out</span>
+      </li>
+      <!-- 7 -->
+      <li class="bread">
+        <span class="bread__shape bread__shape--accent" aria-hidden="true">
+          <svg viewBox="0 0 96 96"><path d="M16 70 L48 24 L80 70 Z"/><path d="M30 70 L48 44 L66 70"/></svg>
+        </span>
+        <div class="bread__body">
+          <h3 class="bread__name">Walnut levain</h3>
+          <p class="bread__desc">Sourdough, eight per cent walnut, baked dark. Cheese-board bread.</p>
+        </div>
+        <span class="bread__price">€7.40</span>
+      </li>
+      <!-- 8 -->
+      <li class="bread">
+        <span class="bread__shape" aria-hidden="true">
+          <svg viewBox="0 0 96 96"><circle cx="32" cy="48" r="14"/><circle cx="64" cy="48" r="14"/><path d="M32 34 L32 62 M64 34 L64 62"/></svg>
+        </span>
+        <div class="bread__body">
+          <h3 class="bread__name">Bola d'óleo, twins</h3>
+          <p class="bread__desc">Two small soft rolls, olive oil, salt-flaked. Sold paired.</p>
+        </div>
+        <span class="bread__price">€3.00</span>
+      </li>
+    </ul>
 
-    <article class="letter">
-      <h1 class="salutation">Saturday, 6:14 a.m.</h1>
-
-      <p>The dough went in at midnight. By the time the lights are on outside, the bench is dusted, the loaves are scored, and the oven is hotter than a summer roof. We bake what we baked yesterday and what we'll bake tomorrow — sourdough, slow, by hand, on stone — because that's the bread we wanted to eat when we moved here ten years ago and couldn't find any.</p>
-
-      <p>The shop opens at seven. There are usually thirty loaves and they're usually gone by noon. We don't do online orders. We don't deliver. If you want a loaf, walk over. Bring a bag.</p>
-
-      <div class="loaf-wrap">
-        <svg class="loaf-svg" viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg" aria-label="A loaf of sourdough bread">
-          <path class="loaf-body"
-                d="M 30 95
-                   C 30 60, 70 25, 110 25
-                   C 150 25, 190 60, 190 95
-                   L 195 110
-                   L 25 110 Z" />
-          <path class="loaf-shade"
-                d="M 30 95
-                   C 30 80, 60 70, 110 70
-                   C 160 70, 190 80, 190 95
-                   L 195 110
-                   L 25 110 Z" />
-          <path class="loaf-score"
-                d="M 70 60 L 95 40
-                   M 100 65 L 130 38
-                   M 138 60 L 168 42" />
-        </svg>
-        <p class="loaf-cap">Plate 47 · scored before the proof</p>
+    <section class="visit">
+      <h2 class="visit__head">Visit</h2>
+      <div class="visit__lines">
+        <span><strong>Rua dos Anjos 92, Lisbon</strong></span>
+        <span><em>Tuesday – Saturday, 7 a.m. until the loaves are gone (usually noon)</em></span>
+        <span><em>No online orders. Bring a bag.</em></span>
       </div>
+    </section>
 
-      <p>The oven runs on local oak. The flour is from a mill three hours west. The starter is from a baker in Évora who taught us in 2014 and is still alive. None of these are marketing claims; they are how the bread happens.</p>
-
-      <p class="signoff">
-        Thank you for walking over,<br>
-        <strong>— H. & N.</strong>
-      </p>
-    </article>
-
-    <aside class="aside">
-      <h3>Today's loaves</h3>
-      <ul>
-        <li>Country sour <span class="price">€ 6,20</span></li>
-        <li>Seeded rye <span class="price">€ 6,80</span></li>
-        <li>Olive &amp; thyme <span class="price">€ 7,40</span></li>
-        <li>Walnut crown <span class="price">€ 7,40</span></li>
-        <li>Brioche <span class="price">€ 5,60</span></li>
-      </ul>
-
-      <h3>Visit</h3>
-      <p>Rua de São Bento, 47<br>1200-820 Lisboa</p>
-      <p>Open Tuesday — Saturday<br>7 a.m. until the loaves are gone</p>
-
-      <h3>Phone</h3>
-      <p class="phone">+351 21 555 04 47</p>
-
-      <h3>The farm we mill from</h3>
-      <p>Quinta de Santo António, Mafra</p>
-    </aside>
-
-  </div>
-
-  <footer>
-    <span class="ink">Maple Street Bread</span>
-    <span class="sep">·</span>
-    <span>baked on Rua de São Bento</span>
-    <span class="sep">·</span>
-    <span>handwritten in 2026</span>
-  </footer>
-
+    <footer class="colophon">
+      <span>Maple Street · Saturday, May the first · the year twenty twenty-six</span>
+    </footer>
+  </main>
 </body>
 </html>

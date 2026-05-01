@@ -3,43 +3,62 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tide — a podcast about the things that come back</title>
-  <meta name="description" content="A short podcast, fortnightly, about the things in life that keep coming back. Hosted by Mira Aoki." />
+  <title>Tide — long-form interviews with small-studio designers</title>
+  <meta name="description" content="An indie podcast about how small studios actually work. Hosted by a designer, for designers." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="fold">
-    <p class="eyebrow">Tide · Episode 14 · listening from anywhere</p>
+  <main class="page">
+    <header class="masthead">
+      <span class="masthead__brand">Tide</span>
+      <span class="masthead__meta">est. 2026 · n.º 14 · Lisbon</span>
+    </header>
 
-    <blockquote class="quote">
-      I started listening on a long bus ride. By the third episode I'd missed my stop, and I didn't mind.
-    </blockquote>
-
-    <p class="attribution">— A listener · Lisbon · 2026</p>
-
-    <p class="body">
-      Tide is a small fortnightly podcast about the things in life that keep coming back — old letters, slow recipes, the way a song sounds different in winter. Half-hour episodes, hosted by Mira Aoki. New episode every other Tuesday.
+    <p class="salutation">
+      Dear listener,<span class="salutation__caret" aria-hidden="true"></span>
     </p>
 
-    <div class="platforms">
-      <a href="#">Apple Podcasts</a>
-      <span class="sep">·</span>
-      <a href="#">Spotify</a>
-      <span class="sep">·</span>
-      <a href="#">Overcast</a>
-      <span class="sep">·</span>
-      <a href="#">RSS</a>
-    </div>
-  </main>
+    <article class="letter">
+      <p>
+        Tide is a podcast about <em>how small studios actually work</em>. The bookings, the unsent
+        invoices, the day a senior designer leaves and you sit in the office not knowing what to
+        say to the four people who stayed. The kind of conversations you'd have over the third coffee
+        with someone who has done it for fifteen years and isn't selling you anything.
+      </p>
+      <p>
+        Each episode is one long interview, ninety-odd minutes, no chapters, no pre-amble, no host
+        riffing. Two designers, one chair each, a microphone between them. The questions are written
+        down a week ahead. The answers are not.
+      </p>
+      <p>
+        We publish on Tuesdays. Twenty-six episodes a year, give or take. No sponsors yet, and
+        probably not ever — if you find the show useful, the way to keep it going is to listen,
+        share an episode, and write back. We answer the email ourselves.
+      </p>
 
-  <footer>
-    <span class="colophon">Tide</span>
-    <span class="sep">·</span>
-    <span>est. 2026</span>
-    <span class="sep">·</span>
-    <span>recorded in a flat in Marvila</span>
-    <span class="sep">·</span>
-    <a href="mailto:hello@tide.fm" style="color:inherit;">hello@tide.fm</a>
-  </footer>
+      <p class="signoff">
+        — <span class="signoff__name">A. Reis</span>, host
+      </p>
+    </article>
+
+    <section class="listen" aria-labelledby="listen-heading">
+      <h2 class="listen__heading" id="listen-heading">Listen where you listen</h2>
+      <ul class="listen__list">
+        <li class="listen__item"><a href="#"><span>Apple Podcasts</span><span class="listen__arrow" aria-hidden="true">↗</span></a></li>
+        <li class="listen__item"><a href="#"><span>Spotify</span><span class="listen__arrow" aria-hidden="true">↗</span></a></li>
+        <li class="listen__item"><a href="#"><span>Pocket Casts</span><span class="listen__arrow" aria-hidden="true">↗</span></a></li>
+        <li class="listen__item"><a href="#"><span>Overcast</span><span class="listen__arrow" aria-hidden="true">↗</span></a></li>
+        <li class="listen__item"><a href="#"><span>RSS</span><span class="listen__arrow" aria-hidden="true">↗</span></a></li>
+      </ul>
+    </section>
+
+    <footer class="colophon">
+      <span>Hand-set in IBM Plex Mono &amp; Cormorant Garamond.</span>
+      <span><a href="mailto:hello@tide.fm">hello@tide.fm</a></span>
+    </footer>
+  </main>
 </body>
 </html>

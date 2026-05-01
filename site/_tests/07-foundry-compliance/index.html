@@ -3,376 +3,144 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Foundry — SOC2 in 31 days, not 9 months</title>
-  <meta name="description" content="SOC2 and ISO27001 compliance automation for B2B SaaS. 847 companies, 98% pass on first try, 31-day average to audit-ready." />
+  <title>Foundry — SOC 2 &amp; ISO 27001 compliance for B2B SaaS</title>
+  <meta name="description" content="847 companies passed audit using Foundry. Average time to compliant: thirty-one days." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <nav class="nav">
-    <a class="wordmark" href="/">Foundry</a>
-    <div class="nav__links">
-      <a href="#features">Features</a>
-      <a href="#customers">Customers</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
-      <a class="btn btn--ghost" href="#sales">Talk to sales</a>
-      <a class="btn btn--primary" href="#start">Start audit</a>
-    </div>
-  </nav>
-
-  <!-- ─── HERO · STAT-LED ─── -->
-  <section class="hero">
-    <p class="hero__eyebrow">CONTROLS · EVIDENCE · AUDIT — IN ONE PLACE</p>
-    <h1 class="hero__stat" data-target="847" aria-label="847 companies passed audit using Foundry">
-      <span class="hero__num" data-counter>847</span><span class="hero__period">.</span>
-    </h1>
-    <p class="hero__lede">
-      <strong>companies passed audit using Foundry.</strong> Average time to compliant:
-      <em>thirty-one days</em>, against an industry average of nine months. We wrote
-      the controls, we collect the evidence, we sit on the audit-day call.
-    </p>
-    <div class="hero__cta">
-      <a class="btn btn--primary" href="#start">Start your audit</a>
-      <a class="btn btn--ghost" href="#sales">Talk to sales →</a>
-    </div>
-    <p class="hero__foot">
-      <span>SOC 2 Type II</span> · <span>ISO 27001:2022</span> · <span>HIPAA</span> · <span>GDPR</span> · <span>PCI-DSS</span>
-    </p>
-  </section>
-
-  <!-- ─── LOGO WALL ─── -->
-  <section class="logos" aria-label="Customer companies">
-    <p class="logos__label">— TRUSTED BY 847 SaaS COMPANIES, INCLUDING —</p>
-    <ul class="logos__row">
-      <li class="logos__item">Tariff</li>
-      <li class="logos__item">Threadline</li>
-      <li class="logos__item">Tracejam</li>
-      <li class="logos__item">Cohort</li>
-      <li class="logos__item">Maple &amp; Co.</li>
-      <li class="logos__item">Streampipe</li>
-      <li class="logos__item">Beacon</li>
-      <li class="logos__item">Anya Labs</li>
-    </ul>
-  </section>
-
-  <!-- ─── SUPPORTING STATS ─── -->
-  <section class="stats" aria-labelledby="stats-h">
-    <h2 class="stats__h" id="stats-h">The numbers behind the number.</h2>
-    <div class="stats__grid">
-      <article class="stats__card">
-        <span class="stats__num" data-counter data-target="98" data-suffix="%">98%</span>
-        <p class="stats__label">pass on first try.</p>
-        <p class="stats__caption">In 2025, 819 of 836 Foundry customers passed their first SOC 2 audit without a finding requiring remediation.</p>
-      </article>
-      <article class="stats__card">
-        <span class="stats__num" data-counter data-target="31" data-suffix="">31</span>
-        <p class="stats__label">days, on average.</p>
-        <p class="stats__caption">From signature to audit-ready, measured across all customers in 2025. The fastest was nine days; the longest, sixty-two.</p>
-      </article>
-      <article class="stats__card">
-        <span class="stats__num" data-counter data-target="12400" data-suffix=" h">12,400 h</span>
-        <p class="stats__label">of engineering reclaimed.</p>
-        <p class="stats__caption">Hours your team did not spend writing policies, chasing screenshots, or filling in vendor questionnaires. We did.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- ─── FEATURES ─── -->
-  <section class="features" id="features" aria-labelledby="features-h">
-    <header class="features__head">
-      <span class="features__eyebrow">— THE WORK —</span>
-      <h2 class="features__h" id="features-h">Four things Foundry does so you don't.</h2>
+  <main class="page">
+    <header class="masthead">
+      <span>est. 2024 · Lisbon &amp; New York</span>
+      <span class="masthead__brand">Foundry<span class="dot">.</span></span>
+      <nav class="masthead__nav">
+        <a href="#bento">Proof</a>
+        <a href="#bento">Pricing</a>
+        <a href="#">Docs</a>
+        <a href="#">Sign in</a>
+      </nav>
     </header>
-    <ol class="features__grid">
-      <li class="feature">
-        <span class="feature__num">01</span>
-        <h3 class="feature__title">Continuous monitoring.</h3>
-        <p>Foundry watches your AWS, GCP, GitHub, Okta, and 80 other systems. When a control drifts — a public bucket, a missing MFA, a 90-day-old key — we flag it the same hour, not at next year's audit.</p>
-        <p class="feature__detail"><b>Coverage:</b> 142 controls across SOC 2, ISO 27001, HIPAA, GDPR, PCI. <b>Latency:</b> p95 alert in 4 minutes.</p>
-      </li>
-      <li class="feature">
-        <span class="feature__num">02</span>
-        <h3 class="feature__title">Auto-evidence collection.</h3>
-        <p>Screenshots, logs, access reviews, training certificates, vendor SOC 2s — Foundry pulls them on a schedule, signs them with a Sigstore-compatible cosign, and stores the bundle in evidence-of-record format. Your auditor downloads the bundle on audit day.</p>
-        <p class="feature__detail"><b>Bundles ship in:</b> AICPA-accepted format, ISO 19011 evidence track, or ABNF for PCI-QSA review.</p>
-      </li>
-      <li class="feature">
-        <span class="feature__num">03</span>
-        <h3 class="feature__title">Vendor risk, automated.</h3>
-        <p>Send a 12-line vendor questionnaire that Foundry scores against the vendor's published SOC 2 — or against the auditor's report, if you have it. The score updates when the vendor's posture changes. No more spreadsheet-of-vendors that nobody reads.</p>
-        <p class="feature__detail"><b>Tracks:</b> 280,000 vendors with public SOC 2s. <b>Updates:</b> within 48 hours of vendor report changes.</p>
-      </li>
-      <li class="feature">
-        <span class="feature__num">04</span>
-        <h3 class="feature__title">Audit-day support.</h3>
-        <p>The hardest part of the audit is not the audit — it's the back-and-forth with the auditor's analyst at 11 p.m. on a Tuesday. Foundry's Audit-Day team sits on every call, runs the evidence walk-through, and answers in your seat. You ship product the day of your audit.</p>
-        <p class="feature__detail"><b>Included on:</b> Team and Scale tiers. <b>Auditor partners:</b> Prescient Assurance, Insight Assurance, A-LIGN, Schellman.</p>
-      </li>
-    </ol>
-  </section>
 
-  <!-- ─── TESTIMONIALS ─── -->
-  <section class="testimonials" id="customers" aria-labelledby="testimonials-h">
-    <header class="testimonials__head">
-      <span class="testimonials__eyebrow">— WHAT CUSTOMERS SAY —</span>
-      <h2 class="testimonials__h" id="testimonials-h">Three CTOs, three audits, three short stories.</h2>
-    </header>
-    <div class="testimonials__grid">
-      <figure class="quote">
-        <blockquote>
-          <p>Foundry got us SOC 2 in <em>five weeks.</em> We wrote zero policies ourselves. The audit-day team answered the questions our auditor asked, and we shipped a release the same afternoon.</p>
-        </blockquote>
-        <figcaption>
-          <span class="quote__name">Rachel Tran</span>
-          <span class="quote__role">CEO · Tariff</span>
-          <span class="quote__meta">YC W24 · 14 employees · Pre-Series-A</span>
-        </figcaption>
-      </figure>
+    <section class="hero">
+      <div class="hero__copy">
+        <p class="hero__eyebrow">SOC 2 · ISO 27001 · automated</p>
+        <h1 class="hero__head">Compliance, ground out in <em>days</em>, not in months.</h1>
+        <p class="hero__sub">
+          Foundry runs the controls, the evidence collection, and the audit timeline for B2B SaaS
+          teams that don't have a security org yet. Founders open accounts on Tuesdays and pass audit
+          by month-end. The proof is below.
+        </p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#">14-day trial <span aria-hidden="true">→</span></a>
+          <a class="btn" href="#">Talk to sales</a>
+        </div>
+      </div>
+      <aside class="hero__pull">
+        <p class="hero__pull-quote">
+          "We passed Type II in seven weeks with one engineer halftime. The auditor accepted ninety
+          per cent of the evidence Foundry assembled with no edits."
+        </p>
+        <p class="hero__pull-attr">— Matt H., CTO at Tracejam · 18-person team</p>
+      </aside>
+    </section>
 
-      <figure class="quote">
-        <blockquote>
-          <p>I have done two SOC 2 audits in my career. The first one was nine months and an outside firm. <em>The second was Foundry.</em> Twenty-three days. We did not hire anyone for it.</p>
-        </blockquote>
-        <figcaption>
-          <span class="quote__name">Mateo Andrade</span>
-          <span class="quote__role">CTO · Threadline</span>
-          <span class="quote__meta">Series A · 47 employees · Engineering-led</span>
-        </figcaption>
-      </figure>
+    <section class="bento" id="bento">
+      <article class="tile tile--stat" aria-labelledby="stat-h">
+        <span class="tile__corner" aria-hidden="true"></span>
+        <p class="tile__label" id="stat-h">Companies audited</p>
+        <p class="tile__stat">847<span class="tile__stat-dot">.</span></p>
+        <p class="tile__stat-cap">
+          companies passed audit using Foundry. Average time to compliant: thirty-one days, against
+          an industry average of nine months.
+        </p>
+      </article>
 
-      <figure class="quote">
-        <blockquote>
-          <p>Vendor risk used to be a Notion page nobody updated. Foundry pulled in our 142 vendors, scored them against their SOC 2s, and flagged the seven we should not be using. <em>Two of them we had not even heard of.</em></p>
-        </blockquote>
-        <figcaption>
-          <span class="quote__name">Priya Sundaram</span>
-          <span class="quote__role">Head of Security · Anya Labs</span>
-          <span class="quote__meta">Series B · 180 employees · Healthcare SaaS</span>
-        </figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- ─── PRICING ─── -->
-  <section class="pricing" id="pricing" aria-labelledby="pricing-h">
-    <header class="pricing__head">
-      <span class="pricing__eyebrow">— PRICING —</span>
-      <h2 class="pricing__h" id="pricing-h">Three tiers. Real prices. No "contact sales for pricing."</h2>
-      <p class="pricing__lede">All tiers include the platform, the controls library, and the evidence collector. The differences are in audit-day support, framework count, and seat limit.</p>
-    </header>
-    <div class="pricing__grid">
-      <article class="tier">
-        <header class="tier__head">
-          <h3 class="tier__name">Starter</h3>
-          <p class="tier__pitch">Your first SOC 2.</p>
-        </header>
-        <p class="tier__price"><span class="tier__amount">$299</span><span class="tier__period">/month</span></p>
-        <p class="tier__yearly">$2,990 yearly · save two months</p>
-        <ul class="tier__list">
-          <li>One framework (SOC 2 Type I or Type II)</li>
-          <li>Up to 10 employees / 8 vendors</li>
-          <li>Continuous monitoring (40 controls)</li>
-          <li>Auto-evidence collection</li>
-          <li>Slack + email support, business hours</li>
-          <li class="tier__list-not">No audit-day team</li>
+      <article class="tile tile--logos" aria-labelledby="logos-h">
+        <p class="tile__label" id="logos-h">In production at</p>
+        <p class="tile__body">Eight wordmarks. Logos shown with consent. Full customer list in the trust report.</p>
+        <ul class="logos" role="list">
+          <li class="logos__item">Tracejam<span class="dot">.</span></li>
+          <li class="logos__item">Maple <span class="dot">·</span></li>
+          <li class="logos__item">Knot</li>
+          <li class="logos__item">Tide<span class="dot">/</span></li>
+          <li class="logos__item">Streampipe</li>
+          <li class="logos__item">Cohort</li>
+          <li class="logos__item">Meridian</li>
+          <li class="logos__item">Anya<span class="dot">.</span>dev</li>
         </ul>
-        <a class="btn btn--ghost-block" href="#start-starter">Start with Starter →</a>
       </article>
 
-      <article class="tier tier--recommended" data-pulse>
-        <header class="tier__head">
-          <span class="tier__badge">RECOMMENDED</span>
-          <h3 class="tier__name">Team</h3>
-          <p class="tier__pitch">Where most customers land.</p>
-        </header>
-        <p class="tier__price"><span class="tier__amount">$899</span><span class="tier__period">/month</span></p>
-        <p class="tier__yearly">$8,990 yearly · save two months</p>
-        <ul class="tier__list">
-          <li>Up to four frameworks (SOC 2, ISO 27001, HIPAA, GDPR)</li>
-          <li>Up to 50 employees / 50 vendors</li>
-          <li>Continuous monitoring (all 142 controls)</li>
-          <li>Auto-evidence collection</li>
-          <li>Vendor risk module</li>
-          <li><strong>Audit-day team on every audit</strong></li>
-          <li>Slack + email + phone, 24×5</li>
+      <article class="tile tile--pricing" aria-labelledby="price-h">
+        <p class="tile__label" id="price-h">Three plans, one price each</p>
+        <div class="tiers">
+          <div class="tier-card">
+            <p class="tier-card__name">Starter</p>
+            <p class="tier-card__price">$299 <span class="tier-card__per">/ mo</span></p>
+          </div>
+          <div class="tier-card tier-card--feature">
+            <p class="tier-card__name">Team</p>
+            <p class="tier-card__price">$899 <span class="tier-card__per">/ mo</span></p>
+          </div>
+          <div class="tier-card">
+            <p class="tier-card__name">Scale</p>
+            <p class="tier-card__price">Custom</p>
+          </div>
+        </div>
+        <p class="tile__body" style="margin-top: var(--space-sm);">
+          Audit fee included. No per-seat. No annual lock. Cancel any month.
+        </p>
+      </article>
+
+      <article class="tile tile--testimonial">
+        <p class="tile__label">From a customer</p>
+        <p class="tile__quote">
+          "We told the auditor 'use Foundry, the evidence is in there.' She did. The audit closed
+          on schedule. That has never happened to me before."
+        </p>
+        <p class="tile__attr">— <strong>Sara V.</strong>, founder, 9-person fintech</p>
+      </article>
+
+      <article class="tile tile--features">
+        <p class="tile__label">What's automated</p>
+        <h3 class="tile__head">Eighty-six controls, evidenced on a schedule.</h3>
+        <ul class="feat-list">
+          <li><span class="num">01.</span><span>Access reviews quarterly. Slack-prompted. One-click sign-off.</span></li>
+          <li><span class="num">02.</span><span>Vulnerability scans on every deploy. Severity-routed.</span></li>
+          <li><span class="num">03.</span><span>Vendor security review with one-page risk memo per vendor.</span></li>
+          <li><span class="num">04.</span><span>Incident response playbook with on-call rotation prefilled.</span></li>
+          <li><span class="num">05.</span><span>Code review evidence pulled from GitHub, GitLab, Bitbucket.</span></li>
+          <li><span class="num">06.</span><span>Backups verified weekly. Restore tested monthly.</span></li>
         </ul>
-        <a class="btn btn--primary-block" href="#start-team">Start with Team →</a>
       </article>
 
-      <article class="tier">
-        <header class="tier__head">
-          <h3 class="tier__name">Scale</h3>
-          <p class="tier__pitch">For multi-entity, multi-region.</p>
-        </header>
-        <p class="tier__price"><span class="tier__amount">Custom</span></p>
-        <p class="tier__yearly">From $2,499/month · annual contract</p>
-        <ul class="tier__list">
-          <li>Unlimited frameworks &amp; entities</li>
-          <li>Unlimited employees / vendors</li>
-          <li>Custom controls library + custom mappings</li>
-          <li>Dedicated solutions architect</li>
-          <li>SAML / SCIM / Okta provisioning</li>
-          <li>Audit-day team on every audit</li>
-          <li>24×7 priority support</li>
+      <article class="tile tile--faq">
+        <p class="tile__label">FAQ</p>
+        <h3 class="tile__head">The eight questions everyone asks first.</h3>
+        <ul class="faq-list">
+          <li><a href="#">Do we need to switch auditor?</a></li>
+          <li><a href="#">How long does Type I take?</a></li>
+          <li><a href="#">Can we add ISO 27001 later?</a></li>
+          <li><a href="#">Does Foundry produce the policies?</a></li>
+          <li><a href="#">What about HIPAA, GDPR?</a></li>
+          <li><a href="#">Do you offer a trust portal?</a></li>
         </ul>
-        <a class="btn btn--ghost-block" href="#sales-scale">Talk to sales →</a>
       </article>
-    </div>
-  </section>
+    </section>
 
-  <!-- ─── FAQ ─── -->
-  <section class="faq" id="faq" aria-labelledby="faq-h">
-    <header class="faq__head">
-      <span class="faq__eyebrow">— FREQUENTLY ASKED —</span>
-      <h2 class="faq__h" id="faq-h">Eight questions we get every week.</h2>
-    </header>
-    <dl class="faq__list">
-      <div class="faq__row">
-        <dt>Is Foundry the auditor?</dt>
-        <dd>No. Foundry prepares your evidence and answers your audit. The audit itself is conducted by an independent CPA firm. We partner with Prescient Assurance, Insight, A-LIGN, and Schellman; you can also bring your own.</dd>
+    <section class="cta-strip">
+      <h2 class="cta-strip__head">Start the trial. <em>Cancel before the first invoice if it's not ready.</em></h2>
+      <div class="cta-strip__cta">
+        <a class="btn btn--primary" href="#">Open an account</a>
+        <a class="btn" href="#">Book a demo</a>
       </div>
-      <div class="faq__row">
-        <dt>How long does a SOC 2 audit take with Foundry?</dt>
-        <dd>The 2025 median, across all 836 customers, was 31 days from signature to audit-ready. Type II observation periods are 3, 6, or 12 months on top of that, depending on what you need.</dd>
-      </div>
-      <div class="faq__row">
-        <dt>What systems does Foundry integrate with?</dt>
-        <dd>AWS, GCP, Azure, GitHub, GitLab, Okta, Google Workspace, Microsoft 365, Linear, Jira, Slack, PagerDuty, Datadog, and 80 others. The integration is read-only by default; we never make changes to your infrastructure.</dd>
-      </div>
-      <div class="faq__row">
-        <dt>What if our codebase is on-prem?</dt>
-        <dd>We support on-prem and hybrid environments via the Foundry Agent — a single Go binary that runs in your network and reports back over a single outbound TLS connection. No inbound access required.</dd>
-      </div>
-      <div class="faq__row">
-        <dt>Can we self-host Foundry?</dt>
-        <dd>On the Scale tier, yes. We ship a Helm chart that deploys to your Kubernetes cluster; we also support bare-metal via systemd units. Most Scale customers run Foundry in a dedicated VPC.</dd>
-      </div>
-      <div class="faq__row">
-        <dt>What does "audit-day support" actually mean?</dt>
-        <dd>A Foundry analyst joins every audit-day call with your auditor, runs the evidence walk-through, and answers procedural questions in your stead. You stay on the call to answer questions only your team can answer (architectural decisions, exceptions, custom controls). On a typical Type II audit, your team's total time on calls is under three hours.</dd>
-      </div>
-      <div class="faq__row">
-        <dt>What happens if we fail the audit?</dt>
-        <dd>We work the remediation list with you and re-submit. In 2025, 17 of 836 customers had findings requiring remediation; all 17 passed on the second submission within 14 days. Foundry waives the next month of fees if a remediation cycle is needed.</dd>
-      </div>
-      <div class="faq__row">
-        <dt>Can we cancel?</dt>
-        <dd>Yes — month-to-month on Starter and Team. Annual contracts on Scale are cancellable for cause with 60 days' notice. We will export your evidence vault to a self-hosted format on departure; no data hostage.</dd>
-      </div>
-    </dl>
-  </section>
+    </section>
 
-  <!-- ─── FINAL CTA ─── -->
-  <section class="final-cta">
-    <p class="final-cta__line">Start your audit. Fourteen days free. No credit card.</p>
-    <a class="btn btn--primary final-cta__btn" href="#start">Begin in three minutes →</a>
-  </section>
-
-  <!-- ─── FOOTER ─── -->
-  <footer class="footer">
-    <div class="footer__brand">
-      <h3>Foundry</h3>
-      <p>Compliance automation for SaaS. Built by founders who shipped two SOC 2s by hand and decided that was once too many.</p>
-      <p class="footer__colophon">© 2026 · Lisbon &amp; San Francisco · SOC 2 Type II · ISO 27001:2022</p>
-    </div>
-    <div class="footer__col">
-      <h4>Product</h4>
-      <ul>
-        <li><a href="#">Continuous monitoring</a></li>
-        <li><a href="#">Evidence collector</a></li>
-        <li><a href="#">Vendor risk</a></li>
-        <li><a href="#">Audit-day team</a></li>
-        <li><a href="#">Frameworks</a></li>
-      </ul>
-    </div>
-    <div class="footer__col">
-      <h4>Company</h4>
-      <ul>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Customers</a></li>
-        <li><a href="#">Auditor partners</a></li>
-        <li><a href="#">Careers</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer__col">
-      <h4>Trust</h4>
-      <ul>
-        <li><a href="#">Foundry's SOC 2</a></li>
-        <li><a href="#">Security</a></li>
-        <li><a href="#">DPA &amp; sub-processors</a></li>
-        <li><a href="#">Status</a></li>
-      </ul>
-    </div>
-  </footer>
-
-  <script>
-    /* ─── Microinteractions (Stat-Led default-on) ─── */
-
-    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    /* 1 · Number reveal — count from 0 to data-target on viewport entry, once. */
-    function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
-
-    function formatNumber(n, suffix) {
-      const fixed = Math.round(n);
-      return new Intl.NumberFormat('en-US').format(fixed) + (suffix || '');
-    }
-
-    function animateCounter(el) {
-      const target = parseInt(el.dataset.target, 10);
-      const suffix = el.dataset.suffix || '';
-      if (reduce || !Number.isFinite(target)) {
-        el.textContent = formatNumber(target, suffix);
-        return;
-      }
-      const duration = 1400;
-      const start = performance.now();
-      function tick(now) {
-        const t = Math.min(1, (now - start) / duration);
-        const value = target * easeOut(t);
-        el.textContent = formatNumber(value, suffix);
-        if (t < 1) requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
-    }
-
-    /* For the hero, the heading carries data-target via the parent <h1> */
-    const heroHeading = document.querySelector('.hero__stat');
-    if (heroHeading) {
-      const heroNum = heroHeading.querySelector('[data-counter]');
-      heroNum.dataset.target = heroHeading.dataset.target;
-      heroNum.textContent = '0';
-    }
-
-    /* For inline stat cards, set the start to "0" so the count is visible */
-    document.querySelectorAll('.stats__num[data-counter]').forEach((el) => {
-      el.textContent = '0';
-    });
-
-    const counterIO = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateCounter(entry.target);
-          counterIO.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.4 });
-
-    document.querySelectorAll('[data-counter]').forEach((el) => counterIO.observe(el));
-
-    /* 2 · Recommended-tier pulse — runs once on viewport entry */
-    const pulseIO = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-pulsing');
-          pulseIO.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.6 });
-    document.querySelectorAll('[data-pulse]').forEach((el) => pulseIO.observe(el));
-  </script>
-
+    <footer class="colophon">
+      <span>Foundry · SOC 2 Type II · ISO 27001 · GDPR (DPA available on request)</span>
+      <span><a href="#">trust report</a> · <a href="#">docs</a> · <a href="#">status</a> · <a href="#">contact</a></span>
+    </footer>
+  </main>
 </body>
 </html>

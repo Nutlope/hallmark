@@ -32,11 +32,11 @@ The first recipe is the **canonical try-it prompt** — paste it into a fresh pr
 
 **Inferred trio** (the user opted out): audience = designers, design-curious listeners · use = listen + subscribe · tone = quiet editorial.
 
-**Picks:** Quote-Led · **Atelier** (warm cream, italic Newsreader) · no enrichment (typography only).
+**Picks:** Letter · **Salon** (warm cream paper, IBM Plex Mono masthead, Cormorant Garamond body, warm-amber caret) · no enrichment (typography only).
 
 **Excerpt:**
 
-> *"A page should arrive like a person — composed, deliberate, in good clothes." — from the salon.* The hero is the pull-quote. The page below: episode list, host bio, RSS feed. No mockups. No demo. The voice carries the brand.
+> *"Dear listener, Tide is a podcast about how small studios actually work. The bookings, the unsent invoices, the day a senior designer leaves and you sit in the office not knowing what to say to the four people who stayed."* The hero is the salutation. Below: three paragraphs of host-voice, a sign-off, then a single row of "listen where you listen" links — Apple, Spotify, Pocket Casts, Overcast, RSS. No mockups. No demo. The voice carries the brand.
 
 **Live:** [`_tests/01-tide-podcast/`](../../site/_tests/01-tide-podcast/index.html)
 
@@ -50,11 +50,11 @@ The first recipe is the **canonical try-it prompt** — paste it into a fresh pr
 
 **Inferred trio:** explicit. **Theme requested.**
 
-**Picks:** Workbench · **Terminal** (dark phosphor-green, mono everywhere) · Tier-A hand-built CSS-art terminal mockup (no Lottie, no real video).
+**Picks:** Long Document · **Terminal** (dark phosphor-green, mono everywhere) · Tier-A inline CSS-art terminal blocks (no Lottie, no real video, no sticky pin — embedded inline in the prose).
 
 **Excerpt:**
 
-> *"$ streampipe --help.* A small, fast, single-binary CLI for parsing log and event streams from stdin. Filter, transform, route. Composes with anything that emits lines.* Then three install snippets in a phosphor-green code block: brew · npm · curl. To the right, a hand-built CSS-art terminal showing `streampipe parse access.log --filter status=5xx` with sample JSON output. Pure CSS, no scripts.
+> *"$ streampipe — a small, fast, single-binary CLI for parsing log and event streams from stdin."* Then a paragraph of prose explaining what it does, an inline `<pre>` showing `tail -f access.log | streampipe parse --format nginx --filter 'status >= 500' --out json` with three sample JSON output lines, then a second paragraph (Rust, 1.2 MB binary, no daemon, no buffer). Below: install section (three snippets — brew · cargo · curl), three numbered notes on how it works, a six-row flag table. Pure CSS, no scripts.
 
 **Live:** [`_tests/02-streampipe-cli/`](../../site/_tests/02-streampipe-cli/index.html)
 
@@ -68,11 +68,11 @@ The first recipe is the **canonical try-it prompt** — paste it into a fresh pr
 
 **Inferred trio:** explicit.
 
-**Picks:** Long Document · **Linen** (warm-paper, geometric-sans display, low-chroma) · Tier-B hand-built SVG (a 60-line loaf with a `@property --rise` 6 s breathing-loop animation).
+**Picks:** Catalogue · **Almanac** (warm parchment paper, IM Fell roman-serif display, warm-amber accent) · Tier-A hand-built inline-SVG bread silhouettes (one per item, 96 px, no animation).
 
 **Excerpt:**
 
-> *"Maple Street · est. 2026 · n.º 47.* Saturday, 6:14 a.m. The dough went in at midnight. By the time the lights are on outside, the bench is dusted, the loaves are scored, and the oven is hotter than a summer roof.* Drop-cap "T" on the lede. Loaves list with prices in a margin-aligned column. Visit-and-hours in a colophon at the bottom. No CTA — the brief is "find us," not "convert."
+> Plate-banner masthead: *"Maple Street Bread · Lisbon · est. 2026 · n.º 47 · sourdough by hand."* Then a centred section: *"Today's bake — Saturday, 6:14 a.m., eight breads, gone by noon."* Below: a 2-column catalogue grid of eight breads (Country sourdough · Baguette tradition · Focaccia rosemary · Boule miche · Rye dark · Brioche feuilletée · Walnut levain · Bola d'óleo). Each row carries a 96-px bread silhouette, the name in IM Fell, a one-line description, and a price (or "sold out"). Visit and hours in a centred almanac panel at the bottom. No CTA — the brief is "see what's available + visit."
 
 **Live:** [`_tests/03-maple-bakery/`](../../site/_tests/03-maple-bakery/index.html)
 
@@ -86,11 +86,11 @@ The first recipe is the **canonical try-it prompt** — paste it into a fresh pr
 
 **Inferred trio** (partial): audience = practice peers + clients · use = read it + sign on or move on · tone = declarative editorial.
 
-**Picks:** Manifesto · **Manifesto** (dark, Inter Tight 900 display, single red accent band) · no enrichment.
+**Picks:** Quote-Led · **Brutal** (near-black paper, Druk-style condensed display, single yellow strike accent) · no enrichment.
 
 **Excerpt:**
 
-> *"WE ARE A STUDIO. WE ARE NOT A PLATFORM."* Then five numbered declarations, a bleed-colour band between III and IV ("This is not a roadmap. This is what we believe before we open the laptops."), then four supporting sections: § What we refuse (anti-list with strikethrough) · § Working rules (numbered ops) · § The practice (3-paragraph narrative with drop-cap) · § What we read (annotated bibliography).
+> A single twenty-word pull-quote: *"We make products that don't outlive their use"* — with a yellow strike-through behind "outlive." Attribution beneath: *"— The studio · the position we open with · this is the page."* Below the bleed-yellow rule, four numbered principles (Fewer things, made well · Material is the brief · Repair before replace · Slow is the deliverable), each with one paragraph of body copy. Final § Working rules — five terse operational statements (the shop runs on a four-day week · we answer the email ourselves · etc.). No CTA, no testimonials, no roadmap.
 
 **Live:** [`_tests/04-meridian-manifesto/`](../../site/_tests/04-meridian-manifesto/index.html)
 
@@ -104,11 +104,11 @@ The first recipe is the **canonical try-it prompt** — paste it into a fresh pr
 
 **Inferred trio:** explicit.
 
-**Picks:** Bento Grid · **Pastel** (light-cool paper, geometric Geist sans, low-chroma indigo accent) · Tier-A hand-built CSS-art trace waterfall (the right-clipped browser-frame mockup that pushes 12 vw past the viewport edge).
+**Picks:** Workbench · **Midnight** (dark cool paper, Geist Mono display, phosphor-cyan accent) · Tier-A pure-CSS sticky trace panel (3-state, swaps on scroll — no clipped browser frame).
 
 **Excerpt:**
 
-> *"Tracejam · v0.4 · for SREs. Distributed tracing that explains itself.* Open the trace, find the span that regressed, and read why — in plain text — without a glossary, a YAML diff, or a status-page hunt.* Hero left-aligned with two CTAs (Try it free / Talk to sales). To the right, a clipped browser-frame mockup containing a hand-built CSS-art flame chart. Below the hero, a 6-tile Bento with stat / sparkline / pull-quote / code snippet / integrations list / spotlight.
+> *"Tracejam · v0.4 · For SREs &amp; platform engineers. Distributed tracing that explains itself."* Hero left-aligned with two CTAs (Try it free / Talk to sales). On the right, a sample trace card with five spans — auth.verify, pricing.quote (red, regressed), rates.fx (orange, warning), ledger.write — bars rendered as flex children. Below: a sticky-walkthrough section with three steps (open · find · read), each with a one-paragraph body and a small `$ tracejam ...` command. The right column carries a pinned trace panel with a "REGRESSED" chip and a "WHY" explainer in plain text. Eight integrations strip, three-tier pricing, single-line colophon.
 
 **Live:** [`_tests/05-tracejam-saas/`](../../site/_tests/05-tracejam-saas/index.html)
 
@@ -122,11 +122,11 @@ The first recipe is the **canonical try-it prompt** — paste it into a fresh pr
 
 **Inferred trio** (the user opted out): audience = engineering hiring managers · use = read who I am, see my work · tone = austere, italic-editorial.
 
-**Picks:** Long Document · **Studio** (cool grey paper, italic Fraunces display, forest-green accent) · no enrichment.
+**Picks:** Index-First · **Plain** (pure-white paper #ffffff, Inter Tight display-heavy, deep ink-blue accent) · no enrichment.
 
 **Excerpt:**
 
-> *"Hello, I'm Anya."* (with a green highlighter mark behind "Anya"). I help engineering organisations ship hard distributed-systems work — multi-region rollouts, payment graphs, eventually-consistent ledgers — without breaking the people doing the shipping.* Tabular work-sheet below: years per company, stripe-monzo-and-a-small-infra-startup-that-didn't-survive-2023.
+> Sticky left sidebar with a numbered TOC: *00 Index · 01 Now · 02 Years · 03 Writing · 04 Reach.* Each section in the right column starts with its own num + label and a clamp-set H2. *"00 · Index"* opens with *"A small, scannable index of who I am and what I do."* — followed by a two-paragraph bio. *"01 · Now"* covers consulting two engagements at a time on payment systems and monolith-to-services migrations. *"02 · Years"* is a tabular work history (Stripe → Monzo → Knot → independent). *"03 · Writing"* lists five linked pieces with date columns. *"04 · Reach"* is a four-cell contact grid (email · GitHub · LinkedIn · Mastodon).
 
 **Live:** [`_tests/06-anya-portfolio/`](../../site/_tests/06-anya-portfolio/index.html)
 
@@ -140,11 +140,11 @@ The first recipe is the **canonical try-it prompt** — paste it into a fresh pr
 
 **Inferred trio:** explicit.
 
-**Picks:** Stat-Led · **Plain** (pure-white paper #ffffff, near-neutral cool greys, deep ink-blue accent, Inter Tight display-heavy + Bricolage Grotesque wordmark) · no enrichment.
+**Picks:** Bento Grid · **Newsprint** (warm-cream paper, Source Serif 4 display, warm-deep-red accent) · Tier-A pure-CSS logo grid (eight wordmark placeholders, mono).
 
 **Excerpt:**
 
-> *"847.* companies passed audit using Foundry. Average time to compliant: thirty-one days, against an industry average of nine months." — the "847" sized at 22 rem display, animated counting from 0 over 1.4 s on first viewport entry. Below: customer logo wall (8 monochrome wordmarks), three supporting stats, four feature cards, three pull-quote testimonials with role + company, three pricing tiers (Starter $299/mo · Team $899/mo recommended · Scale custom), eight-question conversational FAQ, single-line final CTA, four-column index footer.
+> Newspaper-banner masthead with the wordmark centred. Hero left-bias: *"Compliance, ground out in **days**, not in months."* — the word "days" set in red italic. Right: a pull-quote panel with a CTO testimonial. Below: a 6-tile bento — (1) the "847." anchor stat with a one-line caption, (2) eight customer wordmarks in a 4×2 logo grid, (3) three-tier pricing snippet (Starter $299 · Team $899 popular · Scale custom), (4) a second testimonial pull-quote, (5) a six-row "what's automated" feat-list, (6) a six-question FAQ teaser. Final CTA strip: *"Start the trial. Cancel before the first invoice if it's not ready."* Single-line colophon.
 
 **Live:** [`_tests/07-foundry-compliance/`](../../site/_tests/07-foundry-compliance/index.html)
 
@@ -158,11 +158,11 @@ The first recipe is the **canonical try-it prompt** — paste it into a fresh pr
 
 **Inferred trio:** explicit.
 
-**Picks:** Marquee Hero · **Salon** (warm-cream paper, IBM Plex Mono display + Cormorant Garamond serif, warm-amber accent, centered emphasis) · Tier-A continuous CSS marquee (course titles + instructor names scrolling at 50 s, pauses on hover, stops on prefers-reduced-motion).
+**Picks:** Stat-Led · **Linen** (warm beige paper, Inter Tight geometric-sans, warm-amber accent) · no enrichment (typography only — the brief's "30–500" range is the visual).
 
 **Excerpt:**
 
-> Marquee band scrolling across the top: *"Build a SaaS in 30 days · Sahil Lavingia · Writing Strong · David Perell · Notion for Operators · Marie Poulin..."* Below: *"Cohort runs live courses the way your favourite teacher would — with a date, a roster, and a room."* Two CTAs (Run your first cohort / 90-second tour). Then alternating-side feature rows with hand-built CSS card-stack / hours-grid / thread / report visuals. Two-tier pricing. Six-question FAQ. Centered Salon footer.
+> Centred eyebrow: *"Built for educators · not LMS sales teams."* Hero stat at 22 rem: **"30 — 500"** (with the dash in warm-amber). Headline: *"Live courses, the size your roster actually is."* Sub: *"Cohort runs courses with thirty to five hundred students at once — the size of a real classroom, the size of a real lecture, and a few sizes between. With a date, a roster, and a room."* Below: three supporting stats (186 cohorts run · 93 % finish-rate · 4.7/5 operator NPS). Two operator testimonials side-by-side. Two-tier pricing (First cohort free · Operator $199/mo). Single CTA strip and colophon. No marquee, no card-stack — the brief carried by the typography.
 
 **Live:** [`_tests/08-cohort-courses/`](../../site/_tests/08-cohort-courses/index.html)
 

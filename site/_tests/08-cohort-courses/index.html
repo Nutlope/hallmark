@@ -3,403 +3,114 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Cohort — run live courses with 30 to 500 students</title>
-  <meta name="description" content="The platform for cohort-based courses. Set a date. Invite students. Teach live. Built for educators, not LMS sales teams." />
+  <title>Cohort — live courses for educators</title>
+  <meta name="description" content="The platform for cohort-based courses. Run live courses with 30 to 500 students. Built for educators, not LMS sales teams." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <main class="page">
+    <header class="masthead">
+      <span class="masthead__brand">Cohort<span class="dot">.</span></span>
+      <nav class="masthead__nav">
+        <a href="#proof">Proof</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#">Docs</a>
+        <a href="#">Sign in</a>
+      </nav>
+    </header>
 
-  <nav class="nav">
-    <a class="wordmark" href="/">Cohort<span class="wordmark__mark">.</span></a>
-    <div class="nav__links">
-      <a href="#how">How it works</a>
-      <a href="#voices">Instructors</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
-      <a class="btn btn--ghost" href="#sign-in">Sign in</a>
-      <a class="btn btn--primary" href="#start">Start a cohort →</a>
-    </div>
-  </nav>
-
-  <!-- ─── HERO · MARQUEE ─── -->
-  <section class="hero">
-    <div class="marquee" aria-label="Currently running on Cohort">
-      <div class="marquee__track" data-marquee>
-        <ul class="marquee__list">
-          <li><em>Build a SaaS in 30 days</em> · Sahil Lavingia</li>
-          <li><em>Writing Strong</em> · David Perell</li>
-          <li><em>Notion for Operators</em> · Marie Poulin</li>
-          <li><em>The Cold Email Course</em> · Alex Berman</li>
-          <li><em>How to Read a Painting</em> · Camille Walala</li>
-          <li><em>Ship a Newsletter in 14 days</em> · Lia Haberman</li>
-          <li><em>Practical TypeScript</em> · Matt Pocock</li>
-          <li><em>The Public Speaking Cohort</em> · Vinh Giang</li>
-          <li><em>Founders' Finance</em> · Lola Priego</li>
-          <li><em>Print &amp; Production</em> · Hassan Rahim</li>
-        </ul>
-        <ul class="marquee__list" aria-hidden="true">
-          <li><em>Build a SaaS in 30 days</em> · Sahil Lavingia</li>
-          <li><em>Writing Strong</em> · David Perell</li>
-          <li><em>Notion for Operators</em> · Marie Poulin</li>
-          <li><em>The Cold Email Course</em> · Alex Berman</li>
-          <li><em>How to Read a Painting</em> · Camille Walala</li>
-          <li><em>Ship a Newsletter in 14 days</em> · Lia Haberman</li>
-          <li><em>Practical TypeScript</em> · Matt Pocock</li>
-          <li><em>The Public Speaking Cohort</em> · Vinh Giang</li>
-          <li><em>Founders' Finance</em> · Lola Priego</li>
-          <li><em>Print &amp; Production</em> · Hassan Rahim</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="hero__copy">
-      <p class="hero__eyebrow">— A salon room for thirty to five hundred —</p>
-      <h1 class="hero__title">
-        Cohort runs <em>live courses</em> the way your favourite teacher would —<br />
-        with a date, a roster, and a room.
-      </h1>
-      <p class="hero__lede">
-        Set the date. Invite the students. Teach live. We handle the room, the chat,
-        the recordings, the certificates, and the long tail. You handle the teaching —
-        which, as it happens, is the part you got into this for.
+    <section class="hero">
+      <p class="hero__eyebrow">Built for educators · not LMS sales teams</p>
+      <p class="hero__stat">30 <span class="hero__stat-em">—</span> 500</p>
+      <h1 class="hero__head">Live courses, the size your <em>roster</em> actually is.</h1>
+      <p class="hero__sub">
+        Cohort runs courses with thirty to five hundred students at once — the size of a real
+        classroom, the size of a real lecture, and a few sizes between. With a date, a roster, and
+        a room.
       </p>
       <div class="hero__cta">
-        <a class="btn btn--primary" href="#start">Run your first cohort →</a>
-        <a class="btn btn--ghost" href="#tour">Take the 90-second tour</a>
+        <a class="btn btn--primary" href="#">Run your first cohort →</a>
+        <a class="btn" href="#">90-second tour</a>
       </div>
-      <p class="hero__foot">
-        Trusted by 4,200 instructors · 380,000 students · 47 countries · since 2024
-      </p>
-    </div>
-  </section>
+    </section>
 
-  <!-- ─── HOW IT WORKS ─── -->
-  <section class="how" id="how" aria-labelledby="how-h">
-    <header class="section__head">
-      <span class="section__eyebrow">— THREE STEPS —</span>
-      <h2 class="section__h" id="how-h">From idea to first cohort in a Sunday afternoon.</h2>
-    </header>
-    <ol class="how__steps">
-      <li class="step">
-        <span class="step__num">01</span>
-        <h3 class="step__title">Set a date.</h3>
-        <p>Pick a start, a duration (four weeks, six weeks, twelve weeks — your call), and a meeting cadence. Cohort writes the syllabus skeleton from your one-line pitch. You revise the syllabus, not the calendar.</p>
-      </li>
-      <li class="step">
-        <span class="step__num">02</span>
-        <h3 class="step__title">Invite the students.</h3>
-        <p>Share a link, an audience export from Substack or ConvertKit, or a Twitter list. Cohort writes the seat-confirmation email, runs the welcome sequence, and shows you who paid, who's confirmed, and who's still on the fence.</p>
-      </li>
-      <li class="step">
-        <span class="step__num">03</span>
-        <h3 class="step__title">Teach live.</h3>
-        <p>Open the room three minutes before. Cohort records, captions, and bookmarks the moments students react to. The replay is in the cohort feed within an hour. Office hours, Q&amp;A, and async chat are already wired.</p>
-      </li>
-    </ol>
-  </section>
-
-  <!-- ─── FEATURES (alternating) ─── -->
-  <section class="features" aria-labelledby="features-h">
-    <header class="section__head section__head--centered">
-      <span class="section__eyebrow">— THE SUITE —</span>
-      <h2 class="section__h" id="features-h">A suite that respects the craft of teaching.</h2>
-      <p class="section__lede">No "engagement gamification." No drip-funnel. The four things a teacher actually needs to run a course in 2026:</p>
-    </header>
-
-    <div class="feature-row">
-      <div class="feature-row__copy">
-        <span class="feature-row__num">I.</span>
-        <h3>Live cohorts.</h3>
-        <p>Recurring sessions that look like Zoom but feel like a salon room. Hand-raise, breakout pods, side-channel chat that doesn't drown the speaker. Recordings auto-publish to the cohort feed with chapter markers from the moment students reacted.</p>
-        <p class="feature-row__detail"><b>Limit:</b> 500 live attendees per session. <b>Recording:</b> 1080p, captioned, hosted on Cohort or your own S3. <b>Latency:</b> p95 under 240 ms across most regions.</p>
+    <section class="support-stats" id="proof">
+      <div class="s-stat">
+        <p class="s-stat__num">186<em>.</em></p>
+        <p class="s-stat__cap">cohorts run in 2025</p>
+        <p class="s-stat__sub">across writing, design, engineering, healthcare and the humanities</p>
       </div>
-      <div class="feature-row__visual" aria-hidden="true">
-        <figure class="card-stack card-stack--live">
-          <div class="card-stack__layer card-stack__layer--3">
-            <span class="dot dot--green"></span>
-            <span>Live · 287 in the room</span>
-          </div>
-          <div class="card-stack__layer card-stack__layer--2">
-            <span>Session 04 · Friday · 18:00 GMT</span>
-          </div>
-          <div class="card-stack__layer card-stack__layer--1">
-            <p>"Now — open the prompt I sent on Monday. We're going to revise it together."</p>
-            <span class="card-stack__attrib">— Sahil, instructor</span>
-          </div>
-        </figure>
+      <div class="s-stat">
+        <p class="s-stat__num">93<em>%</em></p>
+        <p class="s-stat__cap">finish-rate, median</p>
+        <p class="s-stat__sub">vs. 4–8 % on async-only platforms (industry studies, 2024)</p>
       </div>
-    </div>
-
-    <div class="feature-row feature-row--reverse">
-      <div class="feature-row__copy">
-        <span class="feature-row__num">II.</span>
-        <h3>Office hours, by request.</h3>
-        <p>Students book 1:1 or 1:few slots from your published availability. Cohort honours your timezone and your calendar; you don't need to manage a Calendly. Slot history, attendance, and follow-up notes are saved against each student.</p>
-        <p class="feature-row__detail"><b>Booking:</b> 5-minute granularity. <b>Buffers:</b> auto. <b>No-shows:</b> tracked but not penalised — the teacher decides the policy.</p>
+      <div class="s-stat">
+        <p class="s-stat__num">4.7<em>/5</em></p>
+        <p class="s-stat__cap">operator NPS</p>
+        <p class="s-stat__sub">among educators running their second-or-later cohort with us</p>
       </div>
-      <div class="feature-row__visual" aria-hidden="true">
-        <figure class="hours">
-          <div class="hours__week">
-            <div class="hours__day"><span>Mon</span><i class="hours__slot is-booked"></i><i class="hours__slot is-booked"></i></div>
-            <div class="hours__day"><span>Tue</span><i class="hours__slot"></i><i class="hours__slot is-booked"></i></div>
-            <div class="hours__day"><span>Wed</span><i class="hours__slot is-booked"></i><i class="hours__slot is-booked"></i><i class="hours__slot is-booked"></i></div>
-            <div class="hours__day"><span>Thu</span><i class="hours__slot"></i><i class="hours__slot is-booked"></i></div>
-            <div class="hours__day"><span>Fri</span><i class="hours__slot is-booked"></i><i class="hours__slot is-booked"></i></div>
-          </div>
-          <p class="hours__caption">Eight booked · Four available · This week.</p>
-        </figure>
-      </div>
-    </div>
+    </section>
 
-    <div class="feature-row">
-      <div class="feature-row__copy">
-        <span class="feature-row__num">III.</span>
-        <h3>Async chat that doesn't read like a forum.</h3>
-        <p>Threaded by topic, not by post order. Students reply in their own time; instructors mark the canonical answer. The rare slack-spam of "thanks!" and "+1" is collapsed by default. The signal stays.</p>
-        <p class="feature-row__detail"><b>Notifications:</b> per-cohort digest, never per-message. <b>Search:</b> full-text + canonical-answers-only mode. <b>Export:</b> Markdown.</p>
-      </div>
-      <div class="feature-row__visual" aria-hidden="true">
-        <figure class="thread">
-          <div class="thread__msg">
-            <span class="thread__author">Marie</span>
-            <p>Should the database state be in Notion or Linear?</p>
-          </div>
-          <div class="thread__msg thread__msg--reply">
-            <span class="thread__author">Sahil <span class="thread__badge">canonical</span></span>
-            <p>Notion for the source of truth. Linear for what's in flight this week. The duplication is the feature, not the bug.</p>
-          </div>
-          <div class="thread__msg thread__msg--reply">
-            <span class="thread__author">Lia</span>
-            <p>Confirms — three cohorts in, this is the only setup that doesn't break.</p>
-          </div>
-        </figure>
-      </div>
-    </div>
+    <section class="tm">
+      <article class="tm__card">
+        <p class="tm__quote">
+          "I was running courses on Notion + Zoom + a clipboard. Cohort folded the three of them
+          into a single Tuesday-morning view. My ops time dropped sixty per cent the first month."
+        </p>
+        <p class="tm__attr">— <strong>D. Perell</strong>, writing instructor · 320 students this term</p>
+      </article>
+      <article class="tm__card">
+        <p class="tm__quote">
+          "We needed a roster, an attendance log, and a place to grade weekly assignments. Cohort
+          gave us all three without a single Zapier. The students didn't even notice it existed."
+        </p>
+        <p class="tm__attr">— <strong>M. Poulin</strong>, course operator · two cohorts in parallel</p>
+      </article>
+    </section>
 
-    <div class="feature-row feature-row--reverse">
-      <div class="feature-row__copy">
-        <span class="feature-row__num">IV.</span>
-        <h3>Cohort analytics, the honest kind.</h3>
-        <p>What percent of students finished? Which session hit hardest? What's the NPS, by name? No vanity metrics. No dashboard you have to interpret. The numbers you'd ask for over coffee, on one page, every Monday morning.</p>
-        <p class="feature-row__detail"><b>Tracks:</b> attendance, completion, Q&amp;A volume, NPS, retention to the next cohort. <b>Doesn't track:</b> click-throughs on the welcome email — nobody cares.</p>
-      </div>
-      <div class="feature-row__visual" aria-hidden="true">
-        <figure class="report">
-          <p class="report__num">87%</p>
-          <p class="report__label">finished the cohort</p>
-          <ul class="report__list">
-            <li><span>Avg. attendance</span><b>92%</b></li>
-            <li><span>NPS (n = 47)</span><b>+71</b></li>
-            <li><span>Retain to next</span><b>34%</b></li>
-            <li><span>"Strongest moment"</span><b>Session 04</b></li>
-          </ul>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── TESTIMONIALS ─── -->
-  <section class="voices" id="voices" aria-labelledby="voices-h">
-    <header class="section__head section__head--centered">
-      <span class="section__eyebrow">— FROM THE TEACHERS —</span>
-      <h2 class="section__h" id="voices-h">Four short letters from instructors who switched.</h2>
-    </header>
-    <div class="voices__grid" data-stagger>
-      <figure class="voice">
-        <blockquote>
-          <p>I ran my course on three different platforms before this. Cohort is the only one where the chat doesn't drown out the lesson. I teach to the room now, not to the messages.</p>
-        </blockquote>
-        <figcaption>
-          <span class="voice__name">Marie Poulin</span>
-          <span class="voice__role">Instructor · Notion for Operators</span>
-          <span class="voice__meta">Eight cohorts · 2,400 students · since 2024</span>
-        </figcaption>
-      </figure>
-
-      <figure class="voice">
-        <blockquote>
-          <p>The thing that sold me was the post-cohort report. One page, on a Monday morning, telling me what hit and what didn't. I plan the next cohort from that page. I plan no other way now.</p>
-        </blockquote>
-        <figcaption>
-          <span class="voice__name">Sahil Lavingia</span>
-          <span class="voice__role">Instructor · Build a SaaS in 30 days</span>
-          <span class="voice__meta">Twelve cohorts · 3,800 students · since 2024</span>
-        </figcaption>
-      </figure>
-
-      <figure class="voice">
-        <blockquote>
-          <p>I was terrified of going live. Cohort made the live part the easy part. The room is in your timezone. The recording is up before you've finished your tea. I have never had a tech failure.</p>
-        </blockquote>
-        <figcaption>
-          <span class="voice__name">Lia Haberman</span>
-          <span class="voice__role">Instructor · Ship a Newsletter</span>
-          <span class="voice__meta">Six cohorts · 1,100 students · since 2025</span>
-        </figcaption>
-      </figure>
-
-      <figure class="voice">
-        <blockquote>
-          <p>My students keep coming back. That used to be a metric I didn't trust because the platforms inflate it. Cohort just shows you who returned, by name. Thirty-four percent of mine did. I cried a little.</p>
-        </blockquote>
-        <figcaption>
-          <span class="voice__name">Hassan Rahim</span>
-          <span class="voice__role">Instructor · Print &amp; Production</span>
-          <span class="voice__meta">Three cohorts · 320 students · since 2025</span>
-        </figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- ─── PRICING ─── -->
-  <section class="pricing" id="pricing" aria-labelledby="pricing-h">
-    <header class="section__head section__head--centered">
-      <span class="section__eyebrow">— PRICING —</span>
-      <h2 class="section__h" id="pricing-h">Two tiers. Real prices. Indie or team.</h2>
-      <p class="section__lede">Ten percent of what you charge, capped. Or a flat per-month for teams. Pick the one that's smaller this month.</p>
-    </header>
-    <div class="pricing__grid">
+    <section class="pricing" id="pricing">
+      <h2 class="pricing__head">Two plans, <em>both honest.</em></h2>
       <article class="tier">
-        <h3 class="tier__name"><em>Indie</em></h3>
-        <p class="tier__pitch">For solo instructors and small cohorts.</p>
-        <p class="tier__price">
-          <span class="tier__amount">$59</span>
-          <span class="tier__period">/month</span>
-        </p>
-        <p class="tier__yearly">+ 10% on revenue, capped at $500/cohort</p>
+        <p class="tier__name">First cohort</p>
+        <p class="tier__price">$0 <span class="per">first run</span></p>
         <ul class="tier__list">
-          <li>One instructor seat</li>
-          <li>Up to 200 students per cohort</li>
-          <li>Unlimited cohorts per year</li>
-          <li>Live sessions · Office hours · Async chat</li>
-          <li>Cohort analytics · Email digests</li>
-          <li>Stripe payouts (you keep the relationship)</li>
+          <li>Up to 50 students</li>
+          <li>One cohort, one term</li>
+          <li>Live + recording, attendance, gradebook</li>
+          <li>Stripe payouts (3 % platform fee)</li>
         </ul>
-        <a class="btn btn--ghost-block" href="#start-indie">Start as Indie →</a>
+        <a class="btn" href="#">Start free</a>
       </article>
-
-      <article class="tier tier--recommended">
-        <span class="tier__badge">RECOMMENDED FOR TEAMS</span>
-        <h3 class="tier__name"><em>Team</em></h3>
-        <p class="tier__pitch">For studios, schools, and creator collectives.</p>
-        <p class="tier__price">
-          <span class="tier__amount">$199</span>
-          <span class="tier__period">/month</span>
-        </p>
-        <p class="tier__yearly">flat — no revenue cut</p>
+      <article class="tier tier--feature">
+        <p class="tier__name">Operator</p>
+        <p class="tier__price">$199 <span class="per">/ month</span></p>
         <ul class="tier__list">
-          <li>Up to 8 instructor seats</li>
           <li>Up to 500 students per cohort</li>
-          <li>Custom-branded cohort domain</li>
-          <li>Live · Office hours · Async · <strong>Replay vault</strong></li>
-          <li>Cohort analytics + studio-wide rollup</li>
-          <li>Priority support · onboarding call</li>
+          <li>Unlimited cohorts</li>
+          <li>Multi-instructor, TA roles, office hours</li>
+          <li>Stripe payouts (1 % platform fee)</li>
+          <li>Course library + alumni rooms</li>
         </ul>
-        <a class="btn btn--primary-block" href="#start-team">Start as Team →</a>
+        <a class="btn btn--primary" href="#">14-day trial</a>
       </article>
-    </div>
-  </section>
+    </section>
 
-  <!-- ─── FAQ ─── -->
-  <section class="faq" id="faq" aria-labelledby="faq-h">
-    <header class="section__head section__head--centered">
-      <span class="section__eyebrow">— ANSWERS —</span>
-      <h2 class="section__h" id="faq-h">Six questions instructors ask before they switch.</h2>
-    </header>
-    <div class="faq__grid">
-      <div class="faq__row">
-        <h3>Do you take a cut of my revenue?</h3>
-        <p>On Indie, ten percent — capped at $500 per cohort. On Team, no — flat $199/month. Picking is easy: if you are charging more than $5,000 per cohort, Team is cheaper. If you are charging less, Indie is cheaper.</p>
+    <section class="cta-strip">
+      <h2 class="cta-strip__head">Pick a date. Open the roster. <em>Teach Tuesday.</em></h2>
+      <div class="cta-strip__cta">
+        <a class="btn btn--primary" href="#">Run your first cohort →</a>
+        <a class="btn" href="#">Talk to us</a>
       </div>
-      <div class="faq__row">
-        <h3>Can I bring my own audience?</h3>
-        <p>Yes. Import from Substack, ConvertKit, Beehiiv, Mailchimp, a Twitter list, or a CSV. Cohort matches by email and welcomes them with your copy, not ours.</p>
-      </div>
-      <div class="faq__row">
-        <h3>What happens between cohorts?</h3>
-        <p>Students keep access to recordings, chat, and office hours from cohorts they attended. You can run the next cohort whenever you like — no monthly minimum, no "must launch quarterly."</p>
-      </div>
-      <div class="faq__row">
-        <h3>Do you provide the live video?</h3>
-        <p>We do. Hosted on Cloudflare for low-latency global delivery; recorded automatically; transcribed and chapter-marked. You can plug in Zoom or Riverside if you prefer; we'll ingest the recording back into the cohort feed.</p>
-      </div>
-      <div class="faq__row">
-        <h3>Can I export my course?</h3>
-        <p>Anytime. Markdown for written content, MP4 for video, JSON for the roster. Your audience is yours; we just host the room.</p>
-      </div>
-      <div class="faq__row">
-        <h3>What about students who can't make the live session?</h3>
-        <p>The recording is up within the hour, captioned, with chapter markers from the live reactions. Async chat keeps the conversation going. Most cohorts run with 30–40% of students attending live and still hit 85%+ completion.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ─── FINAL CTA ─── -->
-  <section class="final-cta">
-    <p class="final-cta__line"><em>Run your first cohort by next month.</em></p>
-    <a class="btn btn--primary final-cta__btn" href="#start">Set the date →</a>
-    <p class="final-cta__sub">No credit card. Two-week trial on the room itself.</p>
-  </section>
-
-  <!-- ─── FOOTER ─── -->
-  <footer class="footer">
-    <div class="footer__top">
-      <a class="footer__brand" href="/">Cohort<span class="wordmark__mark">.</span></a>
-      <ul class="footer__nav">
-        <li><a href="#">How it works</a></li>
-        <li><a href="#">Instructors</a></li>
-        <li><a href="#">Pricing</a></li>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">Help centre</a></li>
-        <li><a href="#">Status</a></li>
-      </ul>
-    </div>
-    <p class="footer__colophon">
-      © 2026 · Made by a small team in Lisbon, Berlin, and Mexico City · For instructors, not LMS sales managers.
-    </p>
-  </footer>
-
-  <script>
-    /* ─── Microinteractions (Marquee Hero default-on) ─── */
-
-    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    /* 1 · Marquee — pause on hover, stop on reduced-motion */
-    document.querySelectorAll('[data-marquee]').forEach((el) => {
-      if (reduce) {
-        el.style.animation = 'none';
-        el.style.transform = 'none';
-      }
-      el.addEventListener('mouseenter', () => el.classList.add('is-paused'));
-      el.addEventListener('mouseleave', () => el.classList.remove('is-paused'));
-      /* Pause when off-screen for battery */
-      const visIO = new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting) el.classList.remove('is-offscreen');
-        else el.classList.add('is-offscreen');
-      }, { threshold: 0 });
-      visIO.observe(el);
-    });
-
-    /* 2 · Stagger reveal on testimonials — one-shot via IntersectionObserver */
-    if (!reduce) {
-      const staggerIO = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const items = entry.target.querySelectorAll('.voice');
-            items.forEach((el, i) => {
-              el.style.animationDelay = (i * 100) + 'ms';
-              el.classList.add('is-revealed');
-            });
-            staggerIO.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.2 });
-      document.querySelectorAll('[data-stagger]').forEach((el) => staggerIO.observe(el));
-    } else {
-      /* Reduced motion: just show them immediately */
-      document.querySelectorAll('.voice').forEach((el) => el.classList.add('is-revealed'));
-    }
-  </script>
-
+    <footer class="colophon">
+      <span>Cohort · Lisbon &amp; Brooklyn · est. 2024</span>
+      <span><a href="#">docs</a> · <a href="#">changelog</a> · <a href="#">support</a> · <a href="#">community</a></span>
+    </footer>
+  </main>
 </body>
 </html>
