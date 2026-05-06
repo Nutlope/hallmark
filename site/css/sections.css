@@ -623,6 +623,32 @@
   letter-spacing: var(--tracking-display);
   color: var(--color-ink);
   margin: 0;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.4em;
+}
+
+.skill-row__title-meta {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.5em;
+  letter-spacing: 0;
+  color: var(--color-muted);
+}
+
+[data-theme="brutal"] .skill-row__title-meta,
+[data-theme="manifesto"] .skill-row__title-meta,
+[data-theme="terminal"] .skill-row__title-meta,
+[data-theme="sport"] .skill-row__title-meta,
+[data-theme="almanac"] .skill-row__title-meta,
+[data-theme="quiet"] .skill-row__title-meta,
+[data-theme="bloom"] .skill-row__title-meta {
+  font-family: var(--font-mono);
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 [data-theme="manifesto"] .skill-row__title,
@@ -661,15 +687,17 @@
   }
 }
 
-.skill-row__body--study {
+/* Full-width body — no right info column. Used by Refine + Redesign
+   so the before/after diptych takes the whole row width. */
+.skill-row__body--full {
   grid-template-columns: 1fr;
+  padding-inline-start: 4rem;
 }
 
-/* Mobile — only show one study example. Two stacked DNA cards (image
-   + 10-field key/value table each) eat too much vertical scroll on
-   phones; one example is enough to make the point. */
-@media (max-width: 48rem) {
-  .skill-row__body--study .study-card + .study-card { display: none; }
+@media (max-width: 60rem) {
+  .skill-row__body--full {
+    padding-inline-start: 0;
+  }
 }
 
 .skill-row__demo {
@@ -771,55 +799,172 @@
   object-position: top left;
 }
 
-/* Row III — Audit demo: target image with overlay punch-list flags */
-.skill-row__demo--audit > .fig-corners {
-  display: block;
-  position: relative;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  border: var(--rule-card, 1px) solid var(--color-rule);
-}
+/* Row III — Audit demo: a CSS-only inline slop hero. Built deliberately
+   to LOOK like every default AI hero — purple-pink gradient, centered,
+   Inter, ✨ badge, gradient pill CTA. Lives outside theme tokens
+   intentionally — it's the negative example. The checklist on the
+   right names every tell + its fix. */
+.skill-row__demo--audit { aspect-ratio: 16 / 10; }
 
-.skill-row__demo--audit img {
+.audit-slop {
+  position: relative;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top left;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 55%, #f59e0b 100%);
+  border-radius: 14px;
+  overflow: hidden;
+  font-family: "Inter", system-ui, sans-serif;
+  color: #ffffff;
+  /* Deliberate AI-hero clichés: gradient corners, centered, Inter. */
 }
 
-.audit-flags {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.audit-slop::before {
+  content: "";
   position: absolute;
-  inset: 0;
+  inset: -20%;
+  background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.18) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(255,255,255,0.10) 0%, transparent 60%);
   pointer-events: none;
 }
 
-.audit-flag {
-  position: absolute;
-  top: var(--top);
-  left: var(--left);
-  transform: translate(-50%, -50%);
-}
-
-.audit-flag__num {
+.audit-slop__inner {
+  position: relative;
   display: grid;
-  place-items: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  border-radius: 50%;
-  background: var(--color-accent);
-  color: var(--color-paper);
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  line-height: 1;
-  box-shadow: 0 0 0 3px var(--color-paper), 0 1px 6px oklch(0% 0 0 / 0.18);
+  gap: 0.6rem;
+  justify-items: center;
+  padding: var(--space-md);
+  max-width: 28ch;
 }
 
-[data-theme="manifesto"] .audit-flag__num,
-[data-theme="brutal"] .audit-flag__num { border-radius: 0; }
+.audit-slop__badge {
+  display: inline-block;
+  padding: 0.22rem 0.7rem;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.28);
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.audit-slop__title {
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.1rem, 2.4vw + 0.4rem, 2rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  background: linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.78) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.audit-slop__lede {
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: rgba(255,255,255,0.92);
+}
+
+.audit-slop__cta {
+  display: inline-block;
+  margin-block-start: 0.4rem;
+  padding: 0.55rem 1.1rem;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  background: linear-gradient(135deg, #ffffff 0%, #fef3c7 100%);
+  color: #6b21a8;
+  border-radius: 999px;
+  user-select: none;
+}
+
+/* Audit checklist — replaces the old 4-row info panel. Each row reads:
+   ✗ <problem> → <fix>. Slop is muted; fix is ink. */
+.audit-check {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-md) var(--space-lg);
+  display: grid;
+  gap: 0;
+  background: var(--color-paper);
+  border: var(--rule-card, 1px) solid var(--color-rule);
+}
+
+[data-theme="atelier"] .audit-check,
+[data-theme="salon"] .audit-check {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  border-block-start: var(--rule-hair) solid var(--color-rule);
+}
+
+[data-theme="brutal"] .audit-check,
+[data-theme="manifesto"] .audit-check { border-width: 2px; }
+
+.audit-check__row {
+  display: grid;
+  grid-template-columns: 1.2rem 1fr 1.2rem 1fr;
+  gap: 0.6rem;
+  align-items: baseline;
+  padding-block: var(--space-sm);
+  border-block-end: var(--rule-hair) solid var(--color-rule);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.audit-check__row:last-child { border-block-end: 0; }
+
+.audit-check__cross {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--color-accent);
+  text-align: center;
+}
+
+.audit-check__problem {
+  font-family: var(--font-body);
+  color: var(--color-muted);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--color-rule-2);
+}
+
+.audit-check__arrow {
+  font-family: var(--font-mono);
+  color: var(--color-rule-2);
+  text-align: center;
+}
+
+.audit-check__fix {
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  font-weight: 500;
+}
+
+@media (max-width: 36rem) {
+  .audit-check__row {
+    grid-template-columns: 1.2rem 1fr;
+    gap: 0.4rem 0.6rem;
+  }
+  .audit-check__arrow { display: none; }
+  .audit-check__fix {
+    grid-column: 2;
+    font-size: 0.875rem;
+  }
+}
 
 /* Rows IV & V — Diptych: before / after side-by-side thumbnails */
 .skill-row__demo--diptych {
@@ -1504,6 +1649,127 @@ html[data-theme="almanac"] body {
   line-height: var(--lh-relaxed);
   color: var(--color-ink);
   max-width: 45ch;
+}
+
+/* — 05 · Foundations — eight compact cards in a 4×2 desktop grid.
+   Each card pairs a hand-drawn monoline SVG (currentColor stroke,
+   theme-aware) with a one-word title and a single line of body
+   copy. Stacks cleanly on mobile. */
+
+.found__intro {
+  margin: 0 0 var(--space-2xl);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-md);
+  line-height: var(--lh-snug);
+  color: var(--color-ink-2);
+  max-width: 60ch;
+}
+
+[data-theme="brutal"] .found__intro,
+[data-theme="manifesto"] .found__intro,
+[data-theme="terminal"] .found__intro,
+[data-theme="sport"] .found__intro,
+[data-theme="almanac"] .found__intro,
+[data-theme="quiet"] .found__intro,
+[data-theme="bloom"] .found__intro,
+[data-theme="riso"] .found__intro {
+  font-family: var(--font-body);
+  font-style: normal;
+}
+
+.found-cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--rule-hair);
+  background: var(--color-rule);
+  border: var(--rule-hair) solid var(--color-rule);
+}
+
+.found-card {
+  background: var(--color-paper);
+  padding: var(--space-lg) var(--space-md);
+  display: grid;
+  gap: var(--space-sm);
+  align-content: start;
+  min-height: 12rem;
+}
+
+.found-card__icon {
+  display: block;
+  width: 48px;
+  height: 48px;
+  color: var(--color-ink);
+  margin-block-end: var(--space-xs);
+}
+
+.found-card__icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.found-card__name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: var(--display-weight, 500);
+  font-style: var(--display-style, normal);
+  font-size: var(--text-lg);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-ink);
+  font-optical-sizing: auto;
+}
+
+[data-theme="manifesto"] .found-card__name,
+[data-theme="brutal"] .found-card__name,
+[data-theme="sport"] .found-card__name {
+  text-transform: uppercase;
+}
+
+[data-theme="terminal"] .found-card__name {
+  font-family: var(--font-mono);
+  font-style: normal;
+}
+
+.found-card__body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: var(--lh-relaxed);
+  color: var(--color-ink-2);
+  max-width: 28ch;
+}
+
+[data-theme="atelier"] .found-card,
+[data-theme="salon"] .found-card {
+  background: transparent;
+}
+
+[data-theme="atelier"] .found-cards,
+[data-theme="salon"] .found-cards {
+  background: transparent;
+  border: 0;
+  gap: var(--space-md);
+  border-block-start: var(--rule-hair) solid var(--color-rule);
+  border-block-end: var(--rule-hair) solid var(--color-rule);
+  padding-block: var(--space-lg);
+}
+
+@media (max-width: 60rem) {
+  .found-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 36rem) {
+  .found-cards {
+    grid-template-columns: 1fr;
+  }
+  .found-card { min-height: auto; }
 }
 
 /* — Section pull-arrow ————————————————————————————————————

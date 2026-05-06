@@ -452,89 +452,6 @@
   .banner__theme-indicator .banner__theme { display: none; }
 }
 
-/* — Chapter rail — sticky outline on wide viewports ————————
-   Vertical list of section coordinates pinned to the left margin.
-   Highlights the current section as you scroll. Hidden below 80rem
-   (1280px) where there's no margin space for it. */
-.chapter-rail {
-  position: fixed;
-  top: 50%;
-  left: max(var(--space-sm), calc((100vw - 76rem) / 2 - 7rem));
-  transform: translateY(-50%);
-  z-index: 5;
-  pointer-events: auto;
-}
-
-.chapter-rail__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 0.55rem;
-}
-
-.chapter-rail__list a {
-  display: grid;
-  grid-template-columns: 1.6em 1fr;
-  align-items: baseline;
-  gap: 0.55rem;
-  text-decoration: none;
-  color: var(--color-rule-2);
-  padding: 0.15rem 0.4rem 0.15rem 0;
-  font-family: var(--font-label);
-  font-size: 0.625rem;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-  transition: color var(--dur-micro) var(--ease-out);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .chapter-rail__list a:hover {
-    color: var(--color-ink-2);
-  }
-}
-
-.chapter-rail__list a:focus-visible {
-  outline: 2px solid var(--color-focus);
-  outline-offset: 2px;
-}
-
-.chapter-rail__list a.is-current {
-  color: var(--color-ink);
-}
-
-.chapter-rail__num {
-  font-family: var(--font-serif);
-  font-style: italic;
-  text-transform: none;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0;
-  color: var(--color-rule-2);
-  text-align: end;
-  transition: color var(--dur-micro) var(--ease-out);
-}
-
-.chapter-rail__list a.is-current .chapter-rail__num {
-  color: var(--color-accent);
-}
-
-.chapter-rail__name {
-  /* The name itself is small mono — only the active section's name
-     gets visible weight; the others fade. */
-  opacity: 0.6;
-  transition: opacity var(--dur-micro) var(--ease-out);
-}
-
-.chapter-rail__list a.is-current .chapter-rail__name,
-.chapter-rail__list a:hover .chapter-rail__name {
-  opacity: 1;
-}
-
-@media (max-width: 80rem) {
-  .chapter-rail { display: none; }
-}
-
 /* — Section label (01 / FOUNDATIONS) —————————————————— */
 .section-label {
   font-family: var(--font-label);
@@ -1877,23 +1794,76 @@
   font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 0.95rem;
   line-height: 1.65;
-  animation: easter-fade-in 240ms ease-out both;
+  /* Smoother arrival — fade + tiny scale-in. Feels like the page
+     gently steps aside rather than a hard cut. */
+  animation: easter-arrive 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .easter[hidden] { display: none; }
 
 .easter[data-state="closing"] {
-  animation: easter-fade-out 360ms ease-in forwards;
+  animation: easter-leave 360ms cubic-bezier(0.7, 0, 0.84, 0) forwards;
 }
 
-@keyframes easter-fade-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+@keyframes easter-arrive {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0);
+    -webkit-backdrop-filter: blur(0);
+    transform: scale(1.015);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(0);
+    -webkit-backdrop-filter: blur(0);
+    transform: scale(1);
+  }
 }
 
-@keyframes easter-fade-out {
-  from { opacity: 1; }
-  to   { opacity: 0; }
+@keyframes easter-leave {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.985); }
+}
+
+/* Reduced motion — opacity only, no scale. */
+@media (prefers-reduced-motion: reduce) {
+  .easter {
+    animation: easter-fade-in 200ms ease-out both;
+  }
+  .easter[data-state="closing"] {
+    animation: easter-fade-out 200ms ease-in forwards;
+  }
+  @keyframes easter-fade-in { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes easter-fade-out { from { opacity: 1; } to { opacity: 0; } }
+}
+
+/* Page-shrink under the easter overlay — runs on the <body> while
+   the easter is open. The page recedes slightly, making the easter
+   feel like a brief teleport. */
+body.easter-open > main,
+body.easter-open > header,
+body.easter-open > footer {
+  transform: scale(0.985);
+  filter: blur(2px);
+  transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1),
+              filter 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center center;
+}
+
+body:not(.easter-open) > main,
+body:not(.easter-open) > header,
+body:not(.easter-open) > footer {
+  transition: transform 360ms cubic-bezier(0.7, 0, 0.84, 0),
+              filter 360ms cubic-bezier(0.7, 0, 0.84, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.easter-open > main,
+  body.easter-open > header,
+  body.easter-open > footer {
+    transform: none;
+    filter: none;
+  }
 }
 
 .easter__panel {
@@ -2987,22 +2957,53 @@
 /* ───────── Ft5 — Editorial colophon (the unified footer) ────────
    The publisher's signature page. Same shape across every theme;
    theme variation comes from typography rendering, not layout.
-   Typeset prose paragraphs, no link farm, generous line-height. */
+
+   Layout: 3-column grid on desktop — wordmark left, prose centre,
+   links + year right. Stacks single-column on mobile. Spans full
+   page width. */
 .foot--colophon {
-  display: grid;
-  gap: var(--space-md);
+  display: flex !important;
+  align-items: stretch;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: var(--space-2xl);
   padding-block: var(--space-2xl) var(--space-xl);
   border-block-start: var(--rule-hair) solid var(--color-rule);
-  max-width: 64ch;
   margin: 0;
+  width: 100%;
+}
+
+.foot__col { margin: 0; }
+
+.foot__col--mark {
+  flex: 0 0 auto;
+  min-width: 8rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.foot__col--prose {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.foot__col--meta {
+  flex: 0 0 auto;
+  min-width: 7rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  text-align: end;
+  gap: var(--space-md);
 }
 
 .foot__sig {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-xs);
   margin: 0;
-  margin-block-end: var(--space-sm);
   font-family: var(--font-display);
   font-weight: var(--display-weight, 500);
   font-style: var(--display-style, normal);
@@ -3025,6 +3026,7 @@
 }
 
 .foot__sig-ver {
+  margin: 0;
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   font-weight: 400;
@@ -3049,12 +3051,7 @@
   max-width: 60ch;
 }
 
-.foot__set em {
-  font-style: normal;
-  font-weight: 500;
-  color: var(--color-ink);
-}
-
+.foot__set em,
 .foot__set strong {
   font-style: normal;
   font-weight: 500;
@@ -3093,27 +3090,45 @@
 }
 
 .foot--colophon .foot__links {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-sm);
+  display: grid;
+  gap: var(--space-2xs);
+  justify-items: end;
   margin: 0;
-  margin-block-start: var(--space-sm);
   font-family: var(--font-label);
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--color-muted);
-  /* Reset legacy .foot__links rules from the masthead variant. */
-  flex-wrap: nowrap;
 }
 
-.foot--colophon .foot__sep {
-  /* Inline dot separator instead of vertical bar. */
-  width: auto;
-  height: auto;
-  background: transparent;
-  color: var(--color-rule-2);
+.foot--colophon .foot__links .link {
+  color: var(--color-ink);
+}
+
+.foot__year {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--color-muted);
+  font-feature-settings: "tnum" 1;
+}
+
+@media (max-width: 60rem) {
+  .foot--colophon {
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+  .foot__col--meta {
+    align-items: flex-start;
+    text-align: start;
+  }
+  .foot--colophon .foot__links {
+    justify-items: start;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    gap: var(--space-md);
+  }
 }
 
 /* ───────────── SLOT REVEALS ─────────────

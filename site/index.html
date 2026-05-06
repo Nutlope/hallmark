@@ -139,18 +139,6 @@
     </aside>
   </header>
 
-  <!-- CHAPTER RAIL — sticky outline visible on wide viewports only.
-       Highlights current section as you scroll. Hidden below 80rem. -->
-  <aside class="chapter-rail" aria-label="Page outline">
-    <ol class="chapter-rail__list">
-      <li><a href="#examples" data-chapter-link="examples"><span class="chapter-rail__num">II</span><span class="chapter-rail__name">Examples</span></a></li>
-      <li><a href="#skills" data-chapter-link="skills"><span class="chapter-rail__num">III</span><span class="chapter-rail__name">Skills</span></a></li>
-      <li><a href="#anti-patterns" data-chapter-link="anti-patterns"><span class="chapter-rail__num">IV</span><span class="chapter-rail__name">Anti-patterns</span></a></li>
-      <li><a href="#s5-foundations" data-chapter-link="foundations"><span class="chapter-rail__num">V</span><span class="chapter-rail__name">Foundations</span></a></li>
-      <li><a href="#install" data-chapter-link="install"><span class="chapter-rail__num">VI</span><span class="chapter-rail__name">Install</span></a></li>
-    </ol>
-  </aside>
-
   <main class="page">
 
     <!-- 01 · HERO SLOT — archetype swaps per theme -->
@@ -163,7 +151,7 @@
           <span class="num">02</span><span class="divider">⁄</span><span>Examples</span>
         </p>
         <h2 class="section__title" id="s2">
-          Different briefs. Different bones.
+          Worked examples.
         </h2>
       </header>
 
@@ -338,7 +326,7 @@
           <span class="num">03</span><span class="divider">⁄</span><span>Skills</span>
         </p>
         <h2 class="section__title" id="s-skills">
-          Five things Hallmark does. One ruleset underneath.
+          What it does.
         </h2>
       </header>
 
@@ -353,7 +341,7 @@
           <header class="skill-row__head">
             <span class="skill-row__num num--roman" aria-hidden="true">I</span>
             <div class="skill-row__head-body">
-              <h3 class="skill-row__title">Build</h3>
+              <h3 class="skill-row__title">Build <span class="skill-row__title-meta">(default)</span></h3>
               <p class="skill-row__lede">Ask for a page. Get a page that doesn't look generated. Hallmark picks a macrostructure first, then dresses it — and refuses to repeat the same shape twice.</p>
             </div>
           </header>
@@ -388,46 +376,28 @@
             </div>
           </header>
 
-          <div class="skill-row__body skill-row__body--study">
-            <div class="study-grid">
-              <article class="study-card">
-                <div class="study-card__media">
-                  <img class="study-card__img" src="_tests/_thumbs/01-tide.png" alt="Tide — Letter macrostructure on warm cream paper" loading="lazy" decoding="async" />
-                  <span class="study-card__badge">01 · Tide</span>
-                </div>
-                <ol class="study-card__dna">
-                  <li class="dna__row"><span class="dna__k">Macrostructure</span><span class="dna__v">Letter</span></li>
-                  <li class="dna__row"><span class="dna__k">Hero archetype</span><span class="dna__v">H5 Letter · salutation + body + signoff</span></li>
-                  <li class="dna__row"><span class="dna__k">Display role</span><span class="dna__v">italic editorial serif</span></li>
-                  <li class="dna__row"><span class="dna__k">Body role</span><span class="dna__v">italic editorial serif (same family, smaller weight)</span></li>
-                  <li class="dna__row"><span class="dna__k">Label role</span><span class="dna__v">small-caps grotesque</span></li>
-                  <li class="dna__row"><span class="dna__k">Paper band</span><span class="dna__v">light · warm cream</span></li>
-                  <li class="dna__row"><span class="dna__k">Accent hue</span><span class="dna__v">warm orange · ≤ 3% footprint</span></li>
-                  <li class="dna__row"><span class="dna__k">Density</span><span class="dna__v">generous · single-column letter</span></li>
-                  <li class="dna__row"><span class="dna__k">Pairing logic</span><span class="dna__v">single family carrying the page; mono labels for register</span></li>
-                  <li class="dna__row"><span class="dna__k">Rhythm</span><span class="dna__v">left-biased · varied padding · letter-format intimacy</span></li>
-                </ol>
-              </article>
+          <div class="skill-row__body">
+            <figure class="skill-row__demo skill-row__demo--build">
+              <span class="brief-pill" aria-label="Example brief">"Paste a design you admire."</span>
+              <span class="brief-arrow" aria-hidden="true">↓</span>
+              <span class="fig-corners brief-output">
+                <span class="fig-corners__bl"></span><span class="fig-corners__br"></span>
+                <img src="_tests/_thumbs/01-tide.png" alt="Tide — Letter macrostructure on warm cream paper" loading="lazy" decoding="async" width="1024" height="640" />
+              </span>
+            </figure>
 
-              <article class="study-card">
-                <div class="study-card__media">
-                  <img class="study-card__img" src="_tests/_thumbs/05-tracejam.png" alt="Tracejam — Workbench macrostructure on dark charcoal" loading="lazy" decoding="async" />
-                  <span class="study-card__badge">02 · Tracejam</span>
-                </div>
-                <ol class="study-card__dna">
-                  <li class="dna__row"><span class="dna__k">Macrostructure</span><span class="dna__v">Workbench</span></li>
-                  <li class="dna__row"><span class="dna__k">Hero archetype</span><span class="dna__v">H3 Stat-Led · trace number + sticky panel</span></li>
-                  <li class="dna__row"><span class="dna__k">Display role</span><span class="dna__v">soft geometric sans · 600</span></li>
-                  <li class="dna__row"><span class="dna__k">Body role</span><span class="dna__v">soft geometric sans · 400</span></li>
-                  <li class="dna__row"><span class="dna__k">Label role</span><span class="dna__v">monospace · uppercase</span></li>
-                  <li class="dna__row"><span class="dna__k">Paper band</span><span class="dna__v">dark · cool charcoal</span></li>
-                  <li class="dna__row"><span class="dna__k">Accent hue</span><span class="dna__v">cyan · phosphor-bright · 8% footprint</span></li>
-                  <li class="dna__row"><span class="dna__k">Density</span><span class="dna__v">medium · sticky-panel observability layout</span></li>
-                  <li class="dna__row"><span class="dna__k">Pairing logic</span><span class="dna__v">sans display + body, mono labels carry the technical register</span></li>
-                  <li class="dna__row"><span class="dna__k">Rhythm</span><span class="dna__v">three-step walkthrough · sticky right panel · medium padding</span></li>
-                </ol>
-              </article>
-            </div>
+            <ol class="skill-row__list">
+              <li class="dna__row"><span class="dna__k">Invocation</span><span class="dna__v"><code>hallmark study &lt;screenshot&gt;</code></span></li>
+              <li class="dna__row"><span class="dna__k">Macrostructure</span><span class="dna__v">Letter</span></li>
+              <li class="dna__row"><span class="dna__k">Hero archetype</span><span class="dna__v">H5 Letter · salutation + body + signoff</span></li>
+              <li class="dna__row"><span class="dna__k">Display role</span><span class="dna__v">italic editorial serif</span></li>
+              <li class="dna__row"><span class="dna__k">Body role</span><span class="dna__v">same family, smaller weight</span></li>
+              <li class="dna__row"><span class="dna__k">Label role</span><span class="dna__v">small-caps grotesque</span></li>
+              <li class="dna__row"><span class="dna__k">Paper band</span><span class="dna__v">light · warm cream</span></li>
+              <li class="dna__row"><span class="dna__k">Accent hue</span><span class="dna__v">warm orange · ≤ 3% footprint</span></li>
+              <li class="dna__row"><span class="dna__k">Rhythm</span><span class="dna__v">left-biased · letter-format intimacy</span></li>
+              <li class="dna__row"><span class="dna__k">Refuses</span><span class="dna__v">to ID fonts · to copy pixels</span></li>
+            </ol>
           </div>
         </li>
 
@@ -442,24 +412,48 @@
           </header>
 
           <div class="skill-row__body">
-            <figure class="skill-row__demo skill-row__demo--audit">
-              <span class="fig-corners">
-                <span class="fig-corners__bl"></span><span class="fig-corners__br"></span>
-                <img src="_tests/_thumbs/verb-audit.png" alt="Audited target page — generic AI-slop landing" loading="lazy" decoding="async" width="1024" height="640" />
-                <ol class="audit-flags" aria-label="Punch list overlaid on the target">
-                  <li class="audit-flag" style="--top:24%; --left:50%"><span class="audit-flag__num tnum">1</span></li>
-                  <li class="audit-flag" style="--top:51%; --left:48%"><span class="audit-flag__num tnum">2</span></li>
-                  <li class="audit-flag" style="--top:67%; --left:50%"><span class="audit-flag__num tnum">3</span></li>
-                </ol>
-              </span>
+            <figure class="skill-row__demo skill-row__demo--audit" aria-label="Sample AI-default landing hero">
+              <div class="audit-slop">
+                <div class="audit-slop__inner">
+                  <span class="audit-slop__badge">✨ NEW</span>
+                  <h4 class="audit-slop__title">Build the future of work.</h4>
+                  <p class="audit-slop__lede">The all-in-one platform for modern teams.</p>
+                  <span class="audit-slop__cta">Get started free →</span>
+                </div>
+              </div>
             </figure>
 
-            <ol class="skill-row__list">
-              <li class="dna__row"><span class="dna__k">Invocation</span><span class="dna__v"><code>hallmark audit &lt;target&gt;</code></span></li>
-              <li class="dna__row"><span class="dna__k"><span class="tnum">1</span> · Display</span><span class="dna__v">Inter-as-display · the AI-default tell</span></li>
-              <li class="dna__row"><span class="dna__k"><span class="tnum">2</span> · Hierarchy</span><span class="dna__v">centred everything · no asymmetry</span></li>
-              <li class="dna__row"><span class="dna__k"><span class="tnum">3</span> · Accent</span><span class="dna__v">purple-to-blue gradient · over-applied</span></li>
-              <li class="dna__row"><span class="dna__k">Returns</span><span class="dna__v">ranked findings, not edits</span></li>
+            <ol class="audit-check">
+              <li class="audit-check__row">
+                <span class="audit-check__cross" aria-hidden="true">✗</span>
+                <span class="audit-check__problem">Purple-to-pink gradient hero</span>
+                <span class="audit-check__arrow" aria-hidden="true">→</span>
+                <span class="audit-check__fix">Solid surface, single accent</span>
+              </li>
+              <li class="audit-check__row">
+                <span class="audit-check__cross" aria-hidden="true">✗</span>
+                <span class="audit-check__problem">Inter as display + body</span>
+                <span class="audit-check__arrow" aria-hidden="true">→</span>
+                <span class="audit-check__fix">Pair distinctive display + body</span>
+              </li>
+              <li class="audit-check__row">
+                <span class="audit-check__cross" aria-hidden="true">✗</span>
+                <span class="audit-check__problem">Centered everything</span>
+                <span class="audit-check__arrow" aria-hidden="true">→</span>
+                <span class="audit-check__fix">Bias the layout, break symmetry</span>
+              </li>
+              <li class="audit-check__row">
+                <span class="audit-check__cross" aria-hidden="true">✗</span>
+                <span class="audit-check__problem">Sparkle ✨ emoji as badge</span>
+                <span class="audit-check__arrow" aria-hidden="true">→</span>
+                <span class="audit-check__fix">Pick an icon library, or drop it</span>
+              </li>
+              <li class="audit-check__row">
+                <span class="audit-check__cross" aria-hidden="true">✗</span>
+                <span class="audit-check__problem">Gradient pill CTA</span>
+                <span class="audit-check__arrow" aria-hidden="true">→</span>
+                <span class="audit-check__fix">Solid fill or outline, single hue</span>
+              </li>
             </ol>
           </div>
         </li>
@@ -474,7 +468,7 @@
             </div>
           </header>
 
-          <div class="skill-row__body">
+          <div class="skill-row__body skill-row__body--full">
             <figure class="skill-row__demo skill-row__demo--diptych">
               <figure class="diptych__half" data-state="before">
                 <span class="fig-corners">
@@ -491,13 +485,6 @@
                 <figcaption class="diptych__cap">After refine</figcaption>
               </figure>
             </figure>
-
-            <ol class="skill-row__list">
-              <li class="dna__row"><span class="dna__k">Invocation</span><span class="dna__v"><code>hallmark refine &lt;target&gt;</code></span></li>
-              <li class="dna__row"><span class="dna__k">Preserves</span><span class="dna__v">layout · copy · brand</span></li>
-              <li class="dna__row"><span class="dna__k">Touches</span><span class="dna__v">type pairing · accent · spacing · proof</span></li>
-              <li class="dna__row"><span class="dna__k">Returns</span><span class="dna__v">smallest possible diff</span></li>
-            </ol>
           </div>
         </li>
 
@@ -511,7 +498,7 @@
             </div>
           </header>
 
-          <div class="skill-row__body">
+          <div class="skill-row__body skill-row__body--full">
             <figure class="skill-row__demo skill-row__demo--diptych">
               <figure class="diptych__half" data-state="before">
                 <span class="fig-corners">
@@ -528,14 +515,6 @@
                 <figcaption class="diptych__cap">Long document</figcaption>
               </figure>
             </figure>
-
-            <ol class="skill-row__list">
-              <li class="dna__row"><span class="dna__k">Invocation</span><span class="dna__v"><code>hallmark redesign &lt;target&gt;</code></span></li>
-              <li class="dna__row"><span class="dna__k">Preserves</span><span class="dna__v">copy · brand · information architecture</span></li>
-              <li class="dna__row"><span class="dna__k">Replaces</span><span class="dna__v">macrostructure · heading placement · rhythm</span></li>
-              <li class="dna__row"><span class="dna__k">Mood</span><span class="dna__v"><code>--mood &lt;name&gt;</code> optional override</span></li>
-              <li class="dna__row"><span class="dna__k">Returns</span><span class="dna__v">structurally different page from same brief</span></li>
-            </ol>
           </div>
         </li>
 
@@ -826,16 +805,138 @@
       </section>
     </template>
 
-    <!-- 05 · FOUNDATIONS — vertical list + active panel (CSS-only tabs) -->
-    <section class="section reveal" style="--i:4" aria-labelledby="s5-foundations">
+    <!-- 05 · FOUNDATIONS — eight compact cards in a 4×2 grid. Each
+         card holds a hand-drawn SVG icon, one-word title, and a single
+         line of description. Replaces the radio-tab Foundations panel
+         (preserved in <template id="section-05-archive-foundations-tabs">
+         below). -->
+    <section class="section reveal" style="--i:4" id="foundations" aria-labelledby="s5-foundations">
       <header class="section__head">
         <p class="section-label">
           <span class="num">05</span><span class="divider">⁄</span><span>Foundations</span>
         </p>
         <h2 class="section__title" id="s5-foundations">
-          Five things Hallmark holds the line on.
+          Foundations.
         </h2>
       </header>
+
+      <p class="found__intro">Eight rules that hold across every theme. None of them are settings.</p>
+
+      <ul class="found-cards" role="list">
+
+        <li class="found-card">
+          <span class="found-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <text x="3" y="36" font-family="'Fraunces', 'Tiempos', serif" font-style="italic" font-size="34" font-weight="500" fill="currentColor">A</text>
+              <text x="22" y="42" font-family="'Geist', 'Inter', sans-serif" font-size="22" font-weight="600" fill="currentColor">a</text>
+            </svg>
+          </span>
+          <h3 class="found-card__name">Type</h3>
+          <p class="found-card__body">Pair a display face with a body face. Never one font doing both jobs.</p>
+        </li>
+
+        <li class="found-card">
+          <span class="found-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="currentColor">
+              <circle cx="9" cy="24" r="4.5"/>
+              <circle cx="20" cy="24" r="4.5" opacity="0.7"/>
+              <circle cx="31" cy="24" r="4.5" opacity="0.4"/>
+              <circle cx="42" cy="24" r="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </span>
+          <h3 class="found-card__name">Colour</h3>
+          <p class="found-card__body">OKLCH palettes. One anchor hue. The accent stays under five percent.</p>
+        </li>
+
+        <li class="found-card">
+          <span class="found-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <line x1="4" y1="26" x2="44" y2="26"/>
+              <line x1="8" y1="22" x2="8" y2="30"/>
+              <line x1="16" y1="24" x2="16" y2="28"/>
+              <line x1="24" y1="18" x2="24" y2="32"/>
+              <line x1="32" y1="24" x2="32" y2="28"/>
+              <line x1="40" y1="22" x2="40" y2="30"/>
+            </svg>
+          </span>
+          <h3 class="found-card__name">Space</h3>
+          <p class="found-card__body">A named scale. Multiples of four. No arbitrary 17-pixel paddings.</p>
+        </li>
+
+        <li class="found-card">
+          <span class="found-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M 6 32 Q 18 32 24 24 T 40 14"/>
+              <path d="M 34 14 L 40 14 L 40 20"/>
+            </svg>
+          </span>
+          <h3 class="found-card__name">Motion</h3>
+          <p class="found-card__body">Exponential ease-out. Reduced-motion alternative for every animation.</p>
+        </li>
+
+        <li class="found-card">
+          <span class="found-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+              <path d="M 11 16 Q 7 19 7 24 Q 7 28 11 28"/>
+              <path d="M 17 16 Q 13 19 13 24 Q 13 28 17 28"/>
+              <path d="M 31 16 Q 27 19 27 24 Q 27 28 31 28"/>
+              <path d="M 37 16 Q 33 19 33 24 Q 33 28 37 28"/>
+            </svg>
+          </span>
+          <h3 class="found-card__name">Voice</h3>
+          <p class="found-card__body">Distinct register per theme. Never the SaaS-default neutral middle.</p>
+        </li>
+
+        <li class="found-card">
+          <span class="found-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="6" y="12" width="14" height="26"/>
+              <rect x="22" y="18" width="20" height="20"/>
+            </svg>
+          </span>
+          <h3 class="found-card__name">Layout</h3>
+          <p class="found-card__body">Bias the page. Asymmetric is intentional. Centred everything is a tell.</p>
+        </li>
+
+        <li class="found-card">
+          <span class="found-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round">
+              <line x1="6" y1="14" x2="42" y2="14" stroke-width="3.5"/>
+              <line x1="6" y1="25" x2="32" y2="25" stroke-width="2"/>
+              <line x1="6" y1="36" x2="22" y2="36" stroke-width="1.2"/>
+            </svg>
+          </span>
+          <h3 class="found-card__name">Hierarchy</h3>
+          <p class="found-card__body">Display, body, label. A weight ladder you can read in two seconds.</p>
+        </li>
+
+        <li class="found-card">
+          <span class="found-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="6" y="6" width="36" height="36"/>
+              <circle cx="24" cy="24" r="3" fill="currentColor"/>
+            </svg>
+          </span>
+          <h3 class="found-card__name">Restraint</h3>
+          <p class="found-card__body">Better nothing than bad something. The strongest fail-state is silence.</p>
+        </li>
+
+      </ul>
+
+      <a class="section__pull" href="#install" aria-label="Continue to Install section">
+        <span class="section__pull-label">Install in your editor</span>
+        <span class="section__pull-arrow" aria-hidden="true">→</span>
+      </a>
+    </section>
+
+    <!-- DEPRECATED: original Section 05 (Foundations radio tabs) — replaced
+         by the 8-card grid above. Wrapped in <template> so the markup stays
+         in this file but doesn't render. To revert: change the opening
+         <template> to <section class="section reveal" style="--i:4"
+         aria-labelledby="s5-foundations"> and the closing </template> to
+         </section>, then remove the new 8-card section above. -->
+    <template id="section-05-archive-foundations-tabs">
+      <section class="section reveal" style="--i:4" aria-labelledby="s5-foundations">
 
       <input type="radio" name="found-toggle" id="f-type" class="found-toggle__input" checked />
       <input type="radio" name="found-toggle" id="f-colour" class="found-toggle__input" />
@@ -952,7 +1053,8 @@
         <span class="section__pull-label">Install in your editor</span>
         <span class="section__pull-arrow" aria-hidden="true">→</span>
       </a>
-    </section>
+      </section>
+    </template>
 
     <!-- 06 · INSTALL — one command, every harness -->
     <section class="section reveal" style="--i:5" id="install" aria-labelledby="s6">
@@ -961,7 +1063,7 @@
           <span class="num">06</span><span class="divider">⁄</span><span>Install</span>
         </p>
         <h2 class="section__title" id="s6">
-          One command. Works in every harness.
+          Install.
         </h2>
       </header>
 
@@ -1014,18 +1116,13 @@
   <aside class="easter" data-easter-egg hidden role="dialog" aria-modal="true" aria-label="A note from Hallmark">
     <div class="easter__panel">
       <ol class="easter__lines" aria-live="polite">
-        <li class="easter__line easter__line--cmd"><span class="easter__prompt">$</span> hallmark observe</li>
-        <li class="easter__line">
-          <span class="easter__arrow">&gt;</span>
-          <span class="easter__num" data-easter-cycles>1.0</span>× in
-          <span class="easter__num" data-easter-seconds>3.2</span>s.
-        </li>
+        <li class="easter__line easter__line--cmd"><span class="easter__prompt">$</span> hallmark.observe()</li>
         <li class="easter__line easter__line--punchline" data-easter-punchline>
-          <span class="easter__arrow">&gt;</span> <span data-easter-line>chill, designer.</span><span class="easter__cursor" aria-hidden="true"></span>
+          <span class="easter__arrow">&gt;</span> <span data-easter-line>theme connoisseur.</span><span class="easter__cursor" aria-hidden="true"></span>
         </li>
       </ol>
       <p class="easter__hint">
-        <span>returning to the page in a moment</span>
+        <span>back in a moment</span>
       </p>
     </div>
   </aside>
@@ -1178,29 +1275,33 @@
        Per-theme typography still re-renders this block. -->
   <template id="footer-colophon">
     <div class="foot foot--colophon">
-      <p class="foot__sig">
-        <span class="foot__wordmark">Hallmark</span><span class="foot__sig-ver tnum">·&nbsp;v1.0</span>
-      </p>
+      <div class="foot__col foot__col--mark">
+        <p class="foot__sig">
+          <span class="foot__wordmark">Hallmark</span>
+        </p>
+        <p class="foot__sig-ver tnum">v1.0</p>
+      </div>
 
-      <p class="foot__set">
-        Set in <em>Fraunces</em> (display), <em>The Future</em> (body), and <em>The Future Mono</em> (label). Currently rendered in <strong data-theme-current-foot>Specimen</strong>.
-      </p>
+      <div class="foot__col foot__col--prose">
+        <p class="foot__set">
+          Set in <em>Fraunces</em> (display), <em>The Future</em> (body), and <em>The Future Mono</em> (label). Currently rendered in <strong data-theme-current-foot>Specimen</strong>.
+        </p>
+        <p class="foot__catalog">
+          Twenty-three named themes across four genres. Twenty-one macrostructures. Forty component archetypes. Sixty slop-test gates plus a six-axis pre-emit critique.
+        </p>
+        <p class="foot__credit">
+          Built v1.0 in 2026. Powered by <span class="foot__powered-mark">Together&nbsp;AI</span>. MIT licensed.
+        </p>
+      </div>
 
-      <p class="foot__catalog">
-        Twenty-three named themes across four genres. Twenty-one macrostructures. Forty component archetypes. Sixty slop-test gates plus a six-axis pre-emit critique.
-      </p>
-
-      <p class="foot__credit">
-        Built v1.0 in 2026. Powered by <span class="foot__powered-mark">Together&nbsp;AI</span>. MIT licensed.
-      </p>
-
-      <p class="foot__links">
-        <a href="https://github.com/Luffixos/hallmark" class="link">Source</a>
-        <span class="foot__sep" aria-hidden="true">·</span>
-        <a href="#install" class="link">Install</a>
-        <span class="foot__sep" aria-hidden="true">·</span>
-        <a href="#top" class="link">Top</a>
-      </p>
+      <div class="foot__col foot__col--meta">
+        <p class="foot__links">
+          <a href="https://github.com/Luffixos/hallmark" class="link">Source</a>
+          <a href="#install" class="link">Install</a>
+          <a href="#top" class="link">Top</a>
+        </p>
+        <p class="foot__year tnum">2026</p>
+      </div>
     </div>
   </template>
 

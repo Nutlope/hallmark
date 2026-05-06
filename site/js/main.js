@@ -890,11 +890,13 @@ const EASTER_VISIBLE_MS = 3400;    // total time the overlay stays up
 const EASTER_FADE_MS = 360;        // matches the fade-out animation
 const EASTER_COOLDOWN_MS = 15000;
 const EASTER_PUNCHLINES = [
-  "chill, designer.",
+  "theme connoisseur.",
+  "easy on the keys.",
+  "speed-run noted.",
+  "calm down, designer.",
+  "showing off, are we?",
   "you've seen them all.",
-  "seventeen is plenty.",
-  "pick. build. ship.",
-  "easy on the keyboard.",
+  "pick one. ship.",
   "one theme will do.",
 ];
 const tStamps = [];
@@ -905,29 +907,25 @@ let easterFadeTimer = null;
 
 function showEasterEgg() {
   if (!easterEl || easterOpen) return;
-  const now = performance.now();
-  const span = (now - tStamps[0]) / 1000;
-  const cycles = (tStamps.length / Object.keys(THEMES).length).toFixed(1);
 
   // Re-mount the lines so the staggered fade-in animation re-runs each
-  // time. Populate live values + a random punchline after replacement
-  // so we don't write into a detached node.
+  // time. Populate the punchline after replacement so we don't write
+  // into a detached node.
   const lines = easterEl.querySelector(".easter__lines");
   if (lines) {
     const fresh = lines.cloneNode(true);
     lines.parentNode.replaceChild(fresh, lines);
   }
-  const cyclesEl = easterEl.querySelector("[data-easter-cycles]");
-  const secondsEl = easterEl.querySelector("[data-easter-seconds]");
   const lineEl = easterEl.querySelector("[data-easter-line]");
-  if (cyclesEl) cyclesEl.textContent = cycles;
-  if (secondsEl) secondsEl.textContent = span.toFixed(1);
   if (lineEl) lineEl.textContent = EASTER_PUNCHLINES[Math.floor(Math.random() * EASTER_PUNCHLINES.length)];
 
   delete easterEl.dataset.state;
   easterEl.hidden = false;
   easterOpen = true;
   document.body.style.overflow = "hidden";
+  // Toggle body class so the page-shrink + blur animation runs in sync
+  // with the easter overlay's arrival. CSS handles the rest.
+  document.body.classList.add("easter-open");
 
   clearTimeout(easterDismissTimer);
   clearTimeout(easterFadeTimer);
@@ -939,6 +937,9 @@ function hideEasterEgg() {
   clearTimeout(easterDismissTimer);
   clearTimeout(easterFadeTimer);
   easterEl.dataset.state = "closing";
+  // Drop the body class first so the page un-blurs / scales back in
+  // tandem with the overlay leaving.
+  document.body.classList.remove("easter-open");
   easterFadeTimer = setTimeout(() => {
     easterEl.hidden = true;
     delete easterEl.dataset.state;
@@ -1068,51 +1069,6 @@ if (statesBtn && statesReadout) {
     }, 900);
   });
 }
-
-/* — Chapter rail — IntersectionObserver to highlight current section
-   The rail is hidden via CSS below 80rem; we still wire the observer
-   regardless so the highlight is correct if the user resizes up. */
-(() => {
-  const railLinks = document.querySelectorAll(".chapter-rail [data-chapter-link]");
-  if (!railLinks.length || !("IntersectionObserver" in window)) return;
-
-  const sections = Array.from(railLinks).map((a) => {
-    const id = a.getAttribute("href").slice(1);
-    return { link: a, section: document.getElementById(id) };
-  }).filter((x) => x.section);
-
-  const visible = new Set();
-
-  const setCurrent = () => {
-    let activeId = null;
-    let topMost = Infinity;
-    for (const id of visible) {
-      const sec = document.getElementById(id);
-      if (!sec) continue;
-      const top = sec.getBoundingClientRect().top;
-      if (top < topMost) { topMost = top; activeId = id; }
-    }
-    railLinks.forEach((a) => a.classList.remove("is-current"));
-    if (activeId) {
-      const link = document.querySelector(`.chapter-rail a[href="#${activeId}"]`);
-      if (link) link.classList.add("is-current");
-    }
-  };
-
-  const railIO = new IntersectionObserver((entries) => {
-    for (const e of entries) {
-      const id = e.target.id;
-      if (e.isIntersecting) visible.add(id);
-      else visible.delete(id);
-    }
-    setCurrent();
-  }, {
-    rootMargin: "-25% 0px -55% 0px",
-    threshold: 0,
-  });
-
-  sections.forEach((s) => railIO.observe(s.section));
-})();
 
 /* — Tab-click scroll-jump fix —————————————————————————————
    The CSS-only radio tab pattern in Section 04 (Without/With) and
