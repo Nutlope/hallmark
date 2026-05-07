@@ -572,48 +572,9 @@
 
 .skill-row__head {
   display: grid;
-  grid-template-columns: 4rem 1fr;
-  gap: var(--space-md);
-  align-items: start;
+  grid-template-columns: 1fr;
+  gap: var(--space-xs);
   margin-block-end: var(--space-md);
-}
-
-@media (max-width: 60rem) {
-  .skill-row__head {
-    grid-template-columns: 1fr;
-    gap: var(--space-xs);
-  }
-}
-
-.skill-row__num {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 500;
-  font-size: clamp(3.5rem, 5vw + 0.5rem, 6rem);
-  line-height: 0.9;
-  color: var(--color-muted);
-  letter-spacing: -0.01em;
-  user-select: none;
-  padding-block-start: 0.05em;
-  font-feature-settings: "tnum";
-}
-
-@media (max-width: 60rem) {
-  .skill-row__num { display: none; }
-}
-
-[data-theme="brutal"] .skill-row__num,
-[data-theme="manifesto"] .skill-row__num,
-[data-theme="terminal"] .skill-row__num,
-[data-theme="sport"] .skill-row__num,
-[data-theme="almanac"] .skill-row__num,
-[data-theme="quiet"] .skill-row__num,
-[data-theme="bloom"] .skill-row__num,
-[data-theme="riso"] .skill-row__num {
-  font-family: var(--font-mono);
-  font-style: normal;
-  font-weight: 500;
-  font-size: clamp(3rem, 4.5vw + 0.4rem, 5rem);
 }
 
 .skill-row__head-body {
@@ -709,28 +670,19 @@
   grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
   gap: var(--space-xl);
   align-items: start;
-  padding-inline-start: 4rem;
 }
 
 @media (max-width: 60rem) {
   .skill-row__body {
     grid-template-columns: 1fr;
     gap: var(--space-lg);
-    padding-inline-start: 0;
   }
 }
 
-/* Full-width body — no right info column. Used by Refine + Redesign
-   so the before/after diptych takes the whole row width. */
+/* Full-width body — no right info column. Used by Redesign so the
+   before/after diptych takes the whole row width. */
 .skill-row__body--full {
   grid-template-columns: 1fr;
-  padding-inline-start: 4rem;
-}
-
-@media (max-width: 60rem) {
-  .skill-row__body--full {
-    padding-inline-start: 0;
-  }
 }
 
 .skill-row__demo {
