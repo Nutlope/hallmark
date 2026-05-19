@@ -14,15 +14,6 @@ Hallmark encodes the anti-AI-slop consensus — typography, colour, layout, moti
 
 > **v1.0.0** — pre-emit critique on six axes, honest-copy enforcement, locked-token discipline, re-drawn-chrome ban, and a no-wrap rule for clickable text. Five new slop-test gates (56–60). The full rule-set lives in [`SKILL.md`](SKILL.md) and [`references/`](references/).
 
----
-
-## Try it
-
-Paste this into Claude Code, Cursor, or Codex with the Hallmark skill installed:
-
-> *"Build me a landing page for Coffeebox — a small-batch coffee subscription. Roast on Sunday, ship on Monday, drink Tuesday. Audience: people who already buy good coffee. Tone: warm, hand-set, editorial."*
-
-If Hallmark is wired correctly, you'll see Long Document · Linen (warm-paper roman-serif) · Tier-B hand-built SVG. Eight more worked briefs are documented in [`docs/recipes.md`](docs/recipes.md) — copy/paste them to discover the skill before reading anything else.
 
 ---
 
