@@ -19,7 +19,7 @@ A forward-looking plan for what to build next, drawn from the gaps the latest re
 
 ### N.2  Nanobanana image generation inside Hallmark (image-led theme)
 
-**Status now.** [`assets.md`](skill/references/assets.md) lists Nanobanana as the canonical generated-still source (Tier C in the enrichment hierarchy) but the integration is *recommend-only* — Hallmark tells the user to go generate something and bring it back. No first-class image-led theme exists; image-heavy briefs route to a typography-only macrostructure and feel underserved.
+**Status now.** [`assets.md`](references/assets.md) lists Nanobanana as the canonical generated-still source (Tier C in the enrichment hierarchy) but the integration is *recommend-only* — Hallmark tells the user to go generate something and bring it back. No first-class image-led theme exists; image-heavy briefs route to a typography-only macrostructure and feel underserved.
 
 **Build.**
 1. **First-class Nanobanana hook.** When the brief signals "needs imagery" (e-commerce, travel, food, lookbook, gallery) and the user hasn't supplied real assets, Hallmark generates a brief for Nanobanana (style, subject, framing, palette tokens), invokes the API, ingests the returned image, and wires it into the build. Cache by prompt hash so re-runs are cheap.
@@ -34,7 +34,7 @@ A forward-looking plan for what to build next, drawn from the gaps the latest re
 
 ### 1.1  Theme-aware microinteraction tokens
 
-**Status now.** [`microinteractions.md`](skill/references/microinteractions.md) describes a duration multiplier per theme as a table — but the multipliers aren't actually expressed in CSS. Atelier and Salon should *feel* slower than Brutal and Sport, but right now they share the same `--dur-short` / `--dur-long`.
+**Status now.** [`microinteractions.md`](references/microinteractions.md) describes a duration multiplier per theme as a table — but the multipliers aren't actually expressed in CSS. Atelier and Salon should *feel* slower than Brutal and Sport, but right now they share the same `--dur-short` / `--dur-long`.
 
 **Build.** Move `--dur-micro`, `--dur-short`, `--dur-long` into per-theme overrides in [`tokens.css`](site/css/tokens.css), scaled by the table in `microinteractions.md`. Newsprint and Terminal use `0ms` for spatial motion (they're print/terminal metaphors). One pass through the file; small diff.
 
@@ -74,7 +74,7 @@ A forward-looking plan for what to build next, drawn from the gaps the latest re
 
 ### 2.1  `references/structural-cookbook.md` — concrete recipes
 
-**Status now.** [`structure.md`](skill/references/structure.md) catalogues the *axes* of structural variety. It doesn't show *what* a left-margin-headed, single-column, hairline-divided, unstyled-link, no-image, no-reveal page actually looks like assembled.
+**Status now.** [`structure.md`](references/structure.md) catalogues the *axes* of structural variety. It doesn't show *what* a left-margin-headed, single-column, hairline-divided, unstyled-link, no-image, no-reveal page actually looks like assembled.
 
 **Build.** A cookbook file with 12–20 *complete* structural fingerprints, each with a short HTML/CSS sketch, a paragraph explaining when to reach for it, and a real-world reference (NYT Mag, Stripe, Linear, Pentagram, etc.). The cookbook teaches the model patterns the same way recipe books teach cooking — through *worked examples*, not just *principles*.
 
@@ -134,7 +134,7 @@ This requires a new mapping: emotion → tone → fingerprint. Worth building on
 
 ### 3.4  Sound and haptic policy
 
-Currently [`microinteractions.md`](skill/references/microinteractions.md) says "no sound on web" — correct default. But Hallmark could ship a tiny module covering: when sound is appropriate (gaming, AAA brands, accessibility-augmenting); haptic feedback (Vibration API on mobile); and how to do them without crossing into kitsch. Small file; long horizon.
+Currently [`microinteractions.md`](references/microinteractions.md) says "no sound on web" — correct default. But Hallmark could ship a tiny module covering: when sound is appropriate (gaming, AAA brands, accessibility-augmenting); haptic feedback (Vibration API on mobile); and how to do them without crossing into kitsch. Small file; long horizon.
 
 ### 3.5  Live preview as a Claude Code MCP server
 

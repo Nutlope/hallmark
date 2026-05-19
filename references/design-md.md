@@ -98,7 +98,7 @@ to it. Amend intentionally — the file is the rule.
 `tokens.css` (in this project) is the source of truth. For Tailwind v4
 `@theme`, DTCG `tokens.json`, or shadcn/ui CSS variables, ask *"extend
 design.md with Tailwind exports"* (or the format you want) — Hallmark will
-append them per [`export-formats.md`](skill/references/export-formats.md).
+append them per [`export-formats.md`](export-formats.md).
 ````
 
 State the picks aloud BEFORE writing the file. *"Genre: editorial. Macrostructure: Long Document. Theme: catalog Editorial. Locking this as the project's system."* Then write.

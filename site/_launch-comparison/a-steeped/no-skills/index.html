@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steeped - Single-Origin Loose-Leaf Tea, Delivered Monthly</title>
+    <meta name="description" content="Steeped is a tiny indie tea brand shipping 8 single-origin loose-leaf teas monthly to subscribers. Real tea, real growers, slow ritual.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav container">
+            <a href="#" class="logo">Steeped</a>
+            <ul class="nav-links">
+                <li><a href="#how-it-works">How it works</a></li>
+                <li><a href="#teas">Our teas</a></li>
+                <li><a href="#story">Our story</a></li>
+                <li><a href="#subscribe" class="nav-cta">Subscribe</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Eight teas. One slow ritual. Every month.</h1>
+                <p class="hero-subtitle">Steeped sends you eight single-origin loose-leaf teas each month, sourced directly from small growers and packed by hand in Vermont.</p>
+                <div class="hero-actions">
+                    <a href="#subscribe" class="btn btn-primary">Start your subscription</a>
+                    <a href="#how-it-works" class="btn btn-secondary">Learn more</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="section">
+            <div class="container">
+                <h2>How it works</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Choose your plan</h3>
+                        <p>Pick a monthly subscription. You can pause or cancel anytime — no fuss.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>We source and pack</h3>
+                        <p>Each month, we hand-select eight single-origin teas from growers we know and trust.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Brew and savor</h3>
+                        <p>Your box arrives with tasting notes and brewing guidance. Take your time.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="teas" class="section section-alt">
+            <div class="container">
+                <h2>This month's box</h2>
+                <p class="section-intro">A rotating selection of eight teas, each from a single farm or estate. Here's a taste of what's inside.</p>
+                <div class="tea-grid">
+                    <article class="tea-card">
+                        <h3>Yunnan Gold</h3>
+                        <p class="tea-origin">Yunnan, China</p>
+                        <p>A malty black tea with notes of honey and stone fruit.</p>
+                    </article>
+                    <article class="tea-card">
+                        <h3>Darjeeling First Flush</h3>
+                        <p class="tea-origin">West Bengal, India</p>
+                        <p>Light, floral, and brisk — the first picking of the spring harvest.</p>
+                    </article>
+                    <article class="tea-card">
+                        <h3>Gyokuro</h3>
+                        <p class="tea-origin">Uji, Japan</p>
+                        <p>A shaded green tea with deep umami and a silky finish.</p>
+                    </article>
+                    <article class="tea-card">
+                        <h3>Tieguanyin Oolong</h3>
+                        <p class="tea-origin">Fujian, China</p>
+                        <p>Orchid aromatics with a buttery, lingering aftertaste.</p>
+                    </article>
+                    <article class="tea-card">
+                        <h3>Nepali Silver Tips</h3>
+                        <p class="tea-origin">Ilam, Nepal</p>
+                        <p>Delicate white tea with hints of melon and fresh hay.</p>
+                    </article>
+                    <article class="tea-card">
+                        <h3>Aged Sheng Pu-erh</h3>
+                        <p class="tea-origin">Menghai, China</p>
+                        <p>Earthy, complex, and grounding — aged for seven years.</p>
+                    </article>
+                    <article class="tea-card">
+                        <h3>Ceylon Highland</h3>
+                        <p class="tea-origin">Nuwara Eliya, Sri Lanka</p>
+                        <p>Bright and citrusy, grown at over 6,000 feet.</p>
+                    </article>
+                    <article class="tea-card">
+                        <h3>Vermont Herbal Blend</h3>
+                        <p class="tea-origin">Vermont, USA</p>
+                        <p>Our own blend of locally foraged herbs — mint, chamomile, lemon balm.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="story" class="section">
+            <div class="container story-grid">
+                <div>
+                    <h2>Our story</h2>
+                    <p>Steeped started in 2024 in a small kitchen in Vermont. We were tired of supermarket tea bags and wanted something better — tea you could trace back to a person, a place, a season.</p>
+                    <p>Today, we're a tiny team serving around 600 subscribers. We work directly with growers across Asia and pack every box ourselves. It's slow, and that's the point.</p>
+                    <p>We believe tea is a daily ritual worth slowing down for.</p>
+                </div>
+                <div class="story-side">
+                    <blockquote>
+                        <p>"The best part of my morning. I look forward to opening each new box."</p>
+                        <cite>— Maya R., subscriber since 2024</cite>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <section id="subscribe" class="section section-cta">
+            <div class="container">
+                <h2>Ready to slow down?</h2>
+                <p>Join our subscribers and get eight new teas at your door each month.</p>
+                <form class="signup-form" onsubmit="event.preventDefault();">
+                    <label for="email" class="visually-hidden">Email address</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+                <p class="fine-print">$28/month. Pause or cancel anytime. Free shipping in the US.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <p class="footer-logo">Steeped</p>
+                <p>Single-origin tea, slow ritual. Vermont.</p>
+            </div>
+            <div>
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="#subscribe">Subscription</a></li>
+                    <li><a href="#teas">This month's box</a></li>
+                    <li><a href="#">Gift cards</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#story">About</a></li>
+                    <li><a href="#">Growers</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Follow</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Steeped. Made slowly in Vermont.</p>
+        </div>
+    </footer>
+</body>
+</html>

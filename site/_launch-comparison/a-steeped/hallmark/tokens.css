@@ -1,0 +1,91 @@
+/* Hallmark · tokens · theme: Garden
+ * paper-band: light  ·  display-style: italic-serif  ·  accent-hue: chromatic-rose
+ * Single-theme emission for the Steeped landing comparison cell.
+ */
+
+:root {
+  /* Surface — pale sage paper, ink that's almost-but-not-quite black, all tinted green */
+  --color-paper:      oklch(95%  0.030 130);
+  --color-paper-2:    oklch(92%  0.034 130);
+  --color-paper-3:    oklch(87%  0.038 130);
+  --color-rule:       oklch(72%  0.034 130);
+  --color-rule-2:     oklch(56%  0.040 135);
+  --color-muted:      oklch(38%  0.055 152);
+  --color-neutral:    oklch(28%  0.060 158);
+  --color-ink-2:      oklch(20%  0.062 160);
+  --color-ink:        oklch(14%  0.065 160);
+
+  /* Accent — dusty rose, used at < 5 % of any viewport */
+  --color-accent:       #B6485E;
+  --color-accent-hover: oklch(46%  0.14  18);
+  --color-accent-ink:   oklch(98%  0.012 18);
+  --color-focus:        #B6485E;
+
+  /* Type — two-family page: Cormorant Garamond italic display + Geist body.
+     Label register is the body face at small size, uppercase, tracked — not a third family. */
+  --font-display:  "Cormorant Garamond", "Instrument Serif", ui-serif, Georgia, serif;
+  --font-serif:    "Cormorant Garamond", "Instrument Serif", ui-serif, Georgia, serif;
+  --font-body:     "Geist", "Söhne", ui-sans-serif, system-ui, sans-serif;
+  --font-label:    "Geist", "Söhne", ui-sans-serif, system-ui, sans-serif;
+
+  --display-weight: 400;
+  --display-style:  italic;
+
+  /* Scale — 1.25 ratio (major third), 16 px base */
+  --text-xs:         0.75rem;
+  --text-sm:         0.875rem;
+  --text-base:       1rem;
+  --text-md:         1.125rem;
+  --text-lg:         1.375rem;
+  --text-xl:         1.75rem;
+  --text-2xl:        2.25rem;
+  --text-3xl:        2.75rem;
+  --text-4xl:        3.5rem;
+  --text-display:    clamp(3.25rem, 6.0vw + 1.0rem, 5.5rem);
+  --text-display-s:  clamp(2.25rem, 3.5vw + 1rem, 3.5rem);
+
+  /* Rhythm */
+  --lh-tight:        1.05;
+  --lh-snug:         1.22;
+  --lh-normal:       1.55;
+  --lh-relaxed:      1.7;
+
+  --tracking-display: -0.012em;
+  --tracking-tight:   -0.005em;
+  --tracking-normal:  0;
+  --tracking-label:    0.10em;
+
+  /* Space — 4 pt scale */
+  --space-3xs: 0.125rem;
+  --space-2xs: 0.25rem;
+  --space-xs:  0.5rem;
+  --space-sm:  0.75rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6.5rem;
+  --space-4xl: 10rem;
+
+  --section-gap:      6.5rem;
+  --section-head-gap: 1.5rem;
+
+  --page-max:    52rem;     /* narrower than usual — Long Document */
+  --page-gutter: clamp(1.25rem, 4vw, 3rem);
+  --measure:     58ch;
+  --rule-hair:   0.5px;
+  --rule-fine:   1px;
+
+  /* Component shape — Garden runs lightly rounded */
+  --radius-card:  6px;
+  --radius-pill:  999px;
+  --radius-input: 4px;
+
+  /* Motion — three named easings, three durations */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:     cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro:   120ms;
+  --dur-short:   220ms;
+  --dur-long:    420ms;
+}

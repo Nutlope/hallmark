@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Steeped · eight loose-leaf teas, every month, from one Vermont kitchen</title>
+  <meta name="description" content="Steeped sends eight single-origin loose-leaf teas to your door each month. Real growers, real harvests, slow ritual. Founded 2024 in Vermont." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar" aria-label="Primary">
+    <a class="wordmark" href="#" aria-label="Steeped, home">
+      <span class="wordmark__set">Steeped</span>
+      <span class="wordmark__dot" aria-hidden="true"></span>
+    </a>
+
+    <nav class="nav" aria-label="Sections">
+      <a href="#this-month">This month</a>
+      <a href="#how">How it works</a>
+      <a href="#growers">Growers</a>
+      <a href="#dispatch">Dispatch</a>
+    </nav>
+
+    <a href="#subscribe" class="topbar__cta">Subscribe</a>
+  </header>
+
+  <main>
+
+    <!-- HERO ------------------------------------------------------------ -->
+    <section class="hero" aria-labelledby="hero-h">
+      <div class="hero__meta">
+        <span class="kicker">Volume 17 · January 2026</span>
+      </div>
+
+      <h1 id="hero-h" class="hero__h">
+        <span class="reveal r1">Eight teas,</span>
+        <span class="reveal r2"><em>one</em> kitchen,</span>
+        <span class="reveal r3">every month.</span>
+      </h1>
+
+      <div class="hero__sub">
+        <p>
+          Steeped is a tiny tea company in Vermont. Every month we taste, choose, and pack
+          eight single-origin loose-leaf teas, then send them to a few hundred people who
+          take their mornings seriously.
+        </p>
+      </div>
+
+      <div class="hero__row">
+        <a href="#subscribe" class="cta cta--primary">Start with this month <span aria-hidden="true">&rarr;</span></a>
+        <a href="#this-month" class="cta cta--ghost">See what&rsquo;s in it</a>
+      </div>
+
+      <figure class="hero__art" aria-hidden="true">
+        <svg viewBox="0 0 360 460" role="img" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <radialGradient id="liquor" cx="50%" cy="35%" r="65%">
+              <stop offset="0%"  stop-color="oklch(0.78 0.150 65)" />
+              <stop offset="60%" stop-color="oklch(0.58 0.140 55)" />
+              <stop offset="100%" stop-color="oklch(0.34 0.110 45)" />
+            </radialGradient>
+            <linearGradient id="glass" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0%"   stop-color="oklch(0.45 0.020 70 / 0.18)" />
+              <stop offset="50%"  stop-color="oklch(0.85 0.020 70 / 0.10)" />
+              <stop offset="100%" stop-color="oklch(0.45 0.020 70 / 0.18)" />
+            </linearGradient>
+            <filter id="steam-blur" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="6" />
+            </filter>
+          </defs>
+
+          <!-- steam -->
+          <g class="steam" filter="url(#steam-blur)" opacity="0.85">
+            <path class="puff p1" d="M150 170 C 130 140, 170 120, 150 90  S 130 50, 152 22" />
+            <path class="puff p2" d="M188 180 C 210 150, 175 130, 200 100 S 220 60, 198 30" />
+            <path class="puff p3" d="M170 180 C 180 150, 162 130, 178 100 S 168 60, 178 36" />
+          </g>
+
+          <!-- glass cup -->
+          <g class="cup">
+            <!-- handle -->
+            <path d="M268 270 C 312 270, 316 350, 268 360" fill="none" stroke="oklch(0.85 0.020 70 / 0.35)" stroke-width="3" />
+            <!-- body -->
+            <path d="M96 232 L 270 232 L 256 392 Q 252 408, 236 408 L 130 408 Q 114 408, 110 392 Z" fill="url(#glass)" stroke="oklch(0.85 0.020 70 / 0.35)" stroke-width="2" />
+            <!-- liquor -->
+            <path d="M104 252 L 262 252 L 252 388 Q 248 400, 236 400 L 130 400 Q 118 400, 114 388 Z" fill="url(#liquor)" />
+            <!-- ellipse top of liquor -->
+            <ellipse cx="183" cy="252" rx="79" ry="9" fill="oklch(0.42 0.120 50)" />
+            <!-- highlight -->
+            <path d="M126 270 Q 122 320, 140 384" stroke="oklch(0.95 0.060 75 / 0.35)" stroke-width="3" fill="none" stroke-linecap="round" />
+          </g>
+
+          <!-- saucer -->
+          <ellipse cx="183" cy="416" rx="118" ry="10" fill="none" stroke="oklch(0.85 0.020 70 / 0.28)" stroke-width="1.5" />
+        </svg>
+        <figcaption class="hero__art-cap">
+          Indian Assam, second flush. Brewed strong, January morning.
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- THIS MONTH (ledger, not card grid) ------------------------------ -->
+    <section class="ledger" id="this-month" aria-labelledby="ledger-h">
+      <div class="ledger__head">
+        <h2 id="ledger-h" class="section-h">What&rsquo;s in this month&rsquo;s box.</h2>
+        <p class="section-sub">
+          Eight loose-leaf teas, between 15 and 25 grams each. Enough for ten to twenty
+          cups. Shipped flat in compostable pouches, no plastic, no foil.
+        </p>
+      </div>
+
+      <ol class="ledger__list">
+        <li class="entry">
+          <span class="entry__no">01</span>
+          <div class="entry__name">
+            <h3>Doke Black Fusion</h3>
+            <p class="entry__origin">Bihar, India · second flush</p>
+          </div>
+          <p class="entry__note">
+            Plummy, with a quiet bitterness underneath, like cocoa nibs.
+            Holds up to a second steep.
+          </p>
+          <span class="entry__grams">22 g</span>
+        </li>
+
+        <li class="entry">
+          <span class="entry__no">02</span>
+          <div class="entry__name">
+            <h3>Tieguanyin, Light Roast</h3>
+            <p class="entry__origin">Anxi, Fujian · spring 2025</p>
+          </div>
+          <p class="entry__note">
+            Orchid on the nose, butter and gardenia in the cup. Drink it from the
+            smallest vessel you own.
+          </p>
+          <span class="entry__grams">15 g</span>
+        </li>
+
+        <li class="entry">
+          <span class="entry__no">03</span>
+          <div class="entry__name">
+            <h3>Nepali Silver Yeti</h3>
+            <p class="entry__origin">Ilam, Nepal · first flush</p>
+          </div>
+          <p class="entry__note">
+            White tea pressed into a quiet cake. Honeysuckle, hay, and a long,
+            cool finish.
+          </p>
+          <span class="entry__grams">18 g</span>
+        </li>
+
+        <li class="entry">
+          <span class="entry__no">04</span>
+          <div class="entry__name">
+            <h3>Sun-Dried Dian Hong</h3>
+            <p class="entry__origin">Lincang, Yunnan · winter pick</p>
+          </div>
+          <p class="entry__note">
+            Heavy with sweet potato and dark sugar. Steeps amber, then deeper
+            amber. A morning tea.
+          </p>
+          <span class="entry__grams">25 g</span>
+        </li>
+
+        <li class="entry">
+          <span class="entry__no">05</span>
+          <div class="entry__name">
+            <h3>Sencha Asanoka</h3>
+            <p class="entry__origin">Kagoshima, Japan · spring</p>
+          </div>
+          <p class="entry__note">
+            Bright, vegetal, with the salt-air edge sencha gets when it&rsquo;s grown
+            close to the coast.
+          </p>
+          <span class="entry__grams">20 g</span>
+        </li>
+
+        <li class="entry">
+          <span class="entry__no">06</span>
+          <div class="entry__name">
+            <h3>High-Mountain Oolong</h3>
+            <p class="entry__origin">Lishan, Taiwan · 2,200 m</p>
+          </div>
+          <p class="entry__note">
+            Cool and floral, no smoke. The roast is so light you taste the leaf
+            instead of the fire.
+          </p>
+          <span class="entry__grams">15 g</span>
+        </li>
+
+        <li class="entry">
+          <span class="entry__no">07</span>
+          <div class="entry__name">
+            <h3>Ceylon Uva, OP1</h3>
+            <p class="entry__origin">Uva, Sri Lanka · estate-picked</p>
+          </div>
+          <p class="entry__note">
+            Brisk, citrusy, the kind of black tea that wants a splash of milk and
+            doesn&rsquo;t apologize for it.
+          </p>
+          <span class="entry__grams">22 g</span>
+        </li>
+
+        <li class="entry">
+          <span class="entry__no">08</span>
+          <div class="entry__name">
+            <h3>Aged Shou Pu&rsquo;er</h3>
+            <p class="entry__origin">Menghai, Yunnan · 2018</p>
+          </div>
+          <p class="entry__note">
+            Earthy, sweet, completely calm. Steep three times. The third is the
+            best.
+          </p>
+          <span class="entry__grams">18 g</span>
+        </li>
+      </ol>
+
+      <p class="ledger__foot">
+        Plus a printed dispatch with brewing notes, the story behind each tea, and the
+        name of the farm it came from.
+      </p>
+    </section>
+
+    <!-- HOW IT WORKS (three-beat, not card grid) ----------------------- -->
+    <section class="how" id="how" aria-labelledby="how-h">
+      <h2 id="how-h" class="section-h">How a month works.</h2>
+
+      <div class="how__beats">
+        <article class="beat">
+          <span class="beat__step">First week</span>
+          <p>
+            We taste through samples from growers we know. The eight teas of the month
+            get chosen at a kitchen table in Brattleboro.
+          </p>
+        </article>
+
+        <span class="beat__rule" aria-hidden="true"></span>
+
+        <article class="beat">
+          <span class="beat__step">Second week</span>
+          <p>
+            We weigh out by hand, write the dispatch, fold the pouches, and pack the boxes.
+            Nothing is automated except the address labels.
+          </p>
+        </article>
+
+        <span class="beat__rule" aria-hidden="true"></span>
+
+        <article class="beat">
+          <span class="beat__step">Third week</span>
+          <p>
+            Boxes leave Vermont. You drink the teas slowly across the month, or quickly
+            in a weekend, we don&rsquo;t mind.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- GROWERS -------------------------------------------------------- -->
+    <section class="growers" id="growers" aria-labelledby="growers-h">
+      <div class="growers__lede">
+        <h2 id="growers-h" class="section-h section-h--bone">The teas come from people, not warehouses.</h2>
+        <p>
+          We buy small, directly from cooperatives and family estates in seven countries.
+          Below are the ones whose teas are in this month&rsquo;s box.
+        </p>
+      </div>
+
+      <dl class="growers__list">
+        <div class="grower">
+          <dt>Doke Tea Estate</dt>
+          <dd>Bihar, India. Rajiv Lochan and family. Organic since the beginning.</dd>
+        </div>
+        <div class="grower">
+          <dt>Wang&rsquo;s Tieguanyin</dt>
+          <dd>Anxi, Fujian. Three generations on the same hillside.</dd>
+        </div>
+        <div class="grower">
+          <dt>Jun Chiyabari</dt>
+          <dd>Ilam, Nepal. The Gurung brothers, working at 1,900 m.</dd>
+        </div>
+        <div class="grower">
+          <dt>Mingqian Cooperative</dt>
+          <dd>Lincang, Yunnan. Fourteen farmers sharing one withering shed.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- DISPATCH (editorial pull) -------------------------------------- -->
+    <section class="dispatch" id="dispatch" aria-labelledby="dispatch-h">
+      <p class="dispatch__kicker">From the January dispatch</p>
+      <blockquote class="dispatch__quote">
+        <p>
+          &ldquo;The Lishan was picked the morning after a hard frost. You can taste
+          the cold in it. We argued for an hour about whether to send it this month
+          or hold it back for February. The frost won.&rdquo;
+        </p>
+        <cite>Hana &amp; Tom, founders</cite>
+      </blockquote>
+    </section>
+
+    <!-- SUBSCRIBE ------------------------------------------------------ -->
+    <section class="subscribe" id="subscribe" aria-labelledby="sub-h">
+      <div class="subscribe__inner">
+        <header class="subscribe__head">
+          <h2 id="sub-h">Start with this month.</h2>
+          <p>
+            Subscriptions ship on the third Tuesday. Skip a month any time. Cancel from
+            the email at the bottom of every box.
+          </p>
+        </header>
+
+        <ul class="plans" role="list">
+          <li class="plan">
+            <div class="plan__top">
+              <h3>Monthly</h3>
+              <p class="plan__price"><span>$38</span><small>/ month</small></p>
+            </div>
+            <p class="plan__note">Eight teas. Free shipping inside the US.</p>
+            <a class="plan__cta" href="#">Subscribe monthly</a>
+          </li>
+          <li class="plan plan--featured">
+            <div class="plan__top">
+              <h3>Three months, prepaid</h3>
+              <p class="plan__price"><span>$108</span><small>save $6</small></p>
+            </div>
+            <p class="plan__note">Three boxes, one charge. Renews unless you say stop.</p>
+            <a class="plan__cta" href="#">Subscribe quarterly</a>
+          </li>
+          <li class="plan">
+            <div class="plan__top">
+              <h3>Gift, one box</h3>
+              <p class="plan__price"><span>$42</span><small>one-time</small></p>
+            </div>
+            <p class="plan__note">A single month, with a handwritten note from us.</p>
+            <a class="plan__cta" href="#">Send a gift</a>
+          </li>
+        </ul>
+
+        <p class="subscribe__truth">
+          We are about six hundred subscribers as of this month. Small enough that
+          Hana still writes the dispatch on Sunday afternoon. Big enough that the
+          kettle is on most of the day.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <div class="foot__left">
+      <span class="wordmark wordmark--small">
+        <span class="wordmark__set">Steeped</span>
+        <span class="wordmark__dot" aria-hidden="true"></span>
+      </span>
+      <p>Brattleboro, Vermont. Founded 2024.</p>
+    </div>
+    <nav class="foot__nav" aria-label="Footer">
+      <a href="#">Contact</a>
+      <a href="#">Shipping</a>
+      <a href="#">Wholesale</a>
+      <a href="#">Privacy</a>
+    </nav>
+    <p class="foot__year">&copy; 2026 Steeped Tea Co.</p>
+  </footer>
+
+  <script>
+    // Section reveal on scroll. Opacity + transform only.
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('[data-reveal], .reveal').forEach(el => el.classList.add('is-in'));
+        return;
+      }
+      const io = new IntersectionObserver((entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-in');
+            io.unobserve(e.target);
+          }
+        }
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+
+      document.querySelectorAll('.section-h, .entry, .beat, .grower, .plan, .dispatch__quote, .hero__art')
+        .forEach((el, i) => {
+          el.classList.add('reveal-target');
+          el.style.transitionDelay = (i % 8) * 40 + 'ms';
+          io.observe(el);
+        });
+
+      // Hero words: stagger via class names, fire immediately.
+      requestAnimationFrame(() => {
+        document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('is-in'));
+      });
+    })();
+  </script>
+</body>
+</html>
+</content>

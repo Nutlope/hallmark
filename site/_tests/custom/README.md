@@ -2,7 +2,7 @@
 
 Three landing pages produced by the **custom** theme route — the new opt-in branch added to Hallmark in v0.6.x. Custom is the route for one-off custom palettes + font pairings tuned to a single brand. **Catalog** (the 16 named themes) is the default; custom fires only when the brief signals creative or unique intent.
 
-These three pages are the worked examples written into [`skill/references/custom-theme.md`](../../../skill/references/custom-theme.md) § G — rendered as actual HTML so the palette + pairing can be inspected visually.
+These three pages are the worked examples written into [`references/custom-theme.md`](../../../references/custom-theme.md) § G — rendered as actual HTML so the palette + pairing can be inspected visually.
 
 | # | Brand | Vibe | Anchor | Macrostructure | Axes |
 | --- | --- | --- | --- | --- | --- |
@@ -27,4 +27,4 @@ The 16 named themes can't carry every brand. Coffeebox is closest to **Atelier**
 4. **The Step 5 preview surfaces the palette + pairing.** Before any code is emitted, the user sees the OKLCH values and the chosen fonts in plain text. They can redirect early.
 5. **Diversification is theme-route-blind.** Each custom run records its three axis values (paper-band / display-style / accent-hue) in `.hallmark/log.json`. The next run rotates against them the same way it does against catalog themes.
 
-See [`skill/references/custom-theme.md`](../../../skill/references/custom-theme.md) for the full protocol.
+See [`references/custom-theme.md`](../../../references/custom-theme.md) for the full protocol.

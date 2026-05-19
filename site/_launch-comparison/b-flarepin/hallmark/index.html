@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flarepin — errors with their stack still warm</title>
+  <meta name="description" content="Error tracking for backend developers. Captures uncaught exceptions, slow queries, and async-stack issues in Node, Python, and Go. Self-hosted or managed." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- N5 · floating pill nav -->
+  <div class="nav-wrap">
+    <nav class="nav" aria-label="Primary">
+      <a class="wordmark" href="#" aria-label="Flarepin home">Flarepin</a>
+      <div class="nav__links">
+        <a href="#workbench">Tour</a>
+        <a href="#catches">Captures</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#docs">Docs</a>
+      </div>
+      <a class="nav__cta" href="#start">Start a project</a>
+    </nav>
+  </div>
+
+  <main>
+    <!-- Hero · Workbench -->
+    <header class="hero shell">
+      <div class="hero__grid">
+        <div class="hero__head">
+          <p class="label">Beta · 120 teams · v0.7</p>
+          <h1 class="hero__display">
+            Errors with their stack <em>still warm.</em>
+          </h1>
+          <p class="hero__lede">
+            Flarepin captures uncaught exceptions, slow queries, and async-stack issues in Node, Python, and Go &mdash; before the alert reaches the on-call channel.
+          </p>
+          <div class="hero__cta-row">
+            <a class="btn btn--primary" href="#start" id="start">
+              Start a free project
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="btn btn--ghost" href="#workbench">Read the captures</a>
+          </div>
+          <div class="hero__meta" role="group" aria-label="Key facts">
+            <div>
+              <strong>18 ms</strong>
+              <span>median ingestion latency</span>
+            </div>
+            <div>
+              <strong>120</strong>
+              <span>teams in private beta</span>
+            </div>
+            <div>
+              <strong>2</strong>
+              <span>ex-Stripe SREs, founders</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tier-A pure-CSS trace panel (no fake browser chrome) -->
+        <figure class="trace" role="img" aria-label="Sample captured exception in a server log, with the slow query span pinned">
+          <span class="trace__pin" aria-hidden="true">pinned span</span>
+          <div class="trace__row"><span class="trace__num">14</span><span class="trace__line"><span class="c"># worker.py · POST /v1/checkout</span></span></div>
+          <div class="trace__row"><span class="trace__num">15</span><span class="trace__line"><span class="k">raise</span> <span class="a">PaymentTimeout</span>(<span class="s">"upstream did not ack in 4.0s"</span>)</span></div>
+          <div class="trace__row"><span class="trace__num">16</span><span class="trace__line"><span class="c">  └─ at intents.confirm()  trace#2f9e&hellip;</span></span></div>
+          <div class="trace__row is-pin"><span class="trace__num">17</span><span class="trace__line"><span class="c">     └─ db.exec  </span><span class="a">SELECT &hellip; FROM ledger WHERE ref=$1</span><span class="c">  &mdash; 3,812 ms</span></span></div>
+          <div class="trace__row"><span class="trace__num">18</span><span class="trace__line"><span class="c">          └─ pg.pool.acquire  &mdash; waited 3,790 ms</span></span></div>
+          <div class="trace__row"><span class="trace__num">19</span><span class="trace__line"><span class="c"># async-stack continued in worker_queue.py:</span></span></div>
+          <div class="trace__row"><span class="trace__num">20</span><span class="trace__line"><span class="k">await</span> queue.publish(<span class="s">"refund.requested"</span>, intent.id)  <span class="c"># never reached</span></span></div>
+        </figure>
+      </div>
+    </header>
+
+    <!-- Runtime support strip -->
+    <section class="runtimes shell" aria-label="Supported runtimes">
+      <p class="label">Captures from</p>
+      <div class="runtimes__list">
+        <span>Node 18&plus;</span>
+        <span>Python 3.10&plus;</span>
+        <span>Go 1.21&plus;</span>
+        <span>Bun 1.x</span>
+        <span>Deno 1.40&plus;</span>
+        <span>self-hosted &middot; managed</span>
+      </div>
+    </section>
+
+    <!-- Workbench · numbered steps with code panels -->
+    <section class="workbench shell" id="workbench">
+      <header class="workbench__head">
+        <p class="label">01 &middot; The tour</p>
+        <h2 class="workbench__title">Three lines, then every uncaught exception arrives indexed.</h2>
+        <p class="workbench__lede">No agent. No SDK that mutates your runtime. A pin emits a structured event; Flarepin does the grouping and the stack-trace reconstruction.</p>
+      </header>
+
+      <ol class="workbench__steps">
+        <li class="step">
+          <span class="step__num">01.0</span>
+          <div class="step__caption">
+            <h3>Drop the pin.</h3>
+            <p>Install the runtime package, register a handler, restart the process. The pin runs in the unhandled-rejection slot.</p>
+          </div>
+          <pre class="step__panel" aria-label="Install command in shell">
+<span class="c">$</span> npm i <span class="a">@flarepin/node</span>
+<span class="c">$</span> <span class="k">FLAREPIN_KEY=</span>fp_live_&hellip; node server.js
+<span class="ok">→ pin registered · listening on uncaught + unhandledRejection</span></pre>
+        </li>
+
+        <li class="step">
+          <span class="step__num">02.0</span>
+          <div class="step__caption">
+            <h3>Errors arrive indexed.</h3>
+            <p>Each exception is grouped by its async-stack fingerprint, not by the message string. Re-deploys keep their fingerprint.</p>
+          </div>
+          <pre class="step__panel" aria-label="Indexed exception, structured fields">
+<span class="c">// captured · 02:14:08.221 UTC</span>
+<span class="a">fingerprint</span>: 2f9e&hellip;a01      <span class="c">// stable across deploys</span>
+<span class="a">kind</span>:        PaymentTimeout
+<span class="a">runtime</span>:     node@20.11.1
+<span class="a">last_seen</span>:   3 events &middot; last 41 s ago
+<span class="a">ingestion</span>:   <span class="ok">18 ms</span> p50  &middot;  29 ms p95</pre>
+        </li>
+
+        <li class="step">
+          <span class="step__num">03.0</span>
+          <div class="step__caption">
+            <h3>The slow span is pinned.</h3>
+            <p>Flarepin attaches the span that caused the wait &mdash; query, pool acquisition, outbound HTTP &mdash; alongside the stack. You read one screen and know why.</p>
+          </div>
+          <pre class="step__panel" aria-label="Slow query span with timing">
+<span class="c">span</span>  db.exec   <span class="a">SELECT &hellip; FROM ledger WHERE ref=$1</span>
+       <span class="c">└─</span> waited <span class="k">3,790 ms</span> on pg.pool.acquire
+       <span class="c">└─</span> ran    22 ms
+       <span class="c">└─</span> pinned <span class="ok">✓</span></pre>
+        </li>
+      </ol>
+    </section>
+
+    <!-- What it catches -->
+    <section class="catches" id="catches">
+      <div class="shell">
+        <header class="catches__head">
+          <p class="label">02 &middot; What it catches</p>
+          <h2 class="catches__title">Three failure modes that don't show up in logs.</h2>
+          <p class="catches__lede">Stack traces are the easy case. The unlit corners &mdash; the awaited promise that never resolved, the query that drained the pool, the worker that exited silently &mdash; are what Flarepin is built around.</p>
+        </header>
+
+        <ul class="catches__list">
+          <li>
+            <span class="kind">Exceptions</span>
+            <h4>Uncaught and unhandled.</h4>
+            <p>Synchronous throws, unhandled rejections, panics. Grouped by async-stack fingerprint &mdash; not the message string &mdash; so a reworded throw doesn't double-count.</p>
+          </li>
+          <li>
+            <span class="kind">Slow queries</span>
+            <h4>The span that drained the pool.</h4>
+            <p>Postgres, MySQL, Redis, Mongo. Captured with the parameter shape (never the values), the wait time, the connection acquired-after, and the caller&rsquo;s frame.</p>
+          </li>
+          <li>
+            <span class="kind">Async stacks</span>
+            <h4>Where the promise actually started.</h4>
+            <p>Reconstructed across <code class="mono">await</code> hops in Node and Python, and across goroutine spawns in Go. The frame that scheduled the work is the frame you see first.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing shell" id="pricing">
+      <header class="pricing__head">
+        <p class="label">03 &middot; Pricing</p>
+        <h2 class="pricing__title">Per project. Not per seat, not per event.</h2>
+        <p class="pricing__lede">A project is one runtime &times; one environment. Add as many engineers as you have; the ceiling is the project, not the people on it.</p>
+      </header>
+
+      <div class="pricing__grid">
+        <article class="tier">
+          <p class="tier__name">Solo</p>
+          <p class="tier__price">$0<small>&thinsp;/ project / month</small></p>
+          <p class="tier__sub">One project, one environment, one retained week.</p>
+          <ul class="tier__list">
+            <li>1 project, 1 environment</li>
+            <li>7-day retention</li>
+            <li>Unhandled exceptions, async stacks</li>
+            <li>Self-serve, no card</li>
+          </ul>
+          <a class="btn btn--ghost" href="#start">Start free</a>
+        </article>
+
+        <article class="tier tier--mid" aria-label="Recommended tier">
+          <p class="tier__name">Team &middot; recommended</p>
+          <p class="tier__price">$29<small>&thinsp;/ project / month</small></p>
+          <p class="tier__sub">Per project. Engineers are unlimited.</p>
+          <ul class="tier__list">
+            <li>5 environments per project</li>
+            <li>90-day retention</li>
+            <li>Slow-query spans &middot; async-stack reconstruction</li>
+            <li>Slack, PagerDuty, webhook routes</li>
+            <li>SSO (Google, Okta)</li>
+          </ul>
+          <a class="btn btn--primary" href="#start">Start a Team project</a>
+        </article>
+
+        <article class="tier">
+          <p class="tier__name">Self-hosted</p>
+          <p class="tier__price">$99<small>&thinsp;/ project / month</small></p>
+          <p class="tier__sub">Runs on your hardware. Same binary as managed.</p>
+          <ul class="tier__list">
+            <li>Single binary &middot; Postgres + S3-compatible store</li>
+            <li>Unlimited retention</li>
+            <li>Air-gapped install path</li>
+            <li>License is per project, not per node</li>
+          </ul>
+          <a class="btn btn--ghost" href="#start">Get the binary</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Founders -->
+    <section class="founders shell">
+      <div class="founders__row">
+        <p>
+          Built by two engineers who spent four years writing the post-mortem template at Stripe.
+          Flarepin is what they wanted on the other end of the page.
+        </p>
+        <div class="founders__meta">
+          <p class="label" style="margin-bottom: var(--space-2xs)">The makers</p>
+          <span>Andr&eacute;a Lim &middot; ex-Stripe Payments SRE</span>
+          <span>Ben Okafor &middot; ex-Stripe Capital SRE</span>
+          <span>Lisbon &middot; Brooklyn &middot; 2025&ndash;</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="endline shell" id="docs">
+      <h2>Three lines, in front of the next exception.</h2>
+      <div class="endline__cta">
+        <a class="btn btn--primary" href="#start">Start a free project &rarr;</a>
+        <a class="btn btn--ghost" href="#docs">Read the docs</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Ft2 · inline single line footer -->
+  <footer class="foot shell" role="contentinfo">
+    <a class="wordmark" href="#">Flarepin</a>
+    <span class="foot__meta">v0.7 &middot; beta &middot; built in Lisbon &amp; Brooklyn &middot; 2026</span>
+    <span><a href="#docs">Docs</a> &middot; <a href="#start">Status</a> &middot; <a href="mailto:hi@flarepin.dev">hi@flarepin.dev</a></span>
+  </footer>
+
+</body>
+</html>

@@ -8,23 +8,23 @@ A described screenshot (`input-description.md`) of a Pentagram-style design stud
 
 > *"Extract the DNA — macrostructure, archetypes, type-pairing role, colour anchor, rhythm — and produce a diagnosis report, then optionally rebuild the user's content using the extracted DNA. Never copies pixels. Never claims to identify exact fonts. Refuses obvious template-marketplace or competitor-page screenshots."*
 
-Five-step pipeline (per [`SKILL.md`](../../../skill/SKILL.md) § `hallmark study`):
+Five-step pipeline (per [`SKILL.md`](../../../SKILL.md) § `hallmark study`):
 
 1. **Refuse-or-proceed check** — public reference, not a paid template, not a direct competitor's live page → proceed.
-2. **Vision pass** — read the image into the structured-fields schema in [`study.md`](../../../skill/references/study.md). Output ten fields.
+2. **Vision pass** — read the image into the structured-fields schema in [`study.md`](../../../references/study.md). Output ten fields.
 3. **Diagnosis report** — return the named macrostructure + archetypes + anti-patterns to NOT carry over. See [`diagnosis.md`](diagnosis.md).
 4. **Confirmation question** — ask before building.
 5. **Build** — produce `output.html` + `output.css` with the user's actual six projects, stamped `studied: yes`.
 
 ## What loaded
 
-- [`references/study.md`](../../../skill/references/study.md) — the protocol, schema, and refusal heuristics.
-- [`references/study-examples.md`](../../../skill/references/study-examples.md) — the three worked examples (Pentagram-style portfolio, Klim-specimen, Rauno-personal). The Pentagram example matched our screenshot most closely; the skill imitated the diagnosis structure.
-- [`references/macrostructures.md`](../../../skill/references/macrostructures.md) — to name the page-shape (Specimen).
-- [`references/component-cookbook.md`](../../../skill/references/component-cookbook.md) — for archetype names (H4 Margin-Number Display, Ft1 Single-Line Colophon).
-- [`references/typography.md`](../../../skill/references/typography.md) — for the type-role vocabulary (italic-display + sans-body) and free / paid candidate pairings.
-- [`references/color.md`](../../../skill/references/color.md) — for the warm-orange-at-low-chroma colour-anchor.
-- [`references/microinteractions.md`](../../../skill/references/microinteractions.md) — for the hover-duration anti-pattern callout (the screenshot's 800 ms is too slow; should be 150–200 ms).
+- [`references/study.md`](../../../references/study.md) — the protocol, schema, and refusal heuristics.
+- [`references/study-examples.md`](../../../references/study-examples.md) — the three worked examples (Pentagram-style portfolio, Klim-specimen, Rauno-personal). The Pentagram example matched our screenshot most closely; the skill imitated the diagnosis structure.
+- [`references/macrostructures.md`](../../../references/macrostructures.md) — to name the page-shape (Specimen).
+- [`references/component-cookbook.md`](../../../references/component-cookbook.md) — for archetype names (H4 Margin-Number Display, Ft1 Single-Line Colophon).
+- [`references/typography.md`](../../../references/typography.md) — for the type-role vocabulary (italic-display + sans-body) and free / paid candidate pairings.
+- [`references/color.md`](../../../references/color.md) — for the warm-orange-at-low-chroma colour-anchor.
+- [`references/microinteractions.md`](../../../references/microinteractions.md) — for the hover-duration anti-pattern callout (the screenshot's 800 ms is too slow; should be 150–200 ms).
 
 ## What `study` did *not* do
 
@@ -58,4 +58,4 @@ The screenshot maps neatly to study-examples.md Example A (Pentagram-style edito
 - The confirmation question.
 - The `studied: yes` stamp.
 
-If the input had been a paid Squarespace-template marketplace screenshot, the verb would have refused. If the input had been a direct competitor's live site, the verb would have asked before extracting. Both branches are documented in [`study.md`](../../../skill/references/study.md); this test exercises the proceed-with-public-reference branch.
+If the input had been a paid Squarespace-template marketplace screenshot, the verb would have refused. If the input had been a direct competitor's live site, the verb would have asked before extracting. Both branches are documented in [`study.md`](../../../references/study.md); this test exercises the proceed-with-public-reference branch.

@@ -1,0 +1,55 @@
+/* Flarepin design tokens
+ * Committed color strategy. Single ember accent on warm-tinted neutrals.
+ * All colors OKLCH. Spacing 4pt base. */
+
+:root {
+  /* Surfaces */
+  --bg:        oklch(14% 0.008 50);
+  --bg-1:      oklch(17% 0.010 50);
+  --bg-2:      oklch(21% 0.012 50);
+
+  /* Ink */
+  --ink:       oklch(94% 0.010 70);
+  --ink-mute:  oklch(70% 0.014 60);
+  --ink-dim:   oklch(52% 0.012 55);
+
+  /* Lines */
+  --rule:      oklch(28% 0.010 55);
+  --rule-soft: oklch(24% 0.010 55);
+
+  /* Brand */
+  --ember:      oklch(72% 0.18 50);
+  --ember-deep: oklch(58% 0.20 45);
+  --ember-glow: oklch(78% 0.16 55);
+
+  /* Semantic */
+  --good: oklch(72% 0.15 145);
+  --bad:  oklch(64% 0.20 25);
+
+  /* Type */
+  --font-prose: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono:  "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Scale */
+  --t-display: clamp(3rem, 7vw, 6.5rem);
+  --t-h1:      clamp(2rem, 4vw, 3.25rem);
+  --t-h2:      clamp(1.5rem, 2.4vw, 2.25rem);
+  --t-body:    1rem;
+  --t-small:   0.875rem;
+  --t-micro:   0.75rem;
+
+  /* Spacing (4pt) */
+  --s-1:  4px;
+  --s-2:  8px;
+  --s-3:  12px;
+  --s-4:  16px;
+  --s-6:  24px;
+  --s-8:  32px;
+  --s-12: 48px;
+  --s-16: 64px;
+  --s-24: 96px;
+  --s-32: 128px;
+
+  /* Easing */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}

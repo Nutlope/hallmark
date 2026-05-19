@@ -1,0 +1,50 @@
+/* Steeped — design tokens
+   Generated alongside DESIGN.md. OKLCH per impeccable color law.
+   Committed strategy: --steep carries the brand. */
+
+:root {
+  /* Ink */
+  --ink:         oklch(0.18 0.012 60);
+  --ink-soft:    oklch(0.26 0.013 60);
+  --ink-line:    oklch(0.34 0.014 60);
+  --ink-quiet:   oklch(0.58 0.014 60);
+
+  /* Committed amber */
+  --steep:       oklch(0.62 0.135 55);
+  --steep-deep:  oklch(0.48 0.130 50);
+  --steep-lit:   oklch(0.74 0.140 60);
+
+  /* Warm bone surface */
+  --bone:        oklch(0.96 0.012 80);
+  --bone-edge:   oklch(0.88 0.014 80);
+  --bone-soft:   oklch(0.92 0.013 80);
+
+  /* Supporting hue used once */
+  --leaf:        oklch(0.42 0.085 145);
+
+  /* Type */
+  --font-display: "Source Serif 4", "Source Serif Pro", Georgia, serif;
+  --font-sans:    "Switzer", "Söhne", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+
+  /* Scale (1.333 modular, fluid) */
+  --t-mono:   clamp(0.72rem, 0.69rem + 0.15vw, 0.78rem);
+  --t-small:  clamp(0.86rem, 0.82rem + 0.18vw, 0.94rem);
+  --t-body:   clamp(1rem, 0.95rem + 0.2vw, 1.08rem);
+  --t-lead:   clamp(1.18rem, 1.05rem + 0.55vw, 1.42rem);
+  --t-h3:     clamp(1.4rem, 1.15rem + 1.1vw, 1.9rem);
+  --t-h2:     clamp(2rem, 1.4rem + 2.6vw, 3.2rem);
+  --t-h1:     clamp(3.4rem, 2.2rem + 6vw, 7.4rem);
+
+  /* Space rhythm (intentionally varied) */
+  --s-1: 0.4rem;
+  --s-2: 0.75rem;
+  --s-3: 1.25rem;
+  --s-4: 2rem;
+  --s-5: 3.5rem;
+  --s-6: 5.5rem;
+  --s-7: 8.5rem;
+
+  /* Motion */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+</content>

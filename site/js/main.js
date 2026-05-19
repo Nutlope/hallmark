@@ -1,6 +1,6 @@
 // Hallmark — landing-page interactions.
 // Sticky banner theme picker + per-theme component archetype swap.
-// Dogfoods the patterns in skill/references/microinteractions.md.
+// Dogfoods the patterns in references/microinteractions.md.
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -68,7 +68,7 @@ const STORAGE_KEY = "hallmark-theme";
 /* — Theme → archetype tuple map ——————————————————————————
    Each theme picks one cookbook entry per slot. The point is structural
    variety: switching themes literally rebuilds the page, not just
-   recolours it. See skill/references/component-cookbook.md. */
+   recolours it. See references/component-cookbook.md. */
 const ARCHETYPES = {
   specimen: { hero: "marquee", footer: "colophon" },
   newsprint: { hero: "split", footer: "colophon" },
@@ -97,7 +97,7 @@ const ARCHETYPES = {
 /* — Theme → genre map ——————————————————————————————————
    Each theme belongs to one of four genres — a rule-set overlay that
    scopes which slop-test gates apply and which voice fixtures the
-   skill picks from. See skill/references/genres/. */
+   skill picks from. See references/genres/. */
 const THEME_GENRES = {
   // editorial — the canonical Hallmark voice (12 themes)
   specimen:  "editorial",

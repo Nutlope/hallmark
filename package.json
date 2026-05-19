@@ -18,12 +18,12 @@
   "license": "MIT",
   "type": "module",
   "files": [
-    "skill/SKILL.md",
-    "skill/references"
+    "SKILL.md",
+    "references"
   ],
   "skill": {
-    "entry": "skill/SKILL.md",
-    "references": "skill/references",
+    "entry": "SKILL.md",
+    "references": "references",
     "harnesses": [
       "claude-code",
       "cursor",

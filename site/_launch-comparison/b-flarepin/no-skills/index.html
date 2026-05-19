@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flarepin — Error tracking for backend developers</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="#" class="logo">Flarepin</a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#code">Install</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#docs">Docs</a></li>
+      </ul>
+      <a href="#signup" class="btn btn-primary nav-cta">Start free</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">Beta — 120 teams shipping with Flarepin</p>
+        <h1>Error tracking built for backend developers.</h1>
+        <p class="subhead">Capture uncaught exceptions, slow queries, and async-stack issues across Node, Python, and Go. Self-hosted or managed. 18ms median ingestion latency.</p>
+        <div class="hero-actions">
+          <a href="#signup" class="btn btn-primary">Get started — free tier</a>
+          <a href="#docs" class="btn btn-secondary">Read the docs</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="features">
+      <div class="container">
+        <h2>What Flarepin captures</h2>
+        <div class="feature-grid">
+          <div class="feature">
+            <h3>Uncaught exceptions</h3>
+            <p>Full stack traces with source context, request metadata, and environment state at the moment of failure.</p>
+          </div>
+          <div class="feature">
+            <h3>Slow queries</h3>
+            <p>Database call profiling with query text, parameters, and execution time. Postgres, MySQL, MongoDB, Redis.</p>
+          </div>
+          <div class="feature">
+            <h3>Async-stack issues</h3>
+            <p>Reconstructed async traces across promises, coroutines, and goroutines so you can follow execution across awaits.</p>
+          </div>
+          <div class="feature">
+            <h3>Three runtimes</h3>
+            <p>First-class SDKs for Node, Python, and Go. Minimal overhead, no monkey-patching surprises.</p>
+          </div>
+          <div class="feature">
+            <h3>Self-hosted or managed</h3>
+            <p>Run Flarepin on your own infrastructure with a single binary, or use our managed service.</p>
+          </div>
+          <div class="feature">
+            <h3>18ms ingestion</h3>
+            <p>Median ingestion latency measured across our managed cluster. Events are queryable in under a second.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="code" class="code-section">
+      <div class="container">
+        <h2>Install in two lines</h2>
+        <p>Drop the SDK in, set your project key, and uncaught exceptions are captured automatically.</p>
+        <pre class="code-block"><code>npm install flarepin
+
+import { Flarepin } from 'flarepin';
+Flarepin.init({ key: process.env.FLAREPIN_KEY });</code></pre>
+        <p class="code-caption">Python and Go SDKs follow the same shape. See the docs for framework integrations.</p>
+      </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+      <div class="container">
+        <h2>Pricing</h2>
+        <p>Per project, per month. Cancel anytime.</p>
+        <div class="pricing-grid">
+          <div class="plan">
+            <h3>Free</h3>
+            <p class="price">$0</p>
+            <p class="plan-blurb">For side projects and evaluation.</p>
+            <ul>
+              <li>10k events / month</li>
+              <li>7-day retention</li>
+              <li>1 project</li>
+              <li>Community support</li>
+            </ul>
+            <a href="#signup" class="btn btn-secondary">Start free</a>
+          </div>
+          <div class="plan plan-featured">
+            <h3>Team</h3>
+            <p class="price">$29</p>
+            <p class="plan-blurb">For small teams in production.</p>
+            <ul>
+              <li>500k events / month</li>
+              <li>30-day retention</li>
+              <li>Unlimited projects</li>
+              <li>Slack + email alerts</li>
+            </ul>
+            <a href="#signup" class="btn btn-primary">Start Team plan</a>
+          </div>
+          <div class="plan">
+            <h3>Scale</h3>
+            <p class="price">$99</p>
+            <p class="plan-blurb">For teams running real traffic.</p>
+            <ul>
+              <li>5M events / month</li>
+              <li>90-day retention</li>
+              <li>Self-hosted option</li>
+              <li>Priority support</li>
+            </ul>
+            <a href="#signup" class="btn btn-secondary">Start Scale plan</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <p class="logo">Flarepin</p>
+        <p class="footer-tag">Error tracking for backend developers. Built by 2 ex-Stripe SREs.</p>
+      </div>
+      <div class="footer-cols">
+        <div>
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#docs">Docs</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Changelog</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p class="copyright">&copy; 2026 Flarepin. All rights reserved.</p>
+  </footer>
+</body>
+</html>

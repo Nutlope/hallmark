@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Flarepin · exceptions, slow queries, async stacks. 18ms median.</title>
+<meta name="description" content="Error tracking for backend developers. Node, Python, Go. Self-hosted or managed. 18ms median ingestion latency. In beta with 120 teams." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" />
+<link rel="stylesheet" href="tokens.css" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="topbar" role="banner">
+  <div class="topbar__inner">
+    <a class="brand" href="#" aria-label="Flarepin home">
+      <svg class="brand__mark" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 2 L4 14 H10 L8 22 L20 9 H13 L15 2 Z" fill="currentColor" />
+      </svg>
+      <span class="brand__name">flarepin</span>
+      <span class="brand__status" aria-label="status: beta">beta</span>
+    </a>
+    <nav class="nav" aria-label="primary">
+      <a href="#why">why</a>
+      <a href="#langs">stacks</a>
+      <a href="#deploy">deploy</a>
+      <a href="#pricing">pricing</a>
+      <a href="#founders">team</a>
+    </nav>
+    <div class="topbar__cta">
+      <a class="link-mono" href="#docs">docs</a>
+      <a class="btn btn--ghost" href="#signin">sign in</a>
+      <a class="btn btn--primary" href="#start">start free</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============================================================
+       HERO
+       The headline word is in mono, the stack trace IS the imagery.
+       Latency reading is real: 18ms median.
+       ============================================================ -->
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="hero__grid">
+      <div class="hero__lede">
+        <p class="kicker"><span class="dot"></span>error tracking · self-hosted or managed</p>
+        <h1 id="hero-h" class="display">
+          <span class="display__line">catch what your</span>
+          <span class="display__line">logs are <span class="display__hot">missing</span>.</span>
+        </h1>
+        <p class="lede">
+          Uncaught exceptions, slow queries, and async stack issues in
+          <span class="mono">Node</span>, <span class="mono">Python</span>, and <span class="mono">Go</span>.
+          One agent, three runtimes, your hardware or ours.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary btn--lg" href="#start">start a project</a>
+          <a class="btn btn--ghost btn--lg" href="#self-host">read the self-host guide</a>
+        </div>
+        <ul class="hero__meta">
+          <li><span class="mono">120</span> teams in beta</li>
+          <li><span class="mono">$0 / $29 / $99</span> per project, per month</li>
+          <li>no credit card, no sales call</li>
+        </ul>
+      </div>
+
+      <aside class="hero__trace" aria-label="example captured stack trace">
+        <div class="trace">
+          <div class="trace__head">
+            <span class="trace__tag trace__tag--err">UNCAUGHT</span>
+            <span class="trace__title mono">TypeError: cannot read property 'id' of undefined</span>
+            <span class="trace__when mono">2026-05-18 23:41:07 UTC</span>
+          </div>
+          <ol class="trace__frames">
+            <li class="trace__frame">
+              <span class="frame__file mono">api/checkout/handler.ts</span>
+              <span class="frame__loc mono">:118:24</span>
+              <span class="frame__fn mono">handleCheckout()</span>
+            </li>
+            <li class="trace__frame trace__frame--hot">
+              <span class="frame__file mono">api/checkout/handler.ts</span>
+              <span class="frame__loc mono">:142:11</span>
+              <span class="frame__fn mono">resolveCart(user)</span>
+              <span class="frame__hint">user is null on retry path</span>
+            </li>
+            <li class="trace__frame">
+              <span class="frame__file mono">db/queries/cart.ts</span>
+              <span class="frame__loc mono">:67:9</span>
+              <span class="frame__fn mono">getCartFor(uid)</span>
+            </li>
+            <li class="trace__frame">
+              <span class="frame__file mono">node_modules/pg/lib/client.js</span>
+              <span class="frame__loc mono">:412:7</span>
+              <span class="frame__fn mono">query()</span>
+            </li>
+            <li class="trace__frame trace__frame--mute">
+              <span class="frame__file mono">// 14 internal frames hidden</span>
+            </li>
+          </ol>
+          <footer class="trace__foot">
+            <div class="trace__metric">
+              <span class="metric__label">ingest</span>
+              <span class="metric__val mono" id="latencyVal">18</span>
+              <span class="metric__unit mono">ms</span>
+            </div>
+            <div class="trace__metric">
+              <span class="metric__label">seen</span>
+              <span class="metric__val mono">147x</span>
+              <span class="metric__unit mono">past 24h</span>
+            </div>
+            <div class="trace__metric">
+              <span class="metric__label">first</span>
+              <span class="metric__val mono">v2.41.0</span>
+              <span class="metric__unit mono">deploy</span>
+            </div>
+          </footer>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHY — the 18ms claim, with proof and source.
+       Latency histogram is the imagery. Not a stat card.
+       ============================================================ -->
+  <section class="why" id="why" aria-labelledby="why-h">
+    <div class="why__inner">
+      <div class="why__head">
+        <p class="kicker">why 18ms matters</p>
+        <h2 id="why-h" class="h1">
+          Slow ingestion is why you don't trust your error tracker.
+        </h2>
+      </div>
+
+      <div class="why__body">
+        <p class="prose">
+          When your tracker takes 800ms to acknowledge a payload, you start
+          dropping events at the edge to protect throughput. Then you wonder
+          why your 2am page didn't fire. The fix is not a bigger queue. The
+          fix is ingestion that finishes before the request does.
+        </p>
+
+        <figure class="hist" aria-label="ingestion latency, last 7 days">
+          <figcaption class="hist__cap">
+            <span class="mono">flarepin.ingest.p50</span>
+            <span class="hist__range">last 7d · 4.2M events</span>
+          </figcaption>
+          <svg viewBox="0 0 600 160" class="hist__svg" role="img" aria-label="latency histogram, peak at 18 milliseconds">
+            <defs>
+              <linearGradient id="bar" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="var(--ember)" stop-opacity="0.95" />
+                <stop offset="100%" stop-color="var(--ember-deep)" stop-opacity="0.55" />
+              </linearGradient>
+            </defs>
+            <!-- bars: x positions in 0..600, heights tuned -->
+            <g fill="url(#bar)">
+              <rect x="10"  y="120" width="22" height="32"  />
+              <rect x="38"  y="92"  width="22" height="60"  />
+              <rect x="66"  y="62"  width="22" height="90"  />
+              <rect x="94"  y="38"  width="22" height="114" />
+              <rect x="122" y="22"  width="22" height="130" />
+              <rect x="150" y="14"  width="22" height="138" />
+              <rect x="178" y="28"  width="22" height="124" />
+              <rect x="206" y="52"  width="22" height="100" />
+              <rect x="234" y="78"  width="22" height="74"  />
+              <rect x="262" y="98"  width="22" height="54"  />
+              <rect x="290" y="112" width="22" height="40"  />
+              <rect x="318" y="122" width="22" height="30"  />
+              <rect x="346" y="130" width="22" height="22"  />
+              <rect x="374" y="136" width="22" height="16"  />
+              <rect x="402" y="140" width="22" height="12"  />
+              <rect x="430" y="142" width="22" height="10"  />
+              <rect x="458" y="144" width="22" height="8"   />
+              <rect x="486" y="146" width="22" height="6"   />
+              <rect x="514" y="147" width="22" height="5"   />
+              <rect x="542" y="148" width="22" height="4"   />
+              <rect x="570" y="149" width="22" height="3"   />
+            </g>
+            <!-- p50 marker at 18ms -->
+            <line x1="161" x2="161" y1="6" y2="152" stroke="var(--ember-glow)" stroke-width="1" stroke-dasharray="2 3" />
+            <text x="166" y="14" fill="var(--ember-glow)" font-size="11" font-family="JetBrains Mono, monospace">p50 18ms</text>
+            <!-- axis ticks -->
+            <g font-family="JetBrains Mono, monospace" font-size="10" fill="var(--ink-dim)">
+              <text x="10"  y="158">0</text>
+              <text x="150" y="158">18ms</text>
+              <text x="290" y="158">60ms</text>
+              <text x="430" y="158">200ms</text>
+              <text x="560" y="158">1s+</text>
+            </g>
+          </svg>
+        </figure>
+
+        <dl class="why__claims">
+          <div class="claim">
+            <dt class="claim__t">median ingestion</dt>
+            <dd class="claim__v mono">18ms</dd>
+            <dd class="claim__src">measured at our edge, last 7d, 4.2M events</dd>
+          </div>
+          <div class="claim">
+            <dt class="claim__t">agent overhead</dt>
+            <dd class="claim__v mono">&lt; 0.4%</dd>
+            <dd class="claim__src">p99 CPU on a 2-core node under load</dd>
+          </div>
+          <div class="claim">
+            <dt class="claim__t">async stacks preserved</dt>
+            <dd class="claim__v mono">yes</dd>
+            <dd class="claim__src">across promise / asyncio / goroutine boundaries</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       STACKS — supported runtimes, with the actual install line.
+       Three blocks side by side, but explicitly NOT a card grid:
+       no card chrome, no equal heights, no icon-title-text trio.
+       Each shows: runtime, install line, what's captured uniquely.
+       ============================================================ -->
+  <section class="langs" id="langs" aria-labelledby="langs-h">
+    <div class="langs__inner">
+      <div class="langs__head">
+        <p class="kicker">supported runtimes</p>
+        <h2 id="langs-h" class="h1">Three runtimes, one agent, one wire format.</h2>
+      </div>
+
+      <div class="lang">
+        <div class="lang__left">
+          <h3 class="lang__name">Node</h3>
+          <p class="lang__ver mono">&gt;= 18.0</p>
+        </div>
+        <pre class="snippet"><code class="mono"><span class="cmt"># package.json</span>
+npm install <span class="hi">@flarepin/node</span>
+
+<span class="cmt"># index.ts</span>
+import flarepin from "@flarepin/node";
+flarepin.init({ project: "checkout", env: "prod" });</code></pre>
+        <ul class="lang__catch">
+          <li>uncaught + unhandled rejections</li>
+          <li>express, fastify, koa middleware auto-wrap</li>
+          <li>async_hooks for promise-chain stacks</li>
+          <li>pg, mysql2, prisma slow-query capture &gt; 200ms</li>
+        </ul>
+      </div>
+
+      <div class="lang">
+        <div class="lang__left">
+          <h3 class="lang__name">Python</h3>
+          <p class="lang__ver mono">&gt;= 3.10</p>
+        </div>
+        <pre class="snippet"><code class="mono"><span class="cmt"># pyproject.toml</span>
+pip install <span class="hi">flarepin</span>
+
+<span class="cmt"># app.py</span>
+import flarepin
+flarepin.init(project="checkout", env="prod")</code></pre>
+        <ul class="lang__catch">
+          <li>sys.excepthook + threading hook</li>
+          <li>django, flask, fastapi, starlette wrappers</li>
+          <li>asyncio task stacks reconstructed across awaits</li>
+          <li>sqlalchemy, asyncpg slow-query capture &gt; 200ms</li>
+        </ul>
+      </div>
+
+      <div class="lang">
+        <div class="lang__left">
+          <h3 class="lang__name">Go</h3>
+          <p class="lang__ver mono">&gt;= 1.21</p>
+        </div>
+        <pre class="snippet"><code class="mono"><span class="cmt">// go.mod</span>
+go get <span class="hi">github.com/flarepin/go</span>
+
+<span class="cmt">// main.go</span>
+flarepin.Init(flarepin.Config{
+    Project: "checkout", Env: "prod",
+})</code></pre>
+        <ul class="lang__catch">
+          <li>panic recovery on net/http + chi + gin</li>
+          <li>goroutine stack capture with parent context</li>
+          <li>pgx, database/sql slow-query capture &gt; 200ms</li>
+          <li>build tag flarepin_disable for prod opt-out</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       DEPLOY — self-hosted vs managed.
+       Two columns, no card chrome, clear differentiation.
+       ============================================================ -->
+  <section class="deploy" id="deploy" aria-labelledby="deploy-h">
+    <div class="deploy__inner">
+      <div class="deploy__head">
+        <p class="kicker">deploy</p>
+        <h2 id="deploy-h" class="h1">Run it yourself, or let us run it.</h2>
+        <p class="prose">
+          Both paths use the same agent and the same wire format. You can
+          start managed, export your data, and self-host later. No lock-in,
+          no different SDK, no migration script.
+        </p>
+      </div>
+
+      <div class="deploy__pair">
+        <article class="deploy__col" aria-labelledby="self-h">
+          <header class="deploy__colhead">
+            <h3 id="self-h" class="deploy__title">self-hosted</h3>
+            <p class="deploy__tag mono">apache-2.0 · single binary + postgres</p>
+          </header>
+          <pre class="snippet snippet--full"><code class="mono"><span class="cmt"># docker-compose.yml</span>
+services:
+  flarepin:
+    image: flarepin/server:2.4
+    ports: ["8080:8080"]
+    environment:
+      DATABASE_URL: postgres://flarepin@db/flarepin
+      INGEST_KEY: <span class="hi">$INGEST_KEY</span>
+  db:
+    image: postgres:16
+    volumes: ["pgdata:/var/lib/postgresql/data"]
+
+volumes: { pgdata: {} }</code></pre>
+          <ul class="deploy__list">
+            <li>your hardware, your data, your retention policy</li>
+            <li>no outbound traffic from the agent unless you point it out</li>
+            <li>upgrade by pulling a tag, no migration scripts to run by hand</li>
+          </ul>
+        </article>
+
+        <article class="deploy__col" aria-labelledby="man-h">
+          <header class="deploy__colhead">
+            <h3 id="man-h" class="deploy__title">managed</h3>
+            <p class="deploy__tag mono">eu-west, us-east · 18ms median ingest</p>
+          </header>
+          <pre class="snippet snippet--full"><code class="mono"><span class="cmt"># .env</span>
+FLAREPIN_DSN=<span class="hi">https://ingest.flarepin.dev/p/&lt;project_id&gt;</span>
+FLAREPIN_ENV=prod
+
+<span class="cmt"># that's it. agent picks it up.</span></code></pre>
+          <ul class="deploy__list">
+            <li>EU and US regions, pick one at project creation, no data crosses</li>
+            <li>backups every 6h, 30 day retention on paid plans</li>
+            <li>incident page at <span class="mono">status.flarepin.dev</span></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PRICING — comparison TABLE, not identical card grid.
+       Differentiating rows pulled to the top.
+       ============================================================ -->
+  <section class="pricing" id="pricing" aria-labelledby="pricing-h">
+    <div class="pricing__inner">
+      <div class="pricing__head">
+        <p class="kicker">pricing</p>
+        <h2 id="pricing-h" class="h1">Per project, per month. No seat math.</h2>
+        <p class="prose">
+          Pricing is per project, because that is how on-call rotations are
+          actually scoped. Five engineers on one service pay the same as
+          fifty. Self-hosted is always free.
+        </p>
+      </div>
+
+      <div class="ptable" role="table" aria-label="pricing tiers">
+        <div class="ptable__row ptable__row--head" role="row">
+          <div class="ptable__cell ptable__cell--label" role="rowheader"></div>
+          <div class="ptable__cell" role="columnheader">
+            <p class="tier__name">solo</p>
+            <p class="tier__price mono">$0</p>
+            <p class="tier__per mono">project / month</p>
+          </div>
+          <div class="ptable__cell ptable__cell--marked" role="columnheader">
+            <p class="tier__name">team</p>
+            <p class="tier__price mono">$29</p>
+            <p class="tier__per mono">project / month</p>
+          </div>
+          <div class="ptable__cell" role="columnheader">
+            <p class="tier__name">scale</p>
+            <p class="tier__price mono">$99</p>
+            <p class="tier__per mono">project / month</p>
+          </div>
+        </div>
+
+        <div class="ptable__row" role="row">
+          <div class="ptable__cell ptable__cell--label" role="rowheader">events / month</div>
+          <div class="ptable__cell mono" role="cell">50k</div>
+          <div class="ptable__cell ptable__cell--marked mono" role="cell">2M</div>
+          <div class="ptable__cell mono" role="cell">25M</div>
+        </div>
+
+        <div class="ptable__row" role="row">
+          <div class="ptable__cell ptable__cell--label" role="rowheader">retention</div>
+          <div class="ptable__cell mono" role="cell">7d</div>
+          <div class="ptable__cell ptable__cell--marked mono" role="cell">30d</div>
+          <div class="ptable__cell mono" role="cell">90d</div>
+        </div>
+
+        <div class="ptable__row" role="row">
+          <div class="ptable__cell ptable__cell--label" role="rowheader">slow-query capture</div>
+          <div class="ptable__cell" role="cell"><span class="pass">included</span></div>
+          <div class="ptable__cell ptable__cell--marked" role="cell"><span class="pass">included</span></div>
+          <div class="ptable__cell" role="cell"><span class="pass">included</span></div>
+        </div>
+
+        <div class="ptable__row" role="row">
+          <div class="ptable__cell ptable__cell--label" role="rowheader">async stack reconstruction</div>
+          <div class="ptable__cell" role="cell"><span class="pass">included</span></div>
+          <div class="ptable__cell ptable__cell--marked" role="cell"><span class="pass">included</span></div>
+          <div class="ptable__cell" role="cell"><span class="pass">included</span></div>
+        </div>
+
+        <div class="ptable__row" role="row">
+          <div class="ptable__cell ptable__cell--label" role="rowheader">alert destinations</div>
+          <div class="ptable__cell mono" role="cell">email</div>
+          <div class="ptable__cell ptable__cell--marked mono" role="cell">+ slack, pagerduty</div>
+          <div class="ptable__cell mono" role="cell">+ webhooks, opsgenie</div>
+        </div>
+
+        <div class="ptable__row" role="row">
+          <div class="ptable__cell ptable__cell--label" role="rowheader">teammates per project</div>
+          <div class="ptable__cell mono" role="cell">1</div>
+          <div class="ptable__cell ptable__cell--marked mono" role="cell">unlimited</div>
+          <div class="ptable__cell mono" role="cell">unlimited</div>
+        </div>
+
+        <div class="ptable__row" role="row">
+          <div class="ptable__cell ptable__cell--label" role="rowheader">support</div>
+          <div class="ptable__cell mono" role="cell">community</div>
+          <div class="ptable__cell ptable__cell--marked mono" role="cell">email · 48h</div>
+          <div class="ptable__cell mono" role="cell">shared slack channel</div>
+        </div>
+
+        <div class="ptable__row ptable__row--cta" role="row">
+          <div class="ptable__cell ptable__cell--label" role="rowheader"></div>
+          <div class="ptable__cell" role="cell">
+            <a class="btn btn--ghost btn--block" href="#start-solo">start free</a>
+          </div>
+          <div class="ptable__cell ptable__cell--marked" role="cell">
+            <a class="btn btn--primary btn--block" href="#start-team">start team</a>
+          </div>
+          <div class="ptable__cell" role="cell">
+            <a class="btn btn--ghost btn--block" href="#start-scale">start scale</a>
+          </div>
+        </div>
+      </div>
+
+      <p class="ptable__note">
+        Self-hosted is <span class="mono">$0</span> at every tier. The
+        prices above are for the managed service. We do not charge per
+        seat. We do not have a sales-only "enterprise" tier; if you need
+        more than 25M events, email us and we will price it on the spot.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOUNDERS — honesty over inflation: 2 people, ex-Stripe SRE,
+       120 beta teams, named.
+       ============================================================ -->
+  <section class="founders" id="founders" aria-labelledby="founders-h">
+    <div class="founders__inner">
+      <div class="founders__head">
+        <p class="kicker">team</p>
+        <h2 id="founders-h" class="h1">Two ex-Stripe SREs, one product, 120 beta teams.</h2>
+      </div>
+
+      <div class="founders__body">
+        <p class="prose">
+          We were on the Stripe reliability team for a combined nine years.
+          We have written the postmortems, paged ourselves at 2am, and
+          chased async stacks across three runtimes in production. We
+          started Flarepin because the tools we wanted did not exist at a
+          price a four-person team could afford.
+        </p>
+        <p class="prose">
+          Right now Flarepin is in private beta with 120 teams across
+          payments, infra, and developer tools. Onboarding is a 30-minute
+          shared call with one of us. There is no sales team because there
+          are no salespeople. When you email <span class="mono">hi@flarepin.dev</span>,
+          one of the two of us writes back.
+        </p>
+
+        <dl class="founders__list">
+          <div class="founder">
+            <dt class="founder__name">Mira Kovač</dt>
+            <dd class="founder__role">co-founder · runtime, ingestion</dd>
+            <dd class="founder__bio">Five years at Stripe on the payment-events pipeline. Wrote most of the Go agent.</dd>
+          </div>
+          <div class="founder">
+            <dt class="founder__name">Tomás Avila</dt>
+            <dd class="founder__role">co-founder · async stacks, web</dd>
+            <dd class="founder__bio">Four years at Stripe on Radar SRE. Wrote most of the async-stack reconstruction.</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA — final, single-purpose viewport.
+       ============================================================ -->
+  <section class="cta" aria-labelledby="cta-h">
+    <div class="cta__inner">
+      <h2 id="cta-h" class="cta__h">
+        <span>ship faster.</span>
+        <span>page <span class="cta__hot">less</span>.</span>
+      </h2>
+      <p class="cta__sub">
+        Five minutes from <span class="mono">npm install</span> to the
+        first event in your dashboard.
+      </p>
+      <div class="cta__row">
+        <a class="btn btn--primary btn--lg" href="#start">start a project</a>
+        <a class="btn btn--ghost btn--lg" href="#docs">read the docs</a>
+      </div>
+      <p class="cta__fine">
+        Free tier needs no credit card. Self-hosted needs no account.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <span class="brand__name">flarepin</span>
+      <span class="brand__status" aria-label="status: beta">beta</span>
+    </div>
+    <nav class="footer__nav" aria-label="footer">
+      <div>
+        <p class="footer__h">product</p>
+        <a href="#why">why flarepin</a>
+        <a href="#langs">stacks</a>
+        <a href="#deploy">deploy</a>
+        <a href="#pricing">pricing</a>
+      </div>
+      <div>
+        <p class="footer__h">developers</p>
+        <a href="#docs">docs</a>
+        <a href="#changelog">changelog</a>
+        <a href="#status">status</a>
+        <a href="#open">open source</a>
+      </div>
+      <div>
+        <p class="footer__h">team</p>
+        <a href="#founders">founders</a>
+        <a href="mailto:hi@flarepin.dev">hi@flarepin.dev</a>
+        <a href="#postmortems">postmortems</a>
+      </div>
+    </nav>
+    <p class="footer__fine mono">
+      &copy; 2026 flarepin labs &middot; berlin + buenos aires
+    </p>
+  </div>
+</footer>
+
+<script>
+  // One first-load reveal: count ingest from 0 -> 18ms once.
+  // Respect prefers-reduced-motion.
+  (function () {
+    var el = document.getElementById('latencyVal');
+    if (!el) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) { el.textContent = '18'; return; }
+    var target = 18, dur = 900, start = performance.now();
+    function easeOutQuart(t) { return 1 - Math.pow(1 - t, 4); }
+    function tick(now) {
+      var t = Math.min(1, (now - start) / dur);
+      el.textContent = Math.round(easeOutQuart(t) * target).toString();
+      if (t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
+</script>
+
+</body>
+</html>

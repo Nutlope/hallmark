@@ -1,0 +1,79 @@
+/* Hallmark · tokens · genre: modern-minimal · theme: Quiet
+ * Flarepin · error-tracking SaaS for backend developers
+ */
+
+:root {
+  /* ── type families ────────────────────────────────────────────── */
+  --font-display: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-outlier: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-wordmark: "Fraunces", Georgia, "Times New Roman", serif;
+
+  /* ── palette · Quiet (monochrome with one cool accent) ───────── */
+  --color-paper:        oklch(99.2% 0 0);           /* page surface */
+  --color-paper-2:      oklch(97.6% 0 0);           /* sunken band  */
+  --color-paper-3:      oklch(94.8% 0 0);           /* card sunken  */
+  --color-ink:          oklch(18% 0 0);             /* primary text */
+  --color-ink-hover:    oklch(28% 0 0);             /* button hover */
+  --color-ink-press:    oklch(12% 0 0);             /* button press */
+  --color-ink-2:        oklch(36% 0 0);             /* body subdued */
+  --color-muted:        oklch(50% 0 0);             /* labels       */
+  --color-paper-glow:   oklch(100% 0 0 / 0.6);      /* nav inner highlight */
+  --color-shadow:       oklch(0% 0 0 / 0.2);        /* soft shadow */
+  --color-rule:         oklch(89% 0 0);             /* hairline     */
+  --color-rule-2:       oklch(82% 0 0);             /* mid hairline */
+
+  --color-accent:       oklch(48% 0.16 254);        /* ink-blue     */
+  --color-accent-ink:   oklch(99% 0 0);             /* text on accent fill */
+  --color-accent-soft:  oklch(94% 0.04 254);        /* accent wash  */
+
+  --color-warn:         oklch(58% 0.18 35);         /* terracotta   */
+  --color-ok:           oklch(54% 0.14 158);        /* moss green   */
+
+  --color-focus:        oklch(48% 0.16 254);
+
+  /* ── type scale · 1.25 ratio ─────────────────────────────────── */
+  --text-xs:        0.75rem;
+  --text-sm:        0.8125rem;
+  --text-base:      1rem;
+  --text-md:        1.125rem;
+  --text-lg:        1.375rem;
+  --text-xl:        1.75rem;
+  --text-2xl:       2.125rem;
+  --text-3xl:       2.75rem;
+  --text-4xl:       3.5rem;
+  --text-display-s: clamp(2.25rem, 4vw + 0.5rem, 3.5rem);
+  --text-display:   clamp(2.5rem, 5vw + 0.5rem, 4.5rem);
+
+  /* ── spacing · 4 pt scale ─────────────────────────────────────── */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs:  0.75rem;
+  --space-sm:  1rem;
+  --space-md:  1.5rem;
+  --space-lg:  2rem;
+  --space-xl:  3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 8rem;
+  --space-5xl: 10rem;
+
+  /* ── radius ───────────────────────────────────────────────────── */
+  --radius-xs:  4px;
+  --radius-sm:  6px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+  --radius-pill: 999px;
+
+  /* ── motion ───────────────────────────────────────────────────── */
+  --dur-fast:   120ms;
+  --dur-base:   200ms;
+  --dur-slow:   320ms;
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in:     cubic-bezier(0.55, 0, 1, 0.45);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ── rules ────────────────────────────────────────────────────── */
+  --rule-hair: 1px solid var(--color-rule);
+  --rule-mid:  1px solid var(--color-rule-2);
+}
