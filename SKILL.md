@@ -1,6 +1,6 @@
 ---
 name: hallmark
-description: "Anti-AI-slop design skill — landing pages, audits, redesigns, and DNA-extraction from URLs or screenshots. Four verbs: `audit <target>`, `redesign <target>`, `study <URL | screenshot>`, or default (build new). Fires when ANY: (1) user names a verb; (2) user says a UI feels AI-generated, looks templated, or asks to make it less AI-generated; (3) user attaches a screenshot or URL of a design they admire (`study`); (4) user invokes Hallmark by name; (5) user asks for a greenfield full-page or full-site build with no existing styled UI. Does NOT fire on: (i) component-scope requests (button, navbar, form, modal); (ii) iteration on an existing styled page (tweaks, copy edits, adding a section); (iii) any request inside a codebase with an existing design system, unless Hallmark is invoked by name. Decisive signal: is there existing styled UI the user wants preserved? If yes, stay silent. If no (true greenfield), fire."
+description: "Anti-AI-slop design skill for greenfield pages, audits, redesigns, and DNA-extraction from URLs or screenshots. Use when the user asks to build a new landing page or full-page UI, says a design looks AI-generated or templated, invokes Hallmark by name, or uses audit/redesign/study. Does not activate for single-component requests or iteration on existing styled pages."
 version: 1.0.0
 ---
 
