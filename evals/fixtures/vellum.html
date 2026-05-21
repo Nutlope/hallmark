@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Vellum — write like it's the last draft</title>
+<style>
+  /* Hallmark · macrostructure: long-document · genre: editorial · theme: catalog (Almanac) · contrast: pass (46-50) · slop: pass (51-84) */
+  :root {
+    --paper: oklch(0.98 0.006 95);
+    --ink: oklch(0.25 0.015 95);
+    --muted: oklch(0.5 0.02 95);
+    --line: oklch(0.88 0.01 95);
+    --accent: oklch(0.5 0.1 30);
+    --display: "Fraunces", Georgia, serif;
+    --serif: "Spectral", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { overflow-x: clip; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--serif); font-size: 19px; line-height: 1.6; }
+  .wrap { max-width: 68ch; margin: 0 auto; padding: 0 24px; }
+  a { color: var(--accent); }
+
+  .masthead { padding: 48px 0 96px; }
+  .masthead h1 { font-family: var(--display); font-size: clamp(40px, 7vw, 72px); line-height: 1.02; margin: 0 0 16px; font-weight: 600; }
+  .masthead p { color: var(--muted); font-size: 22px; margin: 0; }
+
+  article { padding: 24px 0 96px; }
+  article h2 { font-family: var(--display); font-size: 30px; font-weight: 600; margin: 48px 0 12px; }
+  article p { margin: 0 0 20px; }
+  article blockquote { font-family: var(--display); font-size: 24px; margin: 32px 0; padding-left: 20px; border-left: 3px solid var(--accent); }
+
+  footer { border-top: 1px solid var(--line); padding: 32px 0; color: var(--muted); font-size: 15px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <h1>Write like it's the last draft.</h1>
+    <p>Vellum is a writing tool for people who finish things.</p>
+  </header>
+
+  <article>
+    <p>The blank page is not the problem. The problem is the second page, and
+      the third, and the slow erosion of the sentence you were proud of at
+      breakfast. Most writing software is built for the first ten minutes —
+      the burst, the outline, the satisfying click of a new document. Vellum
+      is built for the long middle, where books are actually written and
+      abandoned.</p>
+
+    <h2>One column, no chrome</h2>
+    <p>We removed the sidebar. We removed the formatting toolbar. We removed
+      the word count that taunts you from the corner. What remains is a single
+      column of text at a measure your eye can actually follow, and a margin
+      wide enough to think in. The interface gets out of the way so completely
+      that after a few minutes you forget you are using software at all.</p>
+
+    <blockquote>The tool should disappear. The sentence should not.</blockquote>
+
+    <h2>Drafts that remember</h2>
+    <p>Every save is a version, and every version is a place you can return
+      to. Change your mind about a chapter and the old one is still there,
+      whole, the way you left it. Writing is rewriting, and rewriting is only
+      safe when nothing is ever truly lost.</p>
+  </article>
+
+  <footer>Vellum · a writing tool for people who finish things.</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+{
+  "cycle": 8,
+  "evalVersion": "v2",
+  "label": "pulse structural cleanup: gate 80 (icon-tile-above-heading) + gate 81 (mono-as-shorthand) + gate 82 (everything-in-cards). Distinctive face, empty icon tiles dropped, vanity KPI strip de-metered into a baseline fact row, grids varied, hero bottom-weighted, overflow clipped.",
+  "ruleCount": 43,
+  "fixtureCount": 5,
+  "cycleScore": 84.8,
+  "aggDims": {
+    "typography": 4.778,
+    "color": 5,
+    "visual": 5,
+    "layout": 4.222,
+    "motion": 5,
+    "interaction": 5,
+    "responsive": 4.667,
+    "general": 4.667,
+    "craft": 4.057,
+    "structure": 0
+  },
+  "fixtures": [
+    {
+      "name": "ledger",
+      "score100": 86.1,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 3.889,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 5,
+        "general": 5,
+        "craft": 4.143,
+        "structure": 0
+      }
+    },
+    {
+      "name": "fernweh",
+      "score100": 87.2,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 4.444,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 5,
+        "general": 5,
+        "craft": 4.143,
+        "structure": 0
+      }
+    },
+    {
+      "name": "kiln",
+      "score100": 87.7,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 4.444,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 5,
+        "general": 5,
+        "craft": 4.429,
+        "structure": 0
+      }
+    },
+    {
+      "name": "pulse",
+      "score100": 88,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 5,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 5,
+        "general": 5,
+        "craft": 4,
+        "structure": 0
+      }
+    },
+    {
+      "name": "vellum",
+      "score100": 74.9,
+      "dimScores": {
+        "typography": 3.889,
+        "color": 5,
+        "visual": 5,
+        "layout": 3.333,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 3.333,
+        "general": 3.333,
+        "craft": 3.571,
+        "structure": 0
+      }
+    }
+  ],
+  "timestamp": "2026-05-21T10:29:29.372Z"
+}

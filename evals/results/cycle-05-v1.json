@@ -1,0 +1,67 @@
+{
+  "cycle": 5,
+  "evalVersion": "v1",
+  "label": "Cleanup + gate 76 (decorative chart) + gate 77 (feature amputation; detector media-extractor hardened). kiln side-tab/sparkline removed and gallery reflows; ledger motion scoped; stamps + overflow clip + focus rings across all three.",
+  "ruleCount": 37,
+  "fixtureCount": 3,
+  "cycleScore": 98.3,
+  "aggDims": {
+    "typography": 5,
+    "color": 5,
+    "visual": 5,
+    "layout": 5,
+    "motion": 5,
+    "interaction": 5,
+    "responsive": 5,
+    "general": 5,
+    "craft": 4.238
+  },
+  "fixtures": [
+    {
+      "name": "ledger",
+      "score100": 98.1,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 5,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 5,
+        "general": 5,
+        "craft": 4.143
+      }
+    },
+    {
+      "name": "fernweh",
+      "score100": 98.1,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 5,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 5,
+        "general": 5,
+        "craft": 4.143
+      }
+    },
+    {
+      "name": "kiln",
+      "score100": 98.7,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 5,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 5,
+        "general": 5,
+        "craft": 4.429
+      }
+    }
+  ],
+  "timestamp": "2026-05-21T10:20:07.003Z"
+}

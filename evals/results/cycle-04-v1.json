@@ -1,0 +1,67 @@
+{
+  "cycle": 4,
+  "evalVersion": "v1",
+  "label": "Interaction discipline: gate 74 (button hierarchy) + gate 75 (reflexive modal). Secondary register added to ledger/fernweh; fernweh emoji icons replaced with numbered walks; kiln modal swapped for an inline reserve section.",
+  "ruleCount": 37,
+  "fixtureCount": 3,
+  "cycleScore": 85.9,
+  "aggDims": {
+    "typography": 5,
+    "color": 4.722,
+    "visual": 3.889,
+    "layout": 5,
+    "motion": 4.333,
+    "interaction": 5,
+    "responsive": 3.889,
+    "general": 2.778,
+    "craft": 4.048
+  },
+  "fixtures": [
+    {
+      "name": "ledger",
+      "score100": 85.9,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 5,
+        "motion": 3,
+        "interaction": 5,
+        "responsive": 3.333,
+        "general": 3.333,
+        "craft": 4
+      }
+    },
+    {
+      "name": "fernweh",
+      "score100": 86.7,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 5,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 3.333,
+        "general": 1.667,
+        "craft": 4
+      }
+    },
+    {
+      "name": "kiln",
+      "score100": 85.1,
+      "dimScores": {
+        "typography": 5,
+        "color": 4.167,
+        "visual": 1.667,
+        "layout": 5,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 5,
+        "general": 3.333,
+        "craft": 4.143
+      }
+    }
+  ],
+  "timestamp": "2026-05-21T10:17:52.608Z"
+}

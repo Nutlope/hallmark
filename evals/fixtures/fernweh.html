@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fernweh — eight days on foot</title>
+<style>
+  /* Hallmark · macrostructure: narrative-workflow · genre: atmospheric · theme: catalog (Linen) · contrast: pass (46-50) · slop: pass (51-77) */
+  :root {
+    --paper: oklch(0.97 0.012 80);
+    --paper-2: oklch(0.93 0.018 75);
+    --ink: oklch(0.26 0.03 60);
+    --muted: oklch(0.48 0.03 60);
+    --line: oklch(0.86 0.02 75);
+    --accent: oklch(0.52 0.11 40);
+    --accent-ink: oklch(0.98 0.01 80);
+    --bloom: oklch(0.8 0.09 70 / 0.55);
+    --font-display: "Fraunces", Georgia, serif;
+    --font-body: Georgia, "Times New Roman", serif;
+    --s1: 8px; --s2: 16px; --s3: 24px; --s4: 48px; --s5: 96px;
+  }
+  * { box-sizing: border-box; }
+  html, body { overflow-x: clip; }
+  body {
+    margin: 0; color: var(--ink); font-family: var(--font-body);
+    font-size: 18px; line-height: 1.7;
+    background:
+      radial-gradient(60% 50% at 50% 0%, var(--bloom), transparent 70%),
+      var(--paper);
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 var(--s3); }
+  a { color: inherit; }
+  .btn {
+    font: inherit; border: 1px solid var(--ink); border-radius: 999px;
+    padding: 12px 24px; background: var(--accent); color: var(--accent-ink);
+    cursor: pointer; transition: background .2s ease, color .2s ease;
+  }
+  .btn:hover { background: var(--ink); }
+  .btn:active { transform: translateY(1px); }
+  .btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .btn:disabled { opacity: .55; cursor: not-allowed; }
+  .btn--secondary { background: transparent; color: var(--ink); }
+  .btn--secondary:hover { background: var(--paper-2); color: var(--ink); }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+  nav { display: flex; align-items: center; justify-content: space-between; gap: var(--s4); padding: var(--s3) 0; }
+  nav .nav-links { display: flex; gap: var(--s4); align-items: center; }
+  .brand { font-family: var(--font-display); font-size: 22px; }
+
+  .hero { padding: var(--s4) 0 var(--s5); }
+  .hero h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(40px, 8vw, 84px); line-height: 1.05; margin: 0 0 var(--s3); max-width: 18ch; }
+  .hero p { max-width: 60ch; margin: 0 0 var(--s4); color: var(--muted); font-size: 20px; }
+  .hero .ctas { display: flex; gap: var(--s2); }
+
+  .trips { padding: var(--s5) 0; }
+  .trips h2 { font-family: var(--font-display); font-weight: 400; font-size: 34px; margin: 0 0 var(--s4); max-width: 20ch; }
+  .trip-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s4); }
+  .trip { padding: var(--s3) 0; border-top: 1px solid var(--line); }
+  .trip .no { font-family: var(--font-display); font-size: 15px; color: var(--accent); }
+  .trip h3 { font-family: var(--font-display); font-weight: 400; font-size: 24px; margin: 4px 0 var(--s1); }
+  .trip p { color: var(--muted); }
+  .trip .cta { margin-top: var(--s2); display: flex; }
+
+  blockquote { font-family: var(--font-display); font-size: 28px; line-height: 1.4; max-width: 30ch; margin: var(--s5) 0; font-weight: 400; }
+
+  footer { padding: var(--s4) 0; text-align: center; color: var(--muted); font-size: 15px; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <span class="brand">Fernweh</span>
+    <span class="nav-links">
+      <a href="#trips">Trips</a>
+      <a href="#about">Why we walk</a>
+      <a href="#book">Book</a>
+    </span>
+  </nav>
+
+  <header class="hero">
+    <h1>Eight days on foot, nothing booked but the path.</h1>
+    <p>Fernweh runs small walking trips for eight people at a time. No coach
+      transfers, no packed itinerary — just a route, a host who lives there,
+      and the unhurried distance a person can cover between breakfast and dusk.
+      We carry your bags ahead so you carry only the day.</p>
+    <div class="ctas">
+      <button class="btn">See this season's walks</button>
+      <button class="btn btn--secondary">Request the field notes</button>
+    </div>
+  </header>
+
+  <section class="trips" id="trips">
+    <h2>This season</h2>
+    <div class="trip-list">
+      <article class="trip">
+        <div class="no">Walk 01</div>
+        <h3>The Carmarthen ridgeline</h3>
+        <p>A high green spine through mid-Wales, ending each evening in a
+          farmhouse kitchen. Moderate; long days, soft ground.</p>
+        <div class="cta"><button class="btn btn--secondary">Hold a place</button></div>
+      </article>
+      <article class="trip">
+        <div class="no">Walk 02</div>
+        <h3>The Alentejo coast</h3>
+        <p>Cork oak to cliff-edge along Portugal's quiet south. Warm light,
+          flat miles, fish grilled where it lands.</p>
+        <div class="cta"><button class="btn btn--secondary">Hold a place</button></div>
+      </article>
+    </div>
+  </section>
+
+  <blockquote>"We don't tell you what you'll see. We tell you when to start walking."</blockquote>
+
+  <footer>Fernweh · eight walkers, eight days, one host who lives there.</footer>
+</div>
+</body>
+</html>

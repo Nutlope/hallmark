@@ -1,0 +1,67 @@
+{
+  "cycle": 3,
+  "evalVersion": "v1",
+  "label": "Layout discipline: gate 72 (justified text) + gate 73 (skipped heading levels). fernweh de-centred and re-leveled; rote 3-equal grids varied; kiln spacing back on the 4px scale.",
+  "ruleCount": 37,
+  "fixtureCount": 3,
+  "cycleScore": 81.8,
+  "aggDims": {
+    "typography": 5,
+    "color": 4.722,
+    "visual": 3.889,
+    "layout": 5,
+    "motion": 4.333,
+    "interaction": 3.333,
+    "responsive": 3.889,
+    "general": 2.778,
+    "craft": 3.857
+  },
+  "fixtures": [
+    {
+      "name": "ledger",
+      "score100": 83.1,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 5,
+        "motion": 3,
+        "interaction": 3.75,
+        "responsive": 3.333,
+        "general": 3.333,
+        "craft": 4
+      }
+    },
+    {
+      "name": "fernweh",
+      "score100": 80.5,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 5,
+        "motion": 5,
+        "interaction": 2.5,
+        "responsive": 3.333,
+        "general": 1.667,
+        "craft": 3.714
+      }
+    },
+    {
+      "name": "kiln",
+      "score100": 81.7,
+      "dimScores": {
+        "typography": 5,
+        "color": 4.167,
+        "visual": 1.667,
+        "layout": 5,
+        "motion": 5,
+        "interaction": 3.75,
+        "responsive": 5,
+        "general": 3.333,
+        "craft": 3.857
+      }
+    }
+  ],
+  "timestamp": "2026-05-21T10:16:23.998Z"
+}

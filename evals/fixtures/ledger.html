@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ledger — double-entry bookkeeping for your terminal</title>
+<style>
+  /* Hallmark · macrostructure: stat-led · genre: modern-minimal · theme: catalog (Quiet) · contrast: pass (46-50) · slop: pass (51-77) */
+  :root {
+    --paper: oklch(0.985 0.004 250);
+    --paper-2: oklch(0.96 0.005 250);
+    --ink: oklch(0.22 0.02 250);
+    --muted: oklch(0.5 0.02 250);
+    --line: oklch(0.9 0.006 250);
+    --accent: oklch(0.52 0.13 230);
+    --accent-2: oklch(0.46 0.12 230);
+    --accent-ink: oklch(0.99 0.01 230);
+    --font-display: "Hanken Grotesk", system-ui, sans-serif;
+    --font-body: "Source Serif 4", Georgia, serif;
+    --s1: 8px; --s2: 16px; --s3: 24px; --s4: 48px; --s5: 96px;
+  }
+  * { box-sizing: border-box; }
+  html, body { overflow-x: clip; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--font-body); line-height: 1.6; font-size: 17px;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 var(--s3); }
+  .btn {
+    font: inherit; border: 0; border-radius: 8px; padding: 12px 20px;
+    background: var(--accent); color: var(--accent-ink); cursor: pointer;
+    transition: background-color .18s ease, transform .12s ease;
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  .btn:hover { background: var(--accent-2); }
+  .btn:active { transform: translateY(1px); }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .btn:disabled { opacity: .55; cursor: not-allowed; }
+  .btn--secondary { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  .btn--secondary:hover { background: var(--paper-2); }
+  .link { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--line); }
+
+  nav { display: flex; align-items: center; justify-content: space-between; padding: var(--s2) 0; border-bottom: 1px solid var(--line); }
+  nav .links { display: flex; gap: var(--s3); align-items: center; }
+  .brand { font-weight: 700; letter-spacing: -0.01em; }
+
+  .hero { padding: var(--s4) 0 var(--s5); }
+  .hero h1 {
+    font-family: var(--font-display); font-weight: 800; font-size: clamp(40px, 7vw, 76px);
+    line-height: 1.05; margin: 0 0 var(--s3); letter-spacing: -0.03em; max-width: 16ch;
+    color: var(--ink);
+  }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero p { font-size: 21px; color: var(--muted); max-width: 56ch; margin: 0 0 var(--s4); }
+  .hero .row { display: flex; gap: var(--s2); align-items: center; }
+
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--s3); padding: var(--s4) 0; border-block: 1px solid var(--line); }
+  .fact { display: flex; align-items: baseline; gap: 12px; }
+  .fact .n { font-family: var(--font-display); font-size: 28px; letter-spacing: -0.02em; }
+  .fact .l { color: var(--muted); font-size: 15px; }
+
+  .feature { padding: var(--s5) 0; }
+  .feature h2 { font-family: var(--font-display); font-size: 32px; letter-spacing: -0.02em; }
+  .grid3 { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr); gap: var(--s3); margin-top: var(--s4); }
+  .card { background: var(--paper-2); border: 1px solid var(--line); border-radius: 14px; padding: var(--s3); }
+  .card h3 { margin: 0 0 8px; font-size: 19px; }
+  .card p { margin: 0; color: var(--muted); font-size: 16px; }
+  .card pre { margin: 12px 0 0; padding: 12px; background: var(--ink); color: var(--paper); border-radius: 10px; font-size: 13px; overflow:auto; }
+
+  footer { border-top: 1px solid var(--line); padding: var(--s4) 0; color: var(--muted); font-size: 15px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <span class="brand">Ledger</span>
+    <span class="links">
+      <a href="#how">How it works</a>
+      <a href="#install">Install</a>
+      <a href="https://github.com">Source</a>
+      <button class="btn">Get started</button>
+    </span>
+  </nav>
+
+  <header class="hero">
+    <h1>Plain-text books that <em>balance themselves</em>.</h1>
+    <p>Ledger is a double-entry bookkeeping CLI for developers who'd rather
+      keep accounts in a file they own than a SaaS dashboard. Every entry is
+      a line of text; every report is one command.</p>
+    <div class="row">
+      <button class="btn">Install the CLI</button>
+      <button class="btn btn--secondary">Read the docs</button>
+      <a class="link" href="https://github.com">Star on GitHub →</a>
+    </div>
+  </header>
+
+  <section class="facts">
+    <div class="fact"><span class="n">0</span><span class="l">cloud accounts required</span></div>
+    <div class="fact"><span class="n">1</span><span class="l">plain-text file</span></div>
+    <div class="fact"><span class="n">2</span><span class="l">entries per transaction</span></div>
+    <div class="fact"><span class="n">∞</span><span class="l">reports you can pipe</span></div>
+  </section>
+
+  <section class="feature" id="how">
+    <h2>Books as a file, not a service</h2>
+    <div class="grid3">
+      <article class="card">
+        <h3>Append entries</h3>
+        <p>Write transactions in a readable journal format. Comments and tags travel with each line.</p>
+        <pre>ledger add "rent" -120000 assets:checking</pre>
+      </article>
+      <article class="card">
+        <h3>Run reports</h3>
+        <p>Balance sheets and income statements are commands, not screens. Pipe the output anywhere.</p>
+        <pre>ledger report balance --period 2026</pre>
+      </article>
+      <article class="card">
+        <h3>Diff your money</h3>
+        <p>Because the journal is text, git tracks every change. Review your finances like code.</p>
+        <pre>git diff books.journal</pre>
+      </article>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap" style="padding:0">Ledger · MIT-licensed · a plain-text bookkeeping CLI.</div>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+{
+  "cycle": 6,
+  "evalVersion": "v2",
+  "label": "EVAL UPGRADE -> v2 (your evals will break): +6 detector rules (hero-float/gate54, dark-mode reflex, hero-metric, icon-tile-above-heading, mono-as-shorthand, everything-in-cards) + cross-fixture order parameter (macrostructure reuse) + 2 adversarial fixtures (pulse, vellum). Re-measure only, no fixes.",
+  "ruleCount": 43,
+  "fixtureCount": 5,
+  "cycleScore": 76.4,
+  "aggDims": {
+    "typography": 4.444,
+    "color": 4.571,
+    "visual": 4.333,
+    "layout": 3.778,
+    "motion": 4.4,
+    "interaction": 4.75,
+    "responsive": 4.333,
+    "general": 4,
+    "craft": 3.571,
+    "structure": 0
+  },
+  "fixtures": [
+    {
+      "name": "ledger",
+      "score100": 86.1,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 3.889,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 5,
+        "general": 5,
+        "craft": 4.143,
+        "structure": 0
+      }
+    },
+    {
+      "name": "fernweh",
+      "score100": 87.2,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 4.444,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 5,
+        "general": 5,
+        "craft": 4.143,
+        "structure": 0
+      }
+    },
+    {
+      "name": "kiln",
+      "score100": 87.7,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 4.444,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 5,
+        "general": 5,
+        "craft": 4.429,
+        "structure": 0
+      }
+    },
+    {
+      "name": "pulse",
+      "score100": 45.9,
+      "dimScores": {
+        "typography": 3.333,
+        "color": 2.857,
+        "visual": 1.667,
+        "layout": 2.778,
+        "motion": 2,
+        "interaction": 3.75,
+        "responsive": 3.333,
+        "general": 1.667,
+        "craft": 1.571,
+        "structure": 0
+      }
+    },
+    {
+      "name": "vellum",
+      "score100": 74.9,
+      "dimScores": {
+        "typography": 3.889,
+        "color": 5,
+        "visual": 5,
+        "layout": 3.333,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 3.333,
+        "general": 3.333,
+        "craft": 3.571,
+        "structure": 0
+      }
+    }
+  ],
+  "timestamp": "2026-05-21T10:23:44.743Z"
+}

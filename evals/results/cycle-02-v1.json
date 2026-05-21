@@ -1,0 +1,67 @@
+{
+  "cycle": 2,
+  "evalVersion": "v1",
+  "label": "Typography & palette discipline: gate 70 (single-typeface floor) + gate 71 (AI-palette / raw colour in gradients). ledger gets a real pairing and a solid headline; bloom tokenised.",
+  "ruleCount": 37,
+  "fixtureCount": 3,
+  "cycleScore": 78,
+  "aggDims": {
+    "typography": 5,
+    "color": 4.722,
+    "visual": 3.889,
+    "layout": 3.333,
+    "motion": 4.333,
+    "interaction": 3.333,
+    "responsive": 3.889,
+    "general": 2.778,
+    "craft": 3.809
+  },
+  "fixtures": [
+    {
+      "name": "ledger",
+      "score100": 81.3,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 4.167,
+        "motion": 3,
+        "interaction": 3.75,
+        "responsive": 3.333,
+        "general": 3.333,
+        "craft": 4
+      }
+    },
+    {
+      "name": "fernweh",
+      "score100": 74.6,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 2.5,
+        "motion": 5,
+        "interaction": 2.5,
+        "responsive": 3.333,
+        "general": 1.667,
+        "craft": 3.571
+      }
+    },
+    {
+      "name": "kiln",
+      "score100": 78,
+      "dimScores": {
+        "typography": 5,
+        "color": 4.167,
+        "visual": 1.667,
+        "layout": 3.333,
+        "motion": 5,
+        "interaction": 3.75,
+        "responsive": 5,
+        "general": 3.333,
+        "craft": 3.857
+      }
+    }
+  ],
+  "timestamp": "2026-05-21T10:15:21.057Z"
+}

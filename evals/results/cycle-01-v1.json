@@ -1,0 +1,67 @@
+{
+  "cycle": 1,
+  "evalVersion": "v1",
+  "label": "Baseline: skill applied as-is; residual slop across motion, color, layout, interaction, visual.",
+  "ruleCount": 37,
+  "fixtureCount": 3,
+  "cycleScore": 74.2,
+  "aggDims": {
+    "typography": 4.524,
+    "color": 3.611,
+    "visual": 3.889,
+    "layout": 3.333,
+    "motion": 4.333,
+    "interaction": 3.333,
+    "responsive": 3.889,
+    "general": 2.778,
+    "craft": 3.714
+  },
+  "fixtures": [
+    {
+      "name": "ledger",
+      "score100": 71.9,
+      "dimScores": {
+        "typography": 3.571,
+        "color": 2.5,
+        "visual": 5,
+        "layout": 4.167,
+        "motion": 3,
+        "interaction": 3.75,
+        "responsive": 3.333,
+        "general": 3.333,
+        "craft": 3.714
+      }
+    },
+    {
+      "name": "fernweh",
+      "score100": 72.8,
+      "dimScores": {
+        "typography": 5,
+        "color": 4.167,
+        "visual": 5,
+        "layout": 2.5,
+        "motion": 5,
+        "interaction": 2.5,
+        "responsive": 3.333,
+        "general": 1.667,
+        "craft": 3.571
+      }
+    },
+    {
+      "name": "kiln",
+      "score100": 78,
+      "dimScores": {
+        "typography": 5,
+        "color": 4.167,
+        "visual": 1.667,
+        "layout": 3.333,
+        "motion": 5,
+        "interaction": 3.75,
+        "responsive": 5,
+        "general": 3.333,
+        "craft": 3.857
+      }
+    }
+  ],
+  "timestamp": "2026-05-21T10:13:36.611Z"
+}

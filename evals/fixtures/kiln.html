@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kiln &amp; Co. — a seasonal run of stoneware</title>
+<style>
+  /* Hallmark · macrostructure: split-studio · genre: editorial · theme: catalog (Almanac) · contrast: pass (46-50) · slop: pass (51-77) */
+  :root {
+    --paper: oklch(0.95 0.01 95);
+    --paper-2: oklch(0.91 0.014 92);
+    --ink: oklch(0.24 0.02 70);
+    --muted: oklch(0.47 0.025 70);
+    --line: oklch(0.84 0.02 90);
+    --accent: oklch(0.5 0.09 35);
+    --accent-ink: oklch(0.98 0.01 95);
+    --font-display: "Hedvig Letters Serif", Georgia, serif;
+    --font-body: "Iowan Old Style", Georgia, serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+    --s1: 8px; --s2: 16px; --s3: 24px; --s4: 48px; --s5: 96px;
+  }
+  * { box-sizing: border-box; }
+  html, body { overflow-x: clip; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 18px; line-height: 1.65; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 var(--s3); }
+  a { color: inherit; }
+  .btn { font: inherit; border: 1px solid var(--ink); background: var(--accent); color: var(--accent-ink); padding: 12px 20px; border-radius: 4px; cursor: pointer; transition: background .2s ease; }
+  .btn:hover { background: var(--ink); color: var(--paper); }
+  .btn:active { transform: translateY(1px); }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .btn:disabled { opacity: .55; cursor: not-allowed; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+  header.top { display: flex; align-items: center; justify-content: space-between; padding: var(--s3) 0; border-bottom: 1px solid var(--line); }
+  .brand { font-family: var(--font-display); font-size: 22px; }
+
+  .lede { padding: var(--s4) 0 var(--s5); display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: var(--s4); align-items: end; }
+  .lede h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(38px, 6vw, 68px); line-height: 1.08; margin: 0; }
+  .lede .meta { font-family: var(--font-mono); font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .lede .note { color: var(--muted); margin-top: var(--s2); }
+
+  .pieces { padding: var(--s4) 0 var(--s5); }
+  .pieces h2 { font-family: var(--font-display); font-weight: 400; font-size: 30px; }
+  .grid3 { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1.1fr); gap: var(--s3); margin-top: var(--s3); }
+  .piece { background: var(--paper-2); border: 1px solid var(--line); border-radius: 6px; padding: var(--s3); }
+  .piece h3 { font-family: var(--font-display); font-weight: 400; margin: 0 0 4px; font-size: 21px; }
+  .piece .price { font-family: var(--font-mono); color: var(--muted); }
+  .piece p { color: var(--muted); margin: 8px 0 0; }
+
+  .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--s2); padding: var(--s4) 0; }
+  .gallery .ph { aspect-ratio: 4 / 5; background: var(--paper-2); border: 1px solid var(--line); border-radius: 6px; }
+
+  .reserve { border-top: 1px solid var(--line); padding: var(--s5) 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: var(--s4); align-items: start; }
+  .reserve h2 { font-family: var(--font-display); font-weight: 400; font-size: 30px; margin: 0; }
+  .reserve p { margin: 0; color: var(--muted); }
+  .reserve form { display: flex; gap: var(--s2); flex-wrap: wrap; margin-top: var(--s2); }
+  .reserve input { font: inherit; padding: 12px 16px; border: 1px solid var(--line); border-radius: 4px; background: var(--paper); color: var(--ink); flex: 1; min-width: 220px; }
+  .reserve input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+  footer { border-top: 1px solid var(--line); padding: var(--s4) 0; color: var(--muted); font-size: 15px; }
+
+  @media (max-width: 760px) {
+    .lede { grid-template-columns: 1fr; }
+    .grid3 { grid-template-columns: 1fr; }
+    .gallery { grid-template-columns: 1fr 1fr; }
+    .reserve { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <span class="brand">Kiln &amp; Co.</span>
+    <nav style="display:flex; gap:24px; align-items:center;">
+      <a href="#pieces">The run</a>
+      <a href="#about">The workshop</a>
+      <a class="btn" href="#reserve">Reserve a set</a>
+    </nav>
+  </header>
+
+  <section class="lede">
+    <h1>A winter run of stoneware, thrown two at a time.</h1>
+    <div>
+      <p class="meta">Edition 04 · Glaze: ash &amp; iron · 38 pieces</p>
+      <p class="note">Thrown between November and February, fired in two
+        loads. When the run sells out, the edition closes — we don't reprint.</p>
+    </div>
+  </section>
+
+  <section class="pieces" id="pieces">
+    <h2>What we made this season</h2>
+    <div class="grid3">
+      <article class="piece">
+        <h3>Morning bowl</h3>
+        <div class="price">£42</div>
+        <p>A wide, low bowl for the first thing you eat. Iron glaze, unglazed foot.</p>
+      </article>
+      <article class="piece">
+        <h3>Tall carafe</h3>
+        <div class="price">£68</div>
+        <p>Holds a litre. Pours clean from a pulled lip. Ash glaze, slight tilt.</p>
+      </article>
+      <article class="piece">
+        <h3>Pair of cups</h3>
+        <div class="price">£36</div>
+        <p>Sold as two because the wheel makes them in pairs. No two identical.</p>
+      </article>
+    </div>
+
+    <div class="gallery" aria-label="Photographs of the workshop">
+      <div class="ph"></div><div class="ph"></div><div class="ph"></div>
+    </div>
+  </section>
+
+  <section class="reserve" id="reserve">
+    <h2>Reserve a set</h2>
+    <div>
+      <p>Tell us which pieces and we'll hold them through the firing. We reply
+        by hand, usually the same week.</p>
+      <form action="mailto:hello@kilnandco.example" method="post">
+        <input type="email" name="email" placeholder="Your email" aria-label="Your email" required />
+        <button class="btn" type="submit">Hold my pieces</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>Kiln &amp; Co. · two people, one wheel, a run each season.</footer>
+</div>
+</body>
+</html>

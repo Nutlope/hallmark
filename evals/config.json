@@ -1,0 +1,20 @@
+{
+  "evals": {
+    "v1": {
+      "fixtures": [
+        { "name": "ledger", "file": "fixtures/ledger.html", "judge": "fixtures/ledger.judge.json" },
+        { "name": "fernweh", "file": "fixtures/fernweh.html", "judge": "fixtures/fernweh.judge.json" },
+        { "name": "kiln", "file": "fixtures/kiln.html", "judge": "fixtures/kiln.judge.json" }
+      ]
+    },
+    "v2": {
+      "fixtures": [
+        { "name": "ledger", "file": "fixtures/ledger.html", "judge": "fixtures/ledger.judge.json" },
+        { "name": "fernweh", "file": "fixtures/fernweh.html", "judge": "fixtures/fernweh.judge.json" },
+        { "name": "kiln", "file": "fixtures/kiln.html", "judge": "fixtures/kiln.judge.json" },
+        { "name": "pulse", "file": "fixtures/pulse.html", "judge": "fixtures/pulse.judge.json" },
+        { "name": "vellum", "file": "fixtures/vellum.html", "judge": "fixtures/vellum.judge.json" }
+      ]
+    }
+  }
+}

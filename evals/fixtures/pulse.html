@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pulse — developer analytics that actually ship</title>
+<style>
+  /* Hallmark · macrostructure: feature-stack · genre: modern-minimal · theme: catalog (Quiet) · contrast: pass (46-50) · slop: pass (51-84) */
+  :root {
+    --bg: oklch(0.98 0.006 230);
+    --surface: oklch(0.955 0.008 230);
+    --ink: oklch(0.24 0.02 235);
+    --muted: oklch(0.5 0.02 235);
+    --line: oklch(0.9 0.01 230);
+    --accent: oklch(0.52 0.12 200);
+    --accent-2: oklch(0.46 0.11 200);
+    --accent-ink: oklch(0.99 0.01 200);
+    --font: "Schibsted Grotesk", system-ui, sans-serif;
+    --mono: "Space Mono", ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { overflow-x: clip; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 16px; line-height: 1.5; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+  a { color: inherit; }
+  .btn { font: inherit; border: 0; border-radius: 10px; padding: 12px 20px; background: var(--accent); color: var(--accent-ink); cursor: pointer; transition: background-color .18s ease, transform .12s ease; }
+  .btn:hover { background: var(--accent-2); }
+  .btn:active { transform: translateY(1px); }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .btn:disabled { opacity: .55; cursor: not-allowed; }
+  .btn--secondary { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  .btn--secondary:hover { background: var(--surface); }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+  .brand { font-weight: 800; letter-spacing: -0.02em; }
+  nav .links { display: flex; gap: 24px; align-items: center; }
+
+  .hero { padding: 56px 0 96px; }
+  .hero h1 {
+    font-size: clamp(40px, 7vw, 72px); line-height: 1.05; margin: 0 0 16px; max-width: 18ch; letter-spacing: -0.03em;
+    color: var(--ink);
+  }
+  .hero p { color: var(--muted); max-width: 60ch; margin: 0 0 28px; font-size: 19px; }
+  .hero .ctas { display: flex; gap: 12px; }
+
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; padding: 24px 0 64px; }
+  .fact { border-top: 2px solid var(--line); padding-top: 16px; display: flex; align-items: baseline; gap: 12px; }
+  .fact .num { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; }
+  .fact .label { font-family: var(--mono); text-transform: uppercase; font-size: 12px; color: var(--muted); letter-spacing: 0.08em; }
+  .fact .unit { color: var(--muted); font-size: 14px; }
+
+  .features { padding: 64px 0; }
+  .features h2 { font-size: 32px; margin: 0 0 40px; max-width: 22ch; }
+  .grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1.1fr); gap: 16px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+  .card h3 { margin: 0 0 8px; font-size: 19px; }
+  .card p { margin: 0; color: var(--muted); }
+  .card .tag { font-family: var(--mono); font-size: 11px; color: var(--accent-2); text-transform: uppercase; }
+
+  footer { border-top: 1px solid var(--line); padding: 40px 0; color: var(--muted); font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <span class="brand">Pulse</span>
+    <span class="links">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <button class="btn">Start free</button>
+    </span>
+  </nav>
+
+  <header class="hero">
+    <h1>Developer analytics that actually ship.</h1>
+    <p>Pulse turns your event stream into dashboards your whole team will
+      check every morning. Real-time, dark by default, beautiful out of the box.</p>
+    <div class="ctas">
+      <button class="btn">Start free</button>
+      <a class="btn btn--secondary" href="#features">See a live dashboard</a>
+    </div>
+  </header>
+
+  <section class="facts">
+    <div class="fact"><span class="num">1</span><span class="label">SDK</span><span class="unit">drop-in, any language</span></div>
+    <div class="fact"><span class="num">0</span><span class="label">SQL</span><span class="unit">funnels without queries</span></div>
+    <div class="fact"><span class="num">∞</span><span class="label">events</span><span class="unit">retained at full fidelity</span></div>
+  </section>
+
+  <section class="features" id="features">
+    <h2>Everything in one pane</h2>
+    <div class="grid">
+      <article class="card">
+        <span class="tag">Realtime</span>
+        <h3>Live event stream</h3>
+        <p>Watch events land the moment they fire, with sub-second latency.</p>
+      </article>
+      <article class="card">
+        <span class="tag">Insights</span>
+        <h3>Funnels &amp; retention</h3>
+        <p>Build cohorts and funnels without writing a single SQL query.</p>
+      </article>
+      <article class="card">
+        <span class="tag">Alerts</span>
+        <h3>Anomaly alerts</h3>
+        <p>Get pinged in Slack when a metric drifts outside its band.</p>
+      </article>
+    </div>
+  </section>
+
+  <footer>Pulse · developer analytics. Dark by default.</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+{
+  "cycle": 10,
+  "evalVersion": "v2",
+  "label": "Final consolidation: enforce gate 54 (hero bottom-weight) across the three originals; de-meter ledger's big-number stat strip into an inline fact row (clears the hero-metric tell v2 surfaced). All five fixtures detector-clean on v2.",
+  "ruleCount": 43,
+  "fixtureCount": 5,
+  "cycleScore": 98.7,
+  "aggDims": {
+    "typography": 5,
+    "color": 5,
+    "visual": 5,
+    "layout": 5,
+    "motion": 5,
+    "interaction": 5,
+    "responsive": 5,
+    "general": 5,
+    "craft": 4.315,
+    "structure": 5
+  },
+  "fixtures": [
+    {
+      "name": "ledger",
+      "score100": 98.9,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 5,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 5,
+        "general": 5,
+        "craft": 4.429,
+        "structure": 5
+      }
+    },
+    {
+      "name": "fernweh",
+      "score100": 98.3,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 5,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 5,
+        "general": 5,
+        "craft": 4.143,
+        "structure": 5
+      }
+    },
+    {
+      "name": "kiln",
+      "score100": 98.9,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 5,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 5,
+        "general": 5,
+        "craft": 4.429,
+        "structure": 5
+      }
+    },
+    {
+      "name": "pulse",
+      "score100": 98.9,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 5,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 5,
+        "general": 5,
+        "craft": 4.429,
+        "structure": 5
+      }
+    },
+    {
+      "name": "vellum",
+      "score100": 98.3,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 5,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 5,
+        "general": 5,
+        "craft": 4.143,
+        "structure": 5
+      }
+    }
+  ],
+  "timestamp": "2026-05-21T10:31:23.320Z"
+}

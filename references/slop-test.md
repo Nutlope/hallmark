@@ -200,6 +200,144 @@ Universal. Every emitted page must render flawlessly at 320 px, 375 px, 414 px, 
 
 The CSS stamp at Step 6 records mobile pass alongside contrast: `· mobile: pass (36, 59, 61–69)`.
 
+## Eval-hardened gates (70+)
+
+These gates were added by the anti-slop eval harness (`evals/`). Each one
+closes a gap the deterministic detector found that the gates above missed.
+They are checked the same way: every answer must be **no**.
+
+70. **Single typeface across the whole page.** Does the artifact resolve to
+    exactly **one** non-generic `font-family` family for every text element?
+    Gate 39 caps the *ceiling* at three families; this catches the *floor*.
+    One face everywhere is the flat-type tell — the page reads as a
+    word-processor default, not a designed system. The fix is a deliberate
+    pairing: a display register distinct from the body register (the 2+1 rule
+    in [`typography.md`](typography.md)). A monospace used only inside `<code>`
+    does not count as the second face.
+
+71. **AI palette in a gradient, or raw colour inside a gradient.** Does any
+    `linear/radial/conic-gradient(...)` (a) move through the AI signature —
+    violet/purple/indigo → blue/cyan, or any OKLCH hue in the 270–330 band —
+    or (b) contain a raw `#hex` / `oklch(...)` / `rgb(...)` literal instead of
+    a `var(--token)`? Both fail. (a) is the single most-recognised colour tell
+    (sharpens gate 2). (b) is mid-render token improvisation (gate 58) hiding
+    inside a gradient — the model picked the theme, then freestyled the
+    gradient stops. Fix: lift every stop to a named token, and choose a hue
+    family that belongs to the brief, not to the AI-default violet→cyan ramp.
+
+72. **Justified body text.** Is `text-align: justify` set on any prose
+    container (`p`, `li`, article body, lede)? Auto-fail. Browser
+    justification has no hyphenation dictionary by default, so it opens
+    "rivers" of white space down the column — an unmistakable
+    word-processor / AI-export tell. Set prose ragged-right (`text-align:
+    start`/`left`). Justification is admissible only on a true multi-column
+    print specimen with `hyphens: auto` *and* a narrow measure, which a web
+    page almost never is.
+
+73. **Skipped heading level.** Reading the document outline top to bottom,
+    does any heading jump more than one level (e.g. `h1` → `h3` with no `h2`,
+    or `h2` → `h4`)? Auto-fail. Heading levels are the document's
+    machine-readable hierarchy; skipping a level to get a smaller font is
+    styling leaking into structure, and it breaks screen-reader navigation.
+    Fix by using the correct level and styling it down with a class — the
+    visual size and the semantic level are independent decisions.
+
+74. **Every button is primary.** Does the page render three or more
+    button/CTA affordances that all share the same filled accent register,
+    with no secondary/quiet variant defined and used? Fail. When everything
+    shouts, nothing leads — and a wall of identical accent fills is a strong
+    AI tell (the model styled one button and copied it). There must be a
+    visible hierarchy: one primary action per view, the rest as a secondary
+    register (ghost, outline, or plain text link). The secondary variant must
+    actually be *applied*, not just defined.
+
+75. **Reflexive modal / dialog.** Did the build reach for a `<dialog>`,
+    `role="dialog"`, or a `.modal` overlay for content that is not a genuine
+    interruption (a short form, a "learn more", a confirmation the user can
+    already see the result of)? Fail. Modals are for true overlays —
+    destructive confirmations, focus-trapping flows. Reaching for one to hold
+    a paragraph or a single field is the AI default; it costs the user a
+    dismiss and breaks deep-linking. Prefer inline disclosure (`<details>`, an
+    expanding section, or just putting the content on the page).
+
+76. **Decorative sparkline / chart.** Does the page render a sparkline,
+    chart, graph, or data-viz shape (`<svg>` polyline, bars, an "analytics"
+    squiggle) that is *not driven by real data the brief supplied*? Fail.
+    A chart that charts nothing is pure decoration cosplaying as
+    information — one of the clearest "AI dashboard" tells. Either bind it to
+    real numbers the user gave you (and label its axes), or remove it and let
+    type and space carry the section.
+
+77. **Feature amputation on mobile.** In any `@media (max-width: …)` block,
+    is a *content* element (gallery, section, column, card, figure — anything
+    that is not nav/menu/drawer/overlay chrome) set to `display: none`? Fail.
+    Hiding content to "fix" mobile is amputation, not responsive design — the
+    phone user silently loses the thing. Reflow instead: collapse a grid to
+    fewer tracks, stack columns, switch a side-by-side to a carousel, or move
+    the element — but keep it on the page. `display: none` at a breakpoint is
+    only for chrome that has a mobile equivalent (a desktop nav replaced by a
+    sheet).
+
+78. **Defaulting to dark mode reflexively.** Is the page's base surface dark
+    (OKLCH lightness < 0.30, or `color-scheme: dark` with no light counterpart)
+    *without the brief or genre earning it*? Fail. Dark-by-default is the AI
+    dashboard reflex — and it's where the worst ink-on-ink and neon-glow slop
+    breeds. Dark is a deliberate choice for cinema, photography, a genuine
+    night-use tool, or an explicitly atmospheric/midnight theme. If the brief
+    just says "modern" or "developer", start light and considered. When the
+    brief literally says "dark by default", that is the brief's gravity, not a
+    design decision — resist it unless night use is the actual job.
+
+79. **Glassmorphism.** Does any panel combine `backdrop-filter: blur(...)`
+    with a translucent fill (`rgba(... , <1)` / `oklch(... / <1)`)? Fail.
+    Frosted-glass panels are a dated, dead-giveaway AI surface — they wreck
+    contrast (text floats over whatever scrolls behind) and signal "generated
+    in 2023". Use an opaque surface token with a real border and, if you need
+    depth, one restrained shadow. Translucency is for genuine overlays
+    (a sheet over dimmed content), not for every card.
+
+80. **Icon tile stacked above a heading.** Does a feature/value card lead
+    with a coloured rounded-square icon tile (or a decorative `<svg>`) sitting
+    directly on top of its heading? Fail. The icon-tile-over-title stack is
+    one of the most recognised AI card layouts — and the tiles are usually
+    empty gradient squares that say nothing. Lead with the heading. If an icon
+    truly helps, set it inline with the title (small, from one library, with
+    an accessible name), not as a decorative block above it.
+
+81. **Monospace as "technical" shorthand.** Is a monospace face applied to
+    three or more *non-code* contexts (labels, eyebrows, badges, captions,
+    nav, body) to make the page "feel technical"? Fail. Mono outside actual
+    code/keyboard input is costume — it reads as a developer-tool stereotype,
+    not a typographic decision. Keep mono for `<code>`/`<kbd>`/`<pre>` and at
+    most one deliberate register (a single label style). Everywhere else,
+    use the body or display face.
+
+82. **Everything wrapped in a card.** Is nearly every block on the page a
+    bordered, rounded, shadowed card (more than ~6 card/panel/tile wrappers)?
+    Fail. When everything is a card, nothing is grouped — the cards stop
+    meaning "these belong together" and become wallpaper. Let most content sit
+    directly on the page surface; reserve the card treatment for the few
+    groupings that genuinely need to be set apart, and vary their weight.
+
+83. **Long-form reading comfort.** On an essay / article / documentation
+    page, is body leading below **1.5**, or the measure outside **60–75ch**?
+    Fail. Gate 27 caps the measure for all genres; this tightens it for
+    reading-first pages, where a too-tight leading and a too-wide column are
+    what actually make long text exhausting. Body prose meant to be *read*
+    (not scanned) wants `line-height: 1.55–1.7` and a 62–68ch column. Display
+    and UI text are exempt — this gate is about the reading column.
+
+84. **Structural fingerprint reused across the project (order parameter).**
+    Across the set of pages this project has emitted (read the stamps / 
+    `.hallmark/log.json`), do two or more share the same `macrostructure`?
+    Fail. This is the cross-output check the per-page gates cannot make: two
+    pages can each pass every gate above and still be colour-swaps of one
+    skeleton. Variety is a property of the *set*, not the page. When a
+    macrostructure is already taken, pick a different one — and record it in
+    the stamp so the next run can see it. (This is the eval's "order
+    parameter": a single quantity over the whole corpus that signals the
+    template-collapse failure before it spreads.)
+
 ---
 
 If any answer is **yes**, fix it. Do not ship slop.

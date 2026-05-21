@@ -1,0 +1,103 @@
+{
+  "cycle": 9,
+  "evalVersion": "v2",
+  "label": "Order parameter + reading comfort: gate 83 (long-form leading/measure) + gate 84 (cross-output macrostructure reuse). pulse re-keyed stat-led -> feature-stack; vellum stamped long-document with a Fraunces/Spectral pairing, 1.6 leading, 68ch measure, ragged-right. structure 0 -> 5.",
+  "ruleCount": 43,
+  "fixtureCount": 5,
+  "cycleScore": 97.6,
+  "aggDims": {
+    "typography": 5,
+    "color": 5,
+    "visual": 5,
+    "layout": 4.555,
+    "motion": 5,
+    "interaction": 5,
+    "responsive": 5,
+    "general": 5,
+    "craft": 4.257,
+    "structure": 5
+  },
+  "fixtures": [
+    {
+      "name": "ledger",
+      "score100": 96.1,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 3.889,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 5,
+        "general": 5,
+        "craft": 4.143,
+        "structure": 5
+      }
+    },
+    {
+      "name": "fernweh",
+      "score100": 97.2,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 4.444,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 5,
+        "general": 5,
+        "craft": 4.143,
+        "structure": 5
+      }
+    },
+    {
+      "name": "kiln",
+      "score100": 97.7,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 4.444,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 5,
+        "general": 5,
+        "craft": 4.429,
+        "structure": 5
+      }
+    },
+    {
+      "name": "pulse",
+      "score100": 98.9,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 5,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 5,
+        "general": 5,
+        "craft": 4.429,
+        "structure": 5
+      }
+    },
+    {
+      "name": "vellum",
+      "score100": 98.3,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 5,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 5,
+        "general": 5,
+        "craft": 4.143,
+        "structure": 5
+      }
+    }
+  ],
+  "timestamp": "2026-05-21T10:30:31.596Z"
+}

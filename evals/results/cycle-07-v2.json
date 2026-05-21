@@ -1,0 +1,103 @@
+{
+  "cycle": 7,
+  "evalVersion": "v2",
+  "label": "Resist the brief on pulse: gate 78 (dark-mode reflex) + gate 79 (glassmorphism). Flipped to a light single-accent palette; removed neon gradient/glass/gradient-text/side-tab; replaced fabricated 10x/99.99%/50k+ metrics with honest facts; scoped motion, focus rings, button hierarchy.",
+  "ruleCount": 43,
+  "fixtureCount": 5,
+  "cycleScore": 82.4,
+  "aggDims": {
+    "typography": 4.556,
+    "color": 5,
+    "visual": 5,
+    "layout": 3.778,
+    "motion": 5,
+    "interaction": 5,
+    "responsive": 4.333,
+    "general": 4.667,
+    "craft": 3.886,
+    "structure": 0
+  },
+  "fixtures": [
+    {
+      "name": "ledger",
+      "score100": 86.1,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 3.889,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 5,
+        "general": 5,
+        "craft": 4.143,
+        "structure": 0
+      }
+    },
+    {
+      "name": "fernweh",
+      "score100": 87.2,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 4.444,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 5,
+        "general": 5,
+        "craft": 4.143,
+        "structure": 0
+      }
+    },
+    {
+      "name": "kiln",
+      "score100": 87.7,
+      "dimScores": {
+        "typography": 5,
+        "color": 5,
+        "visual": 5,
+        "layout": 4.444,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 5,
+        "general": 5,
+        "craft": 4.429,
+        "structure": 0
+      }
+    },
+    {
+      "name": "pulse",
+      "score100": 76.3,
+      "dimScores": {
+        "typography": 3.889,
+        "color": 5,
+        "visual": 5,
+        "layout": 2.778,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 3.333,
+        "general": 5,
+        "craft": 3.143,
+        "structure": 0
+      }
+    },
+    {
+      "name": "vellum",
+      "score100": 74.9,
+      "dimScores": {
+        "typography": 3.889,
+        "color": 5,
+        "visual": 5,
+        "layout": 3.333,
+        "motion": 5,
+        "interaction": 5,
+        "responsive": 3.333,
+        "general": 3.333,
+        "craft": 3.571,
+        "structure": 0
+      }
+    }
+  ],
+  "timestamp": "2026-05-21T10:25:29.554Z"
+}
