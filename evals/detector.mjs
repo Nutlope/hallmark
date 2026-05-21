@@ -49,10 +49,15 @@ function cssRules(css) {
   return out;
 }
 
-function tokenMap(css) {
+function tokenMap(css, activeTheme) {
   const map = {};
   for (const r of cssRules(css)) {
-    if (!/:root|\[data-theme/.test(r.sel)) continue;
+    const isRoot = /:root/.test(r.sel);
+    const themeM = r.sel.match(/\[data-theme(?:[~^$|*]?=)?["']?([a-z0-9-]+)?["']?\]/i);
+    if (!isRoot && !themeM) continue;
+    // when the page declares an active theme, ignore other themes' token blocks
+    // so a 22-theme design-system stylesheet isn't scored as one page
+    if (themeM && themeM[1] && activeTheme && themeM[1].toLowerCase() !== activeTheme.toLowerCase()) continue;
     for (const m of r.body.matchAll(/(--[a-z0-9-]+)\s*:\s*([^;]+)/gi)) {
       map[m[1].trim()] = m[2].trim();
     }
@@ -87,17 +92,23 @@ function oklchH(value) {
 
 const COLOR_LITERAL = /#[0-9a-fA-F]{3,8}\b|\brgba?\([^)]*\)|\bhsla?\([^)]*\)|\boklch\([^)]*\)|\blab\([^)]*\)/gi;
 
-function fontFamilies(css, map) {
+// Count families that are actually *applied*. Per gate 39, a monospace face
+// counts toward the family budget only when used outside code contexts —
+// counting an unused --font-mono token, or mono inside <pre>/<code>, is the
+// false positive that lit up dev-tool pages.
+function fontFamilies(rules, map) {
   const fams = new Set();
-  for (const m of css.matchAll(/font-family\s*:\s*([^;}]+)/gi)) {
+  for (const r of rules) {
+    if (/:root|\[data-theme/.test(r.sel)) continue;
+    const m = r.body.match(/font-family\s*:\s*([^;}]+)/i);
+    if (!m) continue;
     const resolved = resolveVar(m[1], map);
     const first = resolved.split(',')[0].trim().replace(/['"]/g, '').toLowerCase();
-    if (first && !GENERIC_FAMILIES.has(first) && !first.startsWith('var(')) fams.add(first);
-  }
-  for (const [k, v] of Object.entries(map)) {
-    if (!/--font/.test(k)) continue;
-    const first = String(v).split(',')[0].trim().replace(/['"]/g, '').toLowerCase();
-    if (first && !GENERIC_FAMILIES.has(first) && !first.startsWith('var(')) fams.add(first);
+    if (!first || GENERIC_FAMILIES.has(first) || first.startsWith('var(')) continue;
+    const mono = /mono/.test(first) || /\bmonospace\b/.test(resolved.toLowerCase());
+    const codeSel = /\b(pre|code|kbd|samp)\b/.test(r.sel);
+    if (mono && codeSel) continue;
+    fams.add(first);
   }
   return [...fams];
 }
@@ -205,15 +216,19 @@ const RULES = [
     id: 'color-ai-palette', dim: 'color',
     label: 'AI purple/violet→cyan gradient',
     fn: ({ css }) => {
+      // The tell is the violet/purple -> cyan/blue *ramp*, not a single
+      // deliberate brand hue. Require both ends to be present in one gradient.
       const grads = [...css.matchAll(/(linear|radial|conic)-gradient\([^;}]*\)/gi)].map((m) => m[0]);
       for (const g of grads) {
-        const kw = /purple|violet|indigo|fuchsia|magenta|#8b5cf6|#6366f1|#7c3aed|#a855f7/i.test(g);
-        const cyan = /cyan|teal|#06b6d4|#22d3ee/i.test(g);
+        const violetKw = /purple|violet|indigo|fuchsia|magenta|#8b5cf6|#6366f1|#7c3aed|#a855f7|#b06cff/i.test(g);
+        const cyanKw = /\bcyan\b|\bteal\b|\baqua\b|#06b6d4|#22d3ee|#38d6ff/i.test(g);
         const hues = [...g.matchAll(/oklch\([^)]*\)/gi)].map((x) => oklchH(x[0])).filter((h) => h != null);
-        const aiHue = hues.some((h) => h >= 270 && h <= 330);
-        if ((kw && cyan) || kw || aiHue) return { pass: false, note: `tell in ${g.slice(0, 40)}…` };
+        const hasViolet = hues.some((h) => h >= 270 && h <= 330);
+        const hasCyanBlue = hues.some((h) => h >= 190 && h <= 265);
+        const ramp = (violetKw && cyanKw) || (hasViolet && hasCyanBlue) || (violetKw && hasCyanBlue) || (hasViolet && cyanKw);
+        if (ramp) return { pass: false, note: `violet→cyan ramp in ${g.slice(0, 40)}…` };
       }
-      return { pass: true, note: 'no AI-palette gradient' };
+      return { pass: true, note: 'no violet→cyan ramp' };
     },
   },
   {
@@ -439,8 +454,10 @@ const RULES = [
     id: 'interaction-placeholder-names', dim: 'interaction',
     label: 'Placeholder names / startup clichés (gate 20)',
     fn: ({ html }) => {
-      const bad = /jane doe|john smith|john doe|lorem ipsum|\bacme\b|\bnexus\b|seamless|unleash|\bwidget(?:co|inc)\b/i.test(html);
-      return { pass: !bad, note: bad ? 'placeholder/cliché copy' : 'specific copy' };
+      // Only flag actual placeholder *names* — not ordinary words ("seamless",
+      // "unleash") that legitimately appear in marketing prose.
+      const bad = /jane doe|john smith|john doe|lorem ipsum|\bacme\b|\bwidget(?:co|inc)\b|example\.com/i.test(html);
+      return { pass: !bad, note: bad ? 'placeholder/cliché name' : 'specific copy' };
     },
   },
   {
@@ -618,8 +635,11 @@ const EXTRA_V2 = [
 // ---------------------------------------------------------------- scoring
 function analyze(path, version = 'v1') {
   const doc = loadDoc(path);
-  const map = tokenMap(doc.css);
-  const ctx = { ...doc, map, rules: cssRules(doc.css), fams: fontFamilies(doc.css, map) };
+  const activeTheme = (doc.html.match(/<html[^>]*\bdata-theme=["']([^"']+)["']/i) || [])[1] || '';
+  const map = tokenMap(doc.css, activeTheme);
+  const rules = cssRules(doc.css);
+  const ctx = { ...doc, map, rules, fams: fontFamilies(rules, map) };
+  const themeCount = new Set([...doc.css.matchAll(/\[data-theme(?:[~^$|*]?=)?["']?([a-z0-9-]+)/gi)].map((m) => m[1]).filter(Boolean)).size;
   const ruleset = version === 'v2' ? RULES.concat(EXTRA_V2) : RULES;
 
   const byDim = {};
@@ -634,7 +654,7 @@ function analyze(path, version = 'v1') {
   }
   const dimScores = Object.values(dims).map((d) => d.score);
   const overall = +(dimScores.reduce((a, b) => a + b, 0) / dimScores.length).toFixed(3);
-  return { file: path, genre: doc.genre || 'n/a', dims, overall, ruleCount: ruleset.length };
+  return { file: path, genre: doc.genre || 'n/a', activeTheme, themeCount, multiTheme: themeCount > 3, dims, overall, ruleCount: ruleset.length };
 }
 
 // ---------------------------------------------------------------- cli

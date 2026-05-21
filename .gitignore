@@ -43,3 +43,6 @@ skills-lock.json
 # Launch-day Hallmark vs Impeccable vs no-skills comparison — one-off artifact,
 # not referenced from the marketing site or README. Kept locally if useful.
 site/_launch-comparison/
+
+# Eval audit snapshots (throwaway)
+evals/.site-cache/
