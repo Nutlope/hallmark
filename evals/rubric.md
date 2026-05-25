@@ -26,8 +26,9 @@ scores that job against two external anchors and Hallmark's own craft axes.
 | 8 | **general** | Impeccable + Hallmark | detector | focus-visible, stamp present, full state coverage |
 | 9 | **craft** | Hallmark | LLM judge | A clear position, instant hierarchy, in-spec execution, brief-specific, restrained, structurally varied, honest |
 
-**Fixture score** = mean of the nine dimensions × 20 (0–100).
-**Cycle score** = mean of fixture scores.
+**Fixture score** = mean of the detector dimensions plus craft × 20 (0–100).
+In v2, the cross-fixture `structure` order parameter is also folded into each
+fixture score. **Cycle score** = mean of fixture scores.
 
 ## Judge sidecar (per fixture, 1–5)
 

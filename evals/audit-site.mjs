@@ -18,6 +18,21 @@ const ROOT = path.resolve(HERE, '..');
 const CACHE = path.join(HERE, '.site-cache');
 fs.mkdirSync(CACHE, { recursive: true });
 
+function readCssWithImports(cssPath, seen = new Set()) {
+  const abs = path.resolve(cssPath);
+  if (seen.has(abs) || !fs.existsSync(abs)) return '';
+  seen.add(abs);
+
+  const dir = path.dirname(abs);
+  let css = fs.readFileSync(abs, 'utf8');
+  css = css.replace(/@import\s+(?:url\()?['"]([^'")]+)['"]\)?\s*;/gi, (full, href) => {
+    if (/^https?:|^\/\//i.test(href)) return full; // keep remote imports as-is
+    const importPath = path.resolve(dir, href.split(/[?#]/)[0]);
+    return `/* ${href} */\n${readCssWithImports(importPath, seen)}`;
+  });
+  return css;
+}
+
 function inlinePage(htmlPath) {
   const abs = path.resolve(ROOT, htmlPath);
   const dir = path.dirname(abs);
@@ -28,7 +43,7 @@ function inlinePage(htmlPath) {
     const href = (link.match(/href=["']([^"']+)["']/i) || [])[1];
     if (!href || /^https?:|^\/\//i.test(href)) continue; // skip remote (e.g. Google Fonts)
     const cssPath = path.resolve(dir, href.split(/[?#]/)[0]);
-    if (fs.existsSync(cssPath)) blocks.push(`/* ${href} */\n${fs.readFileSync(cssPath, 'utf8')}`);
+    if (fs.existsSync(cssPath)) blocks.push(`/* ${href} */\n${readCssWithImports(cssPath)}`);
   }
   if (blocks.length) {
     const styleTag = `\n<style data-inlined>\n${blocks.join('\n')}\n</style>\n`;

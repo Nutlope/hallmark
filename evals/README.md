@@ -12,7 +12,7 @@ An eval-driven hillclimb that improved Hallmark against two external anchors:
 
 | File | Role |
 |---|---|
-| `rubric.md` | The scoring rubric: 8 detector dimensions + 1 craft (judge) dimension. |
+| `rubric.md` | The scoring rubric: 8 detector dimensions + craft; v2 also folds in the cross-fixture structure order parameter. |
 | `briefs.md` | The briefs each fixture is the skill exercised on. |
 | `detector.mjs` | Deterministic slop detector — the CLI-checkable subset of the 37 patterns + Hallmark gates. v1 = 37 rules, v2 = 43. |
 | `run.mjs` | Merges detector + judge sidecars, computes the cross-fixture **order parameter**, snapshots a cycle, rebuilds `results/history.md`. |
@@ -24,9 +24,11 @@ An eval-driven hillclimb that improved Hallmark against two external anchors:
 ## Run it
 
 ```bash
+node evals/check.mjs                            # non-mutating regression check
 cd evals
-node detector.mjs fixtures/pulse.html --eval v2   # inspect one page
-node run.mjs --cycle 10 --eval v2 --label "..."   # score a cycle, update history
+node check.mjs --eval v2 --min-score 98         # stricter local check, no writes
+node detector.mjs fixtures/pulse.html --eval v2 # inspect one page
+node run.mjs --cycle 10 --eval v2 --label "..." # score a cycle, update history
 ```
 
 ## The hillclimb (10 cycles)

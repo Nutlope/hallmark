@@ -1,8 +1,9 @@
 # Eval history — Hallmark anti-slop hillclimb
 
-Score = mean of nine dimensions × 20 (0–100). Dimensions 1–8 are the
-deterministic Impeccable detector; `craft` is the LLM-judge mean of
-Hallmark's six axes + honesty.
+Score = mean of detector dimensions plus craft, × 20 (0–100). v2 also
+folds in the cross-fixture `structure` order parameter. Dimensions 1–8
+are the deterministic Impeccable detector; `craft` is the LLM-judge mean
+of Hallmark's six axes + honesty.
 
 | Cycle | Eval | Rules | Score | visua | typog | color | layou | motio | inter | respo | gener | craft | struc | Change |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
