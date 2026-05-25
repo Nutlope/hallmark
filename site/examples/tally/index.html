@@ -7,7 +7,7 @@
 <meta name="description" content="Tally meters every API call, every minute, every byte — and turns it into invoices your finance team trusts." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
@@ -66,7 +66,7 @@
         <div class="invoice__head">
           <div>
             <div class="invoice__title">INV-04212</div>
-            <div style="font-size: var(--text-xs); color: var(--color-ink-2); margin-top: 2px;">Acme Robotics · May 2026</div>
+            <div style="font-size: var(--text-xs); color: var(--color-ink-2); margin-top: var(--space-2xs);">Northstar Robotics · May 2026</div>
           </div>
           <span class="invoice__tag">draft · live</span>
         </div>
@@ -186,7 +186,7 @@
         </div>
 
         <div class="bench__chart">
-          <h4>Revenue · last 30 days <span class="live">live</span></h4>
+          <h3>Revenue · last 30 days <span class="live">live</span></h3>
           <svg viewBox="0 0 600 200" preserveAspectRatio="none" aria-hidden="true">
             <defs>
               <linearGradient id="area-grad" x1="0" y1="0" x2="0" y2="1">
@@ -287,7 +287,7 @@
         <div class="feature__art art-invoice" aria-hidden="true">
           <div class="sheet"><b>INV-04210</b>Bramble · Apr<br/><em>$3,118.40</em></div>
           <div class="sheet"><b>INV-04211</b>Forge · Apr<br/><em>$8,940.20</em></div>
-          <div class="sheet"><b>INV-04212</b>Acme · May<br/><em>$5,142.86</em></div>
+          <div class="sheet"><b>INV-04212</b>Northstar · May<br/><em>$5,142.86</em></div>
         </div>
         <h3 class="feature__title">Invoices customers don't argue with</h3>
         <p class="feature__desc">
@@ -305,7 +305,7 @@
   <div class="container">
     <div class="pricing__head">
       <span class="eyebrow">◇ pricing</span>
-      <h2 class="section-head__title" style="text-align:center; margin-inline:auto;">Plans that scale with you, <em>not</em> against you.</h2>
+      <h2 class="section-head__title">Plans that scale with you, <em>not</em> against you.</h2>
       <div class="pricing__toggle" role="group" aria-label="Billing period">
         <button type="button" data-period="monthly" aria-pressed="true">Monthly</button>
         <button type="button" data-period="annual"  aria-pressed="false">Annual <span class="save">save 20%</span></button>
@@ -398,7 +398,7 @@
     </p>
     <div class="footer__row">
       <div class="footer__col">
-        <h5>Product</h5>
+        <h3>Product</h3>
         <ul>
           <li><a href="#">Metering</a></li>
           <li><a href="#">Pricing models</a></li>
@@ -407,7 +407,7 @@
         </ul>
       </div>
       <div class="footer__col">
-        <h5>Developers</h5>
+        <h3>Developers</h3>
         <ul>
           <li><a href="#">API reference</a></li>
           <li><a href="#">SDKs</a></li>
@@ -416,7 +416,7 @@
         </ul>
       </div>
       <div class="footer__col">
-        <h5>Company</h5>
+        <h3>Company</h3>
         <ul>
           <li><a href="#">About</a></li>
           <li><a href="#">Customers</a></li>
@@ -425,7 +425,7 @@
         </ul>
       </div>
       <div class="footer__col">
-        <h5>Resources</h5>
+        <h3>Resources</h3>
         <ul>
           <li><a href="#">Pricing playbook</a></li>
           <li><a href="#">Changelog</a></li>

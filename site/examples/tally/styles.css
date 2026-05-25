@@ -1,7 +1,7 @@
 @import url("./tokens.css");
 
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; }
+html, body { margin: 0; padding: 0; overflow-x: clip; }
 
 html {
   font-family: var(--font-body);
@@ -69,13 +69,11 @@ button, input, select { font: inherit; color: inherit; }
   display: flex;
   align-items: center;
   gap: var(--space-md);
-  padding: 6px 8px 6px 18px;
-  background: color-mix(in oklch, var(--color-paper-0) 78%, transparent);
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
+  padding: var(--space-xs) var(--space-sm) var(--space-xs) var(--space-lg);
+  background: var(--color-paper-0);
   border: var(--rule-soft);
   border-radius: var(--radius-pill);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 8px 30px -12px rgba(20, 30, 80, 0.18);
+  box-shadow: 0 1px 0 color-mix(in oklch, var(--color-paper-0) 60%, transparent) inset, 0 8px 30px -12px color-mix(in oklch, var(--color-ink-0) 18%, transparent);
   font-size: var(--text-sm);
 }
 
@@ -84,7 +82,7 @@ button, input, select { font: inherit; color: inherit; }
   letter-spacing: -0.01em;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-xs);
   margin-right: var(--space-xs);
 }
 
@@ -92,11 +90,11 @@ button, input, select { font: inherit; color: inherit; }
 
 .nav__links {
   display: flex;
-  gap: 4px;
+  gap: var(--space-2xs);
 }
 
 .nav__link {
-  padding: 8px 14px;
+  padding: var(--space-xs) var(--space-md);
   border-radius: var(--radius-pill);
   color: var(--color-ink-1);
   transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
@@ -106,7 +104,7 @@ button, input, select { font: inherit; color: inherit; }
 .nav__link.is-hover { background: var(--color-paper-2); color: var(--color-ink-0); }
 
 .nav__cta {
-  padding: 8px 14px;
+  padding: var(--space-xs) var(--space-md);
   border-radius: var(--radius-pill);
   background: var(--color-ink-0);
   color: var(--color-paper-0);
@@ -121,12 +119,12 @@ button, input, select { font: inherit; color: inherit; }
 
 @media (max-width: 760px) {
   .nav__links { display: none; }
-  .nav { padding: 6px 8px 6px 14px; }
+  .nav { padding: var(--space-xs) var(--space-sm) var(--space-xs) var(--space-md); }
 }
 
 /* ───────── hero · Marquee Hero ───────── */
 .hero {
-  padding-top: 140px;
+  padding-top: 9rem;
   padding-bottom: var(--space-3xl);
   position: relative;
   overflow: clip;
@@ -148,8 +146,8 @@ button, input, select { font: inherit; color: inherit; }
 .hero__live {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 6px 14px 6px 12px;
+  gap: var(--space-sm);
+  padding: var(--space-xs) var(--space-md) var(--space-xs) var(--space-sm);
   border: var(--rule-soft);
   background: var(--color-paper-0);
   border-radius: var(--radius-pill);
@@ -218,8 +216,8 @@ button, input, select { font: inherit; color: inherit; }
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 14px 22px;
+  gap: var(--space-xs);
+  padding: var(--space-md) var(--space-lg);
   border-radius: var(--radius-pill);
   font-weight: 500;
   font-size: var(--text-base);
@@ -237,7 +235,7 @@ button, input, select { font: inherit; color: inherit; }
   background: var(--color-ink-0);
   color: var(--color-paper-0);
   border-color: var(--color-ink-0);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.16) inset, 0 8px 24px -10px rgba(0, 10, 60, 0.4);
+  box-shadow: 0 1px 0 color-mix(in oklch, var(--color-paper-0) 16%, transparent) inset, 0 8px 24px -10px color-mix(in oklch, var(--color-ink-0) 40%, transparent);
 }
 
 .btn--primary:hover { background: var(--color-accent); border-color: var(--color-accent); transform: translateY(-1px); }
@@ -273,9 +271,9 @@ button, input, select { font: inherit; color: inherit; }
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.7) inset,
-    0 24px 60px -28px rgba(20, 30, 80, 0.25),
-    0 4px 12px -4px rgba(20, 30, 80, 0.08);
+    0 1px 0 color-mix(in oklch, var(--color-paper-0) 70%, transparent) inset,
+    0 24px 60px -28px color-mix(in oklch, var(--color-ink-0) 25%, transparent),
+    0 4px 12px -4px color-mix(in oklch, var(--color-ink-0) 8%, transparent);
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   position: relative;
@@ -307,16 +305,16 @@ button, input, select { font: inherit; color: inherit; }
   font-size: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-success);
-  background: color-mix(in oklch, var(--color-success) 18%, transparent);
-  padding: 3px 8px;
+  color: var(--color-ink-0);
+  background: color-mix(in oklch, var(--color-success) 28%, var(--color-paper-0));
+  padding: var(--space-2xs) var(--space-xs);
   border-radius: var(--radius-pill);
 }
 
 .invoice__rows {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-xs);
   padding: var(--space-sm) 0;
 }
 
@@ -360,7 +358,6 @@ button, input, select { font: inherit; color: inherit; }
   width: 64%;
   background: linear-gradient(90deg, var(--color-accent), var(--color-companion));
   border-radius: inherit;
-  transition: width var(--dur-slow) var(--ease-out);
 }
 
 /* hero marquee strip */
@@ -404,8 +401,8 @@ button, input, select { font: inherit; color: inherit; }
 }
 
 .logos__label {
-  text-align: center;
-  font-family: var(--font-mono);
+  text-align: start;
+  font-family: var(--font-body);
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: 0.16em;
@@ -426,7 +423,7 @@ button, input, select { font: inherit; color: inherit; }
   font-weight: 600;
   font-size: var(--text-md);
   letter-spacing: -0.02em;
-  text-align: center;
+  text-align: start;
   color: var(--color-ink-1);
 }
 
@@ -438,7 +435,7 @@ button, input, select { font: inherit; color: inherit; }
 .logos__row .l-6 { font-weight: 500; font-style: italic; }
 
 @media (max-width: 760px) {
-  .logos__row { grid-template-columns: repeat(3, 1fr); row-gap: var(--space-lg); }
+  .logos__row { grid-template-columns: minmax(0, 1fr) minmax(0, .95fr) minmax(0, 1.05fr); row-gap: var(--space-lg); }
 }
 
 /* ───────── workbench / live demo ───────── */
@@ -482,7 +479,7 @@ button, input, select { font: inherit; color: inherit; }
   border: var(--rule-soft);
   border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: 0 30px 80px -40px rgba(20, 30, 80, 0.2);
+  box-shadow: 0 30px 80px -40px color-mix(in oklch, var(--color-ink-0) 20%, transparent);
 }
 
 @media (max-width: 880px) {
@@ -502,20 +499,20 @@ button, input, select { font: inherit; color: inherit; }
 .bench__brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-sm);
   font-weight: 600;
   margin-bottom: var(--space-lg);
 }
 
-.bench__nav { display: flex; flex-direction: column; gap: 2px; font-size: var(--text-sm); }
+.bench__nav { display: flex; flex-direction: column; gap: var(--space-2xs); font-size: var(--text-sm); }
 
 .bench__navitem {
-  padding: 8px 12px;
+  padding: var(--space-xs) var(--space-sm);
   border-radius: var(--radius-md);
   color: var(--color-ink-1);
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-sm);
   cursor: pointer;
   transition: background var(--dur-fast) var(--ease-out);
 }
@@ -527,7 +524,7 @@ button, input, select { font: inherit; color: inherit; }
 
 .bench__main { padding: var(--space-lg); display: flex; flex-direction: column; gap: var(--space-lg); }
 
-.bench__statrow { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+.bench__statrow { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr) minmax(0, 1fr); gap: var(--space-md); }
 
 @media (max-width: 580px) { .bench__statrow { grid-template-columns: 1fr; } }
 
@@ -551,18 +548,18 @@ button, input, select { font: inherit; color: inherit; }
   font-size: var(--text-xl);
   font-weight: 600;
   letter-spacing: -0.02em;
-  margin-top: 4px;
+  margin-top: var(--space-2xs);
   display: flex;
   align-items: baseline;
-  gap: 6px;
+  gap: var(--space-xs);
 }
 
 .bench__stat .delta {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  color: var(--color-success);
-  background: color-mix(in oklch, var(--color-success) 14%, transparent);
-  padding: 2px 6px;
+  color: var(--color-ink-0);
+  background: color-mix(in oklch, var(--color-success) 24%, var(--color-paper-0));
+  padding: var(--space-2xs) var(--space-xs);
   border-radius: var(--radius-pill);
 }
 
@@ -575,7 +572,7 @@ button, input, select { font: inherit; color: inherit; }
   min-height: 240px;
 }
 
-.bench__chart h4 {
+.bench__chart h3 {
   margin: 0 0 var(--space-sm);
   font-size: var(--text-sm);
   font-weight: 500;
@@ -584,16 +581,16 @@ button, input, select { font: inherit; color: inherit; }
   justify-content: space-between;
 }
 
-.bench__chart h4 .live {
+.bench__chart h3 .live {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   color: var(--color-success);
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--space-xs);
 }
 
-.bench__chart h4 .live::before {
+.bench__chart h3 .live::before {
   content: "";
   width: 6px;
   height: 6px;
@@ -610,7 +607,7 @@ button, input, select { font: inherit; color: inherit; }
   fill: var(--color-paper-0);
   stroke: var(--color-accent);
   stroke-width: 2;
-  filter: drop-shadow(0 4px 10px rgba(60, 30, 220, 0.25));
+  filter: drop-shadow(0 4px 10px color-mix(in oklch, var(--color-accent) 25%, transparent));
 }
 
 /* ───────── stats triplet ───────── */
@@ -620,7 +617,7 @@ button, input, select { font: inherit; color: inherit; }
 
 .stats__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr) minmax(0, 1fr);
   gap: var(--space-md);
   margin-top: var(--space-xl);
 }
@@ -654,7 +651,7 @@ button, input, select { font: inherit; color: inherit; }
   font-size: 0.5em;
   font-weight: 500;
   color: var(--color-ink-1);
-  margin-left: 4px;
+  margin-left: var(--space-2xs);
 }
 
 .stats__label {
@@ -680,7 +677,7 @@ button, input, select { font: inherit; color: inherit; }
 
 .features__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr) minmax(0, 1fr);
   gap: var(--space-md);
   margin-top: var(--space-xl);
 }
@@ -701,7 +698,7 @@ button, input, select { font: inherit; color: inherit; }
 }
 
 .feature:hover {
-  box-shadow: 0 20px 60px -30px rgba(40, 30, 120, 0.28);
+  box-shadow: 0 20px 60px -30px color-mix(in oklch, var(--color-accent) 28%, transparent);
 }
 
 .feature__art {
@@ -736,13 +733,13 @@ button, input, select { font: inherit; color: inherit; }
   letter-spacing: -0.02em;
   color: var(--color-accent);
   background: var(--color-paper-0);
-  padding: 6px 12px;
+  padding: var(--space-xs) var(--space-sm);
   border-radius: var(--radius-pill);
   border: var(--rule-soft);
 }
 
 /* Feature 2 — pricing tiers visualisation */
-.art-tiers { padding: 22px; display: flex; align-items: end; gap: 10px; height: 180px; }
+.art-tiers { padding: var(--space-lg); display: flex; align-items: end; gap: var(--space-sm); height: 180px; }
 .art-tiers > i {
   flex: 1;
   background: linear-gradient(180deg, var(--color-companion), color-mix(in oklch, var(--color-companion) 50%, var(--color-paper-1)));
@@ -757,7 +754,7 @@ button, input, select { font: inherit; color: inherit; }
 
 /* Feature 3 — invoice stack */
 .art-invoice {
-  padding: 22px;
+  padding: var(--space-lg);
 }
 .art-invoice .sheet {
   position: absolute;
@@ -766,16 +763,16 @@ button, input, select { font: inherit; color: inherit; }
   background: var(--color-paper-0);
   border: var(--rule-soft);
   border-radius: var(--radius-md);
-  padding: 14px;
+  padding: var(--space-md);
   font-family: var(--font-mono);
   font-size: 10px;
   color: var(--color-ink-2);
-  box-shadow: 0 6px 16px -8px rgba(20, 30, 80, 0.2);
+  box-shadow: 0 6px 16px -8px color-mix(in oklch, var(--color-ink-0) 20%, transparent);
 }
 .art-invoice .sheet:nth-child(1) { top: 20%; left: 14%; transform: rotate(-4deg); z-index: 1; }
 .art-invoice .sheet:nth-child(2) { top: 16%; left: 22%; transform: rotate(2deg); z-index: 2; }
 .art-invoice .sheet:nth-child(3) { top: 12%; left: 30%; transform: rotate(-1deg); z-index: 3; background: var(--color-accent-tint); }
-.art-invoice .sheet b { display: block; color: var(--color-ink-0); font-size: 12px; margin-bottom: 6px; font-family: var(--font-display); font-weight: 600; }
+.art-invoice .sheet b { display: block; color: var(--color-ink-0); font-size: 12px; margin-bottom: var(--space-xs); font-family: var(--font-display); font-weight: 600; }
 .art-invoice .sheet em { font-style: normal; color: var(--color-accent); font-weight: 600; font-size: 14px; }
 
 .feature__title {
@@ -802,7 +799,7 @@ button, input, select { font: inherit; color: inherit; }
   color: var(--color-accent);
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--space-xs);
 }
 
 .feature__link::after {
@@ -817,12 +814,12 @@ button, input, select { font: inherit; color: inherit; }
   padding: var(--space-4xl) 0 var(--space-3xl);
 }
 
-.pricing__head { text-align: center; margin-bottom: var(--space-xl); }
+.pricing__head { text-align: start; margin-bottom: var(--space-xl); max-width: 68ch; }
 
 .pricing__toggle {
   margin: var(--space-md) auto 0;
   display: inline-flex;
-  padding: 4px;
+  padding: var(--space-2xs);
   background: var(--color-paper-2);
   border: var(--rule-soft);
   border-radius: var(--radius-pill);
@@ -831,7 +828,7 @@ button, input, select { font: inherit; color: inherit; }
 .pricing__toggle button {
   border: 0;
   background: transparent;
-  padding: 8px 16px;
+  padding: var(--space-xs) var(--space-md);
   border-radius: var(--radius-pill);
   font-size: var(--text-sm);
   cursor: pointer;
@@ -839,7 +836,7 @@ button, input, select { font: inherit; color: inherit; }
   transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
 }
 
-.pricing__toggle button[aria-pressed="true"] { background: var(--color-paper-0); color: var(--color-ink-0); font-weight: 500; box-shadow: 0 2px 6px -2px rgba(20, 30, 80, 0.14); }
+.pricing__toggle button[aria-pressed="true"] { background: var(--color-paper-0); color: var(--color-ink-0); font-weight: 500; box-shadow: 0 2px 6px -2px color-mix(in oklch, var(--color-ink-0) 14%, transparent); }
 
 .pricing__toggle .save {
   font-family: var(--font-mono);
@@ -847,12 +844,12 @@ button, input, select { font: inherit; color: inherit; }
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--color-success);
-  margin-left: 6px;
+  margin-left: var(--space-xs);
 }
 
 .pricing__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr) minmax(0, 1fr);
   gap: var(--space-md);
   margin-top: var(--space-xl);
 }
@@ -875,7 +872,7 @@ button, input, select { font: inherit; color: inherit; }
   color: var(--color-paper-0);
   border-color: var(--color-ink-0);
   transform: scale(1.02);
-  box-shadow: 0 24px 60px -30px rgba(0, 0, 60, 0.5);
+  box-shadow: 0 24px 60px -30px color-mix(in oklch, var(--color-ink-0) 50%, transparent);
 }
 
 .tier--featured .tier__price { color: var(--color-paper-0); }
@@ -894,7 +891,7 @@ button, input, select { font: inherit; color: inherit; }
   text-transform: uppercase;
   background: var(--color-companion);
   color: var(--color-ink-0);
-  padding: 4px 10px;
+  padding: var(--space-2xs) var(--space-sm);
   border-radius: var(--radius-pill);
 }
 
@@ -912,7 +909,7 @@ button, input, select { font: inherit; color: inherit; }
   letter-spacing: -0.03em;
   display: flex;
   align-items: baseline;
-  gap: 4px;
+  gap: var(--space-2xs);
 }
 
 .tier__price small {
@@ -926,9 +923,9 @@ button, input, select { font: inherit; color: inherit; }
 .tier__desc { font-size: var(--text-sm); color: var(--color-ink-1); margin-top: -4px; }
 .tier--featured .tier__desc { color: color-mix(in oklch, var(--color-paper-0) 75%, transparent); }
 
-.tier__features { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: var(--text-sm); }
+.tier__features { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-xs); font-size: var(--text-sm); }
 
-.tier__features li { padding-left: 22px; position: relative; color: var(--color-ink-1); }
+.tier__features li { padding-left: var(--space-lg); position: relative; color: var(--color-ink-1); }
 .tier__features li::before {
   content: "✓";
   position: absolute;
@@ -953,7 +950,7 @@ button, input, select { font: inherit; color: inherit; }
   text-align: center;
 }
 
-.testimonial__quote::before { content: "\201C"; color: var(--color-accent); margin-right: 4px; }
+.testimonial__quote::before { content: "\201C"; color: var(--color-accent); margin-right: var(--space-2xs); }
 .testimonial__quote::after  { content: "\201D"; color: var(--color-accent); }
 
 .testimonial__byline {
@@ -961,7 +958,7 @@ button, input, select { font: inherit; color: inherit; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: var(--space-2xs);
   font-size: var(--text-sm);
   color: var(--color-ink-1);
 }
@@ -1000,8 +997,8 @@ button, input, select { font: inherit; color: inherit; }
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, color-mix(in oklch, var(--color-paper-0) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklch, var(--color-paper-0) 5%, transparent) 1px, transparent 1px);
   background-size: 48px 48px;
   z-index: -1;
 }
@@ -1028,8 +1025,8 @@ button, input, select { font: inherit; color: inherit; }
 
 .cta__panel .btn--primary { background: var(--color-paper-0); color: var(--color-ink-0); border-color: var(--color-paper-0); }
 .cta__panel .btn--primary:hover { background: var(--color-companion); border-color: var(--color-companion); }
-.cta__panel .btn--ghost { color: var(--color-paper-0); border-color: rgba(255, 255, 255, 0.18); }
-.cta__panel .btn--ghost:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.3); }
+.cta__panel .btn--ghost { color: var(--color-paper-0); border-color: color-mix(in oklch, var(--color-paper-0) 18%, transparent); }
+.cta__panel .btn--ghost:hover { background: color-mix(in oklch, var(--color-paper-0) 10%, transparent); border-color: color-mix(in oklch, var(--color-paper-0) 30%, transparent); }
 
 /* ───────── footer · Ft5 Statement ───────── */
 .footer { padding: var(--space-3xl) 0 var(--space-2xl); border-top: var(--rule-hair); }
@@ -1056,7 +1053,7 @@ button, input, select { font: inherit; color: inherit; }
 
 @media (max-width: 760px) { .footer__row { grid-template-columns: 1fr 1fr; } }
 
-.footer__col h5 {
+.footer__col h3 {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   font-weight: 500;
@@ -1066,7 +1063,7 @@ button, input, select { font: inherit; color: inherit; }
   margin: 0 0 var(--space-sm);
 }
 
-.footer__col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; font-size: var(--text-sm); }
+.footer__col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-xs); font-size: var(--text-sm); }
 .footer__col a { color: var(--color-ink-1); transition: color var(--dur-fast) var(--ease-out); }
 .footer__col a:hover { color: var(--color-ink-0); }
 

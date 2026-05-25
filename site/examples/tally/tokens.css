@@ -37,10 +37,10 @@
   /* Focus ring — distinct from accent so contrast holds */
   --color-focus: oklch(46.0% 0.220 268);
 
-  /* Typography — Geist + Geist Mono via Google Fonts */
-  --font-display: "Geist", ui-sans-serif, system-ui, sans-serif;
-  --font-body: "Geist", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  /* Typography — Archivo + Instrument Serif via Google Fonts */
+  --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Archivo", ui-sans-serif, system-ui, sans-serif;
   --font-italic: "Instrument Serif", "Times New Roman", serif;
   /* italic accent */
 
