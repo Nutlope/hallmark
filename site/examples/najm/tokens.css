@@ -28,7 +28,7 @@
 
   /* ── Typography ─────────────────────────────── */
   --font-display: "Bricolage Grotesque", -apple-system, system-ui, sans-serif;
-  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: "Source Sans 3", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
   /* Scale */
