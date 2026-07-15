@@ -10,7 +10,7 @@ Made by Together AI.
   <img src="site/OG-hallmark.png" alt="Hallmark, a design skill that refuses to look AI-generated" />
 </p>
 
-Hallmark picks a macrostructure for the brief, dresses it in one of twenty themes, runs fifty-seven slop-test gates plus a pre-emit self-critique, and refuses the on-distribution defaults every LLM was trained into. Two pages by Hallmark for two different briefs feel like different sites, not colour-swaps of the same template.
+Hallmark picks a macrostructure for the brief, dresses it in one of twenty themes, runs fifty-seven slop-test gates plus a pre-emit self-critique, and refuses the on-distribution defaults every LLM would reach for.
 
 ---
 
@@ -21,7 +21,7 @@ Hallmark picks a macrostructure for the brief, dresses it in one of twenty theme
 | *(default)* | Build new UI. Picks a macrostructure, applies the rule-set, runs the slop test before handing back. |
 | `hallmark audit <target>` | Score existing code against the anti-patterns. Punch list, no edits. |
 | `hallmark redesign <target>` | Throw out the structure, keep copy + IA + brand, rebuild with a different fingerprint. |
-| `hallmark study <screenshot \| URL>` | Extract the **DNA** from a design you admire: macrostructure, type-pairing, colour anchor. Refuses pixel-clones and paid templates. Optionally emits a portable `design.md` for handoff to other AI tools. |
+| `hallmark study <screenshot \| URL>` | Extract the **DNA** from a design you admire: macrostructure, type-pairing, colour anchor. Refuses pixel-clones and paid templates. Optionally emits a portable `design.md`. |
 
 ---
 
@@ -74,7 +74,7 @@ Each page is self-contained HTML + CSS, stamped with its macrostructure in the C
 
 ## Custom <sup>NEW</sup>
 
-When a brief carries creative intent that no catalog theme fits, Hallmark switches to **Custom** and designs the page from scratch: a made-to-measure palette, type, and layout. Same 57 slop-test gates, no template underneath.
+When a brief carries creative intent that no catalog theme fits, Hallmark switches to **Custom** and designs the page from scratch: a made-to-measure palette, type, and layout. Same 58 slop-test gates, no preset fingerprint.
 
 <table>
   <tr>
@@ -100,8 +100,10 @@ npx skills add nutlope/hallmark
 Re-run any time to update. Or copy [`SKILL.md`](skills/hallmark/SKILL.md) + [`references/`](skills/hallmark/references/) into:
 
 - **Claude Code**: `~/.claude/skills/hallmark/`
-- **Cursor**: `.cursor/rules/hallmark.mdc` (body of `SKILL.md`, no frontmatter)
+- **Cursor**: `.agents/skills/hallmark/` (project-scoped) or `~/.cursor/skills/hallmark/` (global)
 - **Codex**: `~/.codex/skills/hallmark/` (personal) or `.codex/skills/hallmark/` (project-scoped)
+
+**Important:** Keep `SKILL.md` and `references/` together in the same folder. Reference files must be accessible for the skill to work properly.
 
 The rule-set lives in [`SKILL.md`](skills/hallmark/SKILL.md) and [`references/`](skills/hallmark/references/). Worked examples in [`docs/recipes.md`](docs/recipes.md) and [`docs/study-examples.md`](docs/study-examples.md).
 
