@@ -107,6 +107,6 @@ The rule-set lives in [`SKILL.md`](skills/hallmark/SKILL.md) and [`references/`]
 
 ---
 
-## Licence
+## License
 
 MIT. Use it, fork it, ship it.
