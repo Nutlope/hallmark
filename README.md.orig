@@ -97,13 +97,11 @@ It stays a quiet branch; vanilla briefs never see it. The protocol lives in [`cu
 npx skills add nutlope/hallmark
 ```
 
-Re-run any time to update. Or copy the [`skills/hallmark/`](skills/hallmark/) folder (including `SKILL.md` + `references/`) into:
+Re-run any time to update. Or copy [`SKILL.md`](skills/hallmark/SKILL.md) + [`references/`](skills/hallmark/references/) into:
 
 - **Claude Code**: `~/.claude/skills/hallmark/`
-- **Cursor**: `.cursor/skills/hallmark/` (project-scoped) or `~/.cursor/skills/hallmark/` (global)
+- **Cursor**: `.cursor/rules/hallmark.mdc` (body of `SKILL.md`, no frontmatter)
 - **Codex**: `~/.codex/skills/hallmark/` (personal) or `.codex/skills/hallmark/` (project-scoped)
-
-> **Cursor note:** Cursor supports the same Agent Skills standard as Claude Code. Place the full `hallmark/` folder (with `SKILL.md` and `references/`) under `.cursor/skills/` — do not strip the frontmatter or flatten into a single `.mdc` rule file, or the reference documents won't be available to the agent.
 
 The rule-set lives in [`SKILL.md`](skills/hallmark/SKILL.md) and [`references/`](skills/hallmark/references/). Worked examples in [`docs/recipes.md`](docs/recipes.md) and [`docs/study-examples.md`](docs/study-examples.md).
 
