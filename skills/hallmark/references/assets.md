@@ -233,7 +233,7 @@ When budget and timeline force a shortcut and even Tier C is overkill.
 - **Glossy plastic device bezels** — looks 2015. Use minimalist frames or no frame.
 - **Annotation chaos** — more pins than pixels. Three numbered pins is a lot; five is too many.
 - **Stretched aspect ratios** — never resize a mockup beyond its natural ratio.
-- **Visible Figma prototyping artifacts** in the screenshot (ghost-out frames, "hover" indicators). Clean the export.
+- **Visible Figma prototyping exports** in the screenshot (ghost-out frames, "hover" indicators). Clean the export.
 
 ---
 

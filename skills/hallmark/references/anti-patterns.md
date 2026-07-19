@@ -232,11 +232,11 @@ A fake browser bar (URL pill + traffic-light dots) wrapping a screenshot. A fake
 
 ### Mid-render token improvisation
 
-A theme is selected at the top of the run, but the artifact contains inline colour values (`#5b6cff`, `oklch(74% 0.18 245)`, `rgb(...)`) or `font-family` declarations that aren't drawn from the token block. Or: the artifact ships with the theme's token set *plus* one extra hex tucked into a hover state, a focus ring, or a single border. The model picked the theme, then drifted.
+A theme is selected at the top of the run, but the emitted output (plain code block or file) contains inline colour values (`#5b6cff`, `oklch(74% 0.18 245)`, `rgb(...)`) or `font-family` declarations that aren't drawn from the token block. Or: the output ships with the theme's token set *plus* one extra hex tucked into a hover state, a focus ring, or a single border. The model picked the theme, then drifted.
 
 **Why it fails.** Token discipline is the difference between a system and a freestyle. Once a theme is locked, every colour and every font in the file must reference a named token (`var(--color-accent)`, `font-family: var(--font-display)`). Inline values are how cohesion erodes — by the third edit pass, the page has eight colours instead of three, and the editorial restraint that made the theme work is gone. Audiences don't see the inline value, but they feel the looseness.
 
-**Fix.** Every colour and every font in the artifact must come through `var(--token-name)`. If you need a value that doesn't exist as a token, add it to the token block first (`--color-accent-warm: oklch(...)`) and then reference it. Inline OKLCH or one-off hex values mid-render are not allowed. *(Slop-test gate 48. See also [SKILL.md § Locked tokens](../SKILL.md).)*
+**Fix.** Every colour and every font in the output must come through `var(--token-name)`. If you need a value that doesn't exist as a token, add it to the token block first (`--color-accent-warm: oklch(...)`) and then reference it. Inline OKLCH or one-off hex values mid-render are not allowed. *(Slop-test gate 48. See also [SKILL.md § Locked tokens](../SKILL.md).)*
 
 ### Wrap-to-two-lines clickable text
 

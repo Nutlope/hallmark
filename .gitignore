@@ -29,7 +29,7 @@ build/
 .env.local
 .env.*.local
 
-# Generation pipeline artifacts (raw outputs before commit)
+# Generation pipeline emitted-outputs (raw outputs before commit)
 .image-cache/
 
 # Runtime state from Hallmark's own runs (per-project log, never publish)
@@ -43,7 +43,7 @@ skills-lock.json
 # Local agent / preview tooling config (Claude Code, etc.) — not skill source
 .claude/
 
-# Launch-day comparison artifacts — one-off, not referenced from the marketing
+# Launch-day comparison emitted-outputs — one-off, not referenced from the marketing
 # site or README. Kept locally if useful.
 site/_launch-comparison/
 
