@@ -38,6 +38,19 @@ document.querySelectorAll(".reveal").forEach((el) => el.classList.add("is-in"));
   // On touch devices, the autoplay attribute already runs the loop.
 }
 
+/* — Reduced motion — hold the demo loops on their first frame ————
+   The Build and Redesign demos are `<video autoplay loop>` with no
+   poster, so they loop indefinitely no matter what the visitor asked
+   for. Park them on frame one instead — same static-preview treatment
+   the hover-play videos above get on desktop. */
+if (reduced) {
+  document.querySelectorAll("video[autoplay]").forEach((video) => {
+    video.removeAttribute("autoplay");
+    video.loop = false;
+    try { video.pause(); video.currentTime = 0; } catch (_) {}
+  });
+}
+
 /* — Theme registry ————————————————————————————————————— */
 const THEMES = {
   hum: "Hum",
