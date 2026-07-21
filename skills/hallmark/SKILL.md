@@ -341,7 +341,7 @@ By the time you reach this step, one of four things is true:
 
 **Custom is a quiet branch, not a default question.** Most briefs route to catalog and the user never sees the words "catalog" or "custom." The 20 named themes plus the rotation rule already deliver structural variety; the fork is reserved for when the brief specifically asks for a tuned look the catalog can't carry.
 
-A custom theme is a **complete** OKLCH palette + font pairing tuned to the brief — not a one-off colour swap, not an excuse to bypass the rules. Every constraint in [`color.md`](references/color.md), [`typography.md`](references/typography.md), and [`anti-patterns.md`](references/anti-patterns.md) still applies. The 58 slop-test gates fire unchanged. The Step 5 preview block surfaces the palette + pairing in plain text **before** any code is emitted, so the user can redirect.
+A custom theme is a **complete** OKLCH palette + font pairing tuned to the brief — not a one-off colour swap, not an excuse to bypass the rules. Every constraint in [`color.md`](references/color.md), [`typography.md`](references/typography.md), and [`anti-patterns.md`](references/anti-patterns.md) still applies. The 57 slop-test gates fire unchanged. The Step 5 preview block surfaces the palette + pairing in plain text **before** any code is emitted, so the user can redirect.
 
 The diversification rule is theme-route-blind: a custom run that follows another custom (or a catalog) must differ on at least one of the three axes from the previous entry, same as catalog-vs-catalog. Custom entries record their three axes explicitly into `.hallmark/log.json` (see [`custom-theme.md`](references/custom-theme.md) § F).
 
@@ -378,7 +378,7 @@ The non-negotiables live in [`references/`](references/). **Be precise about wha
 - [`preview-examples.md`](references/preview-examples.md) — load only if you need a worked example of the Step 5 preview block format. The bullet list in Step 5 itself is normally enough; reach for the file only when picking unusual macrostructures / custom themes.
 
 **Load-at-the-end (Step 7 only):**
-- [`slop-test.md`](references/slop-test.md) — **strictly Step 7, after Build.** The 58 gates are a post-emit check, not a pre-emit reference. Pre-loading slop-test.md costs ~7K tokens for nothing — the gates inform fixes, not generation. If a gate fails at Step 7, fix and re-test; do not consult the file earlier "to know what to avoid" — that's what `anti-patterns.md` is for.
+- [`slop-test.md`](references/slop-test.md) — **strictly Step 7, after Build.** The 57 gates are a post-emit check, not a pre-emit reference. Pre-loading slop-test.md costs ~7K tokens for nothing — the gates inform fixes, not generation. If a gate fails at Step 7, fix and re-test; do not consult the file earlier "to know what to avoid" — that's what `anti-patterns.md` is for.
 - [`contract.md`](references/contract.md) — load at handoff time for output-contract + scope rules.
 - [`export-formats.md`](references/export-formats.md) — load at Step 6 only when the project warrants multi-format exports (i.e. has a `design.md`). Single-page builds emit `tokens.css` from the in-memory token state and don't need this file.
 
@@ -416,7 +416,7 @@ Before emitting any code, output a tight summary of what you're about to ship. T
 - **Enrichment** · none (typography only)
 - **Sections** · Hero · Logos · Stats · Features · Testimonials · Pricing · FAQ · CTA · Footer
 - **Motion** · counter · pricing-lift · pulse-once
-- **Slop test** · 58 / 58 ✓ (run after Build)
+- **Slop test** · 57 / 57 ✓ (run after Build)
 - **Diversification** · differs from Newsprint on display style + accent hue
 ```
 
@@ -427,7 +427,7 @@ Before emitting any code, output a tight summary of what you're about to ship. T
 3. **Enrichment** — the chosen archetype + tier, or *none (typography only)*.
 4. **Sections** — section names separated by ` · `, in DOM order.
 5. **Motion** — microinteraction primitives separated by ` · `, or *none — typography only*. Always under three primitives per the [`microinteractions.md`](references/microinteractions.md) hard rules.
-6. **Slop test** — `58 / 58 ✓` if all gates pass, or `N / 58 — fails: <gate numbers>` if any are open. Run the slop test BEFORE writing this row; the slop test is Step 7.
+6. **Slop test** — `57 / 57 ✓` if all gates pass, or `N / 57 — fails: <gate numbers>` if any are open. Run the slop test BEFORE writing this row; the slop test is Step 7.
 7. **Diversification** *(optional, only when `.hallmark/log.json` has prior entries)* — what axes differ vs the previous run.
 
 **Then one quiet CTA line, italicised, after the bullets:**
@@ -467,7 +467,7 @@ Always:
 
 ### 7. The slop test
 
-Before handing back, run the output through the 58-gate slop test in [`references/slop-test.md`](references/slop-test.md). Every answer must be **no**. Load that file at this step (not earlier — it isn't needed until handoff). The active genre matters: some gates are universal, some are genre-scoped (atmospheric loosens the radial-bloom gate; modern-minimal loosens the zero-chroma neutral gate; etc.). The full per-genre overrides are listed inline in `slop-test.md`.
+Before handing back, run the output through the 57-gate slop test in [`references/slop-test.md`](references/slop-test.md). Every answer must be **no**. Load that file at this step (not earlier — it isn't needed until handoff). The active genre matters: some gates are universal, some are genre-scoped (atmospheric loosens the radial-bloom gate; modern-minimal loosens the zero-chroma neutral gate; etc.). The full per-genre overrides are listed inline in `slop-test.md`.
 
 Run the slop test BEFORE writing the Slop test row in the Step 5 preview block — that row reflects the actual outcome of this step.
 

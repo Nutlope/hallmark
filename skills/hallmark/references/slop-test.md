@@ -1,4 +1,4 @@
-# Slop test — 58 gates + pre-emit self-critique
+# Slop test — 57 gates + pre-emit self-critique
 
 Run this list before handing back any output. Every answer must be **no**. Update the Step 5 preview block's `Slop test` row to reflect the actual outcome of this run.
 
@@ -8,7 +8,7 @@ Some gates are **universal** (apply to every genre); some are **genre-scoped** (
 
 ## Pre-emit self-critique (six axes)
 
-Run this **before** the gate list, not after. Score the planned output 1–5 on each axis. Anything **< 3 on any axis triggers a revision pass** before the gate sweep — don't bring known weakness into a fifty-eight-gate review.
+Run this **before** the gate list, not after. Score the planned output 1–5 on each axis. Anything **< 3 on any axis triggers a revision pass** before the gate sweep — don't bring known weakness into a fifty-seven-gate review.
 
 Two passes is normal. Three is a sign the brief is wrong, not the design — re-read the brief.
 

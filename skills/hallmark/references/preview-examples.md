@@ -12,7 +12,7 @@ Four sample Step 5 preview blocks for the model to imitate, varied across macros
 > - **Enrichment** · Tier-B hand-built SVG (a 60-line coffee bean with `@property --rise` 6 s breathing-loop)
 > - **Sections** · Masthead · Letter · Three Notes · Visit · Colophon
 > - **Motion** · breathing-loop on bean only (respects `prefers-reduced-motion`)
-> - **Slop test** · 58 / 58 ✓
+> - **Slop test** · 57 / 57 ✓
 > - **Diversification** · first run for this project
 
 *Bento Grid (SaaS, motion-on):*
@@ -23,7 +23,7 @@ Four sample Step 5 preview blocks for the model to imitate, varied across macros
 > - **Enrichment** · E1 Clipped-Edge Demo Video, Tier-A CSS-art trace waterfall
 > - **Sections** · Hero · 6-tile Bento (stat · sparkline · quote · code · integrations · spotlight) · Index Footer
 > - **Motion** · counter · pricing-lift · CSS marquee on integrations strip
-> - **Slop test** · 58 / 58 ✓
+> - **Slop test** · 57 / 57 ✓
 > - **Diversification** · differs from Plain on paper hue (light-cool vs pure-white) + accent (indigo vs ink-blue)
 
 *Manifesto (declarative, no enrichment):*
@@ -34,7 +34,7 @@ Four sample Step 5 preview blocks for the model to imitate, varied across macros
 > - **Enrichment** · none (typography only — voice carries the brand)
 > - **Sections** · Masthead · Title · Five Declarations · Bleed Band · What We Refuse · Working Rules · Practice · Reading · Colophon
 > - **Motion** · none — typography only
-> - **Slop test** · 58 / 58 ✓
+> - **Slop test** · 57 / 57 ✓
 > - **Diversification** · differs from Newsprint on paper band (dark vs light) + display style (display-heavy vs geometric-sans)
 
 *Custom (Coffeebox archival café):*
@@ -45,5 +45,5 @@ Four sample Step 5 preview blocks for the model to imitate, varied across macros
 > - **Enrichment** · Tier-A pure-CSS coffee bean (60-line SVG, breathing-loop optional)
 > - **Sections** · Masthead · Letter · Three Notes · Visit · Colophon
 > - **Motion** · breathing-loop on bean (with reduced-motion fallback)
-> - **Slop test** · 58 / 58 ✓
+> - **Slop test** · 57 / 57 ✓
 > - **Diversification** · custom axes: light / italic-serif / chromatic-terracotta — differs from previous catalog Newsprint on accent hue + display style
