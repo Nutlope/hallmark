@@ -1,0 +1,18 @@
+﻿[
+    {
+        "title":  "Podcast-loop",
+        "source":  "C:\\Users\\maxim\\01_code_Works\\01_whop_affiliate_list\\hallmark\\site\\_tests\\_thumbs\\Podcast-loop.mp4",
+        "videoId":  "8ff4543d-d3a4-4fa5-8cfb-765d039f9458",
+        "status":  "uploaded",
+        "playlist":  "https://vz-b0d22d35-c69.b-cdn.net/8ff4543d-d3a4-4fa5-8cfb-765d039f9458/playlist.m3u8",
+        "embed":  "https://iframe.mediadelivery.net/embed/580687/8ff4543d-d3a4-4fa5-8cfb-765d039f9458"
+    },
+    {
+        "title":  "uractivation-after-loop",
+        "source":  "C:\\Users\\maxim\\01_code_Works\\01_whop_affiliate_list\\hallmark\\site\\_tests\\_thumbs\\uractivation-after-loop.mp4",
+        "videoId":  "6cd24ad0-92e5-49f5-b9ea-0fe2fe3f62d1",
+        "status":  "uploaded",
+        "playlist":  "https://vz-b0d22d35-c69.b-cdn.net/6cd24ad0-92e5-49f5-b9ea-0fe2fe3f62d1/playlist.m3u8",
+        "embed":  "https://iframe.mediadelivery.net/embed/580687/6cd24ad0-92e5-49f5-b9ea-0fe2fe3f62d1"
+    }
+]

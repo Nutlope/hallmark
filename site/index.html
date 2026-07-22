@@ -60,6 +60,7 @@
   <link rel="stylesheet" href="css/base.css?v=24" />
   <link rel="stylesheet" href="css/components.css?v=24" />
   <link rel="stylesheet" href="css/sections.css?v=24" />
+  <link rel="stylesheet" href="css/site-improver.css?v=1" />
 
   <script>
     // Load theme before paint to avoid flash. Order: ?theme= → localStorage → default.
@@ -108,6 +109,8 @@
     </a>
 
     <a class="banner__install" href="#install" aria-label="Jump to install section">Install</a>
+
+    <a class="banner__blog" href="blog/index.html" aria-label="Open Hallmark blog">Blog</a>
 
     <a class="banner__star" href="https://github.com/nutlope/hallmark" target="_blank" rel="noopener"
       aria-label="Star Hallmark on GitHub">
@@ -237,12 +240,16 @@
           </div>
         </div>
         <figure class="hero__play" aria-hidden="true">
-          <span class="play-blob"></span>
-          <span class="play-dot play-dot--pear"></span>
-          <span class="play-pill play-pill--cyan"></span>
-          <span class="play-ring play-ring--lavender"></span>
-          <span class="play-dot play-dot--coral"></span>
-          <span class="play-dot play-dot--mint"></span>
+          <div class="hero-map">
+            <span class="hero-map__label">decision map</span>
+            <div class="hero-map__nodes">
+              <span>brief</span><span>shape</span><span>proof</span><span>QA</span>
+            </div>
+            <div class="hero-map__panel">
+              <strong>57</strong>
+              <em>slop gates before ship</em>
+            </div>
+          </div>
         </figure>
       </div>
     </section>
@@ -855,6 +862,285 @@
     </section>
 
     <!-- 07 · INSTALL — one command, every harness -->
+    <!-- SITE IMPROVER START -->
+<section class="section site-improver reveal" id="site-improver" aria-labelledby="site-improver-title">
+  <header class="section__head">
+    <p class="section-label"><span class="num">08</span><span class="divider">/</span><span>Site improver</span></p>
+    <h2 class="section__title" id="site-improver-title">The page is now a field guide, not a wall of text.</h2>
+  </header>
+  <div class="improver-hero">
+    <div>
+      <p class="improver-kicker">5000+ word lander target</p>
+      <h3>More sections only help when each section changes the reader's job.</h3>
+      <p>The upgraded page uses the writing rules you pointed at: concrete scenes, specific pain, named mechanism, proof boundaries, risk reversal, and CTAs placed after doubts get resolved. It does not ask the visitor to read one giant essay. It breaks the argument into visual decisions.</p>
+      <p>That means charts where the reader must compare, tables where the reader must verify, article cards where the reader can go deeper, and generated infographics where a long explanation would slow the page down.</p>
+      <div class="improver-actions"><a href="blog/index.html">Open the blog</a><a href="#install">Install Hallmark</a></div>
+    </div>
+    <figure class="improver-board" aria-hidden="true">
+      <div><strong>15</strong><span>articles</span></div>
+      <div><strong>75</strong><span>images</span></div>
+      <div><strong>2,500+</strong><span>words each</span></div>
+      <div><strong>5,000+</strong><span>home words</span></div>
+    </figure>
+  </div>
+  <div class="improver-chart" aria-label="Infographic pipeline">
+    <div><span>01</span><strong>Writing rules</strong><p>Scene, tension, mechanism, proof, CTA.</p></div>
+    <div><span>02</span><strong>Prompt enhancer</strong><p>Turns each article claim into a visual metaphor.</p></div>
+    <div><span>03</span><strong>Icon enhancer</strong><p>Selects concrete symbols instead of generic decoration.</p></div>
+    <div><span>04</span><strong>Generated assets</strong><p>Hero plus four section images per article.</p></div>
+  </div>
+  <div class="improver-split">
+    <div class="improver-copy"><p>A founder asks for a homepage and gets the same centered hero, three cards, testimonial strip, pricing grid, and CTA that every other founder got that morning. Most AI pages fail before the first component because the model chooses the familiar structure before it understands the job. Hallmark moves taste upstream: macrostructure, tokens, copy discipline, interaction states, and a slop-test gate happen before the page is emitted. The section exists to turn a vague request into a checkable design decision, then send the reader to a deeper guide instead of leaving them in a shallow feature list.</p><p>The page is not ugly because the border radius is wrong. It is ugly because its bones belonged to a different product. A template is a frozen answer. A macrostructure is a decision framework that changes with the brief. Hallmark chooses from named page shapes, then forces section rhythm, hierarchy, and evidence slots to fit the product. The section exists to turn a vague request into a checkable design decision, then send the reader to a deeper guide instead of leaving them in a shallow feature list.</p><p>The sentence says the product helps teams move faster. Nobody knows which team, what moved, or what stopped them yesterday. Specific copy earns belief because it carries risk: a vague claim cannot be disproved, so readers discount it. Hallmark treats every line as a job: name the buyer, name the painful moment, name the mechanism, qualify the promise. The section exists to turn a vague request into a checkable design decision, then send the reader to a deeper guide instead of leaving them in a shallow feature list.</p><p>A card says 10x faster because the page needed a big number. The product team never supplied it. A stat-led layout becomes dishonest the moment the model invents a number to fill the box. Hallmark replaces unsupported metrics with process proof, side-by-side examples, source-backed figures, or explicit placeholders. The section exists to turn a vague request into a checkable design decision, then send the reader to a deeper guide instead of leaving them in a shallow feature list.</p><p>The reader hits a complex section and sees a pretty abstract shape that explains nothing. An infographic should remove cognitive work. If it only decorates the scroll, it is another kind of filler. Hallmark pairs each visual with a decision: compare before and after, expose the workflow, map the failure, or show the trade-off. The section exists to turn a vague request into a checkable design decision, then send the reader to a deeper guide instead of leaving them in a shallow feature list.</p><p>The desktop screenshot looks fine. At 375px the CTA wraps, the hero image pushes the page sideways, and the table becomes a puzzle. A static site can compile and still fail at the viewport where the buyer actually reads it. Hallmark visual QA checks the accessibility tree, screenshots, mobile widths, horizontal overflow, link visibility, and the fold. The section exists to turn a vague request into a checkable design decision, then send the reader to a deeper guide instead of leaving them in a shallow feature list.</p><p>The page lists features, then benefits, then logos, then FAQs. The reader walks across rooms and never falls through a floor. A landing page becomes readable when every section deepens one central question instead of stacking unrelated facts. Hallmark uses nested argument: painful scene, false belief, mechanism, proof, trade-off, fit filter, CTA. The section exists to turn a vague request into a checkable design decision, then send the reader to a deeper guide instead of leaving them in a shallow feature list.</p><p>Every section has a card grid. Some cards have icons, some have numbers, but all of them ask the reader to skim the same shape. Variety should change the reader&#x27;s task, not merely the decoration around the same task. Hallmark rotates component jobs: comparison table, annotated receipt, decision tree, timeline, checklist, proof strip, and field guide. The section exists to turn a vague request into a checkable design decision, then send the reader to a deeper guide instead of leaving them in a shallow feature list.</p><p>A beautiful desktop composition becomes a cramped phone page with two-line buttons and a sideways-scroll table. Mobile failures are not just engineering bugs. They reveal whether the designer respected the reader&#x27;s context. Hallmark designs the constraint first: no horizontal scroll, no wrapped clickable labels, no image tracks without minmax(0, 1fr). The section exists to turn a vague request into a checkable design decision, then send the reader to a deeper guide instead of leaving them in a shallow feature list.</p><p>The theme picker switches from blue to orange but the same hero, the same cards, and the same CTA rhythm remain. A real theme changes structure, not just color variables. Hallmark themes carry typography, section rhythm, chrome shape, hero archetype, footer voice, and interaction posture. The section exists to turn a vague request into a checkable design decision, then send the reader to a deeper guide instead of leaving them in a shallow feature list.</p><p>A page screams install before it has explained the problem. The click feels like obedience, not a decision. A good CTA is not pressure. It is a well-placed next step after the reader has enough context to act. Hallmark places CTAs at decision points: after the mechanism, after the proof, after the objection, and at the final fit filter. The section exists to turn a vague request into a checkable design decision, then send the reader to a deeper guide instead of leaving them in a shallow feature list.</p><p>The page has nice spacing, but the nav is default, the icons are generic, the numbers are invented, and the hero could belong to any startup. A checklist is useful only when it has teeth. The slop test blocks output that looks acceptable but reads default. Hallmark turns taste into observable failures: gradient text, fake metrics, repeated card grids, weak contrast, hidden focus, and mobile overflow. The section exists to turn a vague request into a checkable design decision, then send the reader to a deeper guide instead of leaving them in a shallow feature list.</p><p>The page says it creates distinctive interfaces but shows one polished hero and no hard cases. Design systems prove themselves by showing range, not by promising taste. Hallmark&#x27;s example gallery makes the claim inspectable: different briefs, different structures, different visual registers. The section exists to turn a vague request into a checkable design decision, then send the reader to a deeper guide instead of leaving them in a shallow feature list.</p><p>The user asks for a cool landing page. The agent hears permission to decorate instead of diagnose. The quality of the page starts with the quality of the brief, but the agent still needs a system that refuses weak defaults. Hallmark reads the project first, picks a macrostructure, chooses a theme, writes with constraints, and audits the result. The section exists to turn a vague request into a checkable design decision, then send the reader to a deeper guide instead of leaving them in a shallow feature list.</p><p>The team can build working pages quickly, but every page starts to share the same hidden skeleton. Hallmark is strongest when you need taste, structure, and visual QA around generated interfaces. Use Hallmark when the surface matters; wait when the real work is backend logic, product research, or business rules. The section exists to turn a vague request into a checkable design decision, then send the reader to a deeper guide instead of leaving them in a shallow feature list.</p></div>
+    <aside class="improver-sticky">
+      <h3>What changed</h3>
+      <ul>
+        <li>Blog section is linked from the banner, homepage, and footer path.</li>
+        <li>Each article has section images between major sections.</li>
+        <li>Articles interlink and quote the system they belong to.</li>
+        <li>The homepage has charts, tables, lists, and CTAs between arguments.</li>
+      </ul>
+      <a href="blog/index.html">Read the field guides</a>
+    </aside>
+  </div>
+  <div class="comparison-table" role="region" aria-label="Copy and design comparison">
+    <table>
+      <thead><tr><th>Section</th><th>Weak belief</th><th>Hallmark mechanism</th></tr></thead>
+      <tbody><tr><th>Design Strategy</th><td>Good taste can be added after generation.</td><td>Hallmark moves taste upstream: macrostructure, tokens, copy discipline, interaction states, and a slop-test gate happen before the page is emitted.</td></tr><tr><th>Structure</th><td>Changing colors is enough to make a page feel custom.</td><td>Hallmark chooses from named page shapes, then forces section rhythm, hierarchy, and evidence slots to fit the product.</td></tr><tr><th>Copy</th><td>Short copy is automatically good copy.</td><td>Hallmark treats every line as a job: name the buyer, name the painful moment, name the mechanism, qualify the promise.</td></tr><tr><th>Proof</th><td>Metrics make every landing page stronger.</td><td>Hallmark replaces unsupported metrics with process proof, side-by-side examples, source-backed figures, or explicit placeholders.</td></tr><tr><th>Infographics</th><td>Any visual break improves a long page.</td><td>Hallmark pairs each visual with a decision: compare before and after, expose the workflow, map the failure, or show the trade-off.</td></tr><tr><th>QA</th><td>If the page builds, it is ready.</td><td>Hallmark visual QA checks the accessibility tree, screenshots, mobile widths, horizontal overflow, link visibility, and the fold.</td></tr><tr><th>Story</th><td>More sections means more persuasion.</td><td>Hallmark uses nested argument: painful scene, false belief, mechanism, proof, trade-off, fit filter, CTA.</td></tr><tr><th>Components</th><td>More component styles make a site richer.</td><td>Hallmark rotates component jobs: comparison table, annotated receipt, decision tree, timeline, checklist, proof strip, and field guide.</td></tr></tbody>
+    </table>
+  </div>
+  <section class="blog-preview" aria-label="Featured articles">
+    <div class="blog-preview__head">
+      <h3>The blog section</h3>
+      <p>Six starting points from the full fifteen-article library. Each article links into the next one, with quotes and generated visuals between sections.</p>
+      <a href="blog/index.html">View all 15</a>
+    </div>
+    <div class="blog-preview__grid"><a class="article-card" href="blog/anti-ai-slop-design-system.html"><img src="assets/generated/anti-ai-slop-design-system/hero.webp" alt="" loading="lazy" width="1536" height="864"><span>Design Strategy</span><strong>The Anti-Slop Design System: Why AI Pages Look the Same</strong><em>Most AI pages fail before the first component because the model chooses the familiar structure before it understands the job.</em></a>
+<a class="article-card" href="blog/macrostructures-beat-templates.html"><img src="assets/generated/macrostructures-beat-templates/hero.webp" alt="" loading="lazy" width="1536" height="864"><span>Structure</span><strong>Macrostructures Beat Templates</strong><em>A template is a frozen answer. A macrostructure is a decision framework that changes with the brief.</em></a>
+<a class="article-card" href="blog/writing-specific-product-copy.html"><img src="assets/generated/writing-specific-product-copy/hero.webp" alt="" loading="lazy" width="1536" height="864"><span>Copy</span><strong>Writing Product Copy That Sounds Owned</strong><em>Specific copy earns belief because it carries risk: a vague claim cannot be disproved, so readers discount it.</em></a>
+<a class="article-card" href="blog/visual-proof-without-fake-metrics.html"><img src="assets/generated/visual-proof-without-fake-metrics/hero.webp" alt="" loading="lazy" width="1536" height="864"><span>Proof</span><strong>Visual Proof Without Fake Metrics</strong><em>A stat-led layout becomes dishonest the moment the model invents a number to fill the box.</em></a>
+<a class="article-card" href="blog/infographic-sections-that-teach.html"><img src="assets/generated/infographic-sections-that-teach/hero.webp" alt="" loading="lazy" width="1536" height="864"><span>Infographics</span><strong>Infographic Sections That Teach Instead of Decorate</strong><em>An infographic should remove cognitive work. If it only decorates the scroll, it is another kind of filler.</em></a>
+<a class="article-card" href="blog/chrome-devtools-visual-pass.html"><img src="assets/generated/chrome-devtools-visual-pass/hero.webp" alt="" loading="lazy" width="1536" height="864"><span>QA</span><strong>A Chrome DevTools Visual Pass for Static Sites</strong><em>A static site can compile and still fail at the viewport where the buyer actually reads it.</em></a></div>
+  </section>
+  <section class="atlas-section" aria-labelledby="atlas-title">
+    <div class="atlas-section__head">
+      <p class="improver-kicker">5,000 word lander atlas</p>
+      <h3 id="atlas-title">Every article gets a homepage argument, not just a card.</h3>
+      <p>The atlas keeps the landing page readable: each module carries a scene, a false belief, a mechanism, a checklist, a crosslink, and a CTA. That gives the page depth without turning it into one uninterrupted essay.</p>
+    </div>
+    <div class="atlas-grid"><article class="atlas-card">
+      <span>01 / Design Strategy</span>
+      <h4>The Anti-Slop Design System: Why AI Pages Look the Same</h4>
+      <blockquote>Most AI pages fail before the first component because the model chooses the familiar structure before it understands the job.</blockquote>
+      <p>A founder asks for a homepage and gets the same centered hero, three cards, testimonial strip, pricing grid, and CTA that every other founder got that morning. The useful version of the page does not hide that scene behind a shiny component. It puts the reader inside the moment where trust is being lost, then names the false shortcut: good taste can be added after generation.</p>
+      <p>Hallmark moves taste upstream: macrostructure, tokens, copy discipline, interaction states, and a slop-test gate happen before the page is emitted. That is the operating difference between content volume and content architecture. The section is not there because a long page needed another block. It is there because a buyer has a doubt, a reviewer has a risk, or a builder has a decision that needs to become visible before the next click.</p>
+      <ul>
+        <li>Inspect the claim, the mechanism, and the proof boundary.</li>
+        <li>Make the visual compress a decision into a map, comparison, timeline, or checklist.</li>
+        <li>Place the CTA where the reader has just resolved a doubt.</li>
+      </ul>
+      <p>Read this beside <a href="blog/macrostructures-beat-templates.html">Macrostructures Beat Templates</a>. The two guides quote each other because strong generated sites need connected judgment, not isolated advice fragments.</p>
+      <a class="atlas-card__cta" href="blog/anti-ai-slop-design-system.html">Install Hallmark before the next greenfield build.</a>
+    </article>
+<article class="atlas-card">
+      <span>02 / Structure</span>
+      <h4>Macrostructures Beat Templates</h4>
+      <blockquote>A template is a frozen answer. A macrostructure is a decision framework that changes with the brief.</blockquote>
+      <p>The page is not ugly because the border radius is wrong. It is ugly because its bones belonged to a different product. The useful version of the page does not hide that scene behind a shiny component. It puts the reader inside the moment where trust is being lost, then names the false shortcut: changing colors is enough to make a page feel custom.</p>
+      <p>Hallmark chooses from named page shapes, then forces section rhythm, hierarchy, and evidence slots to fit the product. That is the operating difference between content volume and content architecture. The section is not there because a long page needed another block. It is there because a buyer has a doubt, a reviewer has a risk, or a builder has a decision that needs to become visible before the next click.</p>
+      <ul>
+        <li>Inspect the claim, the mechanism, and the proof boundary.</li>
+        <li>Make the visual compress a decision into a map, comparison, timeline, or checklist.</li>
+        <li>Place the CTA where the reader has just resolved a doubt.</li>
+      </ul>
+      <p>Read this beside <a href="blog/writing-specific-product-copy.html">Writing Product Copy That Sounds Owned</a>. The two guides quote each other because strong generated sites need connected judgment, not isolated advice fragments.</p>
+      <a class="atlas-card__cta" href="blog/macrostructures-beat-templates.html">Compare your next page against a different macrostructure.</a>
+    </article>
+<article class="atlas-card">
+      <span>03 / Copy</span>
+      <h4>Writing Product Copy That Sounds Owned</h4>
+      <blockquote>Specific copy earns belief because it carries risk: a vague claim cannot be disproved, so readers discount it.</blockquote>
+      <p>The sentence says the product helps teams move faster. Nobody knows which team, what moved, or what stopped them yesterday. The useful version of the page does not hide that scene behind a shiny component. It puts the reader inside the moment where trust is being lost, then names the false shortcut: short copy is automatically good copy.</p>
+      <p>Hallmark treats every line as a job: name the buyer, name the painful moment, name the mechanism, qualify the promise. That is the operating difference between content volume and content architecture. The section is not there because a long page needed another block. It is there because a buyer has a doubt, a reviewer has a risk, or a builder has a decision that needs to become visible before the next click.</p>
+      <ul>
+        <li>Inspect the claim, the mechanism, and the proof boundary.</li>
+        <li>Make the visual compress a decision into a map, comparison, timeline, or checklist.</li>
+        <li>Place the CTA where the reader has just resolved a doubt.</li>
+      </ul>
+      <p>Read this beside <a href="blog/visual-proof-without-fake-metrics.html">Visual Proof Without Fake Metrics</a>. The two guides quote each other because strong generated sites need connected judgment, not isolated advice fragments.</p>
+      <a class="atlas-card__cta" href="blog/writing-specific-product-copy.html">Rewrite the weakest hero line before adding another section.</a>
+    </article>
+<article class="atlas-card">
+      <span>04 / Proof</span>
+      <h4>Visual Proof Without Fake Metrics</h4>
+      <blockquote>A stat-led layout becomes dishonest the moment the model invents a number to fill the box.</blockquote>
+      <p>A card says 10x faster because the page needed a big number. The product team never supplied it. The useful version of the page does not hide that scene behind a shiny component. It puts the reader inside the moment where trust is being lost, then names the false shortcut: metrics make every landing page stronger.</p>
+      <p>Hallmark replaces unsupported metrics with process proof, side-by-side examples, source-backed figures, or explicit placeholders. That is the operating difference between content volume and content architecture. The section is not there because a long page needed another block. It is there because a buyer has a doubt, a reviewer has a risk, or a builder has a decision that needs to become visible before the next click.</p>
+      <ul>
+        <li>Inspect the claim, the mechanism, and the proof boundary.</li>
+        <li>Make the visual compress a decision into a map, comparison, timeline, or checklist.</li>
+        <li>Place the CTA where the reader has just resolved a doubt.</li>
+      </ul>
+      <p>Read this beside <a href="blog/infographic-sections-that-teach.html">Infographic Sections That Teach Instead of Decorate</a>. The two guides quote each other because strong generated sites need connected judgment, not isolated advice fragments.</p>
+      <a class="atlas-card__cta" href="blog/visual-proof-without-fake-metrics.html">Audit every number on the page before launch.</a>
+    </article>
+<article class="atlas-card">
+      <span>05 / Infographics</span>
+      <h4>Infographic Sections That Teach Instead of Decorate</h4>
+      <blockquote>An infographic should remove cognitive work. If it only decorates the scroll, it is another kind of filler.</blockquote>
+      <p>The reader hits a complex section and sees a pretty abstract shape that explains nothing. The useful version of the page does not hide that scene behind a shiny component. It puts the reader inside the moment where trust is being lost, then names the false shortcut: any visual break improves a long page.</p>
+      <p>Hallmark pairs each visual with a decision: compare before and after, expose the workflow, map the failure, or show the trade-off. That is the operating difference between content volume and content architecture. The section is not there because a long page needed another block. It is there because a buyer has a doubt, a reviewer has a risk, or a builder has a decision that needs to become visible before the next click.</p>
+      <ul>
+        <li>Inspect the claim, the mechanism, and the proof boundary.</li>
+        <li>Make the visual compress a decision into a map, comparison, timeline, or checklist.</li>
+        <li>Place the CTA where the reader has just resolved a doubt.</li>
+      </ul>
+      <p>Read this beside <a href="blog/chrome-devtools-visual-pass.html">A Chrome DevTools Visual Pass for Static Sites</a>. The two guides quote each other because strong generated sites need connected judgment, not isolated advice fragments.</p>
+      <a class="atlas-card__cta" href="blog/infographic-sections-that-teach.html">Use one visual only when it changes the reader&#x27;s next thought.</a>
+    </article>
+<article class="atlas-card">
+      <span>06 / QA</span>
+      <h4>A Chrome DevTools Visual Pass for Static Sites</h4>
+      <blockquote>A static site can compile and still fail at the viewport where the buyer actually reads it.</blockquote>
+      <p>The desktop screenshot looks fine. At 375px the CTA wraps, the hero image pushes the page sideways, and the table becomes a puzzle. The useful version of the page does not hide that scene behind a shiny component. It puts the reader inside the moment where trust is being lost, then names the false shortcut: if the page builds, it is ready.</p>
+      <p>Hallmark visual QA checks the accessibility tree, screenshots, mobile widths, horizontal overflow, link visibility, and the fold. That is the operating difference between content volume and content architecture. The section is not there because a long page needed another block. It is there because a buyer has a doubt, a reviewer has a risk, or a builder has a decision that needs to become visible before the next click.</p>
+      <ul>
+        <li>Inspect the claim, the mechanism, and the proof boundary.</li>
+        <li>Make the visual compress a decision into a map, comparison, timeline, or checklist.</li>
+        <li>Place the CTA where the reader has just resolved a doubt.</li>
+      </ul>
+      <p>Read this beside <a href="blog/story-architecture-for-landing-pages.html">Story Architecture for Landing Pages</a>. The two guides quote each other because strong generated sites need connected judgment, not isolated advice fragments.</p>
+      <a class="atlas-card__cta" href="blog/chrome-devtools-visual-pass.html">Run DevTools before calling any page done.</a>
+    </article>
+<article class="atlas-card">
+      <span>07 / Story</span>
+      <h4>Story Architecture for Landing Pages</h4>
+      <blockquote>A landing page becomes readable when every section deepens one central question instead of stacking unrelated facts.</blockquote>
+      <p>The page lists features, then benefits, then logos, then FAQs. The reader walks across rooms and never falls through a floor. The useful version of the page does not hide that scene behind a shiny component. It puts the reader inside the moment where trust is being lost, then names the false shortcut: more sections means more persuasion.</p>
+      <p>Hallmark uses nested argument: painful scene, false belief, mechanism, proof, trade-off, fit filter, CTA. That is the operating difference between content volume and content architecture. The section is not there because a long page needed another block. It is there because a buyer has a doubt, a reviewer has a risk, or a builder has a decision that needs to become visible before the next click.</p>
+      <ul>
+        <li>Inspect the claim, the mechanism, and the proof boundary.</li>
+        <li>Make the visual compress a decision into a map, comparison, timeline, or checklist.</li>
+        <li>Place the CTA where the reader has just resolved a doubt.</li>
+      </ul>
+      <p>Read this beside <a href="blog/component-variety-without-noise.html">Component Variety Without Visual Noise</a>. The two guides quote each other because strong generated sites need connected judgment, not isolated advice fragments.</p>
+      <a class="atlas-card__cta" href="blog/story-architecture-for-landing-pages.html">Build the page around one question and let each section reframe it.</a>
+    </article>
+<article class="atlas-card">
+      <span>08 / Components</span>
+      <h4>Component Variety Without Visual Noise</h4>
+      <blockquote>Variety should change the reader&#x27;s task, not merely the decoration around the same task.</blockquote>
+      <p>Every section has a card grid. Some cards have icons, some have numbers, but all of them ask the reader to skim the same shape. The useful version of the page does not hide that scene behind a shiny component. It puts the reader inside the moment where trust is being lost, then names the false shortcut: more component styles make a site richer.</p>
+      <p>Hallmark rotates component jobs: comparison table, annotated receipt, decision tree, timeline, checklist, proof strip, and field guide. That is the operating difference between content volume and content architecture. The section is not there because a long page needed another block. It is there because a buyer has a doubt, a reviewer has a risk, or a builder has a decision that needs to become visible before the next click.</p>
+      <ul>
+        <li>Inspect the claim, the mechanism, and the proof boundary.</li>
+        <li>Make the visual compress a decision into a map, comparison, timeline, or checklist.</li>
+        <li>Place the CTA where the reader has just resolved a doubt.</li>
+      </ul>
+      <p>Read this beside <a href="blog/mobile-responsiveness-as-taste.html">Mobile Responsiveness Is a Taste Problem</a>. The two guides quote each other because strong generated sites need connected judgment, not isolated advice fragments.</p>
+      <a class="atlas-card__cta" href="blog/component-variety-without-noise.html">Replace one card grid with a more honest component.</a>
+    </article>
+<article class="atlas-card">
+      <span>09 / Responsive</span>
+      <h4>Mobile Responsiveness Is a Taste Problem</h4>
+      <blockquote>Mobile failures are not just engineering bugs. They reveal whether the designer respected the reader&#x27;s context.</blockquote>
+      <p>A beautiful desktop composition becomes a cramped phone page with two-line buttons and a sideways-scroll table. The useful version of the page does not hide that scene behind a shiny component. It puts the reader inside the moment where trust is being lost, then names the false shortcut: mobile is handled by media queries at the end.</p>
+      <p>Hallmark designs the constraint first: no horizontal scroll, no wrapped clickable labels, no image tracks without minmax(0, 1fr). That is the operating difference between content volume and content architecture. The section is not there because a long page needed another block. It is there because a buyer has a doubt, a reviewer has a risk, or a builder has a decision that needs to become visible before the next click.</p>
+      <ul>
+        <li>Inspect the claim, the mechanism, and the proof boundary.</li>
+        <li>Make the visual compress a decision into a map, comparison, timeline, or checklist.</li>
+        <li>Place the CTA where the reader has just resolved a doubt.</li>
+      </ul>
+      <p>Read this beside <a href="blog/theme-systems-that-change-bones.html">Theme Systems That Change the Bones</a>. The two guides quote each other because strong generated sites need connected judgment, not isolated advice fragments.</p>
+      <a class="atlas-card__cta" href="blog/mobile-responsiveness-as-taste.html">Check 320, 375, 414, and 768 before shipping.</a>
+    </article>
+<article class="atlas-card">
+      <span>10 / Themes</span>
+      <h4>Theme Systems That Change the Bones</h4>
+      <blockquote>A real theme changes structure, not just color variables.</blockquote>
+      <p>The theme picker switches from blue to orange but the same hero, the same cards, and the same CTA rhythm remain. The useful version of the page does not hide that scene behind a shiny component. It puts the reader inside the moment where trust is being lost, then names the false shortcut: a theme is a palette.</p>
+      <p>Hallmark themes carry typography, section rhythm, chrome shape, hero archetype, footer voice, and interaction posture. That is the operating difference between content volume and content architecture. The section is not there because a long page needed another block. It is there because a buyer has a doubt, a reviewer has a risk, or a builder has a decision that needs to become visible before the next click.</p>
+      <ul>
+        <li>Inspect the claim, the mechanism, and the proof boundary.</li>
+        <li>Make the visual compress a decision into a map, comparison, timeline, or checklist.</li>
+        <li>Place the CTA where the reader has just resolved a doubt.</li>
+      </ul>
+      <p>Read this beside <a href="blog/cta-placement-as-environment-design.html">CTA Placement as Environment Design</a>. The two guides quote each other because strong generated sites need connected judgment, not isolated advice fragments.</p>
+      <a class="atlas-card__cta" href="blog/theme-systems-that-change-bones.html">Pick a theme by behavior, not hue.</a>
+    </article>
+<article class="atlas-card">
+      <span>11 / Conversion</span>
+      <h4>CTA Placement as Environment Design</h4>
+      <blockquote>A good CTA is not pressure. It is a well-placed next step after the reader has enough context to act.</blockquote>
+      <p>A page screams install before it has explained the problem. The click feels like obedience, not a decision. The useful version of the page does not hide that scene behind a shiny component. It puts the reader inside the moment where trust is being lost, then names the false shortcut: more buttons means more conversions.</p>
+      <p>Hallmark places CTAs at decision points: after the mechanism, after the proof, after the objection, and at the final fit filter. That is the operating difference between content volume and content architecture. The section is not there because a long page needed another block. It is there because a buyer has a doubt, a reviewer has a risk, or a builder has a decision that needs to become visible before the next click.</p>
+      <ul>
+        <li>Inspect the claim, the mechanism, and the proof boundary.</li>
+        <li>Make the visual compress a decision into a map, comparison, timeline, or checklist.</li>
+        <li>Place the CTA where the reader has just resolved a doubt.</li>
+      </ul>
+      <p>Read this beside <a href="blog/slop-test-as-editorial-gate.html">The Slop Test as an Editorial Gate</a>. The two guides quote each other because strong generated sites need connected judgment, not isolated advice fragments.</p>
+      <a class="atlas-card__cta" href="blog/cta-placement-as-environment-design.html">Put the next action where the reader just resolved a doubt.</a>
+    </article>
+<article class="atlas-card">
+      <span>12 / Quality</span>
+      <h4>The Slop Test as an Editorial Gate</h4>
+      <blockquote>A checklist is useful only when it has teeth. The slop test blocks output that looks acceptable but reads default.</blockquote>
+      <p>The page has nice spacing, but the nav is default, the icons are generic, the numbers are invented, and the hero could belong to any startup. The useful version of the page does not hide that scene behind a shiny component. It puts the reader inside the moment where trust is being lost, then names the false shortcut: quality is subjective, so gates do not help.</p>
+      <p>Hallmark turns taste into observable failures: gradient text, fake metrics, repeated card grids, weak contrast, hidden focus, and mobile overflow. That is the operating difference between content volume and content architecture. The section is not there because a long page needed another block. It is there because a buyer has a doubt, a reviewer has a risk, or a builder has a decision that needs to become visible before the next click.</p>
+      <ul>
+        <li>Inspect the claim, the mechanism, and the proof boundary.</li>
+        <li>Make the visual compress a decision into a map, comparison, timeline, or checklist.</li>
+        <li>Place the CTA where the reader has just resolved a doubt.</li>
+      </ul>
+      <p>Read this beside <a href="blog/portfolio-of-examples-as-proof.html">A Portfolio of Examples Is Stronger Than a Claim</a>. The two guides quote each other because strong generated sites need connected judgment, not isolated advice fragments.</p>
+      <a class="atlas-card__cta" href="blog/slop-test-as-editorial-gate.html">Run the gate while there is still time to revise.</a>
+    </article>
+<article class="atlas-card">
+      <span>13 / Examples</span>
+      <h4>A Portfolio of Examples Is Stronger Than a Claim</h4>
+      <blockquote>Design systems prove themselves by showing range, not by promising taste.</blockquote>
+      <p>The page says it creates distinctive interfaces but shows one polished hero and no hard cases. The useful version of the page does not hide that scene behind a shiny component. It puts the reader inside the moment where trust is being lost, then names the false shortcut: a good manifesto is enough.</p>
+      <p>Hallmark&#x27;s example gallery makes the claim inspectable: different briefs, different structures, different visual registers. That is the operating difference between content volume and content architecture. The section is not there because a long page needed another block. It is there because a buyer has a doubt, a reviewer has a risk, or a builder has a decision that needs to become visible before the next click.</p>
+      <ul>
+        <li>Inspect the claim, the mechanism, and the proof boundary.</li>
+        <li>Make the visual compress a decision into a map, comparison, timeline, or checklist.</li>
+        <li>Place the CTA where the reader has just resolved a doubt.</li>
+      </ul>
+      <p>Read this beside <a href="blog/how-to-brief-an-agent-for-design.html">How to Brief an Agent for Design Work</a>. The two guides quote each other because strong generated sites need connected judgment, not isolated advice fragments.</p>
+      <a class="atlas-card__cta" href="blog/portfolio-of-examples-as-proof.html">Show the range before asking for trust.</a>
+    </article>
+<article class="atlas-card">
+      <span>14 / Workflow</span>
+      <h4>How to Brief an Agent for Design Work</h4>
+      <blockquote>The quality of the page starts with the quality of the brief, but the agent still needs a system that refuses weak defaults.</blockquote>
+      <p>The user asks for a cool landing page. The agent hears permission to decorate instead of diagnose. The useful version of the page does not hide that scene behind a shiny component. It puts the reader inside the moment where trust is being lost, then names the false shortcut: a detailed prompt alone fixes ai design.</p>
+      <p>Hallmark reads the project first, picks a macrostructure, chooses a theme, writes with constraints, and audits the result. That is the operating difference between content volume and content architecture. The section is not there because a long page needed another block. It is there because a buyer has a doubt, a reviewer has a risk, or a builder has a decision that needs to become visible before the next click.</p>
+      <ul>
+        <li>Inspect the claim, the mechanism, and the proof boundary.</li>
+        <li>Make the visual compress a decision into a map, comparison, timeline, or checklist.</li>
+        <li>Place the CTA where the reader has just resolved a doubt.</li>
+      </ul>
+      <p>Read this beside <a href="blog/design-system-final-verdict.html">Hallmark Final Verdict: When to Use It and When to Wait</a>. The two guides quote each other because strong generated sites need connected judgment, not isolated advice fragments.</p>
+      <a class="atlas-card__cta" href="blog/how-to-brief-an-agent-for-design.html">Brief the outcome, the buyer, and the constraints.</a>
+    </article>
+<article class="atlas-card">
+      <span>15 / Verdict</span>
+      <h4>Hallmark Final Verdict: When to Use It and When to Wait</h4>
+      <blockquote>Hallmark is strongest when you need taste, structure, and visual QA around generated interfaces.</blockquote>
+      <p>The team can build working pages quickly, but every page starts to share the same hidden skeleton. The useful version of the page does not hide that scene behind a shiny component. It puts the reader inside the moment where trust is being lost, then names the false shortcut: every project needs a design skill.</p>
+      <p>Use Hallmark when the surface matters; wait when the real work is backend logic, product research, or business rules. That is the operating difference between content volume and content architecture. The section is not there because a long page needed another block. It is there because a buyer has a doubt, a reviewer has a risk, or a builder has a decision that needs to become visible before the next click.</p>
+      <ul>
+        <li>Inspect the claim, the mechanism, and the proof boundary.</li>
+        <li>Make the visual compress a decision into a map, comparison, timeline, or checklist.</li>
+        <li>Place the CTA where the reader has just resolved a doubt.</li>
+      </ul>
+      <p>Read this beside <a href="blog/anti-ai-slop-design-system.html">The Anti-Slop Design System: Why AI Pages Look the Same</a>. The two guides quote each other because strong generated sites need connected judgment, not isolated advice fragments.</p>
+      <a class="atlas-card__cta" href="blog/design-system-final-verdict.html">Use it on the next page where sameness would cost trust.</a>
+    </article></div>
+  </section>
+</section>
+<!-- SITE IMPROVER END -->
+
     <section class="section reveal" style="--i:6" id="install" aria-labelledby="s6">
       <header class="section__head">
         <p class="section-label">
@@ -1101,12 +1387,16 @@
         </div>
       </div>
       <figure class="hero__play" aria-hidden="true">
-        <span class="play-blob"></span>
-        <span class="play-dot play-dot--pear"></span>
-        <span class="play-pill play-pill--cyan"></span>
-        <span class="play-ring play-ring--lavender"></span>
-        <span class="play-dot play-dot--coral"></span>
-        <span class="play-dot play-dot--mint"></span>
+        <div class="hero-map">
+          <span class="hero-map__label">decision map</span>
+          <div class="hero-map__nodes">
+            <span>brief</span><span>shape</span><span>proof</span><span>QA</span>
+          </div>
+          <div class="hero-map__panel">
+            <strong>57</strong>
+            <em>slop gates before ship</em>
+          </div>
+        </div>
       </figure>
     </div>
   </template>
