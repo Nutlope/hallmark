@@ -220,7 +220,51 @@
   <main class="page">
 
     <!-- 01 · HERO SLOT — archetype swaps per theme -->
-    <section class="slot slot--hero reveal" data-slot="hero" id="top" style="--i:0" aria-label="Opening"></section>
+    <section class="slot slot--hero reveal" data-slot="hero" id="top" style="--i:0" aria-label="Opening">
+      <div class="hero hero--hum">
+        <div class="hero__main">
+          <p class="hero__eyebrow"><span class="mark" aria-hidden="true"></span>A design skill</p>
+          <h1 class="hero__display">Make your AI agent a designer.</h1>
+          <p class="hero__lede">Hallmark gives Claude Code, Cursor, and Codex a design system for choosing structure, typography, color, motion, and interaction rules before the UI is built.</p>
+          <div class="hero__actions" aria-label="Primary actions">
+            <a class="hero__primary" href="#install">Install Hallmark</a>
+            <a class="hero__secondary" href="#examples">See examples</a>
+          </div>
+          <div class="hero__cta hero__command">
+            <p class="label">Copy the command</p>
+            <pre class="code"
+              data-copy-source><span class="prompt">$</span><span data-copy-text>npx skills add nutlope/hallmark</span><button class="code__copy" type="button" data-copy-btn aria-label="Copy install command"><span class="code__copy-default">Copy</span><span class="code__copy-done">Copied</span></button></pre>
+          </div>
+        </div>
+        <figure class="hero__play" aria-hidden="true">
+          <span class="play-blob"></span>
+          <span class="play-dot play-dot--pear"></span>
+          <span class="play-pill play-pill--cyan"></span>
+          <span class="play-ring play-ring--lavender"></span>
+          <span class="play-dot play-dot--coral"></span>
+          <span class="play-dot play-dot--mint"></span>
+        </figure>
+      </div>
+    </section>
+
+    <section class="proof-strip reveal" style="--i:0.5" aria-label="What Hallmark changes">
+      <div class="proof-strip__item">
+        <strong>20 themes</strong>
+        <span>not one palette swap</span>
+      </div>
+      <div class="proof-strip__item">
+        <strong>21 page shapes</strong>
+        <span>landing pages, docs, dashboards, editorials</span>
+      </div>
+      <div class="proof-strip__item">
+        <strong>57 gates</strong>
+        <span>checks for slop before shipping</span>
+      </div>
+      <div class="proof-strip__item">
+        <strong>4 verbs</strong>
+        <span>build, redesign, audit, fix</span>
+      </div>
+    </section>
 
     <!-- 02 · EXAMPLES — full-bleed rail, the centerpiece -->
     <section class="section section--bleed reveal" style="--i:1" id="examples" aria-labelledby="s2">
@@ -233,7 +277,7 @@
         </h2>
       </header>
 
-      <p class="examples__intro">One-shotted. No shared theme. No shared layout.</p>
+      <p class="examples__intro">A gallery of outputs from different briefs. Different structure, different voice, not color swaps.</p>
 
       <div class="examples-rail" role="list" aria-label="Example landing pages">
 
@@ -1046,8 +1090,12 @@
         <p class="hero__eyebrow"><span class="mark" aria-hidden="true"></span>{{eyebrow}}</p>
         <h1 class="hero__display">{{title}}</h1>
         <p class="hero__lede">{{lede}}</p>
-        <div class="hero__cta">
-          <p class="label">{{ctaLabel}}</p>
+        <div class="hero__actions" aria-label="Primary actions">
+          <a class="hero__primary" href="#install">Install Hallmark</a>
+          <a class="hero__secondary" href="#examples">{{cta}}</a>
+        </div>
+        <div class="hero__cta hero__command">
+          <p class="label">Copy the command</p>
           <pre class="code"
             data-copy-source><span class="prompt">$</span><span data-copy-text>npx skills add nutlope/hallmark</span><button class="code__copy" type="button" data-copy-btn aria-label="Copy install command"><span class="code__copy-default">Copy</span><span class="code__copy-done">Copied</span></button></pre>
         </div>
