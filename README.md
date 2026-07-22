@@ -1,5 +1,7 @@
 # Hallmark
 
+[English](./README.md) | [简体中文](./README.zh-CN.md) | [日本語](./README.ja.md)
+
 **A design skill for Claude Code, Cursor, and Codex that refuses to look AI-generated.**
 
 [Live demo →](https://www.usehallmark.com) &nbsp;·&nbsp; twenty themes &nbsp;·&nbsp; four verbs &nbsp;·&nbsp; press `T` to cycle.
