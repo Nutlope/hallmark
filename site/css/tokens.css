@@ -459,17 +459,17 @@
    ────────────────────────────────────────────────────────────── */
 
 [data-theme="almanac"] {
-  --color-paper:    oklch(94%  0.008 245);
-  --color-paper-2:  oklch(91%  0.010 245);
-  --color-paper-3:  oklch(86%  0.012 240);
-  --color-rule:     oklch(74%  0.012 240);
-  --color-rule-2:   oklch(38%  0.018 240);
-  --color-muted:    oklch(46%  0.014 245);
+  --color-paper:    oklch(84%  0.012 245);   /* mid-band cool slate stock */
+  --color-paper-2:  oklch(81%  0.014 245);
+  --color-paper-3:  oklch(77%  0.016 240);
+  --color-rule:     oklch(66%  0.014 240);
+  --color-rule-2:   oklch(34%  0.018 240);
+  --color-muted:    oklch(42%  0.016 245);   /* 5.17:1 on paper */
   --color-neutral:  oklch(28%  0.016 245);
   --color-ink-2:    oklch(20%  0.018 245);
-  --color-ink:      oklch(16%  0.020 245);
-  --color-accent:   oklch(38%  0.135 250);
-  --color-accent-ink: oklch(40% 0.13 250);
+  --color-ink:      oklch(16%  0.020 245);   /* 11.9:1 on paper */
+  --color-accent:   oklch(38%  0.135 250);   /* 6.05:1 on paper */
+  --color-accent-ink: oklch(84% 0.012 245);  /* = paper; text on accent fills */
   --color-focus:    oklch(38%  0.135 250);
 
   --font-display: "Hanken Grotesk", "Inter", ui-sans-serif, sans-serif;
@@ -615,19 +615,19 @@
    ────────────────────────────────────────────────────────────── */
 
 [data-theme="riso"] {
-  --color-paper:    oklch(91%    0.034 30);
-  --color-paper-2:  oklch(87%    0.040 30);
-  --color-paper-3:  oklch(82%    0.046 30);
-  --color-rule:     oklch(70%    0.040 30);
-  --color-rule-2:   oklch(56%    0.060 30);
-  --color-muted:    oklch(46%    0.060 30);
+  --color-paper:    oklch(84%    0.048 30);    /* mid-band pink stock; chroma raised so the pink survives */
+  --color-paper-2:  oklch(80%    0.054 30);
+  --color-paper-3:  oklch(75%    0.060 30);
+  --color-rule:     oklch(62%    0.050 30);
+  --color-rule-2:   oklch(48%    0.065 30);
+  --color-muted:    oklch(42%    0.060 30);    /* 5.24:1 on paper */
   --color-neutral:  oklch(34%    0.060 30);
   --color-ink-2:    oklch(22%    0.060 30);
-  --color-ink:      oklch(18%    0.060 30);
-  --color-accent:   oklch(58%    0.170 220);   /* riso cyan/teal */
-  --color-accent-2: oklch(78%    0.180 95);    /* riso yellow */
-  --color-accent-ink: oklch(58%  0.170 220);
-  --color-focus:    oklch(58%    0.170 220);
+  --color-ink:      oklch(18%    0.060 30);    /* 11.5:1 on paper */
+  --color-accent:   oklch(46%    0.140 220);   /* riso blue, deepened: 3.82:1 spot ink + focus */
+  --color-accent-2: oklch(78%    0.180 95);    /* riso yellow - multiply overprint only */
+  --color-accent-ink: oklch(84%  0.048 30);    /* = paper; large text only on accent fills */
+  --color-focus:    oklch(46%    0.140 220);
 
   --font-display: "Public Sans", "Albert Sans", ui-sans-serif, system-ui, sans-serif;
   --font-body:    "Newsreader", "Tiempos", ui-serif, Georgia, serif;
@@ -720,8 +720,8 @@
   --color-accent-ink: oklch(98%   0.005 50);
   --color-focus:      oklch(64%   0.165 28);
 
-  --font-display: "Geist", "General Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-body:    "Geist", "General Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "General Sans", "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-body:    "General Sans", "Geist", ui-sans-serif, system-ui, sans-serif;
   --font-serif:   ui-serif, Georgia, serif;
   --font-label:   "Geist Mono", ui-monospace, monospace;
   --font-mono:    "Geist Mono", ui-monospace, monospace;
@@ -800,12 +800,12 @@
   --color-neutral:    oklch(74%   0.014 200);
   --color-ink-2:      oklch(82%   0.012 200);
   --color-ink:        oklch(96%   0.010 200);
-  --color-accent:     oklch(72%   0.170 200);    /* cyan */
+  --color-accent:     oklch(68%   0.145 172);    /* teal-green - the one UI signal, 7.7:1 on paper */
   --color-accent-ink: oklch(11%   0.025 200);
-  --color-accent-2:   oklch(64%   0.150 175);    /* secondary teal-green */
-  --color-focus:      oklch(72%   0.170 200);
+  --color-accent-2:   oklch(72%   0.170 200);    /* cyan - demoted; lives in the first bloom */
+  --color-focus:      oklch(68%   0.145 172);
 
-  --font-display: "Geist", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sora", "Geist", ui-sans-serif, system-ui, sans-serif;
   --font-body:    "Sentient", "Geist", ui-sans-serif, system-ui, sans-serif;
   --font-serif:   "Sentient", ui-serif, Georgia, serif;
   --font-label:   "Geist Mono", ui-monospace, monospace;
@@ -1171,4 +1171,182 @@
   --dur-micro: 120ms;
   --dur-short: 220ms;
   --dur-long:  420ms;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   GRID - Swiss International, the grid made visible (editorial cluster)
+   Near-white sheet, one signal red, exposed 12-column hairlines, heavy
+   neo-grotesque. Neutrals carry a whisper of cool chroma so no grey is
+   flat. Axes: light / grotesk-heavy / warm-red near-mono.
+   ────────────────────────────────────────────────────────────── */
+
+[data-theme="grid"] {
+  --color-paper:      oklch(99%   0.003 255);   /* near-white sheet, faint cool, never #fff */
+  --color-paper-2:    oklch(97.2% 0.003 255);
+  --color-paper-3:    oklch(94.5% 0.004 255);
+  --color-rule:       oklch(88%   0.004 255);   /* the exposed grid hairline */
+  --color-rule-2:     oklch(72%   0.005 255);
+  --color-muted:      oklch(48%   0.006 255);
+  --color-neutral:    oklch(34%   0.006 255);
+  --color-ink-2:      oklch(26%   0.008 255);
+  --color-ink:        oklch(16%   0.010 255);   /* cool near-black */
+  --color-accent:     oklch(55%   0.21  28);    /* the one signal red */
+  --color-accent-ink: oklch(99%   0.003 255);
+  --color-focus:      oklch(55%   0.21  28);
+
+  --font-display: "Archivo", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
+  --font-body:    "Archivo", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
+  --font-serif:   ui-serif, Georgia, serif;
+  --font-label:   "Archivo", ui-sans-serif, sans-serif;
+  --font-mono:    "Spline Sans Mono", "Geist Mono", ui-monospace, monospace;
+
+  --display-weight: 800;
+  --display-style:  normal;
+
+  --text-display:   clamp(2.75rem, 7vw + 0.5rem, 6rem);
+  --text-display-s: clamp(2rem, 3.5vw + 0.5rem, 3.25rem);
+
+  --tracking-display: -0.045em;
+  --tracking-tight:   -0.02em;
+  --tracking-label:   0.04em;
+  --section-gap: 6rem;
+  --section-head-gap: 1.5rem;
+
+  --radius-card: 0; --radius-pill: 0; --radius-input: 0;
+  --rule-card: 1px; --shadow-card: none;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   FIELD - warm productivity paper, the serious tool that feels made
+   (playful cluster). Cream paper, Source Serif display over humanist
+   Public Sans, one marigold highlighter, hand-drawn ink accents.
+   Axes: light-cream / roman-serif-display / marigold.
+   ────────────────────────────────────────────────────────────── */
+
+[data-theme="field"] {
+  --color-paper:      oklch(96.5% 0.015 90);    /* warm cream */
+  --color-paper-2:    oklch(98.5% 0.010 90);
+  --color-paper-3:    oklch(94.2% 0.020 88);
+  --color-rule:       oklch(87%   0.015 90);
+  --color-rule-2:     oklch(83%   0.018 86);
+  --color-muted:      oklch(55%   0.016 74);
+  --color-neutral:    oklch(43%   0.020 72);
+  --color-ink-2:      oklch(43%   0.020 72);
+  --color-ink:        oklch(25%   0.020 70);    /* warm near-black */
+  --color-accent:     oklch(75%   0.13  80);    /* marigold highlighter */
+  --color-accent-ink: oklch(25%   0.020 70);    /* dark ink on marigold */
+  --color-focus:      oklch(52%   0.15  76);
+
+  --font-display: "Source Serif 4", Georgia, ui-serif, serif;
+  --font-body:    "Public Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif:   "Source Serif 4", Georgia, ui-serif, serif;
+  --font-label:   "Public Sans", ui-sans-serif, sans-serif;
+  --font-mono:    "Geist Mono", ui-monospace, monospace;
+
+  --display-weight: 600;
+  --display-style:  normal;
+
+  --text-display:   clamp(2.25rem, 4.6vw + 0.6rem, 4rem);
+  --text-display-s: clamp(1.75rem, 2.8vw + 0.5rem, 2.75rem);
+
+  --tracking-display: -0.02em;
+  --tracking-tight:   -0.012em;
+  --tracking-label:   0.02em;
+  --section-gap: 6rem;
+  --section-head-gap: 1.5rem;
+
+  --radius-card: 10px; --radius-pill: 999px; --radius-input: 8px;
+  --shadow-card: 0 1px 2px oklch(30% 0.02 70 / 0.10),
+                 0 10px 24px -16px oklch(30% 0.03 70 / 0.18);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   LEDGER - fintech terminal-lux, the data is the marketing
+   (modern-minimal cluster; the cluster's one dark option). Navy ground,
+   one teal signal on positive figures, tabular mono everywhere.
+   Axes: dark-navy / grotesk + tabular-mono / teal.
+   ────────────────────────────────────────────────────────────── */
+
+[data-theme="ledger"] {
+  color-scheme: dark;
+  --color-paper:      oklch(20%   0.025 255);   /* dark navy ground */
+  --color-paper-2:    oklch(24%   0.026 256);
+  --color-paper-3:    oklch(27.5% 0.026 256);
+  --color-rule:       oklch(32%   0.020 255);
+  --color-rule-2:     oklch(40%   0.020 255);
+  --color-muted:      oklch(72%   0.015 250);
+  --color-neutral:    oklch(60%   0.015 250);
+  --color-ink-2:      oklch(84%   0.012 250);
+  --color-ink:        oklch(93%   0.010 250);   /* cool light */
+  --color-accent:     oklch(78%   0.12  185);   /* teal, on positive figures + one CTA */
+  --color-accent-ink: oklch(20%   0.030 255);   /* dark ink on teal */
+  --color-focus:      oklch(85%   0.13  195);
+
+  --font-display: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body:    "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-serif:   ui-serif, Georgia, serif;
+  --font-label:   "IBM Plex Mono", ui-monospace, monospace;
+  --font-mono:    "IBM Plex Mono", ui-monospace, monospace;
+
+  --display-weight: 600;
+  --display-style:  normal;
+
+  --text-display:   clamp(2.25rem, 4.4vw + 0.6rem, 3.75rem);
+  --text-display-s: clamp(1.75rem, 2.6vw + 0.5rem, 2.5rem);
+
+  --tracking-display: -0.02em;
+  --tracking-tight:   -0.012em;
+  --tracking-label:   0.06em;
+  --section-gap: 6rem;
+  --section-head-gap: 1.5rem;
+
+  --radius-card: 12px; --radius-pill: 8px; --radius-input: 8px;
+  --shadow-card: 0 16px 40px -20px oklch(12% 0.02 258 / 0.6),
+                 0 1px 2px oklch(12% 0.02 258 / 0.4);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   ARCADE - retro-system nostalgia, tasteful (playful cluster).
+   Violet-black ground, pixel display over readable humanist body, a
+   magenta + cyan accent duo, scanlines + starfield. NO fake OS chrome
+   (gate 47 carve-out: retro signal via type/scanline/colour only).
+   Axes: dark-violet / pixel-display / magenta+cyan.
+   ────────────────────────────────────────────────────────────── */
+
+[data-theme="arcade"] {
+  color-scheme: dark;
+  --color-paper:      oklch(16%  0.020 300);    /* violet-black */
+  --color-paper-2:    oklch(21%  0.030 300);
+  --color-paper-3:    oklch(26%  0.035 300);
+  --color-rule:       oklch(38%  0.030 300);
+  --color-rule-2:     oklch(52%  0.050 320);
+  --color-muted:      oklch(66%  0.030 300);
+  --color-neutral:    oklch(80%  0.020 300);
+  --color-ink-2:      oklch(80%  0.020 300);
+  --color-ink:        oklch(95%  0.012 300);    /* near-white violet-tinted */
+  --color-accent:     oklch(70%  0.24  340);    /* magenta */
+  --color-accent-2:   oklch(85%  0.13  195);    /* cyan companion */
+  --color-accent-ink: oklch(16%  0.020 300);    /* dark ink on magenta */
+  --color-focus:      oklch(85%  0.13  195);    /* cyan ring */
+
+  --font-display: "Silkscreen", ui-monospace, monospace;
+  --font-body:    "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-serif:   ui-serif, Georgia, serif;
+  --font-label:   "Silkscreen", ui-monospace, monospace;
+  --font-mono:    "IBM Plex Mono", ui-monospace, monospace;
+
+  --display-weight: 700;
+  --display-style:  normal;
+
+  --text-display:   clamp(2rem, 5vw + 0.5rem, 4rem);
+  --text-display-s: clamp(1.5rem, 3vw + 0.5rem, 2.25rem);
+
+  --tracking-display: 0.01em;
+  --tracking-tight:   0;
+  --tracking-label:   0.14em;
+  --section-gap: 6rem;
+  --section-head-gap: 1.5rem;
+
+  --radius-card: 4px; --radius-pill: 0; --radius-input: 4px;
+  --shadow-card: 0.25rem 0.25rem 0 oklch(46% 0.15 342 / 0.55);
 }

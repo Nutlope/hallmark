@@ -7,7 +7,7 @@ Numbered stages tell the story of how the user uses the product over time. Each 
 - **Divider:** thick numbered rule between stages.
 - **Button:** stage-internal links; one global "Start at stage 1 →" at the foot.
 - **Image:** small product capture per stage, often annotated.
-- **Reveal:** sweep horizontal as stages enter the viewport.
+- **Reveal:** sweep horizontal as stages enter the viewport (a scrub-linked stage sequence may use [`scroll-choreography.md`](../scroll-choreography.md) § Pinned chapter instead - one pattern).
 
 Reach for it for products with explicit workflows — project management, design-to-dev pipelines, writing tools.
 

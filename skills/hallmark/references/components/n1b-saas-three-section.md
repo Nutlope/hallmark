@@ -33,3 +33,16 @@ Wordmark hard-left · a centred cluster of 4–6 links (some opening hover dropd
 *Scroll behaviour (default):* transparent at rest over the hero, frosts (blur backdrop + hairline border + soft shadow) past ~24px, and tightens height ~8px. Always rAF-throttle the scroll handler.
 *Anti-pattern:* don't let the centre cluster collide with brand/CTA — if it can't sit centred with breathing room, drop to 3 links or route to N1a. Never ship a dropdown that opens on click only with no hover/focus affordance.
 *Mobile:* hide `.nav__center` below ~900px; brand + CTA (or hamburger) remain.
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Centre links: 3 · 4 · 5–6
+- Dropdowns: none · 1 · 2
+- Scroll: frost-on-scroll · always-solid · transparent-fixed
+
+## Mobile collapse
+
+- **Below 60rem:** centre link cluster collapses behind a menu disclosure; sign-in + CTA stay inline
+- **Below 40rem:** hamburger only: wordmark left, menu + CTA right, 44px hit targets

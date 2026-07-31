@@ -12,3 +12,16 @@ A small fixed chip in a corner — wordmark + a single action ("Try it"). Doesn'
 ```css
 .nav-chip { position: fixed; top: var(--space-md); right: var(--space-md); display: inline-flex; gap: var(--space-md); padding: 0.5rem 0.75rem; background: var(--color-paper); border: 1px solid var(--color-rule); }
 ```
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Anchor: top · bottom · top-right · bottom-left
+- Content: theme picker · search · navigation
+- Backdrop: blur · solid · none
+
+## Mobile collapse
+
+- **Below 60rem:** chip remains floating; reduce padding
+- **Below 40rem:** chip widens to support 44 px hit target; never below 280 px

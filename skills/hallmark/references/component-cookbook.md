@@ -4,10 +4,7 @@ Fifty component archetypes you can compose into any macrostructure. Every entry:
 
 The same macrostructure (e.g., Bento Grid) can be built from many different combinations of these archetypes. The macrostructure picks the *page shape*; this file picks the *components inside it*.
 
-**Diversification rule:** within a single page, no two sections should use the same archetype. A Bento Grid might pair *Bento feature block* with *Inline form CTA* with *Logo wall (hairline)*. The next page Hallmark builds should pick different archetypes from the same categories.
-
----
-
+**Diversification rule:** lives in SKILL.md's Rotation block; check it before picking archetypes.
 
 ---
 
@@ -23,13 +20,13 @@ The same macrostructure (e.g., Bento Grid) can be built from many different comb
 - **H4 · Stat led** — A giant number or metric is the hero. A small qualifier line below. [`components/h4-stat-led.md`](components/h4-stat-led.md)
 - **H5 · Letter hero** — First-person opening — "Dear reader,". No buttons in fold. Reads as personal correspondence. [`components/h5-letter-hero.md`](components/h5-letter-hero.md)
 - **H6 · Photographic fold** — Single full-bleed image fills the viewport. Caption sits in a corner. [`components/h6-photographic-fold.md`](components/h6-photographic-fold.md)
-- **H7 · Demo video clipped by viewport edge** — Display headline left, demo video right, the rightmost ~10–20 % extending past the viewport so it's intentionally cut off. The clip *is* the design — implies "there's more product  [`components/h7-demo-video-clipped-by-viewport-edge.md`](components/h7-demo-video-clipped-by-viewport-edge.md)
+- **H7 · Demo video clipped by viewport edge** — Display headline left, demo video right, the rightmost ~10–20 % extending past the viewport so it's intentionally cut off. The clip *is* the design — it implies there's more product than fits the screen. [`components/h7-demo-video-clipped-by-viewport-edge.md`](components/h7-demo-video-clipped-by-viewport-edge.md)
 - **H8 · Mockup split browser framed** — Headline left, browser-frame mockup right, the mockup tilted 1–3° for life. Frame can be browser chrome, macOS toolbar, minimal hairline, or floating no-frame. [`components/h8-mockup-split-browser-framed.md`](components/h8-mockup-split-browser-framed.md)
-- **H9 · Custom illustration centerpiece** — A single hand-built SVG (Tier B in the enrichment hierarchy — or pure CSS at Tier A for simpler shapes) sitting on the hero as one illustrative element. The bakery loaf, the studio [`components/h9-custom-illustration-centerpiece.md`](components/h9-custom-illustration-centerpiece.md)
+- **H9 · Custom illustration centerpiece** — A single hand-built SVG (Tier B in the enrichment hierarchy — or pure CSS at Tier A for simpler shapes) sitting on the hero as one illustrative element: the bakery loaf, the studio mark. [`components/h9-custom-illustration-centerpiece.md`](components/h9-custom-illustration-centerpiece.md)
 
 ### Section heads
 
-- **S1 · Left margin numbered** — A narrow left column holds `01 — LABEL.`; the wide right column holds the heading and content. [`components/s1-left-margin-numbered.md`](components/s1-left-margin-numbered.md)
+- **S1 · Stacked numbered** — The section number stacks directly above the heading, same column (the old side-column form is gate 54's auto-fail). [`components/s1-left-margin-numbered.md`](components/s1-left-margin-numbered.md)
 - **S2 · Hanging** — Heading floats above the section in negative space; no border, no rule. [`components/s2-hanging.md`](components/s2-hanging.md)
 - **S3 · Sticky pinned** — Heading remains in viewport while content scrolls beneath. Orientation aid. [`components/s3-sticky-pinned.md`](components/s3-sticky-pinned.md)
 - **S4 · Inline no break** — The heading is a small caps phrase that emerges *inside* the body flow; no spatial break. [`components/s4-inline-no-break.md`](components/s4-inline-no-break.md)
@@ -98,57 +95,11 @@ When you pick an archetype, **state the knob values you chose** in the macrostru
 /* Hallmark · macrostructure: Bento Grid · F1 Bento knobs: tiles=6, spans=irregular, accent=corner-only · ... */
 ```
 
-| Archetype | Knob A | Knob B | Knob C |
-| --- | --- | --- | --- |
-| **H1 Marquee** | Display size: `xxl` (clamp 4–12rem) · `xl` (clamp 3–8rem) | Alignment: left-bias · centred · right-bias | Underlay: none · single rule above · single rule below |
-| **H2 Split Diptych** | Ratio: 7/5 · 6/6 · 5/7 | Right side: photo · proof column · pull-quote | Divider: hairline · negative space · vertical rule |
-| **H3 Quote-Led** | Quote weight: italic display · roman display · roman body large | Attribution position: under quote · margin-aligned · right-flush | Length: ≤80 chars · 80–160 chars |
-| **H4 Stat-Led** | Number style: tabular display · italic display · monospace | Qualifier position: below · inline-right · stacked-above | Secondary stats: none · two below · row of four |
-| **H5 Letter** | Salutation: greeting · "Dear X," · time-stamp | Body length: 1 paragraph · 2 paragraphs · 3 paragraphs | Signoff: typed name · drawn signature SVG · initials |
-| **H6 Photographic** | Image area: full-bleed · 16/7 · 4/3 · 1/1 square | Caption position: lower-left · upper-right · margin | Text below or overlaid |
-| **H7 Demo Video Clipped-Edge** | Clip side: right · left · both | Aspect ratio: 16/10 · 16/9 · 4/3 | Frame: hairline · browser chrome · none |
-| **H8 Mockup Split** | Frame style: browser chrome · macOS toolbar · minimal hairline · floating no-frame | Tilt: 0° · 1.5° · 3° | Screenshot count: 1 · stack-of-3 · orbit-of-3 |
-| **H9 Custom Illustration** | Build method: Tier-A pure-CSS · Tier-B hand-SVG · Tier-C generated · Tier-D library | Animation: none · loop · scroll-linked | Scale: small accent · dominant |
-| **F1 Bento (feature)** | Tiles: 4 · 6 · 7 · 9 | Spans: regular · irregular · mosaic | Border: hairline all · accent corners · none |
-| **F2 Sticky-scroll stack** | Pinned side: left · right | Right pane content: code · screenshot · diagram | Pin steps: 3 · 4 · 5 |
-| **F3 Tabular spec sheet** | Columns: 2 (key/val) · 3 (key/val/unit) · 4 (with footnote) | Rule density: every row · groups of 3 · headers only | Numbers: tabular · proportional |
-| **F4 Step sequence** | Numbering: I/II/III · 01/02/03 · 1.0/2.0/3.0 | Layout: vertical stack · horizontal flow · diagonal | Connector: line · arrow · none |
-| **F5 Annotated screenshot** | Callouts: numbered pins · margin labels · inline arrows | Frame: device · plain · floating | Anchor: image-led or text-led |
-| **F6 Product card grid** | Card ratio: 3/4 portrait · 1/1 square · 4/3 landscape | Density: 3-up · 4-up · 5-up | Micro-action: Add · Save · View → · none |
-| **C1 Outlined chip** | Shape: rectangular · pill (only allowed for tactile/playful tones) · slab | Density: spacious · compact | Adornment: arrow · plus · none |
-| **C2 Inline form-as-CTA** | Field count: 1 · 2 · 3 | Submit position: end-of-row · separate line · embedded button | Helper: above · below · none |
-| **C3 Typographic link CTA** | Underline: solid · dashed · double · none | Hover behaviour: thicken · slide · colour shift | Arrow: → · ↗ · none |
-| **C4 Sticky bottom bar** | Reveal: always · scroll-up · after fold | Anchored: viewport bottom · viewport top · inline at bottom | Shadow: hairline · none · subtle |
-| **T1 Pull quote w/ marginalia** | Quote treatment: italic display · roman large · serif italic | Attribution: signed · stamped · timestamped | Marginalia: none · timeline · 1 footnote |
-| **T2 Logo wall (hairline)** | Layout: single row · 2 rows · grid 3×N | Logo treatment: monochrome ink · brand colour · ghosted | Divider: hairline cells · none |
-| **T3 Single huge quote** | Quote face: serif italic · roman display · italic mono | Width: full-bleed · 60ch · 40ch | Attribution position: same line · separate band |
-| **T4 Numbered stat strip** | Layout: 3-up · 4-up · 5-up · 6-up | Number weight: display · body large | Qualifier position: under · inline · above |
-| **Ft1 Mast-headed** | Wordmark size: display 3xl · display 2xl · xl | Tagline: italic serif · roman body · none | Links row: inline · 2-line stack |
-| **Ft2 Inline single line** | Order: wordmark/links/credit · credit/wordmark/links | Separator: middot · pipe · em-dash · vertical rule | Density: dense · spaced |
-| **Ft3 Index columns** | Columns: 3 · 4 · 5 | Heading style: small caps · italic · monospace | Bullet: hairline · none |
-| **Ft4 Dense colophon** | Family: monospace · serif · sans | Layout: single block · paragraphs · log-style | Includes: build hash · date · attribution |
-| **N1 Wordmark + 2 links** | Position: left/right split · centred · right-flush | Links: text · text+icon · pill | Sticky: yes · no |
-| **N2 Floating chip** | Anchor: top · bottom · top-right · bottom-left | Content: theme picker · search · navigation | Backdrop: blur · solid · none |
-| **N3 Side-rail** | Side: left · right | Width: 12ch · 16ch · 20ch | Indicator: filled bar · text-only · numbered |
-| **N4 Hidden behind ⌘K** | Trigger: button · keyboard only · both | Surface: modal · sheet · spotlight | Recents: shown · hidden |
-| **N5 Floating pill** | Width: content-sized · max ~720 px · max ~560 px | Backdrop: blur+saturate · solid · subtle gradient | Anchor: top-centred · top-right · top-left |
-| **N6 Newspaper masthead** | Issue line: above wordmark · below wordmark · none | Wordmark size: 3xl · 2xl · xl | Rule: double · single · none |
-| **N7 Brutal slab** | Border weight: 2 px · 3 px · 4 px | Letter-spacing: tracked uppercase · normal | CTA: filled slab · outline block · text-only |
-| **N8 Terminal command** | Prompt: `>` · `$` · `~/$` | Cursor: in-line at end · after final flag · none | Width: full bleed · content · ~80 ch |
-| **N9 Edge-aligned minimal** | CTA shape: outlined · filled pill · text+arrow | Wordmark: serif italic · sans · monospace | Padding-block: tight · default · spacious |
-| **N1b SaaS three-section** | Centre links: 3 · 4 · 5–6 | Dropdowns: none · 1 · 2 | Scroll: frost-on-scroll · always-solid · transparent-fixed |
-| **N11 Mega-menu** | Columns: 2 · 3 · 4 | Feature cell: none · promo card · code sample | Scrim: dim+blur · dim only · none |
-| **N12 Banner + retract** | Banner fill: solid · gradient · tint+ink | Dismiss: yes · none | Bar scroll: sticky · also-frosts |
-| **N13 Inline ⌘K-pill** | Pill placement: centred · right-of-brand | Result groups: flat · grouped | Footer hints: shown · hidden |
-| **Ft5 Statement** | Sentence width: 28 ch · 38 ch · 50 ch | Wordmark position: under sentence · top-right · none | Rule above meta: hairline · double · none |
-| **Ft6 Letter close** | Signoff: italic · roman · monogram | Postscript: yes · no | Width: 40 ch · 60 ch · 80 ch |
-| **Ft7 Newsletter-first** | Layout: stacked · inline · split (form left · meta right) | Submit style: filled · outline · arrow link | Privacy line: yes · no |
-| **Ft8 Marquee scroll** | Speed: 24 s · 32 s · 48 s | Direction: left · right · alternate (rare) | Glyph: middot · em-dash · slash |
+The knob values live **inside each archetype file** (`## Knobs`), next to the code they vary; this index never carries them.
 
-**Anti-pattern:** picking the same knob values across two different outputs is the same kind of templating as picking the same archetype. If your last Bento was `tiles=6, spans=irregular, accent=corner-only`, the next one must change at least one knob.
+**Anti-pattern (gate 32):** picking the same knob values across two outputs is the same templating as picking the same archetype. If your last Bento was `tiles=6, spans=irregular, accent=corner-only`, the next one changes at least one knob.
 
 ---
-
 
 ## Routing — which footer fits which genre
 
@@ -161,12 +112,11 @@ When you pick an archetype, **state the knob values you chose** in the macrostru
 | terminal | **Ft4 Dense colophon** | Ft2 |
 | docs / reference | **Ft3 Index columns** | Ft1 |
 
-**Diversification.** Same rule as nav — across consecutive Hallmark runs in the same session, no two outputs should share the same footer archetype.
+**Diversification.** Footer rotation lives in SKILL.md's Rotation block.
 
 **Default away from Ft3.** The 4-column index footer is the AI fingerprint when used reflexively (Product · Company · Resources · Legal + social row + tiny copyright). Reach for Ft3 only when the page is a hub or docs-root with a genuine sitemap; default to Ft1, Ft2, Ft4, Ft5, Ft6, Ft7, or Ft8 otherwise.
 
 ---
-
 
 ## Routing — which nav fits which genre / theme
 
@@ -175,17 +125,16 @@ When you pick an archetype, **state the knob values you chose** in the macrostru
 | editorial (Newsprint · Garden · Atelier · Carnival · …) | **N6 Masthead** | N1a, N9, N12 |
 | modern-minimal (Coral · Cobalt) | **N1b SaaS three-section** | N5, N11, N13, N9 |
 | atmospheric (Bloom · Aurora · Midnight · Lumen) | **N5 Floating pill** (blur backdrop sells the mood) | N9, N4, N13, N1b |
-| playful (Hum) | **N1b SaaS three-section** | N5, N11, N12, N13, N7 (rounded) |
+| playful (Hum · Field · Arcade) | **N7 Brutal slab** (rounded knobs for Hum) | N1b, N11, N12, N13 |
 | terminal / CLI (Terminal) | **N8 Terminal command** | N4 ⌘K-only, N13 |
 | docs / reference (Almanac) | **N3 Side-rail** | N13, N1a, N4 |
 | commerce / product launch | **N12 Banner + retract** | N1b, N11, N9 |
 
-**Diversification — state it out loud, every build.** Across consecutive Hallmark runs in the same project session (and across multiple test builds of the *same theme*), no two outputs may share the same nav archetype. Before writing nav markup, write one line: *"Previous nav: <X>. This build: <Y>, because <reason>."* This is the same accountability step as the macrostructure rotation. **A theme with 4 test builds should show 4 different navs** — e.g. Hum across Curio/Sprout/Tally/Mixtape uses N5 → N1b → N12 → N13. Reaching for the genre *default* on every build is exactly the failure this rule exists to prevent; rotate through the "Acceptable also" column deliberately.
+**Diversification.** Nav rotation and the state-it-out-loud line live in SKILL.md's Rotation block.
 
 **Default away from N1a.** The most-recognised AI fingerprint is N1a (wordmark + inline link row + button-right) used reflexively. For a real product nav reach for **N1b** (the dense, balanced canonical bar) or N5/N11/N13 first; reach for N1a only when the page genuinely has 2 destinations.
 
 ---
-
 
 ## Picking from this file
 
@@ -211,48 +160,7 @@ Every archetype has a defined collapse behaviour at narrow viewports. The two br
 
 Below 60 rem the archetype must still feel like itself — same hierarchy, same tone, same rhythm — but in a stacked single-column form. Below 40 rem the page is a phone; treat space like a luxury.
 
-| Archetype | Below 60 rem | Below 40 rem |
-| --- | --- | --- |
-| **H1 Marquee** | unchanged (typography-only; centres / left-biases naturally) | display size step down (`xl` → `lg`); reduce side padding |
-| **H2 Split Diptych** | grid `1fr` (text top, proof column below); divider becomes hairline-rule between | proof column collapses to a 2-column compact grid for items |
-| **H3 Quote-Led** | quote stays full width; attribution wraps to its own line | quote size step down; attribution font-size step down |
-| **H4 Stat-Led** | number stays full width, text stacks below; secondary stats become 2-up grid | number size step down (`clamp` floor lifts); qualifier text wraps |
-| **H5 Letter** | unchanged single column; aside (if present) moves below body, divider becomes top border | salutation size step down; signoff tightens |
-| **H6 Photographic** | image stays full-bleed; caption moves from absolute corner to inline below image | caption font-size step down; corner caption never overlaps text on phones |
-| **H7 Demo Video Clipped-Edge** | **drops the clip**; goes `1fr` stacked, full-width media; tilt removed (clipping at 375 px reads as broken) | media reduces to 16/9; poster image used (auto-playing on cellular is hostile) |
-| **H8 Mockup Split** | drops the tilt; grid `1fr`; mockup goes full-width below text | annotation pins consolidate; numbered legend moves below mockup |
-| **H9 Custom Illustration** | grid `1fr`; illustration moves below text (or above — pick by tone) | illustration scales to ≤ 40 % viewport width; never dominates |
-| **F1 Bento** | grid drops from 6/4-col to 2-col; large tiles span 2; small tiles span 1 | drops to 1-col; tile order respects information priority |
-| **F2 Sticky-scroll stack** | sticky pane unsticks; content becomes linear sequence of paired text+visual blocks | the visuals shrink to 16/9 inline; no sticky behaviour at all |
-| **F3 Tabular spec sheet** | columns reduce: 4-col → 2 (key + value), drop unit + footnote | spec list goes vertical; each row is `dt` above `dd` |
-| **F4 Step sequence** | numbering moves from left margin to inline-with-step | step containers tighten; connector lines drop |
-| **F5 Annotated screenshot** | screenshot full-width; annotations restack as a numbered list below | screenshot 16/9; annotations consolidate into a legend |
-| **F6 Product card grid** | grid 3-up → 2-up | grid 2-up → 1-up; card height becomes flexible |
-| **C1 Outlined chip** | unchanged (chips wrap onto multiple lines if needed) | full-width single chip ; min-height 44 px hit target |
-| **C2 Inline form-as-CTA** | input + button stack vertically; full-width | label moves above input; button is full-width below |
-| **C3 Typographic link** | unchanged (links wrap naturally) | unchanged |
-| **C4 Sticky bottom bar** | unchanged (already designed for narrow); ensure 44 px min-height | label truncates if needed; CTA stays right-aligned |
-| **T1 Pull quote w/ marginalia** | marginalia move below quote; divider becomes hairline | marginalia consolidate into a single line |
-| **T2 Logo wall** | grid 6-up → 3-up | grid 3-up → 2-up; logo height step down (32 px → 24 px) |
-| **T3 Single huge quote** | quote remains full width; attribution wraps below | quote size step down by 1.4× |
-| **T4 Numbered stat strip** | strip 4-up → 2-up | strip becomes vertical; 1 stat per row |
-| **Ft1 Mast-headed** | links wrap to two lines; tagline below wordmark | wordmark size step down; tagline italicises in if not already |
-| **Ft2 Inline single line** | links wrap to multiple lines; separator becomes a soft return | becomes a vertical list |
-| **Ft3 Index columns** | grid 4-col → 2-col | grid 2-col → 1-col; column heads remain |
-| **Ft4 Dense colophon** | unchanged (mono/wraps naturally); reduce padding | font-size step down |
-| **Ft5 Statement** | sentence stays full width; meta row stacks | sentence size step down (clamp floor lifts); meta wraps |
-| **Ft6 Letter close** | unchanged single column; postscript wraps | signoff size step down; postscript italicises if not already |
-| **Ft7 Newsletter-first** | input + button stack vertically; full-width | label moves above input; button is full-width below |
-| **Ft8 Marquee scroll** | unchanged (already designed for narrow); slow speed by ~25 % | speed slows further; track height step down |
-| **N1 Wordmark + 2 links** | unchanged | links wrap to second line if long; wordmark stays |
-| **N2 Floating chip** | chip remains floating; reduce padding | chip widens to support 44 px hit target; never below 280 px |
-| **N3 Side-rail** | rail unsticks and becomes a hamburger trigger above | hamburger becomes the only nav |
-| **N4 ⌘K-only** | hamburger appears for users who don't know ⌘K | unchanged (⌘K equivalent is on-screen tap) |
-| **N5 Floating pill** | pill drops link list, keeps wordmark + CTA; stays detached | becomes a top-anchored corner chip — wordmark left, hamburger right |
-| **N6 Newspaper masthead** | issue line stacks above wordmark; nav links wrap to a second row | wordmark size step down; nav row collapses behind a "menu" disclosure |
-| **N7 Brutal slab** | links wrap to second line; CTA stays right-aligned | links collapse to hamburger; wordmark + hamburger only |
-| **N8 Terminal command** | flags wrap to a second `>` line if needed; cursor stays at the end | becomes a single hamburger labelled `> menu`; cursor visible at line end |
-| **N9 Edge-aligned minimal** | unchanged (already designed for breathing room) | wordmark + CTA stay edge-aligned; CTA pads to 44 px hit target |
+Each archetype file carries its own `## Mobile collapse` section with the two breakpoint behaviours; read it with the file when you pick.
 
 **Cross-cutting rules:**
 

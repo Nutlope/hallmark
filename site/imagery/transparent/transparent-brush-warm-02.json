@@ -1,0 +1,10 @@
+{
+  "model": "black-forest-labs/FLUX.1.1-pro",
+  "prompt": "Organic torn-paper blob shape painted in flat ochre yellow-brown gouache, ONE single colour only, monochrome, one shape centered on pure white background, deckled irregular edge, isolated, no other colours, no shadow, no text, flat scan",
+  "size": "1216x1216",
+  "steps": 4,
+  "hash": "87b380978037b6ac",
+  "generatedVia": "together",
+  "note": "generated asset; post-process before shipping; verify licensing",
+  "at": "2026-07-31"
+}

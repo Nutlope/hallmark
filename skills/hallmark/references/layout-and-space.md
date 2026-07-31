@@ -48,9 +48,20 @@ Layout is where "AI-generated" gets caught. Equal columns, everything centred, e
 - **Generous top, tight bottom** (or vice-versa). Sections don't need to be evenly padded.
 - **Alignment coherence.** A section head's horizontal alignment should be a deliberate choice that *coheres* with the body it introduces — match it (left head over left-flush body; centred head over symmetric / centred body) or break from it on purpose (a head that escapes an asymmetric grid). What reads as an AI mistake is the *accidental* mismatch: a narrow head block auto-centred (`margin-inline: auto` plus a `max-width` / `ch` cap) left floating over full-width, left-flush content beneath it. Centred, hanging, bottom-aligned, and asymmetric heads all stay on the table — the guard is intentionality, not uniformity.
 
+## Surfaces - the escalation ladder
+
+Separation is earned one rung at a time; a card is the TOP of the ladder, not the starting move.
+
+1. **Whitespace.** The default separator. Two ideas that only need distance get distance.
+2. **Hairline rule.** When adjacency needs a seam: 1px `--color-rule`, inset or full-bleed.
+3. **Tinted well.** When a region needs its own ground: `--color-paper-2/3`, NO border, no radius theatrics; the tint IS the boundary.
+4. **Card.** Border + radius, reserved for content that is independently interactive (clickable as a unit, reorderable, dismissable) or fundamentally different in kind from its surroundings.
+
+Never jump straight to rung 4; never default white-cards-on-tinted-page (the tint already did the work); a card inside a card is banned below. When every section separates identically, that is gate 9; climb DIFFERENT rungs in different places. The finish tier's F7 flags one container recipe stamped across the page.
+
 ## Depth
 
-- Depth is **weight and scale**, not shadow. A heavier weight, a larger size, a warmer hue — these create hierarchy better than drop shadows.
+- Depth is **weight and scale**, not shadow. A heavier weight, a larger size, a warmer hue — these create hierarchy better than drop shadows. Depth is the ladder's top rung dressed properly: reach it last.
 - If you use shadow, use one:
   - **Whisper** — `0 1px 2px oklch(20% 0.01 <hue> / 0.05)` for hovering cards.
   - **Hairline** — `0 0 0 1px oklch(30% 0.01 <hue> / 0.06)` as an alternative to a 1px border.

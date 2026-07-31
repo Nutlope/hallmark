@@ -1,0 +1,44 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>screen-dashboard-01</title>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · kit asset source: screen-dashboard-01 · theme: ledger register · hand-built */
+:root{--paper:oklch(20% 0.03 230);--paper-2:oklch(24% 0.032 230);--rule:oklch(32% 0.03 228);--ink:oklch(94% 0.008 220);--muted:oklch(66% 0.02 225);--accent:oklch(72% 0.11 185);--font:"Hanken Grotesk",sans-serif;--mono:"IBM Plex Mono",monospace}
+*{box-sizing:border-box;margin:0}html,body{overflow-x:clip}
+body{width:1280px;height:800px;background:var(--paper);color:var(--ink);font:14px/1.5 var(--font);display:grid;grid-template-columns:216px 1fr}
+.rail{border-right:1px solid var(--rule);padding:20px 16px;display:flex;flex-direction:column;gap:2px}
+.rail b{font-family:var(--mono);font-size:13px;letter-spacing:.04em;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.rail b i{width:14px;height:14px;background:var(--accent);display:inline-block;border-radius:3px}
+.rail a{color:var(--muted);text-decoration:none;padding:7px 10px;border-radius:6px;font-size:13.5px}
+.rail a.on{color:var(--ink);background:var(--paper-2)}
+main{padding:24px 28px;display:flex;flex-direction:column;gap:20px}
+.top{display:flex;justify-content:space-between;align-items:baseline}
+h1{font-size:19px;font-weight:600}.utc{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-block:1px solid var(--rule)}
+.kpi{padding:16px 18px}.kpi+.kpi{border-left:1px solid var(--rule)}
+.kpi u{text-decoration:none;font-size:12px;color:var(--muted);display:block;margin-bottom:4px}
+.kpi b{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:26px;font-weight:600}
+.kpi span{font-family:var(--mono);font-size:11.5px;color:var(--accent);margin-left:8px}
+.chart{display:flex;align-items:flex-end;gap:6px;height:150px;border-bottom:1px solid var(--rule);padding-bottom:0}
+.chart i{flex:1;background:var(--accent);opacity:.9;border-radius:2px 2px 0 0}
+.chart i:nth-child(odd){opacity:.55}
+table{width:100%;border-collapse:collapse;font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:12.5px}
+th{text-align:left;font-weight:500;color:var(--muted);border-bottom:1px solid var(--rule);padding:8px 10px}
+td{padding:9px 10px;border-bottom:1px solid var(--rule)}td:last-child,th:last-child{text-align:right}
+.ok{color:var(--accent)}
+</style></head><body>
+<nav class="rail"><b><i></i>meridian</b><a class="on" href="#">Overview</a><a href="#">Streams</a><a href="#">Alerts</a><a href="#">Reports</a><a href="#">Settings</a></nav>
+<main>
+<div class="top"><h1>Overview</h1><span class="utc">2026-07-31 · 09:41 UTC</span></div>
+<div class="kpis">
+<div class="kpi"><u>events processed</u><b>4,182,930</b><span>+2.1%</span></div>
+<div class="kpi"><u>p95 latency</u><b>41 ms</b><span>-3 ms</span></div>
+<div class="kpi"><u>active streams</u><b>312</b><span>+8</span></div>
+</div>
+<div class="chart"><i style="height:42%"></i><i style="height:58%"></i><i style="height:51%"></i><i style="height:64%"></i><i style="height:47%"></i><i style="height:71%"></i><i style="height:66%"></i><i style="height:78%"></i><i style="height:60%"></i><i style="height:84%"></i><i style="height:72%"></i><i style="height:90%"></i></div>
+<table><thead><tr><th>Time</th><th>Stream</th><th>Event</th><th>Amount</th></tr></thead><tbody>
+<tr><td>09:40:12</td><td>ingest-eu-2</td><td class="ok">reconciled</td><td>18,204</td></tr>
+<tr><td>09:39:58</td><td>ingest-us-1</td><td class="ok">reconciled</td><td>9,411</td></tr>
+<tr><td>09:39:41</td><td>batch-ledger</td><td>settling</td><td>44,102</td></tr>
+<tr><td>09:39:12</td><td>ingest-ap-1</td><td class="ok">reconciled</td><td>7,830</td></tr>
+</tbody></table>
+</main></body></html>

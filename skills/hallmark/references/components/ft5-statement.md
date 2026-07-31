@@ -19,3 +19,16 @@ One large display sentence dominates the footer — a closing line, not a sitema
 ```
 
 *Anti-pattern:* using a Statement footer on a docs root or hub. The sentence reads as marketing fluff there; default Ft3 instead.
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Sentence width: 28 ch · 38 ch · 50 ch
+- Wordmark position: under sentence · top-right · none
+- Rule above meta: hairline · double · none
+
+## Mobile collapse
+
+- **Below 60rem:** sentence stays full width; meta row stacks
+- **Below 40rem:** sentence size step down (clamp floor lifts); meta wraps

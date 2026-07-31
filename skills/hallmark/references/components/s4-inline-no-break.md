@@ -9,3 +9,15 @@ The heading is a small caps phrase that emerges *inside* the body flow; no spati
 ```css
 .head-inline { font-variant-caps: all-small-caps; letter-spacing: 0.06em; font-weight: 500; }
 ```
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Caps: all-small-caps · uppercase at text-xs
+- Weight: 500 · 600
+
+## Mobile collapse
+
+- **Below 60rem:** unchanged (inline flows with the prose)
+- **Below 40rem:** unchanged

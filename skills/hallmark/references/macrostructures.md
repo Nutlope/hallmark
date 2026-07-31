@@ -6,19 +6,18 @@ The Specimen macrostructure (left-margin numbered labels + huge serif + asymmetr
 
 ## Diversification rule (mandatory)
 
-Before picking, check the target codebase for a `/* Hallmark · macrostructure: <name> · ... */` comment in any existing CSS file. If you find one, **your pick must be a different macrostructure.** No two consecutive Hallmark outputs in the same project share a macrostructure.
-
-When the brief is vague (no theme, no tone), pick from the *first ten* below before reaching for anything in 11–21. The first ten are deliberately the strongest non-Specimen shapes; they cover ~80% of briefs.
+The rule lives in SKILL.md's Rotation block.
+Check the `/* Hallmark · macrostructure: <name> · ... */` stamp and `.hallmark/log.json` before picking.
 
 ## Hero polish patterns
 
-The hero macrostructures (Marquee Hero · Stat-Led · Quote-Led · Letter · Photographic · Clipped) admit one optional **polish pattern** on top of their base shape — HP1 Vertical-rail · HP2 Marquee-overflow · HP3 Cursor-spotlight · HP4 Decorative-numeral. Polish patterns are *structural* (layout / type / motion), not decorative; they live alongside the hero macrostructure rather than replacing it. See [`hero-enrichment.md`](hero-enrichment.md) § Hero shape polish for the catalogue + when each one fits.
+The hero macrostructures (Marquee Hero · Stat-Led · Quote-Led · Letter · Photographic) admit one optional **polish pattern** on top of their base shape — HP1 Vertical-rail · HP2 Marquee-overflow · HP3 Cursor-spotlight · HP4 Decorative-numeral. Polish patterns are *structural* (layout / type / motion), not decorative; they live alongside the hero macrostructure rather than replacing it. See [`hero-enrichment.md`](hero-enrichment.md) § Hero shape polish for the catalogue + when each one fits.
 
 A hero may carry one enrichment archetype (E1–E8) AND one polish pattern (HP1–HP4) — but never two polish patterns at once. The decision sequence is: macrostructure → enrichment? → polish? → space discipline.
 
 ## Nav and footer voice
 
-Each macrostructure also implies a **nav archetype** (N1–N9) and a **footer archetype** (Ft1–Ft8). The defaults sit in the routing tables in [`component-cookbook.md`](component-cookbook.md) § Navigation and § Footers. Don't ship a hero macrostructure without picking nav + footer alongside — they are part of the page shape, not optional chrome.
+Each macrostructure also implies a **nav archetype** (N1a–N13) and a **footer archetype** (Ft1–Ft8). The defaults sit in the routing tables in [`component-cookbook.md`](component-cookbook.md) § Navigation and § Footers. Don't ship a hero macrostructure without picking nav + footer alongside — they are part of the page shape, not optional chrome.
 
 ---
 
@@ -50,31 +49,30 @@ Each macrostructure also implies a **nav archetype** (N1–N9) and a **footer ar
 
 ---
 
-## SaaS page sequence
+## SaaS section deck - deal it, don't sequence it
 
-When the macrostructure is **Bento Grid · Stat-Led · Workbench · Marquee Hero** and the brief is a B2B SaaS marketing page, ship these sections in roughly this order. None are mandatory — but skipping more than two reads as "the page is incomplete":
+When the macrostructure is **Bento Grid · Stat-Led · Workbench · Marquee Hero** and the brief is a B2B SaaS page, build from this **deck of eight core cards**. Cards have roles, not positions:
 
-1. **Hero** — macrostructure-specific (Bento, Stat, Workbench, Marquee). Two CTAs (primary action + secondary "Talk to sales").
-2. **Social proof / logo wall** — 6–8 customer logos in monochrome. (See [`assets.md` § Logo walls](assets.md).)
-3. **Features** — 3–6 feature cards, varies by macrostructure (Bento has them inline; Stat-Led usually puts them after the supporting-stats grid).
-4. **Testimonials** — 2–4 quote cards. Pull-quote + name + role + company. Photo optional. Avoid "We use [product] every day" language; the quote should be specific to a use case ("Foundry got us SOC2 in five weeks. We wrote zero policies ourselves.").
-5. **Pricing** — 2–3 tiers in a comparison table. Feature checklist per tier. Recommended-tier badge on the middle tier. Show the actual price; "Contact sales for pricing" on every tier is a tell that the brand doesn't trust the buyer.
-6. **FAQ** — 5–10 questions. Conversational FAQ archetype works here (see Macrostructure 9).
-7. **Final CTA strip** — single button + one-sentence prompt.
-8. **Footer** — index-style or tabular, theme-appropriate.
+| Card | Role |
+| --- | --- |
+| Hero | the claim - macrostructure-specific, two CTAs max |
+| Logo wall | borrowed trust - 6-8 monochrome marks (see [`assets.md` § Logo walls](assets.md)) |
+| Features | the capabilities - 3-6, shaped by the macrostructure |
+| Testimonials | outside voices - 2-4 quotes, use-case-specific, role + company |
+| Pricing | the commitment - real prices, 2-3 tiers |
+| FAQ | objections, answered like a person |
+| CTA strip | the ask, once - one button |
+| Footer | the colophon - theme-appropriate |
 
-Each section transition uses theme-appropriate vertical spacing — `--space-3xl` minimum between major sections. Don't subdivide sections into "rows" with sub-rules — the section break is the visual rhythm.
+**Every deal deviates twice.** (a) **Drop at least one** core card and name it (logo wall and CTA strip are the usual cuts; hero and footer never drop). (b) **Either promote one wildcard** - **spec-sheet (F3) · changelog · manifesto-inset · worked-example · comparison-anatomy · index (macro 13)** - into the run, **or reorder one adjacent pair meaningfully** (pricing before features says "the price is the pitch"; testimonials before features says "trust before claims"). State both moves in the Picks block: `deck: -logos +worked-example` or `deck: -faq · pricing<features`. A deal that keeps **at least five** core cards still reads complete; below five it is a landing strip, not a landing page - re-add cards or switch macrostructure.
 
-**Voice rules for SaaS sections:**
+**Voice, wherever a card lands:** pricing shows the actual price ("Contact sales" on every tier signals the brand doesn't trust the buyer); testimonials name the person's role *and* company, use-case-specific ("Foundry got us SOC2 in five weeks. We wrote zero policies ourselves." beats "we use it every day"), plausible names never "Jane Doe" (gate 19); FAQ answers like a person ("Yes - Stripe and Adyen are both supported out of the box" beats "our platform integrates with leading payment providers"); the CTA strip has one button - the repetition is the call to action.
 
-- **Pricing:** show the actual price. Sales-led pricing on every tier ("Contact us") signals the brand doesn't trust the buyer.
-- **Testimonials:** include the quoted person's role *and* company. Abstract "Engineering Manager" testimonials are slop. If the brief is a real product, use real names. If the brief is a placeholder, use plausible names — never "Jane Doe" / "John Smith" (gate 19).
-- **FAQ:** answer like a person, not a sales doc. "Yes — Stripe and Adyen are both supported out of the box" beats "Our platform integrates with leading payment providers."
-- **CTA strip:** one button. Not two. The repetition is the call to action.
+Each card transition uses theme-appropriate vertical spacing - `--space-3xl` minimum between cards; the section break is the visual rhythm, no sub-rules.
 
-This sequence is **not** a template you stamp out — it's a recipe of *what should be present*. The macrostructure determines *how* each section looks. A Bento Grid page interleaves features and proof inside the grid; a Stat-Led page sequences them top-to-bottom; a Marquee Hero page lets the marquee do the social-proof work.
+The deck is **not** a template you stamp out - the macrostructure determines *how* each card looks. A Bento Grid page interleaves features and proof inside the grid; a Stat-Led page sequences them top-to-bottom; a Marquee Hero page lets the marquee do the social-proof work.
 
-For non-SaaS work (Editorial, Manifesto, Letter, Long Document, Quote-Led), this sequence does **not** apply. A bakery does not need a pricing tier comparison.
+For non-SaaS work (Editorial, Manifesto, Letter, Long Document, Quote-Led), this deck does **not** apply. A bakery does not need a pricing tier comparison.
 
 ---
 

@@ -1,0 +1,145 @@
+<!doctype html>
+<!--
+  slopped.html - deliberately bad fixture for sloplint self-test.
+  Intended trips:
+    1   Poppins as display font
+    2   gradient text headline (FAIL) + purple-to-blue gradient (WARN)
+    4   card nested inside a card
+    7   pure #ffffff paper and #000000 ink tokens
+    10  transition: all
+    14  keyframes animating width
+    15  focus ring that transitions in
+    19  "Jane Doe" placeholder testimonial
+    20  no Hallmark stamp comment anywhere
+    22  zero-chroma oklch neutral
+    24  padding: 17px (off the 4px scale)
+    26  no :active and no :disabled styling (WARNs; :focus-visible exists for 15)
+    27  keyframes with no prefers-reduced-motion block
+    30  emoji feature icon
+    33  decorative svg without aria-hidden / aria-label
+    34  overflow-x: hidden instead of clip (WARN)
+    37  four font families (Poppins, Inter, JetBrains Mono, Playfair Display)
+    38a italic h2
+    46  "Trusted by 50,000+ teams" invented metric
+    48  inline hex colour outside the token block
+    50  bare 1fr grid track holding an img
+    51  display header with a long unbroken word, no overflow-wrap
+    54  eyebrow + h2 sharing a two-column grid row
+    55  uppercase h2 at line-height 0.94
+    56  two position:sticky top:0 elements
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nexus - Unleash Seamless Workflows</title>
+<style>
+:root {
+  --color-paper: #ffffff;            /* gate 7: pure white base */
+  --color-ink: #000000;              /* gate 7: pure black base */
+  --color-gray: oklch(55% 0 0);      /* gate 22: zero chroma */
+  --font-display: 'Poppins', sans-serif;      /* gate 1 */
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-quote: 'Playfair Display', serif;    /* gate 37: fourth family */
+}
+html { overflow-x: hidden; }         /* gate 34: hidden, not clip */
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+.nav {
+  position: sticky; top: 0;          /* gate 56: sticky #1 */
+  background: var(--color-paper);
+  padding: 17px;                     /* gate 24: off-scale */
+}
+.section-head {
+  position: sticky; top: 0;          /* gate 56: sticky #2 */
+  background: var(--color-gray);
+}
+h1 {
+  font-family: var(--font-display);
+  background: linear-gradient(90deg, #8b5cf6, #3b82f6);  /* gate 2 WARN + 48 */
+  -webkit-background-clip: text;     /* gate 2 FAIL: gradient text */
+  background-clip: text;
+  color: transparent;
+}
+h2 {
+  font-family: var(--font-display);
+  font-style: italic;                /* gate 38a */
+  text-transform: uppercase;
+  line-height: 0.94;                 /* gate 55 */
+}
+.quote { font-family: var(--font-quote); }
+.mono-label { font-family: var(--font-mono); }
+.card {
+  transition: all 0.3s ease;         /* gate 10 */
+  border: 1px solid var(--color-gray);
+}
+.promo { color: #e91e63; }           /* gate 48: inline hex outside tokens */
+.cta:focus-visible {
+  outline: 2px solid var(--color-ink);
+  transition: outline 200ms ease;    /* gate 15: focus ring fades in */
+}
+.features__head {
+  display: grid;
+  grid-template-columns: 1fr 2fr;    /* gate 54: eyebrow beside heading */
+}
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;    /* gate 50: bare 1fr tracks hold imgs */
+}
+.bar { animation: grow 2s ease infinite; }
+@keyframes grow {
+  from { width: 0; }                 /* gate 14: animating width */
+  to { width: 100%; }
+}
+/* gate 27: no prefers-reduced-motion block anywhere */
+/* gate 26: no :active, no :disabled styling anywhere */
+</style>
+</head>
+<body>
+<header class="nav">
+  <span class="mono-label">NEXUS</span>
+  <button class="cta">Get started</button>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>Unleash hyperproductivity-supercharged workflows</h1>
+    <p class="promo">Trusted by 50,000+ teams shipping 10x faster.</p>
+    <svg width="120" height="40" viewBox="0 0 120 40">
+      <circle cx="20" cy="20" r="16" fill="var(--color-gray)"></circle>
+    </svg>
+  </section>
+
+  <div class="features__head">
+    <span class="eyebrow">01 / FEATURES</span>
+    <h2>Everything, seamlessly</h2>
+  </div>
+
+  <section class="features">
+    <div class="card">
+      <div class="feature__icon">✨</div>
+      <h3>Magic sync</h3>
+      <div class="card">
+        <p>A card inside a card, as the template gods intended.</p>
+      </div>
+    </div>
+    <div class="bar"></div>
+  </section>
+
+  <section class="gallery">
+    <img src="shot-1.png" alt="Product screenshot one">
+    <img src="shot-2.png" alt="Product screenshot two">
+  </section>
+
+  <section class="voices">
+    <blockquote class="quote">"It changed everything for our team."</blockquote>
+    <p>Jane Doe, Head of Operations</p>
+  </section>
+</main>
+</body>
+</html>

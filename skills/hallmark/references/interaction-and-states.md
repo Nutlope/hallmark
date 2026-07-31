@@ -10,7 +10,7 @@ Every interactive element has eight states. Most AI-generated UI styles two (def
 | Hover | Pointer over (only with `@media (hover: hover)`) | Small shift: colour, 1px translate, subtle border |
 | Focus | Keyboard or programmatic focus | Visible ring, `:focus-visible` |
 | Active / Pressed | During press | Pressed-in: darker, translate(0 1px) |
-| Disabled | Not interactive | Reduced opacity (0.5) + `cursor: not-allowed` + `aria-disabled` |
+| Disabled | Not interactive | Reduced opacity (0.55) + `cursor: not-allowed` + `aria-disabled` |
 | Loading | Processing | Inline spinner or progress, label stays readable |
 | Error | Failed state | Red border, error icon, message, `aria-invalid` |
 | Success | Completed | Green check, confirmation, auto-dismiss |

@@ -14,3 +14,16 @@ A horizontal bar pinned to the viewport bottom, holding a CTA + a brief reassura
 ```
 
 ---
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Reveal: always · scroll-up · after fold
+- Anchored: viewport bottom · viewport top · inline at bottom
+- Shadow: hairline · none · subtle
+
+## Mobile collapse
+
+- **Below 60rem:** unchanged (already designed for narrow); ensure 44 px min-height
+- **Below 40rem:** label truncates if needed; CTA stays right-aligned

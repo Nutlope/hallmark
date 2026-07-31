@@ -23,3 +23,22 @@ Audit *also* checks structural fingerprint: if the page uses the AI template (ce
 - **No stamp at all on a system-managed project** → flag as `major: missing system reference`. Every page on a `design.md` project must stamp its allegiance to the system.
 
 Inversely, on a project *without* `design.md`, the standard diversification rule applies — flag pages that share macrostructure / theme with a previous Hallmark output as `minor: variety drift`.
+
+## Reporting by tell name
+
+Findings cite tell names exactly as the slim list in [`anti-patterns.md`](../anti-patterns.md) spells them; its Critical / Major / Micro groups map to the severities critical / major / minor. When the tell carries a "(gate N)" marker, cite the gate: the enforcement detail and the full fix live in [`slop-test.md`](../slop-test.md).
+
+For each finding:
+
+```
+[severity] Tell name — file:line
+  why it's a tell (one line)
+  → fix (one line)
+```
+
+Then:
+
+```
+Summary — N critical · M major · K minor
+Verdict — [ships as slop | reads as AI-generated | close, fix the minors]
+```

@@ -39,3 +39,16 @@ Each card is a product, not a feature. Image · name · price · one micro-actio
 - Don't use cards with shadow + radius + border + tile + ribbon. Pick one container signal.
 
 ---
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Card ratio: 3/4 portrait · 1/1 square · 4/3 landscape
+- Density: 3-up · 4-up · 5-up
+- Micro-action: Add · Save · View → · none
+
+## Mobile collapse
+
+- **Below 60rem:** grid 3-up → 2-up
+- **Below 40rem:** grid 2-up → 1-up; card height becomes flexible

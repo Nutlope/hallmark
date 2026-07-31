@@ -1,0 +1,10 @@
+{
+  "model": "black-forest-labs/FLUX.1.1-pro",
+  "prompt": "Watercolor wash field on white cold-press paper, burnt sienna and raw ochre pigment pooling off-centre lower-left, two-thirds of the frame empty white paper, soft granulating dry-brush edges, no subject, no text, flat scan, even lighting",
+  "size": "1440x800",
+  "steps": 4,
+  "hash": "7e108c4579e0c192",
+  "generatedVia": "together",
+  "note": "generated asset; post-process before shipping; verify licensing",
+  "at": "2026-07-31"
+}

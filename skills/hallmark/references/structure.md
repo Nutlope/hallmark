@@ -87,32 +87,40 @@ A fingerprint = one choice per axis. There are 8 × 7 × 5 × 5 × 5 × 6 = **42
 Two rules govern choices:
 
 1. **Coherence.** A Newsprint page with multi-column justified body should have a typographic CTA, not an oversized solid button — those don't share a voice. Pick choices that belong to the same *world*.
-2. **Anti-repetition.** Across consecutive pages built in the same session, no two should share more than three of the six axes. If the previous page used left-margin headings + single column + hairline divider + outlined button, this page should differ on at least three of those.
+2. **Anti-repetition.** Across consecutive pages, no two should share more than three of the six axes - compared against the `fingerprint` field in `.hallmark/log.json`, not against memory. If the previous entry logs left-margin headings + single column + hairline divider + outlined button, this page differs on at least three of those.
 
 ## Theme-suggested fingerprints
 
 Each Hallmark theme has a default structural fingerprint. Use them as starting points only when the brief specifies a theme. **For most builds, pick a macrostructure from [`macrostructures.md`](macrostructures.md) instead** — themes describe *visual surface*, macrostructures describe *page shape*; the latter drives variety more.
 
-The table below is alphabetical by theme to neutralise any "first row = default" attractor. No theme is the default. The **Nav** and **Footer** columns name the default archetype from [`component-cookbook.md`](component-cookbook.md); the routing tables in that file list the acceptable alternates.
+The table below is alphabetical by theme to neutralise any "first row = default" attractor, and no two rows share more than three of the six structural axes (checked mechanically; nav/footer are routing, not structure). No theme is the default. The **Nav** and **Footer** columns name the default archetype from [`component-cookbook.md`](component-cookbook.md); the routing tables in that file list the acceptable alternates.
 
 | Theme | Heading | Body | Divider | Button | Image | Reveal | Nav | Footer |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Almanac | Sticky | Three-column equal | Hairline | Outlined | Inline | Number-tick | N3 Side-rail | Ft3 Index columns |
+| Arcade | Left-margin | Single column | Bleed-colour | Oversized solid | None | Typewriter | N7 Brutal slab | Ft4 Dense colophon |
 | Atelier | Centered | Single column | Negative space | Typographic-only | Tightly cropped | Type-unmask | N9 Edge-min | Ft6 Letter close |
-| Aurora | Hanging | Single column | Negative space | Typographic-only | None | Fade-up | N5 Floating pill | Ft5 Statement |
-| Bloom | Centered | Single column | Negative space | Typographic-only | None | Fade-up | N5 Floating pill | Ft5 Statement |
+| Aurora | Hanging | Asymmetric spans | Hairline | Solid pill (accent) | None | Number-tick | N4 Hidden behind ⌘K | Ft2 Inline single line |
+| Bloom | Hanging | Single column | Negative space | Typographic-only | None | Fade-up | N5 Floating pill | Ft5 Statement |
 | Brutal | Overlapping image | Full-bleed reset | Bleed-colour | Oversized solid | Full-bleed | Horizontal sweep | N7 Brutal slab | Ft8 Marquee scroll |
-| Coral | Centered | Single column | Negative space | Outlined | Margin-aligned | Fade-up | N5 Floating pill | Ft1 Mast-headed |
+| Carnival | Centered | Full-bleed reset | Double rule | Oversized solid | Inline | Horizontal sweep | N12 Banner + retract | Ft8 Marquee scroll |
+| Cobalt | Hanging | Asymmetric spans | Hairline | Outlined | Inline | Typewriter | N13 Inline ⌘K pill | Ft1 Mast-headed |
+| Coral | Centered | Single column | Hairline | Outlined | Margin-aligned | Fade-up | N5 Floating pill | Ft1 Mast-headed |
+| Field | Hanging | Two-column asymmetric | Negative space | Solid (ink-filled) | None | None | N1b SaaS three-section | Ft6 Letter close |
 | Garden | Hanging | Marginalia | Negative space | Unstyled link | Margin-aligned | None | N9 Edge-min | Ft6 Letter close |
-| Manifesto | Overlapping image | Full-bleed reset | Bleed-colour | Oversized solid | Full-bleed | Horizontal sweep | N7 Brutal slab | Ft5 Statement |
+| Grid | Bottom-aligned | Asymmetric spans | Hairline | Unstyled link | None | None | N7 Brutal slab | Ft2 Inline single line |
+| Hum | Centered | Single column | Bleed-colour | Solid pill (soft) | Inline | Number-tick | N1b SaaS three-section | Ft5 Statement |
+| Ledger | Stacked numbered | Two-column asymmetric | Hairline | Outlined | None | Number-tick | N1b SaaS three-section | Ft2 Inline single line |
+| Lumen | Hanging | Single column | Hairline | Outlined | None | Type-unmask | N9 Edge-min | Ft4 Dense colophon |
+| Manifesto | Numbered display | Full-bleed reset | Bleed-colour | Oversized solid | None | Type-unmask | N7 Brutal slab | Ft5 Statement |
 | Midnight | Numbered display | Single column | Hairline | Typographic-only | None | Typewriter | N5 Floating pill | Ft2 Inline single line |
 | Newsprint | Bottom-aligned | Multi-column justified | Double rule | Outlined | Inline | None | N6 Masthead | Ft4 Dense colophon |
 | Editorial | Hanging | 2-col asym hero / single below | Hairline | Outlined | Tightly cropped or generated (Tier C) | Fade-up | N6 Masthead | Ft1 Mast-headed |
 | Riso | Centered | Single column | Negative space | Outlined | Inline | None | N7 Brutal slab | Ft8 Marquee scroll |
 | Specimen | Left-margin | Asymmetric spans | Hairline | Outlined | None | Fade-up | N5 Floating pill | Ft2 Inline single line |
-| Sport | Numbered display | Asymmetric spans | Bleed-colour | Oversized solid | Full-bleed | Horizontal sweep | N7 Brutal slab | Ft8 Marquee scroll |
-| Studio | Centered | Asymmetric spans | Negative space | Typographic-only | Tightly cropped | Fade-up | N7 Brutal slab | Ft3 Index columns |
-| Terminal | Inline (with `>` prompt) | Single column | Negative space | Typographic-only `[ go ]` | None | Typewriter | N8 Terminal command | Ft4 Dense colophon |
+| Sport | Numbered display | Asymmetric spans | Hairline | Oversized solid | Full-bleed | Horizontal sweep | N7 Brutal slab | Ft8 Marquee scroll |
+| Studio | Centered | Asymmetric spans | Hairline | Typographic-only | Tightly cropped | Fade-up | N7 Brutal slab | Ft3 Index columns |
+| Terminal | Inline (with `>` prompt) | Single column | Negative space | Typographic-only `[ go ]` | Inline | Typewriter | N8 Terminal command | Ft4 Dense colophon |
 
 ## Anti-patterns of structural sameness
 

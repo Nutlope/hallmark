@@ -1,12 +1,8 @@
-# Imagery kit — curated abstract assets, hosted, ready
+# Imagery kit - the composition playbook (and, later, hosted assets)
 
-A small set of pre-generated abstract / decorative imagery that any Hallmark output can pull from when a brief allows non-photographic imagery. The kit lives at:
+The kit is two things: the composition playbook below (the category vocabulary and the layered, off-centre, blend-mode patterns that make abstract imagery read intentional) and a REAL set of hosted assets at `https://www.usehallmark.com/imagery/<category>/<file>`, listed in the manifest section and served from the deployed site (`site/imagery/` in the repo).
 
-```
-https://www.usehallmark.com/imagery/<category>/<file>
-```
-
-The skill doesn't ship the binaries — it ships the manifest. References are absolute URLs. If the asset is missing (404), the skill falls back to source canon #2 in [`assets.md` § Placeholder strategy](assets.md) (hand-built SVG) without erroring.
+**The hard rule: never emit a URL that is not listed in the manifest below.** Anything not listed is CONSTRUCTED in-page instead: washes and blobs via craft tier-a CSS or tier-b SVG (see [`custom-craft.md`](custom-craft.md)), textures via CSS gradients, generated stills via tier-e only when the user opted in and `TOGETHER_API_KEY` is set (`scripts/imagegen.mjs`). A URL that 404s in the shipped page is worse than no image; the constructed fallback stays in reach for every listed asset too.
 
 **Why this exists.** The v0.9.0 watercolor sprinkle was generated per-emit and was inconsistent. The kit recovers that aesthetic but as discrete, swappable, deliberately-composed assets. Compose with them like a senior frontend engineer: layered transparent PNG behind text, biased off-centre, intentionally large, mix-blend-mode where it earns its place. Not "abstract gradient on top of headline" — that's the AI default.
 
@@ -16,38 +12,59 @@ The skill doesn't ship the binaries — it ships the manifest. References are ab
 
 | Category | What | Format | Example uses |
 | --- | --- | --- | --- |
-| **watercolor** | Full-bleed soft-edge painterly fields. Warm + cool variants per palette family. | WebP | Section background accent; hero-half flood; behind-quote wash. |
-| **transparent** | Organic blob / brushstroke / stylized mark on transparent background. | PNG | Layered hero composition (large, off-centre, behind text). The masterclass move. |
-| **ornament** | Small hand-drawn stamps, plates, roman numerals, decorative flourishes. | SVG | Beside a quote; in the section-label gutter; closing a letter. |
-| **texture** | Subtle paper, weave, riso-dot, cross-hatch fields. Tile-able. | WebP | Body grain via `mix-blend-mode: multiply`; section-divider banding. |
-| **silhouette** | Abstract bottle / box / device / book / mug / card shapes. | PNG | Empty product slots before user uploads photos; comparison rows. |
-| **pattern** | Repeating motifs that read as fabric / paper / printed material. | WebP | Section-band texture; full-bleed fills behind decorative text. |
+| **avatar** | Photoreal placeholder portraits, unisex-ambiguous, varied ages and skin tones, neutral studio grounds. Generated (FLUX), provenance sidecars committed. | JPG | Testimonial/byline/team slots. ALWAYS paired with its numbered unisex name (table below); placeholder people, never claims. |
+| **mark** | Geometric logo placeholders in four families (orbit, stack, field, stroke), `currentColor`. | SVG | Logo walls, nav wordmark compositions. INLINE the SVG (an `<img>` cannot inherit currentColor). |
+| **watercolor** | Full-bleed soft-edge painterly fields on white paper. Warm + cool. | JPG | Section background accent; hero-half flood; behind-quote wash; composites with `mix-blend-mode: multiply`. |
+| **transparent** | Brushstroke / blob gestures on PURE WHITE ground - no faked alpha. Composite with `img { mix-blend-mode: multiply; }` over light papers (the white vanishes); skip the category on dark themes; true alpha = hand-built tier-b SVG. | JPG | Layered hero composition (large, off-centre, behind text). The masterclass move. |
+| **texture** | Tile-able paper grain, riso dot, cross-hatch, weave; `currentColor` where sensible. | SVG | Body grain via `mix-blend-mode: multiply`; section-divider banding. Budgets in [`texture.md`](texture.md). |
+| **screens** | App-screenshot frames built on Hallmark tokens (sources committed beside outputs; re-render is one Chrome command). | PNG | h8/f5 screenshot slots; phone-figure slots. |
+| **ornament** | Small stamps, plates, numerals, flourishes. | SVG | Beside a quote; the section-label gutter; a letter close. (Hand-built per page until listed.) |
+| **silhouette** | Abstract product shapes for empty slots. | SVG | Hand-built tier-b per page until listed. |
 
 **Naming:** `<category>-<palette-family>-<variant>.<ext>` — e.g. `watercolor-warm-01.webp`, `transparent-brush-cool-03.png`, `ornament-stamp-01.svg`, `texture-grain-paper-02.webp`. Palette families: `warm` · `cool` · `neutral` · `chromatic`.
 
 ---
 
-## Manifest (placeholder until generation pass ships)
+## Manifest (the allowlist - only what is listed here may be referenced by URL)
 
-When images land in `site/public/imagery/<category>/`, list them here as a key/value catalogue:
+Assets live in the repo at `site/imagery/<category>/` and serve at `https://www.usehallmark.com/imagery/<category>/<file>` once the site deploys. Picking logic: match the active theme's palette family + the brief's tone, reference the listed URL, keep the constructed fallback in reach. Provenance: `gen:flux-1.1-pro` files carry a committed `.json` sidecar (model, prompt, date); pages embedding kit imagery append `imagery: <file> · <provenance>` to their Hallmark stamp.
 
 ```
-watercolor-warm-01.webp     1600×900   warm orange · cream paper      hero half-flood, atmospheric
-watercolor-cool-01.webp     1600×900   cool blue · greyscale          quote-behind wash
-transparent-brush-warm-01   1200×1200  burnt orange brushstroke       layered hero, off-centre
-transparent-blob-cool-01    1200×1200  cobalt organic shape           layered hero, behind headline
-ornament-stamp-01.svg       inline     ink-only stamp w/ numeral      label-gutter, letter close
-texture-grain-paper-01      512×512    cream paper grain (tileable)   body grain, blend-multiply
-silhouette-bottle-01.png    600×900    abstract bottle, transparent   empty product slot
-silhouette-card-01.png      900×600    abstract product card          comparison row
-pattern-cross-warm-01       400×400    cross-hatch warm (tileable)    section-band texture
+avatar-01.jpg .. avatar-16.jpg    768x768    studio portraits, varied age/skin/hair, neutral grounds    testimonial/byline avatars; pair with name NN    gen:flux-1.1-pro
+watercolor-warm-01.jpg   1440x800   sienna/ochre wash pooling lower-left on white     section wash, warm palettes    gen:flux-1.1-pro
+watercolor-warm-02.jpg   1440x800   terracotta/apricot wash upper-right               section wash, warm palettes    gen:flux-1.1-pro
+watercolor-cool-01.jpg   1440x800   prussian/grey wash lower-right                    section wash, cool palettes    gen:flux-1.1-pro
+watercolor-cool-02.jpg   1440x800   viridian/slate wash from the left edge            section wash, cool palettes    gen:flux-1.1-pro
+transparent-brush-warm-01.jpg   1216x1216   sienna diagonal brushstroke on white; multiply   layered hero art, light papers   gen:flux-1.1-pro
+transparent-brush-warm-02.jpg   1216x1216   ochre torn-edge blob on white; multiply          layered hero art, light papers   gen:flux-1.1-pro
+transparent-brush-cool-01.jpg   1216x1216   prussian brushstroke on white; multiply          layered hero art, light papers   gen:flux-1.1-pro
+transparent-brush-cool-02.jpg   1216x1216   slate-teal blob on white; multiply               layered hero art, light papers   gen:flux-1.1-pro
+texture-grain-paper-01.svg   512x512   feTurbulence paper grain, opacity baked 0.15   body grain via multiply       hand-built
+texture-riso-dot-01.svg      24x24     offset riso dot lattice, currentColor          section banding                hand-built
+texture-crosshatch-01.svg    16x16     45/135deg hatch, currentColor                  panel texture                  hand-built
+texture-weave-01.svg         20x20     over-under weave bars, currentColor            divider banding                hand-built
+mark-orbit-01..03.svg   32x32   circle grammar (ring+satellite, vesica, wedge)   logo wall / wordmark marks   hand-built
+mark-stack-01..03.svg   32x32   bar grammar (steps, bar+counter, offset slab)    logo wall / wordmark marks   hand-built
+mark-field-01..03.svg   32x32   grid grammar (displaced dot, diagonal run, rotated square)   logo wall / wordmark marks   hand-built
+mark-stroke-01..03.svg  32x32   line grammar (chevrons, arc over baseline, oblique strokes)  logo wall / wordmark marks   hand-built
+screens/screen-dashboard-01.png    1280x800   analytics dashboard on Hallmark tokens   h8/f5 screenshot slots   hand-built
+screens/screen-settings-01.png     1280x800   settings page on Hallmark tokens         h8/f5 screenshot slots   hand-built
+screens/screen-feed-mobile-01.png  390x844    mobile card feed (uses kit avatars)      phone-figure slots       hand-built
 ```
 
-The skill picks an asset by matching the active theme's palette family + the brief's tone, then references it by absolute URL. Picking logic lives in Step 4 of [SKILL.md](../SKILL.md) — eyeball the manifest, choose the closest match, fall back if the file 404s.
+**Avatar-name pairing (deterministic; use avatar+name together or neither):** 01 Alex Morgan · 02 Sam Idowu · 03 Jordan Reyes · 04 Riley Chen · 05 Casey Okafor · 06 Rowan Diaz · 07 Quinn Haddad · 08 Devon Park · 09 Marlowe Nguyen · 10 Sage Ellison · 11 Kit Fernandes · 12 Noor Rahim · 13 Ari Solberg · 14 Jules Baptiste · 15 Remy Kowalski · 16 Toni Vega. These are placeholder humans, not claims: the assets.md TODO-replace comment applies, and gate 19's name rules are satisfied by the pairing.
+
+**Wordmark placeholders are a composition, not files** (SVG text inside an `<img>` cannot inherit page fonts): inline a mark SVG beside the brand name set in the page's display token:
+
+```html
+<a class="wordmark"><svg viewBox="0 0 32 32" width="20" height="20" fill="currentColor" aria-hidden="true"><!-- mark-orbit-01 paths --></svg> Meridian</a>
+```
 
 ---
 
 ## Usage patterns — how a senior engineer would compose these
+
+(The `…/imagery/` paths in the examples below resolve against the manifest. For categories still unlisted (ornament, silhouette), swap in the constructed equivalent: inline tier-b SVG, gradient washes, CSS grain.)
 
 ### Layered hero composition (the masterclass move)
 
@@ -79,7 +96,7 @@ Bias to one side (left or right, never centred). The text sits at `z-index: 1`, 
 
 ### Section background wash
 
-A watercolor file as a full-bleed section accent. One section per page, never global.
+A painterly field as a full-bleed section accent. One section per page, never global. While the manifest is empty the wash is CONSTRUCTED (layered radial gradients at low alpha read painterly; a manifest asset would slot into the same `background` line later):
 
 ```css
 .section--wash { position: relative; isolation: isolate; }
@@ -87,8 +104,9 @@ A watercolor file as a full-bleed section accent. One section per page, never gl
   content: "";
   position: absolute;
   inset: 0;
-  background: url("https://www.usehallmark.com/imagery/watercolor/watercolor-warm-01.webp") center / cover no-repeat;
-  opacity: 0.6;
+  background:
+    radial-gradient(60% 48% at 22% 30%, oklch(from var(--color-accent) l c h / 0.14), transparent 70%),
+    radial-gradient(50% 42% at 78% 72%, oklch(from var(--color-accent) calc(l + 0.08) calc(c * 0.6) h / 0.10), transparent 72%);
   z-index: -1;
   pointer-events: none;
 }

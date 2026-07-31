@@ -9,3 +9,16 @@ A pull-quote with attribution is the hero. Your headline is borrowed credibility
   <p class="attribution">— Name, Role, Company</p>
 </section>
 ```
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Quote weight: italic display · roman display · roman body large
+- Attribution position: under quote · margin-aligned · right-flush
+- Length: ≤80 chars · 80–160 chars
+
+## Mobile collapse
+
+- **Below 60rem:** quote stays full width; attribution wraps to its own line
+- **Below 40rem:** quote size step down; attribution font-size step down

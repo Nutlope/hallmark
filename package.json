@@ -1,6 +1,6 @@
 {
   "name": "hallmark",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A design skill for AI coding assistants. Makes the UIs they generate look made, not generated. Powered by Together AI.",
   "keywords": [
     "claude",
@@ -13,7 +13,11 @@
     "anti-ai-slop",
     "typography",
     "oklch",
-    "together-ai"
+    "together-ai",
+    "variants",
+    "open-models",
+    "glm",
+    "kimi"
   ],
   "license": "MIT",
   "type": "module",

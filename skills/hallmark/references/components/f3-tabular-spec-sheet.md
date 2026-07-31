@@ -9,3 +9,16 @@ Each row is a feature; columns hold name, value, footnote. Hairline rules betwee
   <tr>…</tr>
 </table>
 ```
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Columns: 2 (key/val) · 3 (key/val/unit) · 4 (with footnote)
+- Rule density: every row · groups of 3 · headers only
+- Numbers: tabular · proportional
+
+## Mobile collapse
+
+- **Below 60rem:** columns reduce: 4-col → 2 (key + value), drop unit + footnote
+- **Below 40rem:** spec list goes vertical; each row is `dt` above `dd`

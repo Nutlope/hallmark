@@ -17,3 +17,16 @@ Closes the page like a letter — `Yours, the team. 2026.` Optional postscript l
 ```
 
 *Anti-pattern:* using Ft6 on a stat-led / B2B product page — voice mismatch reads as twee. Reserve for genuinely letter-shaped pages.
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Signoff: italic · roman · monogram
+- Postscript: yes · no
+- Width: 40 ch · 60 ch · 80 ch
+
+## Mobile collapse
+
+- **Below 60rem:** unchanged single column; postscript wraps
+- **Below 40rem:** signoff size step down; postscript italicises if not already

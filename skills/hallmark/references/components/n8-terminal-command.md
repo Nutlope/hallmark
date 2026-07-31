@@ -19,3 +19,16 @@ A nav formatted as a CLI prompt: `> studio --catalog --voice --get▮`. The "lin
 ```
 
 *Anti-pattern:* using `>` prompt vocabulary on a non-developer site (a wedding photographer's portfolio with a `> view --gallery` nav reads as set decoration). N8 belongs to genuine terminal / CLI brands only.
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Prompt: `>` · `$` · `~/$`
+- Cursor: in-line at end · after final flag · none
+- Width: full bleed · content · ~80 ch
+
+## Mobile collapse
+
+- **Below 60rem:** flags wrap to a second `>` line if needed; cursor stays at the end
+- **Below 40rem:** becomes a single hamburger labelled `> menu`; cursor visible at line end

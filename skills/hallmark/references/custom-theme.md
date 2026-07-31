@@ -1,367 +1,305 @@
-# Custom theme — protocol
+# Custom theme - the ritual and the protocol
 
-Loaded only when the user has opted into the **custom** theme route in Step 1 of the Design flow. Custom is **made-to-measure for one brief**, written inline into the page's `:root`, never a permanent catalog entry. It spans a **spectrum of depth**: at its lightest, a complete OKLCH palette + free-font pairing tuned to the brief while keeping Hallmark's structures (the *combination* is per-brief); at its fullest — **bespoke** — the page's *structure and composition* are designed from first principles too, bound to no catalog theme, genre, or macrostructure. One route, chosen depth.
+Loaded only when the custom route is confirmed at Step 2.6 of the Design flow. Custom is **made-to-measure for one brief**, written inline into the page's `:root`, never a permanent catalog entry. It spans two depths: **tuned** (a complete OKLCH palette + free-font pairing on Hallmark's structures) and **bespoke** (structure and composition designed from first principles too). One route, chosen depth.
 
-**The freedom is the combination — and, at the bespoke depth, the whole structure — but never the floor.** Every constraint in [`color.md`](color.md), [`typography.md`](typography.md), and [`anti-patterns.md`](anti-patterns.md) still applies, and **every slop-test gate fires unchanged at every depth** — the gates are the floor that never moves. The Step 5 preview surfaces the palette + pairing (plus the bespoke structure, when there is one) in plain text *before* any code is emitted, so the user can redirect.
+**The freedom is the combination, never the floor.** Every constraint in [`color.md`](color.md), [`typography.md`](typography.md), and [`anti-patterns.md`](anti-patterns.md) still applies, and **every slop-test gate fires unchanged at every depth** (unpicked variants drafts alone defer the sweep to promotion, per [`verbs/variants.md`](verbs/variants.md)). The Step 5 preview surfaces the direction, posture, palette, and pairing in plain text before any code is emitted, so the user can redirect.
+
+Custom exists because the model's own taste is an attractor. Left alone, a model asked for "something unique" ships the same two or three looks per category, every time. The ritual below is a set of outside interventions that break that pull: named rejections, a deterministic draw, a scene the palette must obey, and a contract the build is audited against.
 
 ## Two routes, plain English
 
-- **catalog** — the named-theme catalogue. Hallmark's 20 themes (Specimen, Midnight, Brutal, Garden, Atelier, Newsprint, Terminal, Manifesto, Almanac, Sport, Studio, Riso, Bloom, Coral, Cobalt, Aurora, Editorial, Carnival, Lumen, Hum). Each one is a fixed combination of paper-band, display-style, and accent-hue. The rotation rule cycles through them so two consecutive runs don't read alike. **This is the default.** Most briefs use it.
-- **custom** — made-to-measure, at the depth the brief needs:
-  - **Tuned** — a one-off OKLCH palette + font pairing built for one brief, *keeping* Hallmark's structures, archetypes, and macrostructures. The rules (paper L bands, accent chroma caps, font ban list, all slop-test gates) still apply; only the *combination* is per-brief.
-  - **Bespoke** — when the brief's *structure itself* is the ask, custom goes further and designs the whole page from first principles — its own palette, type, **and** composition — dropping the catalog's structures too, floored only by the universal slop-test gates. Same route, deeper end. See **§ Bespoke depth** below.
+- **catalog** - the 24 named themes, rotated by the Rotation block in [`SKILL.md`](../SKILL.md). The default. Most briefs use it and never hear otherwise.
+- **custom** - made-to-measure, at the depth the brief needs:
+  - **Tuned** - a one-off palette + pairing built for one brief, keeping Hallmark's macrostructures and archetypes.
+  - **Bespoke** - when the brief's structure itself is the ask, the composition is designed from first principles too. Same route, deeper end. See § Bespoke depth.
 
-  Either way, custom does **not** extend the catalog with a permanent theme.
+Custom never extends the catalog with a permanent theme.
 
-## When to surface this fork — Step 1 trigger signals
+## § Triggers
 
-Hallmark must **not** offer catalog-vs-custom on every prompt. That's friction, not discipline. Surface the fork only when the brief carries one of these signals:
+Do not offer catalog-vs-custom on every prompt; that is friction, not discipline. Surface the fork only when the brief carries one of these signals:
 
-1. **Explicit ask** — the user types `custom`, "custom theme", "tailored to our brand", "make it ours", "something unique", "play around with the colors and fonts", "I want my own palette".
-2. **Named brand colour** — the user gives a specific anchor colour as a hex / OKLCH / brand name. Example: "use our terracotta", "the brand red is hex #c0392b", "anchor on sea-blue".
-3. **Multi-attribute aesthetic the catalog can't carry** — three or more vibe words pointing at a specific, off-catalog feel. Examples: "moss, lichen, soft pink, herbal" / "sun-drenched, market-day, carbon-black" / "late-night, neon, brutalist deli". Compare against the 20 catalog themes; if no single catalog theme is within one axis-step of the vibe, fire the fork. **One adjective ("warm", "technical", "playful") is not a signal — that's a tone, the catalog already carries it.**
-4. **Brand-mood reference attached** — the user attaches a colour swatch, a moodboard, a Pantone chip. (If they attach a *page* screenshot, route to `study` instead; custom is for brand colour / mood, study is for design DNA.)
-5. **A singular structural vision** (→ the *bespoke* depth) — the brief names a *structure or composition*, not just a palette/mood: "no theme / from scratch / fully bespoke / ignore the catalog / art-direct it", or a one-of-a-kind page-shape the macrostructure catalog has no entry for (a scroll-assembling poem, a ticket-shaped page, an interactive periodic table). Routes to custom's **bespoke depth** (§ Bespoke depth below). A palette or mood that's merely off-catalog is *tuned* custom, not bespoke.
+1. **Explicit ask** - "custom", "custom theme", "tailored to our brand", "make it ours", "something unique", "play with the colors and fonts", "I want my own palette".
+2. **Distinctiveness ask** - "distinctive", "stand out", "memorable", "not generic", "make it a whole thing", "nothing off the shelf".
+3. **Named brand colour** - a specific anchor as hex / OKLCH / name: "use our terracotta", "the brand red is #c0392b", "anchor on sea-blue".
+4. **Two or more vibe words** pointing somewhere the catalog cannot go: "moss, lichen, soft pink" / "sun-drenched, market-day" / "late-night, neon, brutalist deli". One adjective ("warm", "technical") is a tone, not a signal; the catalog already carries it.
+5. **Brand-mood reference attached** - a swatch, moodboard, or Pantone chip. (A page screenshot routes to `study` instead.)
+6. **A singular structural vision** (routes to the bespoke depth) - "no theme", "from scratch", "fully bespoke", "art-direct it", or a page shape no macrostructure covers (a scroll-assembled poem, a ticket-shaped page, an interactive periodic table).
+7. **The visible offer was taken** - Step 1 adds *"Want this made-to-measure? Say `custom`"* to greenfield product-launch briefs; the user saying `custom` there is signal enough.
 
-If any signal fires, ask one short follow-up before picking a theme:
+If a signal fires, ask one short follow-up before picking a theme:
 
-> *"This brief reads like a custom palette would fit better than the 20 named themes. Want me to construct a custom OKLCH palette + free-font pairing tuned to <one-line summary of the vibe>, or stay on the catalog for variety + speed?"*
+> *"This brief reads like a custom system would fit better than the 24 named themes. Want me to construct one tuned to <one-line summary of the vibe>, or stay on the catalog for variety + speed?"*
 
-Wait for the user to answer. If they say custom (or yes / go) → continue this protocol from § A. If they say catalog (or no / stay catalog) → drop the fork and proceed with the catalog route. **Default to catalog** — silence routes to catalog, not custom.
+Wait for the answer. Custom (or yes / go) continues below from § The ritual. Catalog (or silence) drops the fork and proceeds with the catalog route. **Default is catalog; silence never routes to custom.** If no signal fires, do not mention the fork at all.
 
-If **none** of the signals fires, do not mention the fork at all. Continue silently with the catalog flow.
+---
+
+## § The ritual
+
+Runs on every custom build, both depths, in order, before any palette work. Each step produces one or two written lines in the reply; the whole ritual reads as a short paragraph of decisions, not a form.
+
+### R.1 · Reflex check
+
+Name the category's obvious aesthetic AND the second-order trap, then reject both in writing. Two altitudes, both mandatory:
+
+- First order: the aesthetic anyone would guess. Tea brand: sage, cream, forest green. Fintech: navy and emerald trust palette. AI tool: near-black with a glowing gradient.
+- Second order: the "tasteful" fallback a design-literate model reaches for after dodging the first. Tea: editorial serif on bone paper. Fintech: monochrome Swiss restraint. AI tool: mono type and terminal green.
+
+Format: *"Reflex check: rejecting <first-order> (the category default) and <second-order> (the tasteful fallback)."* Landing on either after writing this line means the self-check failed; redirect before continuing.
+
+Third altitude, **the mirror**: if the slate you are about to write would fit the category's OTHER products unchanged, it is category gravity wearing a slate's clothes. Sharpen entries until at least three are only defensible for THIS product.
+
+### R.2 · Spent defaults
+
+Hallmark's own house defaults count as already spent for this brief family. Declare it before writing the slate. The spent table:
+
+| Brief family | Already spent (do not land here) |
+| --- | --- |
+| warm / bookish / food / family | cream paper · serif display · lamplight amber accent |
+| tech / developer / AI | near-black surface · one neon accent · mono labels |
+| editorial / studio / portfolio | bone paper · high-contrast serif · hairline rules everywhere |
+| playful / consumer | rounded sans · candy accent on white · blob shapes |
+| luxury / craft | ivory · letterspaced small caps · no accent |
+| health / science | clinical white · single blue · geometric sans |
+| finance | navy · emerald · tabular mono |
+| events / music | black · duotone photo treatment · condensed caps |
+
+The spent look can still be *earned* if the draw lands on a direction that genuinely demands it; what is banned is drifting there by default.
+
+### R.3 · The slate
+
+List ~7 grounded directions, numbered 1-7. Each is a **concrete visual system, artifact, place, or ritual this audience already knows**, one line each, with the germ of a system grammar. Not adjectives, not moods. Good slate entries name things that exist: a regional print tradition, a specific era of packaging, an instrument's control surface, a municipal document, a shop interior the audience has stood in.
+
+Format per entry: *"3. The pharmacy blotter: clinical buff card, one federal-blue rule system, dosage-table typography."*
+
+### R.4 · The draw
+
+The model never hand-picks from its own slate; its favourite is deterministic, and refusing that argmax is the whole point. An outside pick decides:
+
+```
+node <skill-dir>/scripts/seed.mjs "<brief-slug>" --n 7 --wild 2
+```
+
+The script prints a reproducible line: `draw: n/7 (seed <slug>·<date>·r0) · wildcards: <name>, <name>`. Paste it into the Picks block (which, on a custom run, emits after this ritual). Re-roll (only when the user asks): rerun with `--reroll 1`, `--reroll 2`, and so on; it usually lands elsewhere (there is no exclusion; roll again if it repeats), and the seed key keeps every roll reproducible.
+
+**Wildcards.** The two dealt entries come from [`direction-atlas.json`](direction-atlas.json), a curated deck of real design-history lineages. A wildcard **replaces the drawn slate entry only if it beats it on both axes: audience identification and product clarity.** Weigh in one written line each; discard losers without ceremony. Wildcards exist to break category gravity, not to win by novelty.
+
+**Script-less fallback** (no Node, no shell): N = (letter count of the brief, spaces and punctuation excluded) mod 7, pick slate entry N + 1; each re-roll adds 3 (mod 7). Print the arithmetic so the pick is reproducible: *"draw fallback: 142 letters mod 7 = 2, entry 3."* Skip wildcards, and stamp the seed as `seed: fallback-<letters>·<date>·r<n>`.
+
+### R.5 · The scene sentence
+
+One concrete sentence placing a real person at a real time and place with the product. *"A subscriber in Vermont, 6:43am in early January; the kettle just clicked off; one lamp on."* The scene decides **surface lightness and light temperature** before any palette work: that sentence forces a dark surface with warm interior light, not a daylit white. § B.2 consumes this decision directly. A scene that does not constrain the surface is not concrete enough; rewrite it.
+
+### R.6 · Colour posture
+
+Commit to exactly one, with a one-line justification:
+
+- **Restrained** - accent <= 5% of any viewport; the catalog's discipline. Right when type and structure carry the brand.
+- **Committed** - one colour carries 30-60% of the surface, routed through the surface tokens (`--color-field`, the paper family), while the accent token proper stays <= 5%. Right when the brief IS a colour ("the brand is that orange").
+- **Full palette** - 3 or 4 named roles, each with a stated job (field, signal, seal, ink). Right for editorial systems and print-lineage directions.
+- **Drenched** - the surface IS the colour; ink and rules derive from it. Right for single-message pages and poster energy.
+
+Posture is declared in the stamp and the log. Gate 23 reads the posture: a declared surface colour is not accent footprint; undeclared accent sprawl still fails. Contrast gates 40-41 bind unchanged on any coloured surface. See [`color.md`](color.md) § Colour postures.
+
+### R.7 · The direction contract
+
+Five blocks, <= 150 words total, written into the artifact as a comment directly BELOW the macrostructure stamp and critique line (the stamp stays line 1, per gate 20), before any code, and mirrored in the Step 5 preview:
+
+```
+/* direction contract · seed <key>
+ * THESIS: the one-sentence position this page takes.
+ * OWN-WORLD: what makes it not-anyone's-page; the drawn direction, named.
+ * STORY: the scene sentence.
+ * FIRST-VIEWPORT: what the fold shows, concretely.
+ * FORM: structure + the one signature move.
+ */
+```
+
+If a block reads like a mood ("elegant, premium feel"), the direction is not decided yet; rewrite it until each block is checkable. **The signature move** named in FORM is the one structural or visual idea a visitor would describe to a friend; a page without one is a template with nice tokens.
+
+---
+
+## § Bespoke depth
+
+Most custom runs are tuned. **Bespoke** is the deep end, fired by signal 6: the brief's structure itself is the ask and no catalog shape fits. The ritual runs identically (R.1 through R.7); bespoke changes what the build may drop:
+
+**It drops:** the named-theme tokens (palette written inline for this page only; § B still governs how); the genre cluster routing; the fixed macrostructure + archetype catalog (compose the structure for the idea; a novel hero, nav, or section is encouraged when it serves the FORM block); the diversification rotation (bespoke is a one-off, though it must not clone a recent bespoke run).
+
+**It keeps:** every universal slop-test gate; accessibility and contrast (APCA / WCAG, visible `:focus-visible`, `prefers-reduced-motion`, semantic landmarks, alt text); the font ban list and free-baseline discipline (§ C); OKLCH palette discipline (§ B); one orchestrated motion; the Step 5 preview before code; the stamp + log.
+
+Bespoke is more design judgment, not less: a bespoke page that reads generic, or trips a gate, has failed. It is also rare; reaching for bespoke on a vanilla brief is over-reach.
 
 ---
 
 ## § A · The one follow-up question
 
-Once the user names `custom` as the theme route, ask **one** thing in **one** message:
+Once custom is confirmed, ask **one** thing in **one** message:
 
-> *"Custom needs one input — describe the brand's vibe in 4–8 words. Examples: 'archival warmth, hand-set, no varnish' · 'industrial precision, cool, technical' · 'moss, lichen, soft pink, herbal' · 'sun-drenched, market-day, carbon black' · 'late-night, neon, brutalist deli'.*
+> *"Custom needs one input - describe the brand's vibe in 4-8 words. Examples: 'archival warmth, hand-set, no varnish' · 'industrial precision, cool, technical' · 'moss, lichen, soft pink, herbal'.*
 >
-> *Optional second input: an anchor colour — hex, OKLCH, or a name like 'terracotta', 'sea-blue', 'forest-green', 'dusty-pink'. If you skip it, I'll pick one from the vibe."*
+> *Optional second input: an anchor colour - hex, OKLCH, or a name like 'terracotta', 'sea-blue'. Skip it and I'll pick one from the vibe."*
 
-**Do not ask anything else.** Audience / use / tone (Step 1) plus the brand vibe is already enough signal. The model has no business asking the user to nominate paper lightness or font weights — that's the model's job.
-
-If the user gives just two or three words ("sun-drenched"), proceed; the recipe below extracts enough. If the user gives a paragraph, accept it but compress to 4–8 words for the stamp.
-
----
-
-## § Bespoke depth — custom that designs the whole page
-
-Most custom runs are *tuned* (a palette + pairing on Hallmark's existing structures). **Bespoke** is the deep end, fired by signal 5: the brief's *structure itself* is the ask and no catalog shape fits. At this depth custom designs the page from first principles — palette, type, **and** composition — and the only thing it inherits is the floor.
-
-Confirm the route once (same discipline as any custom — default to catalog on silence), then take **one** input: *"the direction in a sentence or two — what should this page feel like and do that an off-the-shelf theme wouldn't?"*
-
-**It drops** (only at this depth):
-- the named-theme tokens — write the palette inline for this page only (§ B still governs *how*);
-- the genre cluster routing — no editorial / atmospheric / modern-minimal / playful archetype defaults;
-- the fixed macrostructure + archetype catalog — compose the page's structure for the brief; a novel hero, nav, or section is *encouraged* when it serves the idea;
-- the diversification rotation — bespoke is a one-off (like studied-DNA), though it shouldn't clone a recent bespoke run.
-
-**It keeps** — the non-negotiable floor, identical to tuned custom:
-- **every universal slop-test gate** ([`slop-test.md`](slop-test.md)) — the guarantee that survives the freedom;
-- accessibility & contrast (APCA / WCAG), a visible `:focus-visible`, `prefers-reduced-motion`, semantic landmarks, alt text;
-- the **font ban-list** (Gate 1) and free-baseline-only discipline (§ C);
-- **OKLCH palette discipline** (§ B) — tinted neutrals, no pure `#000`/`#fff`, accent kept to a signal unless the concept earns more;
-- one orchestrated motion; the Step 5 preview before code; the Step 6 stamp + log.
-
-**Process:** read the brief + the one-line direction → design the *system and the one central move* (the idea that makes it not-a-template) → run the gates *as you compose* → surface the preview (palette, type, structure, central idea) → build, stamp, log. Bespoke is **more** design judgment, not less — a bespoke page that reads generic, or trips a gate, has failed; re-design.
-
-**Stamp (bespoke runs):**
-```css
-/* Hallmark · route: custom (bespoke) · structure: <one-line shape> · idea: "<central move>"
- * paper: oklch(...) · accent: oklch(...) · display: <font> · body: <font>
- * axes: <paper-band> / <display-style> / <accent-hue> · gates: all-pass · studied: no
- */
-```
-
-**Bespoke is rare.** Most briefs are catalog; some are tuned custom; few are bespoke. Reaching for bespoke on a vanilla brief is over-reach — route to catalog.
+Do not ask anything else; audience / use / tone from Step 1 plus the vibe is enough. Two or three words is enough to proceed; a paragraph gets compressed to 4-8 words for the stamp. The ritual runs regardless of how the user answers; the vibe feeds R.3's slate.
 
 ---
 
 ## § B · Palette construction
 
-Build the palette in this order. Each step cites the rule it's obeying — do not restate the rule, just apply it.
+Build in this order; each step applies the cited rule without restating it.
+
+### B.0 · Posture and scene set the frame
+
+Before any values: the scene sentence (R.5) fixes the paper's lightness band and light temperature; the posture (R.6) decides where large colour lives. Committed and Drenched route their colour through the paper / field tokens, never by inflating the accent's footprint.
 
 ### B.1 · Anchor accent first
 
-- Convert the user's named or hex anchor into OKLCH.
-- Clamp chroma to **0.12–0.20** per [`color.md`](color.md) § "Accent — the discipline".
-- If user skipped: derive hue from the vibe — *warmth* → 30–60° · *technical/industrial* → 220–250° · *botanical/moss* → 130–160° · *late-night/neon* → 280–320° · *sun-drenched/market* → 60–80° amber. Keep chroma 0.12–0.16 (mid-saturation; saturation comes from contrast against neutral, not from chroma).
+- Convert the named or hex anchor to OKLCH; clamp chroma to **0.12-0.20** (inside the cap in [`color.md`](color.md) § Palette construction). When the brief names a REAL brand, the anchor comes from `.hallmark/brand-spec.md` ([`brand-truth.md`](brand-truth.md)), never from memory.
+- No anchor given: derive hue from the vibe: warmth 30-60° · technical 220-250° · botanical 130-160° · late-night neon 280-320° · sun-drenched 60-80°. Chroma 0.12-0.16.
 
 ### B.2 · Paper
 
-- Derive paper L from the vibe:
-  - bright/airy/breakfast/hand-set → **L 95–98 %** (warm-tinted)
-  - archival/editorial/restrained → **L 92–95 %** (warm-tinted)
-  - technical/clinical/spec-sheet → **L 98–100 % near-white** (cool-tinted; can equal #fff but tinted neutrals downstream)
-  - dark/restless/late-night/manifesto → **L 12–18 %** (anchor-tinted)
-- **Always tint paper toward the anchor hue with chroma 0.005–0.020** per [`color.md`](color.md) § "Neutral tinting". Pure-white #fff is allowed only when ink + accent + greys carry the chroma; the paper itself never carries chroma 0 in *both* directions.
-- Paper-2 (one elevation step): step ±2–4 % L from paper.
-- Paper-3 (optional second step): step ±5–7 % L from paper. Skip on minimal palettes.
+- Paper L from the scene sentence: bright / airy → **L 95-98%** (warm-tinted) · archival / editorial → **L 92-95%** · clinical / spec-sheet → **L 98-100%** near-white, cool-tinted · dark / late-night → **L 12-18%**, anchor-tinted.
+- **Always tint paper toward the anchor hue, chroma 0.005-0.020** per [`color.md`](color.md) § Principles (tint the greys).
+- Committed posture: the carried colour becomes `--color-field` at the scene's lightness band; paper stays a quiet neighbour. Drenched posture: paper IS the anchor at usable lightness; ink derives from it.
+- Paper-2: step ±2-4% L. Paper-3 (optional): ±5-7% L.
 
 ### B.3 · Ink
 
-- If paper L < 50: ink L **88–96 %**.
-- If paper L ≥ 50: ink L **16–24 %**.
-- Tint ink chroma **0.005–0.014** toward anchor (a shade darker / lighter, never neutral).
-- Ink-2 (secondary text): step 4–8 % L away from ink toward paper. Same hue family.
+- Paper L < 50: ink L **88-96%**. Paper L >= 50: ink L **16-24%**.
+- Tint ink chroma **0.005-0.014** toward the anchor. Ink-2: 4-8% L toward paper, same hue family.
 
 ### B.4 · Supporting greys
 
-Step by ~6–10 % L between paper and ink, all tinted toward anchor with chroma 0.005–0.018:
-
-- `--color-rule` — dividers · L ~70–82 % (light paper) or ~26–34 % (dark paper).
-- `--color-rule-2` — secondary dividers · 4–6 % L closer to paper than rule.
-- `--color-muted` — de-emphasised text · L ~38–56 %.
-- `--color-neutral` — mid-grey equivalent · L ~30–56 %.
-
-These are not arbitrary. The L-step gives the palette **typographic depth** without leaning on accent.
+Step ~6-10% L between paper and ink, all tinted toward the anchor (chroma 0.005-0.018): `--color-rule` (L ~70-82% light paper / ~26-34% dark), `--color-rule-2` (4-6% closer to paper), `--color-muted` (L ~38-56%), `--color-neutral` (L ~30-56%). The L-steps give typographic depth without leaning on accent.
 
 ### B.5 · Focus
 
-- Same hue as accent, slightly higher chroma (0.18–0.22) for visibility.
-- Same L as accent ±5 %.
-- Used only on `:focus-visible` — must show instantly per [`microinteractions.md`](microinteractions.md) § "Focus is a first-class state".
+Same hue as accent, chroma 0.18-0.22, L ±5% of accent. `:focus-visible` only; appears instantly.
 
-### B.6 · Accent-ink (overlay text colour on accent)
+### B.6 · Accent-ink
 
-- If accent L > 50: use ink (text reads dark on accent fill).
-- If accent L ≤ 50: use paper (text reads light on accent fill).
-- Verify **APCA contrast ≥ 7:1** for body, ≥ 3:1 for large text per [`color.md`](color.md).
+Text on accent fills: accent L > 50 uses ink; accent L <= 50 uses paper. Verify APCA >= Lc 60 / WCAG 4.5:1 for body, 3:1 for large text.
+
+### B.6b · Texture (print-lineage draws only)
+
+When the drawn direction's lineage is print (riso zine, letterpress, ticket stock, line-printer), it may draw ONE artifact from [`texture.md`](texture.md) under that file's budget tokens. Digital-native draws take none; texture is earned by lineage, never added for warmth.
 
 ### B.7 · Verification
 
-- **Gate 7** (no pure #000 / #fff base): paper and ink both have chroma > 0. Pass.
-- **Gate 22** (no zero-chroma neutrals): every grey has chroma ≥ 0.005. Pass.
-- **Gate 23** (accent ≤ 5 % footprint): plan the accent's role on the page (active state, one wordmark dot, one CTA fill). Don't carpet a section in accent.
+Gate 7 (no pure #000/#fff): paper and ink both carry chroma. Gate 22 (no zero-chroma neutrals): every grey >= 0.005. Gate 23 (accent footprint): plan the accent's role; under Committed / Drenched the carried colour lives in field / paper tokens and the accent proper still keeps to a signal.
 
 ---
 
 ## § C · Font pairing
 
-Custom pulls from the seven tone-pairings in [`typography.md`](typography.md) — Editorial, Technical, Brutalist, Soft, Luxury, Playful, Austere, Workshop. Each tone has a **free baseline** and a **paid upgrade**.
+Custom pulls from the tone pairings in [`typography.md`](typography.md), and **may mix tones** - that is the freedom:
 
-### C.1 · The freedom
+- Editorial display + Technical body: an academic-tone SaaS.
+- Brutalist display + Editorial body: a manifesto magazine.
+- Playful display + Austere body: a creator-tool brand.
+- Luxury display + Technical body: a hand-crafted dev tool.
 
-The catalog pairs Display-from-tone-X with Body-from-tone-X. **Custom can mix tones** — that's the whole point:
-
-- Editorial display + Technical body (italic Fraunces wordmark + Geist body) — works for an academic-tone SaaS.
-- Brutalist display + Editorial body (Anton + Newsreader italic) — works for a left-leaning manifesto magazine.
-- Playful display + Austere body (Bricolage Grotesque + Inter Tight) — works for a creator-tool brand.
-- Luxury display + Technical body (Cormorant Garamond + JetBrains Mono) — works for a hand-crafted dev-tool.
-
-Pick **one display face** and **one body face** from any tone's columns. Optional mono if the page has code or tabular data.
-
-### C.2 · The discipline
-
-- **Free baseline only** unless the user has confirmed paid licences. Per [`typography.md`](typography.md) § "The discipline": "Never name a paid font in code without confirming the user is licensed."
-- **Banned defaults still banned** per [`typography.md`](typography.md) § "Banned defaults" — Inter / Roboto / Open Sans / Poppins / Lato / Work Sans / DM Sans / Montserrat / system-ui as display all fail Gate 1.
-- **Variable fonts are preferred** when available (Fraunces, Bricolage Grotesque, Newsreader, Geist, EB Garamond, Inter Tight) — they support optical-size and weight axes for tighter typographic control.
-
-### C.3 · The pair must read
-
-Once you have display + body, mentally render the page:
-
-- Does the display face have enough weight contrast (200/400 next to 700/900) per [`typography.md`](typography.md) § "Commit to extremes"?
-- Does the body face read at the chosen body size (≥ 14 px floor; default 1 rem) at the chosen measure (45–75 ch)?
-- If display is mono and body is mono — that's only allowed when the page IS the design (Terminal-aesthetic, true single-font specimen). Per [`typography.md`](typography.md) line 7.
-
-If any answer is no, redirect — pick a different body face or shift the display weight.
+One display face, one body face, optional mono. The discipline: **free-baseline only** unless the user confirms licences; the banned defaults stay banned (gate 1); variable fonts preferred. Then confirm the pair reads: enough weight contrast in the display, body legible at >= 14px across 45-75ch, mono-on-mono only when the mono IS the design. The drawn direction (R.4) should be audible in the pairing: a ledger direction wants tabular figures; a playbill direction wants wood-type energy in the display slot.
 
 ---
 
-## § D · Custom-axis computation
+## § D · Axes and posture
 
-A custom theme must declare its three diversification-rule axis values explicitly so [`SKILL.md`](../SKILL.md) § "Theme-diversification rule" fires the same way as it does on catalog themes.
+A custom theme declares its diversification values explicitly so the Rotation block in [`SKILL.md`](../SKILL.md) fires the same as catalog:
 
-### D.1 · Paper band
-
-- **dark** — paper L < 30 %
-- **mid** — paper L 30–85 %
-- **light** — paper L > 85 %
-
-### D.2 · Display style
-
-Pick one based on the chosen display face:
-
-- **italic-serif** — Fraunces italic, Newsreader italic, EB Garamond italic, Cormorant italic
-- **roman-serif** — Source Serif 4, Newsreader, Crimson Pro, Bitter, Cardo
-- **geometric-sans** — Geist, Bricolage Grotesque, Inter Tight, Manrope, Sora
-- **mono** — Geist Mono, JetBrains Mono, IBM Plex Mono, Space Mono
-- **display-condensed-italic** — Migra italic, Tobias italic
-- **display-condensed-bold** — Anton, Bebas Neue, Oswald, Barlow Condensed
-- **display-heavy** — Inter Tight 900, Bricolage 800, Druk-class
-- **slab-serif** — Roboto Slab, Bitter heavy, Zilla Slab
-- **system-native** — system-ui, Inter Tight 400 (austere)
-- **risograph-bold** — bold sans with hand-crafted feel
-- **handwritten** — Caveat, Sacramento, Patrick Hand (rare; only when brand demands)
-
-### D.3 · Accent hue band
-
-- **warm** — hue 10–60° (red, orange, amber)
-- **cool** — hue 200–300° (blue, indigo, cyan)
-- **neutral** — no chromatic accent (austere; chroma < 0.05)
-- **chromatic-other** — anything outside warm/cool/neutral. Sub-tag the specific anchor: `chromatic-green ~145°` · `chromatic-sage ~120°` · `chromatic-phosphor ~150°` · `chromatic-terracotta ~30°` · `chromatic-dusty-pink ~350°` · `chromatic-moss ~140°` · `chromatic-amber ~75°`.
-
-### D.4 · Where these go
-
-Write all three into the macrostructure stamp (§ E below) and the `.hallmark/log.json` entry (§ F below). They are the durable record. The next run reads them.
-
----
+- **Paper band:** dark (L < 30%) · mid (30-85%) · light (> 85%).
+- **Display style:** italic-serif · roman-serif · geometric-sans · grotesk-sans · mono · display-condensed-bold · display-heavy · slab-serif · system-native · risograph-bold · handwritten (rare).
+- **Accent hue band:** warm 10-60° · cool 200-300° · neutral (chroma < 0.05) · chromatic-other (sub-tag the anchor: `chromatic-moss ~140°`).
+- **Posture** (fourth logged value): restrained · committed · full-palette · drenched.
 
 ## § E · Stamp format
 
-The CSS comment at the top of the produced stylesheet (per [`SKILL.md`](../SKILL.md) Step 6 § "Stamp the output"):
-
 ```css
-/* Hallmark · macrostructure: <name> · <hero archetype + knobs>
- * theme: custom · vibe: "<4–8 words>" · paper: oklch(<L>% <C> <H>) · accent: oklch(<L>% <C> <H>)
- * display: <font name> · body: <font name> · axes: <paper-band> / <display-style> / <accent-hue>
- * studied: no · context: <user-provided | inferred> · v0.6.x
+/* Hallmark · macrostructure: <name or "bespoke: <one-line shape>"> · <hero archetype + knobs>
+ * theme: custom · direction: "<drawn direction name>" · vibe: "<4-8 words>"
+ * paper: oklch(<L>% <C> <H>) · accent: oklch(<L>% <C> <H>) · display: <font> · body: <font>
+ * axes: <paper-band> / <display-style> / <accent-hue> · posture: <posture>
+ * seed: <slug>·<date>·r<n> · contract: kept (5/5) · studied: no · v1.2.0
  */
 ```
 
-Concrete example:
-
-```css
-/* Hallmark · macrostructure: Long Document · H5 hero knobs: salutation=time-stamp, body=2 paragraphs, signoff=initials
- * theme: custom · vibe: "archival warmth, hand-set, no varnish" · paper: oklch(94% 0.020 65) · accent: oklch(58% 0.16 35)
- * display: Fraunces italic · body: Source Serif 4 · axes: light / italic-serif / chromatic-terracotta
- * studied: no · context: explicit · v0.8.0
- */
-```
-
-The stamp is the durable record. `audit` reads it. The next run reads it. The user reads it.
-
----
+The `contract: kept (5/5)` line is written only after the finish review below confirms it. This extends the base stamp; the tone and the contrast / nav / footer / mobile records SKILL.md Step 6 and the gate list require still ride on line 1. The direction contract comment (R.7) sits directly below the stamp and critique line.
 
 ## § F · `.hallmark/log.json` entry shape
 
-Custom runs extend the existing schema with a `theme_axes` field and an optional `vibe` field:
-
 ```json
-{ "date": "2026-05-01",
-  "macrostructure": "Stat-Led",
+{ "date": "2026-07-23",
+  "macrostructure": "Workbench",
   "theme": "custom",
-  "theme_axes": "light / italic-serif / chromatic-terracotta",
-  "vibe": "archival warmth, hand-set, no varnish",
+  "direction": "Line-printer output",
+  "posture": "committed",
+  "seed": "loop-observability·2026-07-23·r0",
+  "wildcard": true,
+  "theme_axes": "dark / grotesk-sans / chromatic-other (amber ~75)",
+  "vibe": "industrial precision, cool, technical",
+  "hero": "Ledge/H4",
+  "fingerprint": "Stacked numbered|Two-column asymmetric|Hairline|Outlined|None|Number-tick",
+  "nav": "N8", "footer": "Ft4",
   "enrichment": "none",
-  "brief": "Coffeebox · subscription" }
+  "brief": "Loop · payment-rail observability" }
 ```
 
-Catalog entries continue to record `theme: <name>` and skip `theme_axes` (the catalog's axes are looked up from [`tokens.css`](../../../site/css/tokens.css)). Step 2.5 logic uses the same diversification check on both — for catalog entries it reads the axes from tokens.css; for custom entries it reads them from the entry.
+Catalog entries keep recording `theme: <name>` and skip the custom fields. The Rotation block treats both the same: a custom run must differ from the previous entry on at least one axis, whatever route that entry used.
 
-When rotating, **a custom run that follows another custom run must differ on at least one axis from the previous custom** — same rule as catalog-vs-catalog. A custom run that follows a catalog run must differ on at least one axis from the catalog's axes. The diversification rule is theme-route-blind.
+## § The finish review
+
+Before the slop test, re-read the direction contract promise by promise: THESIS still the page's position? OWN-WORLD visible in the shipped surface, or did the build drift back toward a spent default? STORY's light still in the palette? FIRST-VIEWPORT actually what the fold shows? FORM's signature move present and load-bearing? Any unkept promise = revise, not ship. Then run Step 7 as normal (every gate, both depths). Custom-only; this review never replaces the gate sweep.
 
 ---
 
-## § G · Three worked examples
+## § G · Worked examples
 
-Concrete generations to seed model imitation. Each shows the brief, the user's vibe answer, the constructed palette, the chosen pair, and the stamp.
+### G.1 · Coffeebox, the full ritual
 
-### G.1 · Archival café — "Coffeebox"
+**Brief:** *"Landing page for Coffeebox, a small-batch coffee subscription. Roast on Sunday, ship on Monday, drink Tuesday. Audience: people who already buy good coffee. Tone: warm, hand-set, editorial. Custom confirmed."* **Vibe answer:** *"archival warmth, hand-set, no varnish."* **Anchor:** *"terracotta."*
 
-**Brief:** *"Build me a landing page for Coffeebox — a small-batch coffee subscription. Roast on Sunday, ship on Monday, drink Tuesday. Audience: people who already buy good coffee and want fewer trips to the shop. Tone: warm, hand-set, editorial — like a small café's chalkboard. Theme route: custom."*
+- **Reflex check:** rejecting kraft-paper-and-coffee-browns (category default) and italic-serif-on-cream editorial (tasteful fallback).
+- **Spent:** warm/food family, so cream + serif + lamplight is spent unless the draw earns it back.
+- **Slate:** 1 the roastery chalkboard; 2 the grocer's price ticket; 3 the shipping manifest; 4 the Sunday broadsheet food column; 5 the enamel tin label; 6 the postal frank and rubber stamp; 7 the harvest-lot auction sheet.
+- **Draw** (illustrative; your date changes it): `node scripts/seed.mjs "coffeebox-subscription" --wild 2` printed a draw landing on entry 6 with two wildcards, Seed packet and Card catalog. Wildcard weigh-in: Seed packet loses to the postal direction on product clarity (subscription = things that arrive in the mail); Card catalog loses on audience identification. **Building: the postal frank.**
+- **Scene:** *"A subscriber on a Tuesday at 7:10am, tearing the strip on a kraft mailer at the kitchen counter, stamp-marks inked slightly off-square."* Light paper, warm, daylit.
+- **Posture:** Full palette (kraft field, frank red, ink black, airmail blue seal), each with a stated job.
+- **Contract:** THESIS: your coffee is mail, and mail used to be beautiful. OWN-WORLD: postal franking, done with restraint. STORY: the scene above. FIRST-VIEWPORT: wordmark as a circular frank, one mailer photo-placeholder, ship-date line, subscribe CTA as a stamp outline. FORM: Long Document rhythm; the signature move is the frank-mark rule system dating each section like a postmark.
+- **Palette:** paper `oklch(95% 0.015 80)` kraft-tinted · ink `oklch(24% 0.012 60)` · accent `oklch(55% 0.17 30)` frank red · seal `oklch(58% 0.10 240)` airmail blue (named role, footprint budgeted) · rule `oklch(80% 0.015 75)`. **Pair:** display Bricolage Grotesque (hand-set energy, roman) · body Source Serif 4 · mono JetBrains Mono for lot numbers. **Axes:** light / geometric-sans / warm · posture: full-palette.
 
-**Vibe answer:** *"archival warmth, hand-set, no varnish."*  **Anchor:** *"terracotta."*
+### G.2 · Loop, a Committed dark build
 
-**Palette:**
-- paper `oklch(94% 0.020 65)` — warm-cream, hue 65 (amber-warm)
-- paper-2 `oklch(91% 0.022 65)` — one elevation step
-- ink `oklch(22% 0.014 60)` — warm dark brown-black
-- ink-2 `oklch(40% 0.014 60)` — warm secondary
-- rule `oklch(78% 0.018 65)` — warm hairline
-- muted `oklch(54% 0.014 60)` — warm grey
-- accent `oklch(58% 0.16 35)` — terracotta (hue 35, chroma 0.16)
-- accent-ink `oklch(96% 0.014 65)` — paper for text on accent
-- focus `oklch(56% 0.20 35)` — accent at higher chroma
+**Brief:** *"Loop is real-time payment-rail observability for fintech platform engineers. Use: try it / contact sales. Tone: industrial, cool, technical. Custom confirmed."* **Vibe:** *"industrial precision, cool, technical."* **Anchor:** *(skipped)*.
 
-**Pair:** display **Fraunces italic** (Editorial, free) · body **Source Serif 4** (Editorial, free) · mono **JetBrains Mono** (Technical, free).
+- **Reflex check:** rejecting navy-and-emerald fintech trust (category default) and neon-on-black terminal cosplay (tasteful fallback).
+- **Slate:** 1 the double-entry ledger; 2 the SWIFT wire printout; 3 the control-room annunciator panel; 4 the oscilloscope face; 5 the bank vault engineering plate; 6 the reconciliation stamp; 7 the trading-floor pit board.
+- **Draw** (illustrative): the draw landed on entry 4 and dealt Line-printer output and Blueprint as wildcards. Line-printer output beats entry 4 on both axes (engineers live in logs; the report idiom carries latency tables natively). **Building: the line-printer report.**
+- **Scene:** *"An on-call engineer at 2am, one monitor lit, tearing yesterday's batch report off the tractor feed."* Dark surface, cool, one warm task light.
+- **Posture:** Committed. The greenbar stripe carries 40% of the surface as `--color-field`; the alert amber accent stays a signal.
+- **Contract:** THESIS: observability is a report you can trust at 2am. OWN-WORLD: greenbar line-printer output, modernised, not cosplayed. STORY: above. FIRST-VIEWPORT: masthead as a job header (run id, date), one live latency table in greenbar stripes, try-CTA as a form-feed break. FORM: Workbench macrostructure; the signature move is greenbar striping as the page's only surface rhythm.
+- **Palette:** paper `oklch(15% 0.012 220)` · field stripe `oklch(19% 0.020 160)` greenbar · ink `oklch(93% 0.010 210)` · accent `oklch(75% 0.15 75)` alert amber · rule `oklch(30% 0.012 215)`. **Pair:** display Space Grotesk 600 · body Geist · mono IBM Plex Mono for every figure. **Axes:** dark / grotesk-sans / chromatic-other (amber ~75°) · posture: committed.
 
-**Axes:** **light / italic-serif / chromatic-terracotta**.
+### G.3 · Mossroot, compressed to the stamp
 
-**Stamp:**
-```css
-/* Hallmark · macrostructure: Long Document · H5 hero knobs: salutation=time-stamp, body=2 paragraphs, signoff=initials
- * theme: custom · vibe: "archival warmth, hand-set, no varnish" · paper: oklch(94% 0.020 65) · accent: oklch(58% 0.16 35)
- * display: Fraunces italic · body: Source Serif 4 · axes: light / italic-serif / chromatic-terracotta
- * studied: no · context: explicit · v0.8.0
- */
-```
+Herbal apothecary in Porto; vibe *"moss, lichen, soft pink, herbal"*; the draw (illustrative) landed on the slate's herbarium-sheet entry, wildcards discarded; scene: overcast morning shop light; posture: restrained.
 
-### G.2 · Industrial fintech — "Loop"
-
-**Brief:** *"Loop is a real-time payment-rail observability platform for fintechs. Audience: platform engineers. Use case: try it / contact sales. Tone: industrial, cool, technical. Theme route: custom."*
-
-**Vibe answer:** *"industrial precision, cool, technical."*  **Anchor:** *"sea-blue."*
-
-**Palette:**
-- paper `oklch(13% 0.012 220)` — dark cool
-- paper-2 `oklch(17% 0.014 220)` — one step up
-- paper-3 `oklch(22% 0.014 220)` — two steps up (panels)
-- ink `oklch(94% 0.010 220)` — cool light
-- ink-2 `oklch(72% 0.010 220)`
-- rule `oklch(30% 0.012 220)`
-- muted `oklch(58% 0.012 220)`
-- accent `oklch(72% 0.16 220)` — sea-blue (cool)
-- focus `oklch(78% 0.20 220)`
-
-**Pair:** display **Geist Mono 500** (Technical, free) · body **Geist** (Technical, free) · mono **Geist Mono** (Technical, free).
-
-Note: this *is* a single-family page (Geist + Geist Mono are the same family at different widths). [`typography.md`](typography.md) line 7 allows it: "single-font pages are allowed only when the single font IS the design choice." For an industrial-precision fintech, that's the design choice.
-
-**Axes:** **dark / mono / cool**.
-
-**Stamp:**
-```css
-/* Hallmark · macrostructure: Workbench · F2 sticky-scroll knobs: pinned=right, content=trace-panel, steps=3
- * theme: custom · vibe: "industrial precision, cool, technical" · paper: oklch(13% 0.012 220) · accent: oklch(72% 0.16 220)
- * display: Geist Mono 500 · body: Geist · axes: dark / mono / cool
- * studied: no · context: explicit · v0.8.0
- */
-```
-
-### G.3 · Botanical apothecary — "Mossroot"
-
-**Brief:** *"Mossroot is a small herbal apothecary in Porto. We make tinctures, salves, and tea blends. Audience: locals + visitors. Use: see what we make + visit. Tone: quiet, herbal, hand-poured. Theme route: custom."*
-
-**Vibe answer:** *"moss, lichen, soft pink, herbal."*  **Anchor:** *(skipped — pick from vibe)*.
-
-The vibe names two hues: *moss* (greenish, ~140°) and *soft pink* (warm, ~350°). Pick **soft pink as the accent** (single anchor — custom is one-accent strict) and use the moss-green as the *paper tint* (chroma 0.018 toward 145°). This carries the dual-vibe without splitting accent.
-
-**Palette:**
-- paper `oklch(96% 0.018 145)` — moss-tinted near-white
-- paper-2 `oklch(93% 0.020 145)`
-- ink `oklch(22% 0.014 140)` — moss-tinted dark
-- ink-2 `oklch(42% 0.014 140)`
-- rule `oklch(82% 0.018 145)`
-- muted `oklch(56% 0.014 140)`
-- accent `oklch(72% 0.13 350)` — dusty-pink (chromatic-other)
-- focus `oklch(70% 0.18 350)`
-
-**Pair:** display **Cormorant Garamond** (Luxury, free) · body **EB Garamond** (Luxury, free) · mono **Geist Mono** (rare on this page; only for ingredient lists).
-
-**Axes:** **light / roman-serif / chromatic-other (dusty-pink)**.
-
-**Stamp:**
 ```css
 /* Hallmark · macrostructure: Catalogue · F1 catalogue knobs: tiles=8, columns=2, rule=hairline-between
- * theme: custom · vibe: "moss, lichen, soft pink, herbal" · paper: oklch(96% 0.018 145) · accent: oklch(72% 0.13 350)
- * display: Cormorant Garamond · body: EB Garamond · axes: light / roman-serif / chromatic-other (dusty-pink)
- * studied: no · context: explicit · v0.8.0
+ * theme: custom · direction: "the herbarium sheet" · vibe: "moss, lichen, soft pink, herbal"
+ * paper: oklch(96% 0.018 145) · accent: oklch(72% 0.13 350) · display: Cormorant Garamond · body: EB Garamond
+ * axes: light / roman-serif / chromatic-other (dusty-pink) · posture: restrained
+ * seed: mossroot-apothecary·2026-07-23·r0 · contract: kept (5/5) · studied: no · v1.2.0
  */
 ```
 
 ---
 
-## What custom does **not** do (worth restating)
+## What custom does **not** do
 
-1. **Does not invent themes that ignore the rules.** Every paper L band, accent chroma cap, neutral-tinting requirement, font ban, and slop-test gate carries forward. The freedom is the *combination* — not the rules.
-2. **Does not save themes for reuse.** A custom run is per-output. The skill does not write back to [`tokens.css`](../../../site/css/tokens.css). If the user wants a permanent theme, they paste the custom palette into tokens.css themselves and name it.
-3. **Does not ask multiple follow-up questions.** One vibe answer (+ optional anchor) is enough. The audience/use/tone from Step 1 plus the brief plus the macrostructure pick already give the model 80 % of the signal.
-4. **Does not relax the diversification rule.** Custom entries declare their three axes the same way catalog entries do; the rotation rule fires on both, theme-route-blind.
-5. **Does not bypass the Step 5 preview.** The custom palette + pairing surface in plain text *before* any code is emitted, so the user can redirect early.
-
-If any of those five lines is bent, the custom output is over-invented. Audit it; redirect.
+1. **Does not invent themes that ignore the rules.** Every band, cap, tint requirement, font ban, and slop-test gate carries forward. The freedom is the combination.
+2. **Does not save themes for reuse.** A custom run is per-output; nothing writes back to the skill catalog's tokens. (The project-root `tokens.css` emit from SKILL.md Step 6 still happens; that file belongs to the user's project.)
+3. **Does not ask multiple follow-up questions.** One vibe answer (+ optional anchor) is enough.
+4. **Does not relax the diversification rule.** Custom entries declare axes + posture; the rotation fires on both routes.
+5. **Does not bypass the Step 5 preview.** Direction, posture, palette, and pairing surface in plain text before code.
+6. **Does not skip the draw.** The model's own #1 pick is exactly what the draw exists to refuse; a custom run with no seed line in the stamp is over-invented. Audit it; redirect.

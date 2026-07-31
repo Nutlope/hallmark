@@ -4,7 +4,7 @@ Mobile-first. Content-driven breakpoints. No desktop-only interactions.
 
 ## Mobile — non-negotiable
 
-Every Hallmark output must render flawlessly at **320 px, 375 px, 414 px, and 768 px** CSS-pixel widths. Eyeball each viewport before marking the output complete:
+Every Hallmark output must render flawlessly at **320 px, 375 px, 414 px, and 768 px** CSS-pixel widths. Eyeball each viewport before marking the output complete; no render available: verify the code-level equivalents mechanically; scripts/sloplint.mjs covers them (gates 34, 49, 50-57):
 
 - No horizontal scroll (slop-test gate 34)
 - No clickable text wrapping to two lines (gate 49)
@@ -14,7 +14,7 @@ Every Hallmark output must render flawlessly at **320 px, 375 px, 414 px, and 76
 - Section heads collapse to one column on mobile across every theme variant — per-theme overrides need a matching mobile rule (gate 52)
 - No scroll-jump on radio-tab clicks — radios in normal flow OR JS guard with `focus({ preventScroll: true })` (gate 53)
 
-This is a hard floor, not a wish list. A page that fails any of these on any of those four widths is not done. The slop-test gates listed run automatically — keep this checklist near the screen while building.
+This is a hard floor, not a wish list. A page that fails any of these on any of those four widths is not done. The slop-test gates listed run automatically — keep this checklist near the screen while building. No render available: verify the code-level equivalents mechanically; scripts/sloplint.mjs covers them (gates 34, 49, 50-57).
 
 ## Principles
 
@@ -54,7 +54,7 @@ h1 { font-size: clamp(2.5rem, 4vw + 1rem, 6rem); }
 }
 ```
 
-Never build a mouse-hover interaction that has no touch equivalent.
+Never build a mouse-hover interaction that has no touch equivalent. And the sizing direction models never guess: body-adjacent UI runs LARGER on mobile and tightens at 60rem (finish.md § Responsive finish).
 
 ## Clickable text — never wraps
 

@@ -12,3 +12,16 @@ A thin vertical strip on the left edge — wordmark rotated, plus 2–3 dot-indi
 ```css
 .nav-rail { position: fixed; left: 0; top: 0; bottom: 0; width: 3rem; padding: var(--space-md); writing-mode: vertical-rl; }
 ```
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Side: left · right
+- Width: 12ch · 16ch · 20ch
+- Indicator: filled bar · text-only · numbered
+
+## Mobile collapse
+
+- **Below 60rem:** rail unsticks and becomes a hamburger trigger above
+- **Below 40rem:** hamburger becomes the only nav

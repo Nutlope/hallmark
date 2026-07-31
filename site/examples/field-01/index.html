@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fieldnote - meetings that end with a plan</title>
+<meta name="description" content="Fieldnote turns the talk into owners, dates, and next steps before everyone stands up." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet" />
+<style>
+/* Hallmark · macrostructure: Marquee Hero · theme: Field (candidate) · tone: warm-productivity/friendly */
+
+:root {
+  /* paper + ink */
+  --paper: oklch(96.5% 0.015 90);
+  --paper-2: oklch(98.5% 0.010 90);
+  --paper-3: oklch(94.2% 0.020 88);
+  --paper-glass: oklch(96.5% 0.015 90 / 0.86);
+  --band-warm: oklch(93% 0.045 84);
+  --ink: oklch(25% 0.02 70);
+  --ink-2: oklch(43% 0.02 72);
+  --ink-3: oklch(55% 0.016 74);
+  --rule: oklch(87% 0.015 90);
+  --rule-2: oklch(83% 0.018 86);
+
+  /* marigold accent family */
+  --accent: oklch(75% 0.13 80);
+  --accent-deep: oklch(58% 0.14 76);
+  --focus: oklch(52% 0.15 76);
+
+  /* shadows (tinted, never neutral-grey) */
+  --shadow-1: 0 1px 2px oklch(30% 0.02 70 / 0.10), 0 10px 24px -16px oklch(30% 0.03 70 / 0.18);
+  --shadow-2: 0 2px 6px oklch(30% 0.02 70 / 0.12), 0 22px 40px -20px oklch(30% 0.03 70 / 0.24);
+  --shadow-note: 0 2px 4px oklch(30% 0.02 70 / 0.08), 0 26px 44px -26px oklch(30% 0.04 70 / 0.30);
+
+  /* type */
+  --font-display: "Source Serif 4", Georgia, serif;
+  --font-body: "Public Sans", system-ui, sans-serif;
+
+  /* radii */
+  --radius: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  /* 4pt spacing scale */
+  --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
+  --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem;
+  --space-12: 3rem; --space-16: 4rem; --space-20: 5rem;
+
+  --gutter: clamp(20px, 5vw, 64px);
+  --section-y: clamp(64px, 9vw, 112px);
+  --ease: cubic-bezier(0.2, 0.6, 0.3, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { overflow-x: clip; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--paper);
+  color: var(--ink-2);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-style: normal;
+  color: var(--ink);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+p { text-wrap: pretty; }
+mark { background-color: transparent; color: inherit; }
+
+.wrap { max-width: 1200px; margin-inline: auto; padding-inline: var(--gutter); }
+
+.eyebrow {
+  font-family: var(--font-body); font-weight: 600; font-size: 0.8125rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3);
+}
+
+/* ---- the highlighter mark: a marigold band behind the x-height ---- */
+.mark {
+  padding-inline: 0.06em;
+  background-image: linear-gradient(180deg,
+    transparent 38%, var(--accent) 38%, var(--accent) 92%, transparent 92%);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* ---- hand-drawn ink strokes ---- */
+.ink { fill: none; stroke: var(--ink); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.ink-2 { fill: none; stroke: var(--ink-2); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.acc { fill: none; stroke: var(--accent-deep); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.acc-soft { fill: var(--accent); stroke: none; }
+
+/* ---- buttons ---- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+  font-family: var(--font-body); font-weight: 600; font-size: 1rem; line-height: 1;
+  padding: var(--space-3) var(--space-6); border-radius: var(--radius);
+  border: 1px solid transparent; cursor: pointer; text-decoration: none; white-space: nowrap;
+  transition: transform 160ms var(--ease), box-shadow 200ms var(--ease), background-color 160ms var(--ease);
+}
+.btn--primary { background: var(--ink); color: var(--paper); box-shadow: var(--shadow-1); }
+.btn--primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); }
+.btn--primary:active { transform: translateY(0); box-shadow: var(--shadow-1); }
+.btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: var(--shadow-1); }
+
+/* ghost link */
+.ghost {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  color: var(--ink); font-weight: 600; text-decoration: underline;
+  text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 3px;
+}
+.ghost svg { transition: transform 180ms var(--ease); }
+.ghost:hover svg { transform: translateX(4px); }
+.ghost:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 4px; }
+.ghost:active { transform: translateY(1px); }
+
+/* ---- nav ---- */
+.nav {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--paper-glass);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav__inner { display: flex; align-items: center; gap: var(--space-6); padding-block: var(--space-4); }
+.wordmark {
+  font-family: var(--font-display); font-weight: 600; font-size: 1.375rem; letter-spacing: -0.02em;
+  color: var(--ink); text-decoration: none;
+}
+.wordmark:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 4px; }
+.nav__links { margin-left: auto; display: flex; align-items: center; gap: var(--space-6); }
+.nav__link {
+  position: relative; color: var(--ink-2); text-decoration: none; font-weight: 500; font-size: 0.9375rem;
+  transition: color 160ms var(--ease);
+}
+.nav__link::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 2px;
+  background: var(--accent); transform: scaleX(0); transform-origin: left;
+  transition: transform 180ms var(--ease);
+}
+.nav__link:hover { color: var(--ink); }
+.nav__link:hover::after, .nav__link:focus-visible::after { transform: scaleX(1); }
+.nav__link:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; border-radius: 3px; }
+.pill {
+  border: 1px solid var(--rule-2); border-radius: var(--radius-pill);
+  padding: var(--space-2) var(--space-5); color: var(--ink); text-decoration: none;
+  font-weight: 500; font-size: 0.9375rem; white-space: nowrap;
+  transition: background-color 160ms var(--ease), border-color 160ms var(--ease), transform 160ms var(--ease);
+}
+.pill:hover { background: var(--paper-2); border-color: var(--ink-3); }
+.pill:active { transform: translateY(1px); }
+.pill:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+/* ---- hero ---- */
+.hero__inner {
+  display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+  gap: clamp(32px, 5vw, 72px); align-items: center;
+  min-height: clamp(540px, calc(100svh - 76px), 748px);
+  padding-block: clamp(24px, 4vw, 40px) clamp(56px, 9vw, 104px);
+}
+.hero__title {
+  font-size: clamp(2.5rem, 1.4rem + 4.6vw, 4rem);
+  letter-spacing: -0.02em; margin-bottom: var(--space-6);
+}
+.hero__lede { max-width: 46ch; font-size: 1.1875rem; color: var(--ink-2); margin-bottom: var(--space-8); }
+.hero__cta { display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap; }
+
+.hero__aside { position: relative; display: flex; justify-content: center; }
+.doodle {
+  position: absolute; left: -76px; bottom: 8px; width: clamp(72px, 9vw, 108px); height: auto;
+  pointer-events: none;
+}
+
+/* the sticky note artifact (a content artifact, not app chrome) */
+.note {
+  position: relative; width: min(340px, 100%);
+  background: var(--paper-2); border: 1px solid var(--rule-2); border-radius: var(--radius-lg);
+  padding: var(--space-6); box-shadow: var(--shadow-note);
+  transform: rotate(-1.6deg);
+}
+.note__top {
+  display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4);
+  padding-bottom: var(--space-4); margin-bottom: var(--space-4); border-bottom: 1px dashed var(--rule-2);
+}
+.note__title { font-family: var(--font-display); font-weight: 600; font-size: 1.0625rem; color: var(--ink); }
+.note__time { font-size: 0.8125rem; color: var(--ink-3); letter-spacing: 0.02em; }
+.note__list { list-style: none; display: grid; gap: var(--space-4); }
+.note__row { display: grid; grid-template-columns: 1.5rem auto 1fr; align-items: center; gap: var(--space-3); }
+.note__row .tick { width: 1.5rem; height: 1.5rem; }
+.note__label { font-weight: 600; color: var(--ink); font-size: 0.9375rem; }
+.note__value { color: var(--ink-3); font-size: 0.9375rem; text-align: right; }
+
+/* ---- section head (eyebrow stacked ABOVE heading) ---- */
+.section { padding-block: var(--section-y); }
+.head { display: flex; flex-direction: column; gap: var(--space-3); max-width: 60ch; margin-bottom: var(--space-12); }
+.head__title { font-size: clamp(1.75rem, 1.1rem + 2.4vw, 2.5rem); }
+.head__sub { color: var(--ink-2); font-size: 1.0625rem; }
+
+/* ---- how it works: three connected beats (flex, staggered) ---- */
+.beats { position: relative; display: flex; gap: clamp(24px, 4vw, 56px); }
+.beat { flex: 1 1 0; min-width: 0; position: relative; z-index: 1; }
+.beat:nth-of-type(2) { margin-top: var(--space-8); }
+.beat:nth-of-type(3) { margin-top: var(--space-16); }
+.beat__num { font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: var(--accent-deep); letter-spacing: 0.04em; }
+.beat__spot { display: block; width: clamp(56px, 7vw, 72px); height: auto; margin: var(--space-4) 0 var(--space-5); }
+.beat__title { font-size: 1.375rem; margin-bottom: var(--space-3); }
+.beat__text { color: var(--ink-2); font-size: 1rem; }
+.beats__thread { position: absolute; inset-inline: 6%; top: 40px; width: 88%; height: 120px; pointer-events: none; z-index: 0; }
+
+/* ---- features: alternating document rows ---- */
+.features { display: grid; gap: clamp(48px, 7vw, 88px); }
+.feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+.feature__title { font-size: clamp(1.5rem, 1.1rem + 1.4vw, 1.875rem); margin-bottom: var(--space-4); }
+.feature__text p { color: var(--ink-2); max-width: 54ch; }
+.feature__tag { display: inline-block; margin-bottom: var(--space-4); }
+.feature__art { display: flex; justify-content: center; }
+.feature__art svg { width: min(100%, 300px); height: auto; }
+.card {
+  background: var(--paper-2); border: 1px solid var(--rule); border-radius: var(--radius-lg);
+  padding: clamp(24px, 4vw, 40px); box-shadow: var(--shadow-1); width: 100%;
+}
+.feature--flip .feature__art { order: -1; }
+
+/* ---- warm CTA band ---- */
+.band { background: var(--band-warm); border-block: 1px solid var(--rule-2); }
+.invite__inner { display: grid; gap: var(--space-6); max-width: 60ch; }
+.invite__title { font-size: clamp(1.875rem, 1.2rem + 2.6vw, 2.75rem); }
+.invite__lede { color: var(--ink-2); font-size: 1.125rem; max-width: 52ch; }
+.invite__row { display: flex; align-items: center; gap: var(--space-5); flex-wrap: wrap; margin-top: var(--space-2); }
+.invite__fine { font-size: 0.9375rem; color: var(--ink-3); }
+
+/* ---- footer ---- */
+.footer { border-top: 1px solid var(--rule); padding-block: var(--space-16) var(--space-12); }
+.footer__inner { display: flex; flex-wrap: wrap; gap: var(--space-8); justify-content: space-between; }
+.footer__brand { max-width: 40ch; }
+.footer__word { font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; color: var(--ink); }
+.footer__note { margin-top: var(--space-3); color: var(--ink-3); font-size: 0.9375rem; }
+.footer__links { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-6); align-items: center; }
+.footer__links a { color: var(--ink-2); text-decoration: none; font-size: 0.9375rem; font-weight: 500; }
+.footer__links a:hover { color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+.footer__links a:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 3px; }
+
+/* ---- responsive ---- */
+@media (max-width: 900px) {
+  .hero__inner { grid-template-columns: minmax(0, 1fr); min-height: 0; gap: var(--space-12); }
+  .hero__aside { justify-content: flex-start; }
+  .doodle { display: none; }
+  .beats { flex-direction: column; gap: var(--space-10); }
+  .beat:nth-of-type(2), .beat:nth-of-type(3) { margin-top: 0; }
+  .beats__thread { display: none; }
+  .feature, .feature--flip { grid-template-columns: minmax(0, 1fr); }
+  .feature--flip .feature__art { order: 0; }
+}
+
+@media (max-width: 480px) {
+  .nav__inner { gap: var(--space-4); }
+  .nav__link { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="wordmark" href="#top">Fieldnote</a>
+    <nav class="nav__links" aria-label="Primary">
+      <a class="nav__link" href="#how">Product</a>
+      <a class="nav__link" href="#pricing">Pricing</a>
+      <a class="pill" href="#signin">Sign in</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero__inner">
+      <div class="hero__lead">
+        <h1 class="hero__title">Meetings that end with <mark class="mark">a plan</mark>.</h1>
+        <p class="hero__lede">Fieldnote listens to the conversation and turns the talk into owners, dates, and next steps, so the plan is written down before everyone stands up.</p>
+        <div class="hero__cta">
+          <button class="btn btn--primary" type="button">Start free</button>
+          <a class="ghost" href="#how">See how it works
+            <svg width="18" height="14" viewBox="0 0 18 14" aria-hidden="true"><path class="ink" d="M2 7 H15" /><path class="ink" d="M10 2 L15 7 L10 12" /></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero__aside">
+        <!-- loose hand-drawn arrow, marigold-tipped, pointing at the note -->
+        <svg class="doodle" viewBox="0 0 120 132" aria-hidden="true" fill="none">
+          <path class="ink-2" d="M10 122 C 34 128, 58 112, 66 84 C 71 66, 66 50, 52 46 C 41 43, 33 52, 38 62 C 43 72, 60 70, 74 56 C 86 44, 92 32, 92 20" />
+          <path class="acc" d="M78 22 L93 17 L96 33" />
+        </svg>
+
+        <!-- the sticky-note artifact -->
+        <div class="note">
+          <div class="note__top">
+            <span class="note__title">Monday standup</span>
+            <span class="note__time">9:02</span>
+          </div>
+          <ul class="note__list">
+            <li class="note__row">
+              <svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path class="acc" d="M4 13 l5 5 l11 -13" /></svg>
+              <span class="note__label">Owner</span>
+              <span class="note__value">Priya M.</span>
+            </li>
+            <li class="note__row">
+              <svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path class="acc" d="M4 13 l5 5 l11 -13" /></svg>
+              <span class="note__label">Due</span>
+              <span class="note__value">Thursday</span>
+            </li>
+            <li class="note__row">
+              <svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path class="acc" d="M4 13 l5 5 l11 -13" /></svg>
+              <span class="note__label">Decision logged</span>
+              <span class="note__value">Ship the beta</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" id="how">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">How it works</p>
+        <h2 class="head__title">From talk to plan, in three moves.</h2>
+        <p class="head__sub">No bot in the meeting asking people to repeat themselves. Fieldnote stays quiet and does the writing.</p>
+      </div>
+
+      <div class="beats">
+        <svg class="beats__thread" viewBox="0 0 900 120" aria-hidden="true" fill="none" preserveAspectRatio="none">
+          <path class="ink-2" style="stroke-dasharray: 3 9" d="M8 14 C 170 42, 300 24, 460 58 C 620 90, 754 74, 892 106" />
+        </svg>
+
+        <div class="beat">
+          <span class="beat__num">01</span>
+          <svg class="beat__spot" viewBox="0 0 72 72" aria-hidden="true" fill="none">
+            <path class="ink" d="M10 16 h38 a6 6 0 0 1 6 6 v18 a6 6 0 0 1 -6 6 h-22 l-12 10 v-10 h-4 a6 6 0 0 1 -6 -6 v-18 a6 6 0 0 1 6 -6 z" />
+            <path class="acc" d="M18 26 h24 M18 34 h16" />
+          </svg>
+          <h3 class="beat__title">It listens</h3>
+          <p class="beat__text">Add Fieldnote to the call. It follows the conversation and keeps its head down while people talk.</p>
+        </div>
+
+        <div class="beat">
+          <span class="beat__num">02</span>
+          <svg class="beat__spot" viewBox="0 0 72 72" aria-hidden="true" fill="none">
+            <path class="ink" d="M14 12 h26 l18 18 v30 a4 4 0 0 1 -4 4 h-40 a4 4 0 0 1 -4 -4 v-44 a4 4 0 0 1 4 -4 z" />
+            <path class="ink-2" d="M40 12 v18 h18" />
+            <path class="acc" d="M22 44 l6 6 l14 -16" />
+          </svg>
+          <h3 class="beat__title">It sorts</h3>
+          <p class="beat__text">Every commitment becomes an owner, a date, and a decision, written the moment it is said out loud.</p>
+        </div>
+
+        <div class="beat">
+          <span class="beat__num">03</span>
+          <svg class="beat__spot" viewBox="0 0 72 72" aria-hidden="true" fill="none">
+            <path class="ink" d="M10 20 h52 a4 4 0 0 1 4 4 v28 a4 4 0 0 1 -4 4 h-52 a4 4 0 0 1 -4 -4 v-28 a4 4 0 0 1 4 -4 z" />
+            <path class="ink-2" d="M8 23 l28 20 l28 -20" />
+            <path class="acc" d="M52 12 l8 8 M60 12 l-8 8" />
+          </svg>
+          <h3 class="beat__title">It hands off</h3>
+          <p class="beat__text">The plan lands in your inbox and your task tools before the room clears. Nobody re-types the notes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES (alternating document rows) -->
+  <section class="section" id="features">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">What you get</p>
+        <h2 class="head__title">A record the room can trust.</h2>
+      </div>
+
+      <div class="features">
+
+        <article class="feature">
+          <div class="feature__text">
+            <span class="eyebrow feature__tag">Owners, not action items</span>
+            <h3 class="feature__title">Every next step has a name on it.</h3>
+            <p>A task with no owner is a task nobody does. Fieldnote assigns each next step to the person who spoke up for it, and asks in the room if it is not obvious. You leave with a list of people, not a pile of verbs.</p>
+          </div>
+          <div class="feature__art">
+            <div class="card">
+              <svg viewBox="0 0 300 150" aria-hidden="true" fill="none">
+                <path class="ink" d="M24 40 h150 a10 10 0 0 1 10 10 v52 a10 10 0 0 1 -10 10 h-150 a10 10 0 0 1 -10 -10 v-52 a10 10 0 0 1 10 -10 z" />
+                <circle class="ink-2" cx="52" cy="76" r="16" />
+                <path class="ink-2" d="M92 66 h70 M92 84 h44" />
+                <path class="acc" d="M206 76 l10 10 l22 -26" />
+                <path class="ink-2" style="stroke-dasharray: 2 7" d="M206 108 h64" />
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <article class="feature feature--flip">
+          <div class="feature__text">
+            <span class="eyebrow feature__tag">Dates it can defend</span>
+            <h3 class="feature__title">Due dates tied to what was actually said.</h3>
+            <p>When someone says "by end of week," Fieldnote writes the date, not the phrase, and links it back to the sentence it came from. If a date was never agreed, it says so plainly instead of inventing one.</p>
+          </div>
+          <div class="feature__art">
+            <div class="card">
+              <svg viewBox="0 0 300 160" aria-hidden="true" fill="none">
+                <path class="ink" d="M40 44 h220 a8 8 0 0 1 8 8 v76 a8 8 0 0 1 -8 8 h-220 a8 8 0 0 1 -8 -8 v-76 a8 8 0 0 1 8 -8 z" />
+                <path class="ink-2" d="M32 70 h236" />
+                <path class="ink" d="M74 34 v18 M150 34 v18 M226 34 v18" />
+                <path class="ink-2" d="M60 92 h20 M104 92 h20 M148 92 h20 M192 92 h20 M236 92 h20 M60 116 h20 M104 116 h20" />
+                <rect class="acc-soft" x="140" y="106" width="30" height="22" rx="5" />
+                <path class="acc" d="M196 116 h20" />
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div class="feature__text">
+            <span class="eyebrow feature__tag">Decisions, kept</span>
+            <h3 class="feature__title">The moment a call was made, saved for later.</h3>
+            <p>Two weeks on, when someone asks why you went with the smaller launch, the answer is one search away. Fieldnote keeps the decision and the reasoning next to it, so the plan holds up when memory does not.</p>
+          </div>
+          <div class="feature__art">
+            <div class="card">
+              <svg viewBox="0 0 300 160" aria-hidden="true" fill="none">
+                <path class="ink" d="M56 26 h150 l36 36 v76 a6 6 0 0 1 -6 6 h-180 a6 6 0 0 1 -6 -6 v-106 a6 6 0 0 1 6 -6 z" />
+                <path class="ink-2" d="M206 26 v36 h36" />
+                <path class="ink-2" d="M80 78 h140 M80 98 h140 M80 118 h96" />
+                <path class="acc" d="M78 62 l8 8 l16 -18" />
+              </svg>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WARM CTA -->
+  <section class="section band" id="pricing">
+    <div class="wrap invite__inner">
+      <p class="eyebrow">Try it on one meeting</p>
+      <h2 class="invite__title">Bring your next standup. We will write the plan.</h2>
+      <p class="invite__lede">Fieldnote is new, and still small. Start free, point it at one real meeting, and tell us where it gets things wrong. We are a few people who read every note that comes back.</p>
+      <div class="invite__row">
+        <button class="btn btn--primary" type="button">Start free</button>
+        <span class="invite__fine">No card. One workspace. Leave whenever you like.</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <div class="footer__brand">
+      <p class="footer__word">Fieldnote</p>
+      <p class="footer__note">Meetings that end with a plan. Made by a small team, still early, and still listening.</p>
+    </div>
+    <ul class="footer__links">
+      <li><a href="#how">Product</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#signin">Sign in</a></li>
+      <li><a href="#privacy">Privacy</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>

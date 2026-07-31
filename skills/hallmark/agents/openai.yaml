@@ -1,0 +1,18 @@
+# Codex-specific skill metadata (ignored by Claude Code and OpenCode).
+# Interface: how Codex surfaces Hallmark. Policy: implicit invocation stays on
+# so design-shaped asks trigger the skill without the user typing $hallmark.
+
+interface:
+  display_name: Hallmark
+  short_description: Anti-AI-slop design skill. Pages that look made, not generated.
+  default_prompts:
+    - "$hallmark a landing page for <product>"
+    - "$hallmark variants <brief>"
+    - "$hallmark audit <path or URL>"
+    - "$hallmark redesign <path>"
+    - "$hallmark study <URL or screenshot>"
+
+policy:
+  allow_implicit_invocation: true
+
+dependencies: []

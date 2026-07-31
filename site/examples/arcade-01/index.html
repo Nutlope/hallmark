@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Summer Jam 26 · a 48-hour game jam for people with day jobs</title>
+<meta name="description" content="Summer Jam 26 is a 48-hour game jam for people with day jobs. One theme, teams of any size, free to enter." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+/* Hallmark · macrostructure: Manifesto · theme: Arcade (candidate, alternate) · tone: retro-nostalgia/playful */
+
+:root {
+  /* palette - oklch only, paired accent duo on violet-black */
+  --paper:       oklch(16% 0.02 300);
+  --paper-2:     oklch(21% 0.03 300);
+  --paper-3:     oklch(26% 0.035 300);
+  --ink:         oklch(95% 0.012 300);
+  --ink-dim:     oklch(80% 0.02 300);
+  --ink-faint:   oklch(66% 0.03 300);
+  --magenta:     oklch(70% 0.24 340);
+  --cyan:        oklch(85% 0.13 195);
+
+  /* lines, overlays, shadows (chroma >= 0.005 or alpha < 1) */
+  --line:        oklch(38% 0.03 300);
+  --line-lit:    oklch(52% 0.05 320);
+  --star:        oklch(95% 0.012 300 / 0.9);
+  --star-dim:    oklch(82% 0.02 300 / 0.5);
+  --star-cyan:   oklch(85% 0.13 195 / 0.72);
+  --scanline:    oklch(9% 0.02 300 / 0.5);
+  --shadow-mag:  oklch(46% 0.15 342);
+  --shadow-cyn:  oklch(50% 0.09 200);
+  --ring:        oklch(85% 0.13 195);
+
+  /* type */
+  --font-display: "Silkscreen", monospace;
+  --font-body:    "Hanken Grotesk", sans-serif;
+
+  /* 4pt spacing scale */
+  --space-1: 0.25rem;  --space-2: 0.5rem;   --space-3: 0.75rem;
+  --space-4: 1rem;     --space-5: 1.25rem;  --space-6: 1.5rem;
+  --space-8: 2rem;     --space-10: 2.5rem;  --space-12: 3rem;
+  --space-16: 4rem;    --space-20: 5rem;
+
+  --maxw: 72rem;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { overflow-x: clip; }
+
+body {
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(1.5px 1.5px at 12% 16%, var(--star), transparent 62%),
+    radial-gradient(1.5px 1.5px at 83% 24%, var(--star-cyan), transparent 62%),
+    radial-gradient(1px 1px at 46% 62%, var(--star-dim), transparent 62%),
+    radial-gradient(1.5px 1.5px at 68% 80%, var(--star), transparent 62%),
+    radial-gradient(1px 1px at 26% 84%, var(--star-dim), transparent 62%),
+    radial-gradient(1px 1px at 93% 66%, var(--star-cyan), transparent 62%),
+    radial-gradient(1.5px 1.5px at 7% 52%, var(--star-dim), transparent 62%),
+    radial-gradient(1px 1px at 57% 30%, var(--star-dim), transparent 62%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.005em;
+}
+
+/* CRT scanline overlay - decorative pseudo-element, never blocks input */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0, transparent 2px,
+    var(--scanline) 2px, var(--scanline) 3px
+  );
+}
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(20px, 5vw, 56px); }
+
+/* skip link */
+.skip {
+  position: absolute; left: var(--space-2); top: calc(-1 * var(--space-16));
+  z-index: 60; background: var(--cyan); color: var(--paper);
+  font-family: var(--font-display); font-size: 0.7rem;
+  padding: var(--space-2) var(--space-3); text-decoration: none;
+}
+.skip:focus { top: var(--space-2); }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* pixel display + labels */
+.pix { font-family: var(--font-display); font-weight: 700; line-height: 1.1; }
+
+/* ---------- top strip ---------- */
+.strip { position: relative; z-index: 1; border-bottom: 2px solid var(--line); }
+.strip__row {
+  display: flex; align-items: center; gap: var(--space-3);
+  padding-top: var(--space-3); padding-bottom: var(--space-3);
+  font-family: var(--font-display); font-size: 0.66rem; line-height: 1.2;
+  letter-spacing: 0.02em; flex-wrap: wrap;
+}
+.strip__tag { color: var(--cyan); }
+.strip__tag--ink { color: var(--ink); }
+.strip__tag--faint { color: var(--ink-faint); }
+.strip__dot { color: var(--line-lit); }
+.strip__spacer { margin-left: auto; }
+
+/* ---------- hero ---------- */
+.hero { position: relative; z-index: 1; }
+.hero__inner {
+  display: flex; flex-direction: column; align-items: flex-start;
+  min-height: 82svh;
+  padding-top: var(--space-10); padding-bottom: var(--space-20);
+}
+.hero__kicker {
+  font-family: var(--font-display); font-size: 0.78rem; line-height: 1.2;
+  color: var(--cyan); letter-spacing: 0.04em; margin-bottom: var(--space-5);
+}
+.hero__display {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(2.25rem, 8.5vw, 5.25rem); line-height: 1.05;
+  color: var(--ink); letter-spacing: 0.01em;
+  text-shadow: 0.085em 0.085em 0 var(--magenta);
+  overflow-wrap: anywhere; min-width: 0; margin-bottom: var(--space-6);
+}
+.hero__line { display: block; }
+.cursor {
+  display: inline-block; width: 0.58em; height: 0.86em;
+  margin-left: 0.14em; translate: 0 0.06em;
+  background: var(--cyan);
+  box-shadow: 0.09em 0.09em 0 var(--magenta);
+  animation: cursor-blink 1.06s steps(1) infinite;
+}
+@keyframes cursor-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+.hero__sub {
+  font-size: clamp(1rem, 1.6vw, 1.2rem); line-height: 1.55;
+  color: var(--ink-dim); max-width: 54ch; margin-bottom: var(--space-8);
+}
+
+/* ---------- score-strip (player select) ---------- */
+.score {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4); width: 100%; max-width: 40rem;
+}
+.score__slot {
+  display: flex; flex-direction: column; gap: var(--space-1);
+  padding: var(--space-4) var(--space-5);
+  background: var(--paper-2); color: var(--ink);
+  border: 2px solid var(--line); text-decoration: none;
+  box-shadow: 5px 5px 0 var(--shadow-cyn);
+  transition: transform 120ms ease-out, box-shadow 120ms ease-out, border-color 120ms ease-out;
+}
+.score__player { font-family: var(--font-display); font-size: 0.72rem; line-height: 1.2; }
+.score__action { font-family: var(--font-display); font-size: 1.15rem; line-height: 1.1; color: var(--ink); }
+.score__meta { font-size: 0.82rem; color: var(--ink-faint); letter-spacing: 0.02em; }
+.score__slot--p1 { box-shadow: 5px 5px 0 var(--shadow-mag); }
+.score__slot--p1 .score__player { color: var(--magenta); }
+.score__slot--p2 .score__player { color: var(--cyan); }
+.score__slot:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 var(--shadow-cyn); border-color: var(--line-lit); }
+.score__slot--p1:hover { box-shadow: 8px 8px 0 var(--shadow-mag); }
+.score__slot:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--shadow-cyn); }
+.score__slot--p1:active { box-shadow: 2px 2px 0 var(--shadow-mag); }
+.score__slot:focus-visible { outline: 3px solid var(--ring); outline-offset: 4px; }
+
+/* ---------- generic section head ---------- */
+.section { position: relative; z-index: 1; padding-top: clamp(var(--space-16), 9vw, var(--space-20)); padding-bottom: clamp(var(--space-16), 9vw, var(--space-20)); border-top: 2px solid var(--line); }
+.sec__kicker { font-family: var(--font-display); font-size: 0.74rem; line-height: 1.2; color: var(--cyan); letter-spacing: 0.03em; margin-bottom: var(--space-3); }
+.sec__kicker--mag { color: var(--magenta); }
+.sec__title { font-family: var(--font-body); font-weight: 800; font-size: clamp(1.6rem, 3.4vw, 2.5rem); line-height: 1.1; letter-spacing: -0.01em; color: var(--ink); max-width: 20ch; overflow-wrap: anywhere; min-width: 0; }
+.sec__lede { margin-top: var(--space-4); font-size: 1.05rem; color: var(--ink-dim); max-width: 58ch; }
+.sec__gap { margin-top: clamp(var(--space-12), 6vw, var(--space-16)); }
+
+/* ---------- how it works (three beats) ---------- */
+.beats { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); margin-top: var(--space-10); }
+.beat { padding-top: var(--space-5); border-top: 2px solid var(--line-lit); }
+.beat__num { font-family: var(--font-display); font-size: 1.6rem; line-height: 1; color: var(--magenta); }
+.beat:nth-child(2) .beat__num { color: var(--cyan); }
+.beat:nth-child(3) .beat__num { color: var(--magenta); }
+.beat__name { font-family: var(--font-body); font-weight: 700; font-size: 1.15rem; line-height: 1.2; color: var(--ink); margin-top: var(--space-3); }
+.beat__body { margin-top: var(--space-3); color: var(--ink-dim); font-size: 0.98rem; }
+
+/* ---------- schedule ---------- */
+.table-wrap { margin-top: var(--space-10); overflow-x: auto; border: 2px solid var(--line); }
+.timetable { width: 100%; border-collapse: collapse; min-width: 34rem; }
+.timetable caption { text-align: left; }
+.timetable th {
+  font-family: var(--font-display); font-size: 0.7rem; line-height: 1.3; font-weight: 700;
+  color: var(--cyan); text-align: left; letter-spacing: 0.03em;
+  padding: var(--space-3) var(--space-4); border-bottom: 2px solid var(--line-lit);
+}
+.timetable td { padding: var(--space-4); vertical-align: top; border-bottom: 1px solid var(--line); font-size: 0.96rem; color: var(--ink-dim); }
+.timetable tbody tr:last-child td { border-bottom: 0; }
+.timetable tbody tr:nth-child(even) { background: var(--paper-2); }
+.t-when { font-family: var(--font-display); font-size: 0.74rem; line-height: 1.4; color: var(--ink); white-space: nowrap; }
+.t-slot { font-family: var(--font-display); font-size: 0.74rem; line-height: 1.4; color: var(--magenta); white-space: nowrap; }
+
+/* ---------- tracks + prizes ---------- */
+.track-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); margin-top: var(--space-10); }
+.track { padding: var(--space-6); background: var(--paper-2); color: var(--ink); border: 2px solid var(--line); }
+.track__tag { display: inline-block; font-family: var(--font-display); font-size: 0.72rem; line-height: 1.2; padding: var(--space-2) var(--space-3); color: var(--paper); background: var(--cyan); }
+.track:nth-child(even) .track__tag { background: var(--magenta); }
+.track__body { margin-top: var(--space-4); color: var(--ink-dim); font-size: 0.98rem; }
+
+.prize-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); margin-top: var(--space-8); }
+.prize { padding: var(--space-6); border: 2px solid var(--line-lit); border-top-width: 6px; }
+.prize__rank { font-family: var(--font-display); font-size: 1.1rem; line-height: 1; color: var(--cyan); }
+.prize:nth-child(2) { border-top-color: var(--magenta); }
+.prize:nth-child(2) .prize__rank { color: var(--magenta); }
+.prize__name { font-family: var(--font-body); font-weight: 800; font-size: 1.1rem; line-height: 1.15; color: var(--ink); margin-top: var(--space-3); }
+.prize__body { margin-top: var(--space-2); color: var(--ink-dim); font-size: 0.94rem; }
+
+/* ---------- register call-out ---------- */
+.coin__inner { display: flex; flex-direction: column; align-items: flex-start; }
+.coin__title { font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 6vw, 3.75rem); line-height: 1.08; color: var(--ink); text-shadow: 0.07em 0.07em 0 var(--magenta); overflow-wrap: anywhere; min-width: 0; margin-top: var(--space-2); }
+.coin__sub { margin-top: var(--space-6); font-size: 1.1rem; color: var(--ink-dim); max-width: 52ch; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-top: var(--space-8); font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1rem, 2.4vw, 1.4rem); line-height: 1.1;
+  color: var(--paper); background: var(--magenta);
+  padding: var(--space-4) var(--space-8); border: 2px solid var(--ink);
+  text-decoration: none; white-space: nowrap;
+  box-shadow: 6px 6px 0 var(--shadow-cyn);
+  transition: transform 110ms ease-out, box-shadow 110ms ease-out;
+}
+.btn:hover { transform: translate(-3px, -3px); box-shadow: 9px 9px 0 var(--shadow-cyn); }
+.btn:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--shadow-cyn); }
+.btn:focus-visible { outline: 3px solid var(--ring); outline-offset: 5px; }
+.coin__fine { margin-top: var(--space-6); font-family: var(--font-display); font-size: 0.68rem; line-height: 1.6; color: var(--ink-faint); letter-spacing: 0.02em; }
+
+/* ---------- footer high-score board ---------- */
+.foot { position: relative; z-index: 1; padding-top: clamp(var(--space-16), 9vw, var(--space-20)); padding-bottom: var(--space-16); background: var(--paper-2); color: var(--ink); border-top: 2px solid var(--line-lit); }
+.scores { width: 100%; border-collapse: collapse; margin-top: var(--space-6); max-width: 40rem; }
+.scores td { padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--line); font-size: 0.98rem; color: var(--ink-dim); }
+.scores tr:last-child td { border-bottom: 0; }
+.rank { font-family: var(--font-display); font-size: 0.72rem; line-height: 1.4; color: var(--cyan); white-space: nowrap; width: 1%; }
+.init { font-family: var(--font-display); font-size: 0.72rem; line-height: 1.4; color: var(--magenta); white-space: nowrap; width: 1%; }
+.foot__meta { margin-top: var(--space-12); display: flex; flex-direction: column; gap: var(--space-2); }
+.foot__brand { font-family: var(--font-display); font-size: 1rem; line-height: 1.2; color: var(--ink); }
+.foot__note { color: var(--ink-dim); max-width: 48ch; }
+.foot__legal { margin-top: var(--space-2); font-family: var(--font-display); font-size: 0.64rem; line-height: 1.6; color: var(--ink-faint); letter-spacing: 0.02em; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 48rem) {
+  .beats { grid-template-columns: minmax(0, 1fr); gap: var(--space-8); }
+  .prize-grid { grid-template-columns: minmax(0, 1fr); }
+  .track-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 30rem) {
+  .score { grid-template-columns: minmax(0, 1fr); }
+  .strip__spacer { margin-left: 0; flex-basis: 100%; height: 0; }
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .cursor { animation: none; opacity: 1; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="strip">
+  <div class="wrap strip__row">
+    <span class="strip__tag">FREE PLAY</span>
+    <span class="strip__dot" aria-hidden="true">·</span>
+    <span class="strip__tag--ink">EVENT 07</span>
+    <span class="strip__spacer" aria-hidden="true"></span>
+    <span class="strip__tag--faint">SELECT / 1 CREDIT</span>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="wrap hero__inner">
+      <p class="hero__kicker">NOW ACCEPTING PLAYERS</p>
+      <h1 class="hero__display">
+        <span class="hero__line">SUMMER</span>
+        <span class="hero__line">JAM 26<span class="cursor" aria-hidden="true"></span></span>
+      </h1>
+      <p class="hero__sub">A 48-hour game jam for people with day jobs. One theme drops Friday night, teams of any size ship by Sunday, and Monday you go back to your inbox like nothing happened.</p>
+      <div class="score" role="group" aria-label="Register or sponsor">
+        <a class="score__slot score__slot--p1" href="#register">
+          <span class="score__player">P1</span>
+          <span class="score__action">REGISTER</span>
+          <span class="score__meta">Free entry, grab a slot</span>
+        </a>
+        <a class="score__slot score__slot--p2" href="#sponsor">
+          <span class="score__player">P2</span>
+          <span class="score__action">SPONSOR</span>
+          <span class="score__meta">Back the after-hours crew</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="how-title">
+    <div class="wrap">
+      <p class="sec__kicker">HOW THE WEEKEND RUNS</p>
+      <h2 class="sec__title" id="how-title">Three moves, one weekend</h2>
+      <p class="sec__lede">No pre-built engines, no head start. Everybody opens the same blank screen at the same minute and figures it out from there.</p>
+      <ol class="beats">
+        <li class="beat">
+          <span class="beat__num">01</span>
+          <h3 class="beat__name">Theme drops</h3>
+          <p class="beat__body">Friday at 6pm the theme goes live. You find out what you are making at the exact moment everyone else does.</p>
+        </li>
+        <li class="beat">
+          <span class="beat__num">02</span>
+          <h3 class="beat__name">Build all weekend</h3>
+          <p class="beat__body">48 hours to make something playable. Sleep is optional, snacks are not, and the help pit stays open the whole time.</p>
+        </li>
+        <li class="beat">
+          <span class="beat__num">03</span>
+          <h3 class="beat__name">Ship and play</h3>
+          <p class="beat__body">Sunday at 6pm hands come off the keyboard. Every team demos, everyone plays everyone, and the room picks its favorites.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="sked-title">
+    <div class="wrap">
+      <p class="sec__kicker sec__kicker--mag">RUN OF SHOW</p>
+      <h2 class="sec__title" id="sked-title">The 48-hour clock</h2>
+      <div class="table-wrap">
+        <table class="timetable">
+          <caption class="sr-only">Summer Jam 26 weekend schedule</caption>
+          <thead>
+            <tr><th scope="col">When</th><th scope="col">Slot</th><th scope="col">What happens</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="t-when">FRI 18:00</td><td class="t-slot">KICKOFF</td><td>Theme reveal, the ground rules, and the starting buzzer.</td></tr>
+            <tr><td class="t-when">FRI 19:30</td><td class="t-slot">TEAM UP</td><td>Find collaborators or commit to flying solo. Any size counts.</td></tr>
+            <tr><td class="t-when">SAT ALL DAY</td><td class="t-slot">BUILD</td><td>Heads down. Mentors roam the floor, coffee keeps flowing.</td></tr>
+            <tr><td class="t-when">SUN 15:00</td><td class="t-slot">SUBMIT</td><td>Tools down, upload the build, and write a readme humans can follow.</td></tr>
+            <tr><td class="t-when">SUN 18:00</td><td class="t-slot">OPEN PLAY</td><td>The arcade opens. Everyone plays everything, everyone votes.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="tracks-title">
+    <div class="wrap">
+      <p class="sec__kicker">PICK YOUR TRACK</p>
+      <h2 class="sec__title" id="tracks-title">Four ways to enter</h2>
+      <div class="track-grid">
+        <article class="track">
+          <span class="track__tag">SOLO RUN</span>
+          <p class="track__body">One person, one build, start to finish. Prove you do not need a team to make something worth playing.</p>
+        </article>
+        <article class="track">
+          <span class="track__tag">COUCH CO-OP</span>
+          <p class="track__body">Two to five people sharing a table, a whiteboard, and a deadline. The classic weekend crew.</p>
+        </article>
+        <article class="track">
+          <span class="track__tag">THEME TAKEOVER</span>
+          <p class="track__body">Lean the hardest into the theme. Judged purely on how far you push the prompt. Weird is rewarded.</p>
+        </article>
+        <article class="track">
+          <span class="track__tag">ROOKIE CABINET</span>
+          <p class="track__body">First jam ever? This track is scored on its own curve so a debut never competes against a veteran.</p>
+        </article>
+      </div>
+
+      <div class="sec__gap">
+        <p class="sec__kicker sec__kicker--mag">ON THE MARQUEE</p>
+        <h2 class="sec__title">What you are playing for</h2>
+        <div class="prize-grid">
+          <article class="prize">
+            <span class="prize__rank">1UP</span>
+            <h3 class="prize__name">Best in show</h3>
+            <p class="prize__body">The build the whole room crowds around. Overall pick of the weekend.</p>
+          </article>
+          <article class="prize">
+            <span class="prize__rank">2UP</span>
+            <h3 class="prize__name">Crowd favorite</h3>
+            <p class="prize__body">Chosen by every player in the arcade, not by a panel behind a curtain.</p>
+          </article>
+          <article class="prize">
+            <span class="prize__rank">3UP</span>
+            <h3 class="prize__name">Tech flex</h3>
+            <p class="prize__body">For the clever hack under the hood that nobody in the room saw coming.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="register" aria-labelledby="cta-title">
+    <div class="wrap coin__inner">
+      <p class="sec__kicker">INSERT COIN</p>
+      <h2 class="coin__title" id="cta-title">Ready<br>player 1?</h2>
+      <p class="coin__sub">Slots are free and the theme stays secret until the buzzer. Grab yours, wrangle a team or do not, and clear one weekend on the calendar.</p>
+      <a class="btn" href="#register">Register your team</a>
+      <p class="coin__fine">48 HOURS · ANY TEAM SIZE · ONE THEME · FREE TO ENTER</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p class="sec__kicker">HIGH SCORES</p>
+    <table class="scores">
+      <caption class="sr-only">What Summer Jam 26 stands for</caption>
+      <tbody>
+        <tr><td class="rank">1ST</td><td class="init">JAM</td><td>Free play. No entry fee, no catch, ever.</td></tr>
+        <tr><td class="rank">2ND</td><td class="init">DEV</td><td>48 hours on the clock, one shared theme.</td></tr>
+        <tr><td class="rank">3RD</td><td class="init">FUN</td><td>Teams of any size, rookies always welcome.</td></tr>
+      </tbody>
+    </table>
+    <div class="foot__meta">
+      <p class="foot__brand">SUMMER JAM 26</p>
+      <p class="foot__note">A 48-hour game jam for people with day jobs. Built for the crowd that codes after the kids are asleep.</p>
+      <p class="foot__legal">FREE PLAY · EVENT 07 · MADE FOR THE AFTER-HOURS CROWD · © 2026 SUMMER JAM</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

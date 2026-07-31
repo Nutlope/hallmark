@@ -25,3 +25,16 @@ The illustration itself is *built*, not picked from Storyset / Humaaans / unDraw
 ```
 
 ---
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Build method: Tier-A pure-CSS · Tier-B hand-SVG · Tier-C generated · Tier-D library
+- Animation: none · loop · scroll-linked
+- Scale: small accent · dominant
+
+## Mobile collapse
+
+- **Below 60rem:** grid `1fr`; illustration moves below text (or above — pick by tone)
+- **Below 40rem:** illustration scales to ≤ 40 % viewport width; never dominates

@@ -123,7 +123,7 @@
   --honey-autumn: oklch(60% 0.14 60);            /* darkest pour */
   --shadow-jar:   0 18px 24px oklch(24% 0.05 150 / 0.18);
   --shadow-vial:  0 6px 10px oklch(24% 0.05 150 / 0.16);
-  --mask-matte:   oklch(0% 0 0);                 /* mask alpha only — never painted */
+  --mask-matte: oklch(0% 0.005 145);                 /* mask alpha only — never painted */
 
   /* ── Dark band (the standing-jar CTA on --color-ink) ───────── */
   --ink-paper:    oklch(88% 0.012 110);          /* light body text on dark ink */

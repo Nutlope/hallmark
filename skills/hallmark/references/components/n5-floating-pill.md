@@ -26,3 +26,16 @@ A rounded full-pill nav, *visibly detached* from the page edges, sitting ~`var(-
 ```
 
 *Anti-pattern:* a "pill" that's ~95 % viewport-wide is just a full-width nav with rounded ends — defeats the point. The pill must be visibly detached and content-sized; if your link list pushes it past ~720 px, drop a link or switch to N1.
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Width: content-sized · max ~720 px · max ~560 px
+- Backdrop: blur+saturate · solid · subtle gradient
+- Anchor: top-centred · top-right · top-left
+
+## Mobile collapse
+
+- **Below 60rem:** pill drops link list, keeps wordmark + CTA; stays detached
+- **Below 40rem:** becomes a top-anchored corner chip — wordmark left, hamburger right

@@ -11,3 +11,15 @@ The label or heading sits *below* the section's content. Inverts hierarchy.
 ```
 
 ---
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Label form: `— end of 02` · rule + label · label only
+- Alignment: left · right-flush
+
+## Mobile collapse
+
+- **Below 60rem:** unchanged; long labels wrap
+- **Below 40rem:** label font-size steps down

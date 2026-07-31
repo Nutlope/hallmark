@@ -1,0 +1,10 @@
+{
+  "model": "black-forest-labs/FLUX.1.1-pro",
+  "prompt": "Studio portrait photograph, chest-up, single adult facing camera, relaxed neutral expression, ambiguous androgynous gender presentation, mid 20s, tan skin, straight black chin-length bob, wearing denim jacket over tee, plain seamless cool grey studio background, soft diffused key light from the left with gentle fill, natural skin texture with visible pores, subtle photographic grain, 85mm lens look, shallow depth of field. No logos, no text, no watermark, no jewelry, no airbrushed smooth-mesh skin, no toothy catalog smile.",
+  "size": "768x768",
+  "steps": 4,
+  "hash": "0e0052d95298ec5f",
+  "generatedVia": "together",
+  "note": "generated asset; post-process before shipping; verify licensing",
+  "at": "2026-07-31"
+}

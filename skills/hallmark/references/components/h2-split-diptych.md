@@ -13,3 +13,16 @@ Headline + lede on one side, image or product capture on the other. 6/6 or 7/5 c
 .hero-split { display: grid; grid-template-columns: 7fr 5fr; gap: var(--space-2xl); align-items: center; }
 @media (max-width: 56rem) { .hero-split { grid-template-columns: 1fr; } }
 ```
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Ratio: 7/5 · 6/6 · 5/7
+- Right side: photo · proof column · pull-quote
+- Divider: hairline · negative space · vertical rule
+
+## Mobile collapse
+
+- **Below 60rem:** grid `1fr` (text top, proof column below); divider becomes hairline-rule between
+- **Below 40rem:** proof column collapses to a 2-column compact grid for items

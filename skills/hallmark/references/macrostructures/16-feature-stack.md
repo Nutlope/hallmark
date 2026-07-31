@@ -7,7 +7,7 @@ Sticky left pane (label / description) + scroll-synced right pane (screenshots c
 - **Divider:** section bands; the sticky pane re-anchors per section.
 - **Button:** in the sticky pane, set when the user reaches the section's detail count.
 - **Image:** the scrolling-right column is mostly imagery.
-- **Reveal:** none of the spatial-fade kind; the sticky/scroll IS the motion.
+- **Reveal:** none of the spatial-fade kind; the sticky/scroll IS the motion (choreograph it via [`scroll-choreography.md`](../scroll-choreography.md) § Sticky diptych or § Pinned chapter - one pattern).
 
 Reach for it for premium products, complex feature stories, anything where you want to control pacing as the user scrolls.
 

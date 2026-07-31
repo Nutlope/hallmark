@@ -1,0 +1,10 @@
+{
+  "model": "black-forest-labs/FLUX.1.1-pro",
+  "prompt": "Organic torn-paper blob shape, solid slate teal gouache, one shape centered-loose on pure white background, deckled irregular edge, isolated, no shadow, no text, flat scan",
+  "size": "1216x1216",
+  "steps": 4,
+  "hash": "bb49a90adb36157f",
+  "generatedVia": "together",
+  "note": "generated asset; post-process before shipping; verify licensing",
+  "at": "2026-07-31"
+}

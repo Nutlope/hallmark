@@ -36,7 +36,7 @@ Use these three. Name them as tokens.
 }
 ```
 
-Exits use roughly 75% of the enter:
+Exits use 60-75% of the enter:
 
 ```css
 .menu.is-open  { transition: transform var(--dur-short) var(--ease-out); }
@@ -70,7 +70,7 @@ Cap total stagger at ~500ms. Beyond that the page feels slow to settle.
 ## Scroll-linked motion
 
 - Use IntersectionObserver, **never** `scroll` event listeners.
-- Use it only for *reveal once* effects. No parallax. No scroll-scrubbed animations unless there is a specific reason.
+- Use it only for *reveal once* effects. No parallax. Scroll-scrubbed motion exists ONLY as the named patterns in [`scroll-choreography.md`](scroll-choreography.md), one per page; anything outside that vocabulary is banned.
 - Every scroll-triggered motion must have a reduced-motion fallback.
 
 ## State transitions

@@ -15,3 +15,16 @@ Wordmark hard-left, single CTA hard-right, vast empty space between, no link row
 ```
 
 *Anti-pattern:* adding 4 inline links between the wordmark and CTA "to fill the space". The space *is* the design; if you fill it, you've made N1 with extra steps.
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- CTA shape: outlined · filled pill · text+arrow
+- Wordmark: serif italic · sans · monospace
+- Padding-block: tight · default · spacious
+
+## Mobile collapse
+
+- **Below 60rem:** unchanged (already designed for breathing room)
+- **Below 40rem:** wordmark + CTA stay edge-aligned; CTA pads to 44 px hit target

@@ -21,3 +21,16 @@ Headline left, browser-frame mockup right, the mockup tilted 1–3° for life. F
 .mock__chrome { display: flex; gap: 6px; padding: 10px 12px; background: var(--color-paper-2); border-block-end: var(--rule-hair) solid var(--color-rule); }
 .mock__chrome span { width: 10px; height: 10px; border-radius: 50%; background: var(--color-rule-2); }
 ```
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Frame style: browser chrome · macOS toolbar · minimal hairline · floating no-frame
+- Tilt: 0° · 1.5° · 3°
+- Screenshot count: 1 · stack-of-3 · orbit-of-3
+
+## Mobile collapse
+
+- **Below 60rem:** drops the tilt; grid `1fr`; mockup goes full-width below text
+- **Below 40rem:** annotation pins consolidate; numbered legend moves below mockup

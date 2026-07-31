@@ -50,7 +50,7 @@ Brief mentions any of: *AI tool, generative, music, video, image, voice, late-ni
 
 ## Nav and footer voice
 
-- **Default nav:** N5 Floating pill — the blur backdrop sells the atmospheric mood. The pill sits over the dark canvas and the bloom shows through the blur.
+- **Default nav:** N5 Floating pill — the blur backdrop sells the atmospheric mood. The pill sits over the dark canvas and the bloom shows through the blur. (Authoritative table: component-cookbook.md § Routing.)
 - **Acceptable also:** N9 Edge-aligned minimal (when the canvas is loud enough that nav should disappear into it); N4 ⌘K-only (when the audience is technical).
 - **Default footer:** Ft5 Statement — closes the page with a sentence. Atmospheric pages argue something; the footer states it.
 - **Acceptable also:** Ft1 Mast-headed; Ft2 Inline single line.

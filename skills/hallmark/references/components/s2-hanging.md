@@ -11,3 +11,15 @@ Heading floats above the section in negative space; no border, no rule.
 ```css
 .head-hang { padding-block: var(--space-3xl) var(--space-xl); }
 ```
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Padding-block: 3xl/xl default · 4xl/2xl airier
+- Heading size: text-2xl · text-3xl
+
+## Mobile collapse
+
+- **Below 60rem:** padding-block steps down one token
+- **Below 40rem:** heading size steps down one size

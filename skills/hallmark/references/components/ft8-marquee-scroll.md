@@ -23,3 +23,16 @@ A horizontal infinite-scroll line of repeating tagline + dot separator: `STUDIO 
 *Anti-pattern:* using Ft8 on editorial / quiet contexts — the motion reads as loud. Pair only with playful / sport / manifesto voices, and always honour `prefers-reduced-motion: reduce`.
 
 ---
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Speed: 24 s · 32 s · 48 s
+- Direction: left · right · alternate (rare)
+- Glyph: middot · em-dash · slash
+
+## Mobile collapse
+
+- **Below 60rem:** unchanged (already designed for narrow); slow speed by ~25 %
+- **Below 40rem:** speed slows further; track height step down

@@ -1,0 +1,38 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>screen-settings-01</title>
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · kit asset source: screen-settings-01 · theme: coral register · hand-built */
+:root{--paper:oklch(96.5% 0.005 50);--paper-2:oklch(94% 0.006 50);--rule:oklch(86% 0.008 50);--ink:oklch(20% 0.01 35);--muted:oklch(52% 0.012 50);--accent:oklch(64% 0.165 28);--font:"General Sans",sans-serif}
+*{box-sizing:border-box;margin:0}html,body{overflow-x:clip}
+body{width:1280px;height:800px;background:var(--paper);color:var(--ink);font:14px/1.55 var(--font);display:grid;grid-template-columns:236px 1fr}
+.side{border-right:1px solid var(--rule);padding:26px 18px}
+.side b{font-size:14px;font-weight:600;display:block;margin-bottom:18px}
+.side a{display:block;color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:8px;font-size:13.5px}
+.side a.on{color:var(--ink);background:var(--paper-2)}
+main{padding:34px 44px;max-width:720px}
+h1{font-size:21px;font-weight:600;margin-bottom:4px}.sub{color:var(--muted);font-size:13.5px;margin-bottom:26px}
+.group{border-top:1px solid var(--rule);padding:20px 0;display:grid;grid-template-columns:220px 1fr;gap:24px}
+.group h2{font-size:13.5px;font-weight:600}.group p{color:var(--muted);font-size:12.5px;margin-top:3px}
+label{display:block;font-size:12.5px;color:var(--muted);margin-bottom:5px}
+input[type=text]{width:100%;font:inherit;font-size:13.5px;color:var(--ink);background:#fff0;border:1px solid var(--rule);border-radius:8px;padding:9px 11px;height:38px}
+.row{display:flex;align-items:center;justify-content:space-between;padding:9px 0}
+.row span{font-size:13.5px}.row small{color:var(--muted);font-size:12px;display:block}
+.tog{width:36px;height:21px;border-radius:999px;background:var(--accent);position:relative;flex:none}
+.tog.off{background:var(--rule)}
+.tog::after{content:"";position:absolute;top:2.5px;left:18px;width:16px;height:16px;border-radius:50%;background:var(--paper)}
+.tog.off::after{left:2.5px}
+.danger{color:var(--muted);font-size:12.5px;border-top:1px solid var(--rule);padding-top:18px}
+.danger a{color:var(--ink);text-decoration:underline}
+</style></head><body>
+<nav class="side"><b>Undertone</b><a href="#">Profile</a><a class="on" href="#">Workspace</a><a href="#">Voices</a><a href="#">Billing</a><a href="#">API keys</a></nav>
+<main>
+<h1>Workspace</h1><p class="sub">Name, consent defaults, and retention for everyone in this workspace.</p>
+<div class="group"><div><h2>Identity</h2><p>Shown on shared clips.</p></div><div><label>Workspace name</label><input type="text" value="Undertone Studio"></div></div>
+<div class="group"><div><h2>Consent defaults</h2><p>Applied to every new voice.</p></div><div>
+<div class="row"><span>Require signed consent before cloning<small>Blocks uploads without a consent record.</small></span><i class="tog"></i></div>
+<div class="row"><span>Watermark generated audio<small>Inaudible provenance signal.</small></span><i class="tog"></i></div>
+<div class="row"><span>Allow external sharing<small>Clips playable outside the workspace.</small></span><i class="tog off"></i></div>
+</div></div>
+<div class="group"><div><h2>Retention</h2><p>How long raw uploads stay.</p></div><div><label>Delete source audio after</label><input type="text" value="30 days"></div></div>
+<p class="danger">Deleting this workspace removes every voice and clip. <a href="#">Delete workspace</a></p>
+</main></body></html>

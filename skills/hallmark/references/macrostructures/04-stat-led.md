@@ -6,7 +6,7 @@ The hero is a giant number — a metric, a count, a percentage. Everything that 
 - **Body:** sections each anchored by a supporting stat or chart.
 - **Divider:** hairline rules between stat blocks; tabular-nums everywhere.
 - **Button:** outlined chip aligned beneath the qualifier.
-- **Image:** charts and small data-viz; no photography.
+- **Image:** charts and small data-viz per [`data-viz.md`](../data-viz.md) (form heuristic + mark specs); no photography.
 - **Reveal:** number-tick on the hero figure — counter from 0 to target over ~500 ms.
 
 Reach for it when the brief is "we have proof in numbers" — enterprise/B2B, fundraising platforms, climate or impact pages.

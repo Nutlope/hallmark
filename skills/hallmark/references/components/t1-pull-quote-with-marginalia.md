@@ -10,3 +10,16 @@ A quote sits in the wide column; the attribution and source link float in the na
   <p class="attribution muted">— Name<br />Role, Company</p>
 </aside>
 ```
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Quote treatment: italic display · roman large · serif italic
+- Attribution: signed · stamped · timestamped
+- Marginalia: none · timeline · 1 footnote
+
+## Mobile collapse
+
+- **Below 60rem:** marginalia move below quote; divider becomes hairline
+- **Below 40rem:** marginalia consolidate into a single line

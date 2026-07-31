@@ -22,3 +22,16 @@ Full-width header, large centred wordmark on the top row, thin issue/date line a
 ```
 
 *Anti-pattern:* using N6 on a SaaS dashboard or a developer-tool product page. The masthead vocabulary belongs to long-form / editorial sites; on a B2B product, it reads as costume.
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Issue line: above wordmark · below wordmark · none
+- Wordmark size: 3xl · 2xl · xl
+- Rule: double · single · none
+
+## Mobile collapse
+
+- **Below 60rem:** issue line stacks above wordmark; nav links wrap to a second row
+- **Below 40rem:** wordmark size step down; nav row collapses behind a "menu" disclosure

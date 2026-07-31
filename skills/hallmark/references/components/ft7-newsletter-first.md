@@ -25,3 +25,16 @@ The form (label + input + submit) is the *primary* element of the footer; everyt
 ```
 
 *Anti-pattern:* Ft7 when the page never said "subscribe" above the fold. The footer is an honest *conclusion*; if you didn't ask, don't ambush. Drop to Ft2 instead.
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Layout: stacked · inline · split (form left · meta right)
+- Submit style: filled · outline · arrow link
+- Privacy line: yes · no
+
+## Mobile collapse
+
+- **Below 60rem:** input + button stack vertically; full-width
+- **Below 40rem:** label moves above input; button is full-width below

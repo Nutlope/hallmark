@@ -10,3 +10,16 @@ Three or four short columns, each headed by a category in small caps, holding 4�
   <div><p class="caps">Resources</p><ul>…</ul></div>
 </footer>
 ```
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Columns: 3 · 4 · 5
+- Heading style: small caps · italic · monospace
+- Bullet: hairline · none
+
+## Mobile collapse
+
+- **Below 60rem:** grid 4-col → 2-col
+- **Below 40rem:** grid 2-col → 1-col; column heads remain

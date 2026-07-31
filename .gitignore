@@ -67,3 +67,6 @@ site/examples/hum-0[3-8]/
 site/_tests/_thumbs/hum-02.jpg
 
 site/examples/lumen-0[2-4]/
+
+# scratch QC pages for the imagery kit (never shipped)
+site/imagery/_*.html

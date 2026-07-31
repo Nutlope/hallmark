@@ -7,3 +7,16 @@ No visible nav. The user opens a command palette via `⌘K` to get anywhere. Des
 <button class="kbd-hint">⌘ K</button>
 <dialog class="palette">…</dialog>
 ```
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Trigger: button · keyboard only · both
+- Surface: modal · sheet · spotlight
+- Recents: shown · hidden
+
+## Mobile collapse
+
+- **Below 60rem:** hamburger appears for users who don't know ⌘K
+- **Below 40rem:** unchanged (⌘K equivalent is on-screen tap)

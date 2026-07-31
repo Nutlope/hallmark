@@ -1,0 +1,10 @@
+{
+  "model": "black-forest-labs/FLUX.1.1-pro",
+  "prompt": "Single thick ink brushstroke, one confident diagonal gesture, burnt sienna gouache on pure white background, ragged dry edges, isolated, no shadow, no text, flat scan",
+  "size": "1216x1216",
+  "steps": 4,
+  "hash": "02241aa0bab315bb",
+  "generatedVia": "together",
+  "note": "generated asset; post-process before shipping; verify licensing",
+  "at": "2026-07-31"
+}

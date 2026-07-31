@@ -1,0 +1,60 @@
+{
+  "arms": [
+    {
+      "id": "fable-baseline",
+      "kind": "anthropic",
+      "model": "claude-fable-5",
+      "env": "ANTHROPIC_API_KEY"
+    },
+    {
+      "id": "glm52-together",
+      "kind": "openai-compat",
+      "base": "https://api.together.xyz/v1",
+      "model": "zai-org/GLM-5.2",
+      "env": "TOGETHER_API_KEY",
+      "temperature": 0.6,
+      "extra": { "chat_template_kwargs": { "thinking": false } }
+    },
+    {
+      "id": "k3-openrouter",
+      "kind": "openai-compat",
+      "base": "https://openrouter.ai/api/v1",
+      "model": "moonshotai/kimi-k3",
+      "env": "OPENROUTER_API_KEY",
+      "omitTemperature": true,
+      "extra": { "reasoning": { "effort": "medium" } },
+      "enabled": false,
+      "note": "Enable once OPENROUTER_API_KEY is available; not present on this machine as of 2026-07-23."
+    },
+    {
+      "id": "k27code-together",
+      "kind": "openai-compat",
+      "base": "https://api.together.xyz/v1",
+      "model": "moonshotai/Kimi-K2.7-Code",
+      "env": "TOGETHER_API_KEY",
+      "omitTemperature": true,
+      "note": "Stand-in for Kimi K3 until Together hosts it; swap the model id when K3 lands."
+    },
+    {
+      "id": "deepseek-openrouter",
+      "kind": "openai-compat",
+      "base": "https://openrouter.ai/api/v1",
+      "model": "deepseek/deepseek-v3.2",
+      "env": "OPENROUTER_API_KEY",
+      "enabled": false
+    },
+    {
+      "id": "qwen-openrouter",
+      "kind": "openai-compat",
+      "base": "https://openrouter.ai/api/v1",
+      "model": "qwen/qwen3-coder-next",
+      "env": "OPENROUTER_API_KEY",
+      "enabled": false
+    }
+  ],
+  "keyFiles": [
+    "/Users/youssef/Desktop/.env.local",
+    "/Users/youssef/Inspo-design/.env"
+  ],
+  "keyFileNotes": "Verified 2026-07-23: Desktop/.env.local defines ANTHROPIC_API_KEY and TOGETHER_API_KEY; Inspo-design/.env defines TOGETHER_API_KEY. OPENROUTER_API_KEY is NOT present in either file yet; the OpenRouter arms need it exported in the shell or added to a key file before they can run."
+}

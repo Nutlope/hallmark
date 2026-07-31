@@ -17,3 +17,16 @@ The full recipe — the four laws (height-constant, transform-for-offset, cross-
 *Anti-pattern (one of eight in floating-nav.md):* swapping two `<header>` elements via opacity instead of cross-fading one DOM. Doubles markup, fights focus order, desyncs content.
 
 ---
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Morph threshold: 80-120px · one viewport
+- Pill width: content-sized · max ~560px
+- Cross-fade: 200ms · 260ms
+
+## Mobile collapse
+
+- **Below 60rem:** morph disabled; renders as the floating pill state only
+- **Below 40rem:** top-anchored corner chip: wordmark left, hamburger right (same as N5 collapse)

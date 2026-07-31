@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Büro Grid · Identity and signage systems</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* Hallmark · macrostructure: Manifesto · theme: Grid (candidate) · tone: rational/Swiss */
+
+:root {
+  /* palette - every value oklch, referenced by var() only */
+  --paper: oklch(99.4% 0.003 255);
+  --ink: oklch(15% 0.01 255);
+  --red: oklch(55% 0.21 28);
+  --grid-line: oklch(93% 0.004 255);
+  --hair: oklch(87% 0.004 255);
+  --muted: oklch(45% 0.006 255);
+  --tint: oklch(97.2% 0.003 255);
+  --on-ink: oklch(99.4% 0.003 255);
+
+  /* type */
+  --font-display: "Archivo", sans-serif;
+  --font-body: "Archivo", sans-serif;
+
+  /* 4pt spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  /* layout */
+  --page: 1280px;
+  --gutter: clamp(16px, 4vw, 56px);
+  --measure: 64ch;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { overflow-x: clip; scroll-behavior: smooth; }
+body {
+  overflow-x: clip;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  padding-inline: var(--gutter);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: inherit; text-decoration: none; transition: color 0.18s ease; }
+:where(a):focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+a:active { opacity: 0.7; }
+::selection { background: var(--red); color: var(--on-ink); }
+
+.skip {
+  position: absolute; left: var(--space-4); top: -56px; z-index: 30;
+  background: var(--ink); color: var(--on-ink);
+  padding: var(--space-2) var(--space-4);
+  font-size: 13px; font-weight: 600;
+}
+.skip:focus-visible { top: var(--space-4); outline: 2px solid var(--red); outline-offset: 3px; }
+
+/* ---- structural skeleton: the exposed 12-column hairline grid ---- */
+.page { position: relative; }
+.rails { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.rails__inner {
+  height: 100%;
+  max-width: var(--page);
+  margin-inline: auto;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--grid-line) 0,
+    var(--grid-line) 1px,
+    transparent 1px,
+    transparent calc(100% / 12)
+  );
+}
+.shell { position: relative; z-index: 1; max-width: var(--page); margin-inline: auto; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 0;
+}
+
+.label {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.09em;
+  text-transform: uppercase; line-height: 1.2; color: var(--muted);
+}
+.sec-head { padding-block: var(--space-6) var(--space-6); }
+.sec-head__title {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(28px, 3.6vw, 46px); letter-spacing: -0.025em;
+  line-height: 1.02; margin-top: var(--space-3);
+  overflow-wrap: anywhere; min-width: 0;
+}
+
+/* ---- top nav: a band of cells divided by hairlines ---- */
+.topbar {
+  position: sticky; top: 0; z-index: 5;
+  background: var(--paper);
+  border-block: 1px solid var(--ink);
+}
+.topbar__cell {
+  grid-column: span 2;
+  display: flex; align-items: center;
+  padding: var(--space-4) var(--space-4);
+  border-inline-start: 1px solid var(--hair);
+  font-size: 13px; font-weight: 500; letter-spacing: 0.04em;
+  text-transform: uppercase; line-height: 1.1;
+  min-width: 0;
+}
+.topbar__cell:first-child { border-inline-start: 0; }
+.topbar__mark {
+  grid-column: span 4;
+  font-weight: 800; font-size: 15px; letter-spacing: -0.01em;
+  text-transform: none;
+}
+.topbar__link:hover { text-decoration: underline; text-underline-offset: 4px; }
+.topbar__lang { justify-content: flex-end; gap: var(--space-2); }
+.topbar__lang a[aria-current="true"] { color: var(--ink); }
+.topbar__lang a:not([aria-current="true"]) { color: var(--muted); }
+.topbar__lang a:hover { color: var(--ink); }
+.topbar__slash { color: var(--hair); }
+
+/* ---- hero ---- */
+.hero { padding-block: var(--space-8) clamp(64px, 12vw, 152px); }
+.hero__title {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(52px, 10.5vw, 136px);
+  letter-spacing: -0.045em; line-height: 0.9;
+  text-transform: lowercase;
+  margin-block: var(--space-5) var(--space-7);
+  overflow-wrap: anywhere; min-width: 0;
+}
+.hero__period {
+  display: inline-block;
+  width: 0.52em; height: 0.52em;
+  margin-left: 0.08em;
+  background: var(--red);
+  vertical-align: baseline;
+}
+.hero__foot {
+  display: grid;
+  grid-template-columns: minmax(0, var(--measure)) minmax(0, 1fr);
+  gap: var(--space-6);
+  align-items: end;
+  border-top: 2px solid var(--ink);
+  padding-top: var(--space-5);
+}
+.hero__lead { max-width: var(--measure); font-size: 17px; color: var(--ink); }
+.hero__note {
+  font-size: 13px; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.06em; line-height: 1.5;
+  justify-self: end; text-align: right;
+}
+
+/* ---- method band: practice / method / standort ---- */
+.band { padding-block: clamp(48px, 8vw, 112px); border-top: 1px solid var(--ink); }
+.band__cols { margin-top: var(--space-4); }
+.band__col {
+  grid-column: span 4;
+  padding-inline-end: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--hair);
+  min-width: 0;
+}
+.band__col:first-child { border-top-color: var(--ink); }
+.band__num {
+  font-family: var(--font-display); font-weight: 800; font-size: 14px;
+  color: var(--muted); letter-spacing: 0;
+}
+.band__col h3 {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: 20px; letter-spacing: -0.01em; line-height: 1.1;
+  margin-block: var(--space-3) var(--space-3);
+  overflow-wrap: anywhere; min-width: 0;
+}
+.band__col p { font-size: 15px; color: var(--ink); max-width: 46ch; }
+
+/* ---- work index: numbered full-width rows ---- */
+.work { padding-block: clamp(48px, 8vw, 112px); border-top: 1px solid var(--ink); }
+.work__list { margin-top: var(--space-5); border-top: 2px solid var(--ink); list-style: none; }
+.work__list > li { list-style: none; }
+.row {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 0; align-items: baseline;
+  padding-block: var(--space-5);
+  border-bottom: 1px solid var(--hair);
+  transition: background-color 0.2s ease;
+}
+.row:hover { background: var(--tint); }
+.row:active { opacity: 0.82; }
+.row:focus-visible { outline: 2px solid var(--red); outline-offset: -2px; }
+.row__no {
+  grid-column: span 1;
+  font-family: var(--font-display); font-weight: 800; font-size: 15px;
+  color: var(--muted); padding-inline-start: var(--space-1);
+}
+.row__title {
+  grid-column: span 7;
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(19px, 2.4vw, 27px); letter-spacing: -0.02em;
+  line-height: 1.08; min-width: 0; overflow-wrap: anywhere;
+  transition: transform 0.2s ease;
+}
+.row:hover .row__title { transform: translateX(var(--space-2)); }
+.row__meta {
+  grid-column: span 3;
+  font-size: 13px; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.5;
+  min-width: 0;
+}
+.row__mark { grid-column: span 1; justify-self: end; align-self: center; }
+.row__mark span {
+  display: block; width: 12px; height: 12px; background: var(--red);
+}
+
+/* ---- manifesto ---- */
+.manifesto { padding-block: clamp(64px, 11vw, 152px); border-top: 1px solid var(--ink); }
+.manifesto__body { margin-top: var(--space-6); }
+.manifesto__line {
+  grid-column: 1 / span 10;
+  font-family: var(--font-display); font-weight: 500;
+  font-size: clamp(27px, 4.6vw, 54px);
+  letter-spacing: -0.02em; line-height: 1.1;
+  overflow-wrap: anywhere; min-width: 0;
+}
+.manifesto__dot { color: var(--red); }
+
+/* ---- contact ---- */
+.contact { padding-block: clamp(48px, 8vw, 112px); border-top: 1px solid var(--ink); }
+.contact__rule { height: 3px; width: var(--space-9); background: var(--red); }
+.contact .sec-head .label { margin-top: var(--space-4); }
+.contact__body { margin-top: var(--space-6); }
+.contact__main { grid-column: 1 / span 7; min-width: 0; }
+.contact__mail {
+  display: inline-block;
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(24px, 4vw, 44px); letter-spacing: -0.025em;
+  line-height: 1.05; overflow-wrap: anywhere;
+  border-bottom: 2px solid var(--hair); padding-bottom: var(--space-2);
+  transition: border-color 0.18s ease, color 0.18s ease;
+}
+.contact__mail:hover { border-bottom-color: var(--red); }
+.contact__meta { grid-column: 9 / span 4; align-self: end; min-width: 0; }
+.contact__meta p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+.contact__meta p + p { margin-top: var(--space-4); }
+
+/* ---- footer: another band of equal cells ---- */
+.foot { border-top: 1px solid var(--ink); padding-block: var(--space-7) var(--space-8); }
+.foot__cell {
+  grid-column: span 3;
+  padding-inline: var(--space-4);
+  border-inline-start: 1px solid var(--hair);
+  font-size: 13px; color: var(--muted); line-height: 1.6;
+  min-width: 0; overflow-wrap: anywhere;
+}
+.foot__cell:first-child { border-inline-start: 0; padding-inline-start: 0; }
+.foot__mark {
+  font-family: var(--font-display); font-weight: 800; font-size: 15px;
+  color: var(--ink); letter-spacing: -0.01em; margin-bottom: var(--space-2);
+}
+.foot__cell a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---- responsive ---- */
+@media (max-width: 860px) {
+  .hero__foot { grid-template-columns: 1fr; gap: var(--space-5); }
+  .hero__note { justify-self: start; text-align: left; }
+  .band__col { grid-column: span 6; }
+  .band__col:nth-child(2) { border-top-color: var(--ink); }
+  .contact__main { grid-column: 1 / -1; }
+  .contact__meta { grid-column: 1 / -1; margin-top: var(--space-6); align-self: start; }
+  .manifesto__line { grid-column: 1 / -1; }
+}
+@media (max-width: 640px) {
+  .topbar__cell { grid-column: span 6; padding-block: var(--space-3); }
+  .topbar__mark { grid-column: 1 / -1; border-bottom: 1px solid var(--hair); }
+  .topbar__cell:nth-child(2), .topbar__cell:nth-child(4) { border-inline-start: 0; }
+  .band__col { grid-column: 1 / -1; }
+  .band__col { border-top-color: var(--hair); }
+  .band__col:first-child { border-top-color: var(--ink); }
+  .row { grid-template-columns: auto minmax(0, 1fr); row-gap: var(--space-2); }
+  .row__no { grid-column: 1; }
+  .row__title { grid-column: 2; }
+  .row__meta { grid-column: 2; }
+  .row__mark { grid-column: 2; justify-self: start; }
+  .foot__cell { grid-column: span 6; margin-top: var(--space-5); }
+  .foot__cell:nth-child(-n+2) { margin-top: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+</style>
+</head>
+<body>
+<div class="page" id="top">
+  <div class="rails" aria-hidden="true"><div class="rails__inner"></div></div>
+
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="shell">
+    <header class="topbar grid">
+      <a class="topbar__cell topbar__mark" href="#top">Büro Grid</a>
+      <a class="topbar__cell topbar__link" href="#work">Work</a>
+      <a class="topbar__cell topbar__link" href="#method">Method</a>
+      <a class="topbar__cell topbar__link" href="#contact">Contact</a>
+      <div class="topbar__cell topbar__lang">
+        <a href="#top" aria-current="true">DE</a>
+        <span class="topbar__slash" aria-hidden="true">/</span>
+        <a href="#top">EN</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <p class="label">Identity &amp; signage systems</p>
+        <h1 class="hero__title" id="hero-title">schedule,<br />then ship<span class="hero__period" aria-hidden="true"></span></h1>
+        <div class="hero__foot">
+          <p class="hero__lead">Büro Grid builds identity, wayfinding, and editorial systems for institutions that plan in decades. We draw the grid first, so every decision after it has somewhere to stand.</p>
+          <p class="hero__note">Basel, since 2009<br />Working in DE / EN</p>
+        </div>
+      </section>
+
+      <section class="band" id="method" aria-labelledby="method-title">
+        <div class="sec-head">
+          <p class="label">01 · Practice</p>
+          <h2 class="sec-head__title" id="method-title">Structure before surface</h2>
+        </div>
+        <div class="band__cols grid">
+          <div class="band__col">
+            <p class="band__num">A</p>
+            <h3>Practice</h3>
+            <p>Identity systems, signage programmes, and editorial grids. Each project begins as a set of rules, never as a single picture.</p>
+          </div>
+          <div class="band__col">
+            <p class="band__num">B</p>
+            <h3>Method</h3>
+            <p>Fixed modules, one measure, a single accent. The system has to survive twenty years of new hands, new content, and new signage.</p>
+          </div>
+          <div class="band__col">
+            <p class="band__num">C</p>
+            <h3>Standort</h3>
+            <p>Based in Basel, working across the institutional landscape in German and English. On site whenever the building itself needs us.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="work" id="work" aria-labelledby="work-title">
+        <div class="sec-head">
+          <p class="label">02 · Selected work</p>
+          <h2 class="sec-head__title" id="work-title">Index</h2>
+        </div>
+        <ol class="work__list">
+          <li>
+            <a class="row" href="#contact">
+              <span class="row__no">01</span>
+              <span class="row__title">Kunsthalle Basel</span>
+              <span class="row__meta">Wayfinding system · 2024</span>
+              <span class="row__mark" aria-hidden="true"><span></span></span>
+            </a>
+          </li>
+          <li>
+            <a class="row" href="#contact">
+              <span class="row__no">02</span>
+              <span class="row__title">Rheinhafen Authority</span>
+              <span class="row__meta">Identity &amp; signage · 2023</span>
+              <span class="row__mark" aria-hidden="true"></span>
+            </a>
+          </li>
+          <li>
+            <a class="row" href="#contact">
+              <span class="row__no">03</span>
+              <span class="row__title">Universität Basel Press</span>
+              <span class="row__meta">Editorial grid · 2023</span>
+              <span class="row__mark" aria-hidden="true"></span>
+            </a>
+          </li>
+          <li>
+            <a class="row" href="#contact">
+              <span class="row__no">04</span>
+              <span class="row__title">Kantonsbibliothek</span>
+              <span class="row__meta">Identity system · 2022</span>
+              <span class="row__mark" aria-hidden="true"></span>
+            </a>
+          </li>
+          <li>
+            <a class="row" href="#contact">
+              <span class="row__no">05</span>
+              <span class="row__title">Tramnetz Nord</span>
+              <span class="row__meta">Platform signage · 2021</span>
+              <span class="row__mark" aria-hidden="true"></span>
+            </a>
+          </li>
+          <li>
+            <a class="row" href="#contact">
+              <span class="row__no">06</span>
+              <span class="row__title">Museum für Gestaltung</span>
+              <span class="row__meta">Type &amp; grid manual · 2020</span>
+              <span class="row__mark" aria-hidden="true"></span>
+            </a>
+          </li>
+        </ol>
+      </section>
+
+      <section class="manifesto" aria-labelledby="pos-title">
+        <div class="sec-head">
+          <p class="label" id="pos-title">Position</p>
+        </div>
+        <div class="manifesto__body grid">
+          <p class="manifesto__line">A grid is not decoration. It is a decision made once, in public, so that every decision after it can be smaller, calmer, and easier to defend<span class="manifesto__dot">.</span></p>
+        </div>
+      </section>
+
+      <section class="contact" id="contact" aria-labelledby="contact-title">
+        <div class="sec-head">
+          <div class="contact__rule" aria-hidden="true"></div>
+          <p class="label">Contact</p>
+          <h2 class="sec-head__title" id="contact-title">Start something that outlasts its brief</h2>
+        </div>
+        <div class="contact__body grid">
+          <div class="contact__main">
+            <a class="contact__mail" href="mailto:studio@burogrid.example">studio@burogrid.example</a>
+          </div>
+          <div class="contact__meta">
+            <p>Steinenvorstadt 12<br />4051 Basel, Switzerland</p>
+            <p>New commissions for 2026 open from September.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot grid">
+      <div class="foot__cell">
+        <p class="foot__mark">Büro Grid</p>
+        <p>Identity systems and signage, Basel.</p>
+      </div>
+      <div class="foot__cell">
+        <p><a href="mailto:studio@burogrid.example">studio@burogrid.example</a></p>
+        <p>+41 61 000 00 00</p>
+      </div>
+      <div class="foot__cell">
+        <p>Steinenvorstadt 12<br />4051 Basel</p>
+      </div>
+      <div class="foot__cell">
+        <p>DE / EN</p>
+        <p>© 2026 Büro Grid</p>
+      </div>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

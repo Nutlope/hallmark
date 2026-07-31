@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Meridian · Treasury, reconciled while you sleep</title>
+<meta name="description" content="Meridian is treasury software that reconciles every bank feed, card network, and ledger entry continuously. Wake up to a closed book." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+/* Hallmark · macrostructure: Stat-Led · theme: Ledger (candidate, alternate) · tone: fintech-terminal/cool */
+:root {
+  /* palette - dark navy terminal, one teal accent */
+  --paper: oklch(20% 0.025 255);
+  --paper-top: oklch(23% 0.028 258);
+  --surface: oklch(24% 0.026 256);
+  --surface-2: oklch(27.5% 0.026 256);
+  --paper-blur: oklch(21% 0.026 256 / 0.82);
+  --ink: oklch(93% 0.01 250);
+  --ink-2: oklch(84% 0.012 250);
+  --muted: oklch(72% 0.015 250);
+  --rule: oklch(32% 0.02 255);
+  --rule-2: oklch(40% 0.02 255);
+  --accent: oklch(78% 0.12 185);
+  --accent-2: oklch(84% 0.11 188);
+  --accent-ink: oklch(20% 0.03 255);
+  --accent-soft: oklch(78% 0.12 185 / 0.12);
+  --focus: oklch(85% 0.13 195);
+  --shadow: oklch(12% 0.02 258 / 0.5);
+
+  /* type */
+  --font-display: "Hanken Grotesk", sans-serif;
+  --font-body: "Hanken Grotesk", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* space - 4pt scale */
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;
+  --space-5: 20px; --space-6: 24px; --space-7: 32px; --space-8: 40px;
+  --space-9: 48px; --space-10: 64px; --space-11: 80px; --space-12: 96px; --space-13: 128px;
+
+  --radius: 10px; --radius-lg: 14px; --radius-sm: 6px;
+  --wrap: 1180px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { overflow-x: clip; }
+html { scroll-behavior: smooth; }
+body {
+  background: linear-gradient(180deg, var(--paper-top) 0%, var(--paper) 46%) no-repeat;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img, svg { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: clamp(20px, 4vw, 56px); }
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.pos { color: var(--accent); }
+.eyebrow {
+  font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted); line-height: 1.3;
+}
+.skip-link {
+  position: absolute; left: var(--space-3); top: -60px; z-index: 20;
+  background: var(--surface); color: var(--ink); border: 1px solid var(--rule-2);
+  padding: var(--space-2) var(--space-4); border-radius: var(--radius-sm);
+}
+.skip-link:focus { top: var(--space-3); }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: var(--radius-sm); }
+
+/* ---- buttons ---- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+  font-family: var(--font-body); font-weight: 600; font-size: 0.9375rem; line-height: 1;
+  padding: var(--space-3) var(--space-5); border-radius: var(--radius-sm);
+  border: 1px solid transparent; white-space: nowrap; cursor: pointer;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.12s ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn--ghost { background: transparent; color: var(--ink); border-color: var(--rule-2); }
+.btn--accent { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn[aria-disabled="true"] { opacity: 0.55; cursor: not-allowed; }
+@media (hover: hover) {
+  .btn--ghost:hover { border-color: var(--ink-2); background: var(--surface); }
+  .btn--accent:hover { background: var(--accent-2); border-color: var(--accent-2); }
+}
+.tlink {
+  color: var(--ink); font-weight: 500; border-bottom: 1px solid var(--rule-2);
+  padding-bottom: 2px; transition: border-color 0.18s ease, color 0.18s ease;
+}
+@media (hover: hover) { .tlink:hover { border-color: var(--ink); } }
+.tlink:active { color: var(--ink-2); }
+
+/* ---- nav ---- */
+.nav {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--paper-blur); color: var(--ink);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav__in { display: flex; align-items: center; gap: var(--space-6); min-height: 64px; }
+.wordmark { display: inline-flex; align-items: center; gap: var(--space-3); font-family: var(--font-display); font-weight: 600; font-size: 1.0625rem; letter-spacing: -0.01em; }
+.wordmark::before { content: ""; width: 12px; height: 12px; border: 2px solid var(--rule-2); border-radius: 3px; }
+.nav__links { display: flex; align-items: center; gap: var(--space-6); margin-left: var(--space-4); }
+.nav__link { color: var(--muted); font-weight: 500; font-size: 0.9375rem; transition: color 0.18s ease; }
+@media (hover: hover) { .nav__link:hover { color: var(--ink); } }
+.nav__link:active { color: var(--ink-2); }
+.nav__clock { margin-left: auto; font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); }
+@media (max-width: 46rem) { .nav__links, .nav__clock { display: none; } .nav__cta { margin-left: auto; } }
+
+/* ---- hero ---- */
+.hero { padding-top: var(--space-7); padding-bottom: var(--space-12); }
+.hero__grid { display: grid; grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr); gap: clamp(var(--space-8), 5vw, var(--space-11)); align-items: start; }
+.hero__col { min-width: 0; }
+.hero h1 {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: clamp(2.1rem, 4.6vw, 3.15rem); line-height: 1.05; letter-spacing: -0.03em;
+  margin-top: var(--space-4); color: var(--ink);
+  overflow-wrap: anywhere; min-width: 0; text-wrap: balance;
+}
+.hero__lede { margin-top: var(--space-5); max-width: 54ch; color: var(--muted); font-size: 1.0625rem; }
+.hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4); margin-top: var(--space-7); }
+.hero__trust { margin-top: var(--space-6); font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); letter-spacing: 0.02em; }
+@media (max-width: 62rem) { .hero__grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---- account panel (the signature) ---- */
+.panel {
+  min-width: 0; background: var(--surface); color: var(--ink);
+  border: 1px solid var(--rule); border-radius: var(--radius-lg);
+  box-shadow: 0 24px 60px -32px var(--shadow);
+  overflow: clip;
+}
+.panel__head {
+  display: flex; align-items: center; gap: var(--space-3);
+  padding: var(--space-4) var(--space-6); border-bottom: 1px solid var(--rule);
+  font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.04em; color: var(--muted);
+}
+.panel__acct { color: var(--ink-2); }
+.status { margin-left: auto; display: inline-flex; align-items: center; gap: var(--space-2); color: var(--accent); }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 2.4s ease-in-out infinite; }
+.panel__body { padding: var(--space-6); }
+.balance {
+  font-family: var(--font-mono); font-variant-numeric: tabular-nums;
+  color: var(--accent); font-weight: 500; letter-spacing: -0.02em; line-height: 1;
+  font-size: clamp(2.1rem, 5vw, 3.1rem);
+}
+.balance__cur { font-size: 0.56em; vertical-align: 0.14em; margin-right: 0.05em; }
+.balance__dec { opacity: 0.62; }
+.balance-meta { margin-top: var(--space-3); font-family: var(--font-mono); font-size: 0.8125rem; color: var(--muted); }
+.balance-meta .sep { opacity: 0.5; margin-inline: var(--space-1); }
+
+.spark { margin-top: var(--space-5); }
+.spark svg { width: 100%; height: 56px; }
+.spark-line { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+#spark-grad stop { stop-color: var(--accent); }
+.spark-fill { fill: url(#spark-grad); }
+.spark-cap { display: flex; justify-content: space-between; margin-top: var(--space-2); font-family: var(--font-mono); font-size: 0.6875rem; color: var(--muted); letter-spacing: 0.04em; }
+
+/* ---- ledger table ---- */
+.ledger-wrap { margin-top: var(--space-5); border-top: 1px solid var(--rule); overflow-x: auto; }
+.ledger { width: 100%; min-width: 30rem; border-collapse: collapse; font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 0.8125rem; }
+.ledger caption { text-align: left; padding: var(--space-4) 0 var(--space-2); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.ledger th { text-align: left; font-weight: 500; color: var(--muted); padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--rule); letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.6875rem; }
+.ledger th.num, .ledger td.num { text-align: right; white-space: nowrap; }
+.ledger td { padding: var(--space-3); border-bottom: 1px solid var(--rule); color: var(--ink-2); vertical-align: baseline; }
+.ledger tbody tr { transition: background-color 0.15s ease; }
+.ledger tbody tr:last-child td { border-bottom: 0; }
+@media (hover: hover) { .ledger tbody tr:hover td { background: var(--surface-2); } }
+.ledger .desc { color: var(--ink); }
+.ledger .tag { margin-left: var(--space-2); font-size: 0.625rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--rule); border-radius: 999px; padding: 2px 8px; }
+.ledger .neg { color: var(--muted); }
+
+/* ---- generic section ---- */
+.section { padding-block: clamp(var(--space-10), 8vw, var(--space-13)); border-top: 1px solid var(--rule); }
+.section__head { max-width: 62ch; }
+.section__head h2 {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: clamp(1.7rem, 3.2vw, 2.4rem); line-height: 1.1; letter-spacing: -0.02em;
+  margin-top: var(--space-3); color: var(--ink); overflow-wrap: anywhere; min-width: 0;
+}
+.section__head p { margin-top: var(--space-4); max-width: 60ch; color: var(--muted); }
+
+/* ---- how it works ---- */
+.beats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-8); margin-top: var(--space-10); }
+.beat { min-width: 0; border-top: 1px solid var(--rule-2); padding-top: var(--space-5); }
+.beat__num { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--muted); letter-spacing: 0.1em; }
+.beat h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.1875rem; letter-spacing: -0.01em; margin-top: var(--space-3); color: var(--ink); overflow-wrap: anywhere; min-width: 0; }
+.beat p { margin-top: var(--space-3); color: var(--muted); font-size: 0.9375rem; max-width: 46ch; }
+@media (max-width: 52rem) { .beats { grid-template-columns: minmax(0, 1fr); gap: var(--space-6); } }
+
+/* ---- datasheet (features, dense spec) ---- */
+.datasheet { margin-top: var(--space-9); background: var(--surface); color: var(--ink); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: clamp(var(--space-5), 3vw, var(--space-8)); }
+.spec { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(var(--space-8), 5vw, var(--space-12)); }
+.spec__row { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-5); padding-block: var(--space-4); border-bottom: 1px solid var(--rule); }
+.spec__row dt { color: var(--ink); font-weight: 500; font-size: 0.9375rem; min-width: 0; }
+.spec__row dd { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 0.8125rem; color: var(--muted); text-align: right; white-space: nowrap; }
+@media (max-width: 52rem) { .spec { grid-template-columns: minmax(0, 1fr); } .spec__row dd { white-space: normal; } }
+
+/* ---- trust ---- */
+.trust__panel { margin-top: var(--space-9); background: var(--surface); color: var(--ink); border: 1px solid var(--rule); border-radius: var(--radius-lg); overflow: clip; }
+.trust__row { display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 1fr); gap: var(--space-5) clamp(var(--space-6), 5vw, var(--space-11)); padding: var(--space-6) clamp(var(--space-5), 3vw, var(--space-8)); border-bottom: 1px solid var(--rule); }
+.trust__row:last-child { border-bottom: 0; }
+.trust__label { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.trust__row p { color: var(--ink-2); font-size: 0.9375rem; max-width: 62ch; }
+.trust__row p strong { color: var(--ink); font-weight: 600; }
+@media (max-width: 46rem) { .trust__row { grid-template-columns: minmax(0, 1fr); gap: var(--space-3); } }
+.chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-7); }
+.chip { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.02em; color: var(--ink-2); background: var(--surface); border: 1px solid var(--rule-2); border-radius: 999px; padding: var(--space-2) var(--space-4); }
+
+/* ---- callout / open account ---- */
+.callout { background: var(--surface); color: var(--ink); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: clamp(var(--space-8), 6vw, var(--space-12)); text-align: center; overflow: clip; }
+.callout h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.8rem, 3.6vw, 2.6rem); line-height: 1.08; letter-spacing: -0.02em; color: var(--ink); overflow-wrap: anywhere; min-width: 0; max-width: 20ch; margin-inline: auto; }
+.callout p { margin-top: var(--space-4); color: var(--muted); max-width: 52ch; margin-inline: auto; }
+.callout__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-4); margin-top: var(--space-8); }
+.callout__note { margin-top: var(--space-6); font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); }
+
+/* ---- footer ---- */
+.footer { border-top: 1px solid var(--rule); padding-block: var(--space-10) var(--space-11); color: var(--muted); }
+.footer__top { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-6); }
+.footer__nav { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-6); margin-left: auto; }
+.footer__nav a { color: var(--muted); font-size: 0.875rem; transition: color 0.18s ease; }
+@media (hover: hover) { .footer__nav a:hover { color: var(--ink); } }
+.footer__nav a:active { color: var(--ink-2); }
+.footer__meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-4); margin-top: var(--space-8); font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); }
+.footer__meta .ok { color: var(--accent); }
+
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav__in">
+    <span class="wordmark">Meridian</span>
+    <nav class="nav__links" aria-label="Primary">
+      <a class="nav__link" href="#how">Product</a>
+      <a class="nav__link" href="#pricing">Pricing</a>
+    </nav>
+    <span class="nav__clock" aria-hidden="true">UTC 06:00:12</span>
+    <a class="btn btn--ghost nav__cta" href="#open">Open account</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO · Stat-Led -->
+  <section class="hero wrap" aria-labelledby="hero-h">
+    <div class="hero__grid">
+      <div class="hero__col">
+        <p class="eyebrow">Meridian · Treasury OS</p>
+        <h1 id="hero-h">Treasury, reconciled while you sleep.</h1>
+        <p class="hero__lede">Meridian pulls every bank feed, card network, and ledger entry into a single balance that stays reconciled around the clock. You wake up to a closed book, not a queue of exceptions.</p>
+        <div class="hero__actions">
+          <a class="btn btn--ghost" href="#open">Open account</a>
+          <a class="tlink" href="#how">See how it reconciles</a>
+        </div>
+        <p class="hero__trust">SOC 2 Type II · dual-control transfers · immutable audit log</p>
+      </div>
+
+      <div class="hero__col hero__col--panel">
+        <div class="panel">
+          <div class="panel__head">
+            <span class="panel__acct">OPERATING · USD · ****4471</span>
+            <span class="status"><span class="dot" aria-hidden="true"></span>LIVE</span>
+          </div>
+          <div class="panel__body">
+            <p class="balance" aria-label="Reconciled balance 4,982,114 dollars and 09 cents">
+              <span class="balance__cur">$</span>4,982,114<span class="balance__dec">.09</span>
+            </p>
+            <p class="balance-meta">Reconciled balance <span class="sep">·</span> as of 06:00 UTC <span class="sep">·</span> <span class="pos">+$18,204.55</span> today</p>
+
+            <div class="spark">
+              <svg viewBox="0 0 640 64" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                <defs>
+                  <linearGradient id="spark-grad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-opacity="0.24" />
+                    <stop offset="1" stop-opacity="0" />
+                  </linearGradient>
+                </defs>
+                <path class="spark-fill" d="M0 44 L27 46 L54 40 L81 43 L108 36 L135 39 L162 32 L189 30 L216 34 L243 26 L270 28 L297 22 L324 25 L351 19 L378 21 L405 16 L432 18 L459 13 L486 15 L513 11 L540 12 L567 9 L594 10 L621 7 L640 8 L640 64 L0 64 Z" />
+                <path class="spark-line" d="M0 44 L27 46 L54 40 L81 43 L108 36 L135 39 L162 32 L189 30 L216 34 L243 26 L270 28 L297 22 L324 25 L351 19 L378 21 L405 16 L432 18 L459 13 L486 15 L513 11 L540 12 L567 9 L594 10 L621 7 L640 8" />
+              </svg>
+              <div class="spark-cap"><span>30-DAY RECONCILED BALANCE</span><span>UTC</span></div>
+            </div>
+
+            <div class="ledger-wrap">
+              <table class="ledger">
+                <caption>Cleared transactions · live feed</caption>
+                <thead>
+                  <tr><th scope="col">Time</th><th scope="col">Description</th><th scope="col" class="num">Amount</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>06:00:07</td><td class="desc">ACH credit · customer settlement <span class="tag">matched</span></td><td class="num pos">+$182,004.12</td></tr>
+                  <tr><td>05:58:22</td><td class="desc">Wire out · monthly payroll <span class="tag">matched</span></td><td class="num neg">-$96,540.00</td></tr>
+                  <tr><td>05:41:09</td><td class="desc">Card network settlement <span class="tag">matched</span></td><td class="num neg">-$12,878.45</td></tr>
+                  <tr><td>05:12:50</td><td class="desc">Interest · overnight sweep <span class="tag">matched</span></td><td class="num pos">+$1,204.77</td></tr>
+                  <tr><td>04:47:31</td><td class="desc">ACH credit · marketplace payout <span class="tag">matched</span></td><td class="num pos">+$50,000.00</td></tr>
+                  <tr><td>03:20:16</td><td class="desc">FX settlement · EUR/USD <span class="tag">matched</span></td><td class="num pos">+$8,912.30</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW RECONCILIATION WORKS -->
+  <section class="section" id="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="eyebrow">How it works</p>
+        <h2 id="how-h">Three steps, run continuously.</h2>
+        <p>No overnight batch, no month-end scramble. Meridian keeps the loop closed every minute of the day.</p>
+      </div>
+      <div class="beats">
+        <article class="beat">
+          <p class="beat__num">01 / INGEST</p>
+          <h3>Feeds sync every 60 seconds</h3>
+          <p>Bank connections, card networks, and your general ledger stream in over signed APIs. Nothing is keyed by hand; nothing waits for a nightly file.</p>
+        </article>
+        <article class="beat">
+          <p class="beat__num">02 / MATCH</p>
+          <h3>Deterministic rules pair entries</h3>
+          <p>Each transaction is matched to its expected ledger entry by amount, date, and counterparty. Anything ambiguous drops into a review queue instead of a silent guess.</p>
+        </article>
+        <article class="beat">
+          <p class="beat__num">03 / CLOSE</p>
+          <h3>Balances lock at 06:00 UTC</h3>
+          <p>The book closes on schedule with every match carrying an immutable reference. You can audit any figure back to the transaction that moved it.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES · dense datasheet -->
+  <section class="section" id="pricing" aria-labelledby="spec-h">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="eyebrow">Capabilities</p>
+        <h2 id="spec-h">A datasheet, not a pitch.</h2>
+        <p>The specification your controller will actually read. Every line is a default you can change, not a feature you have to buy.</p>
+      </div>
+      <div class="datasheet">
+        <dl class="spec">
+          <div class="spec__row"><dt>Reconciliation cadence</dt><dd>Continuous · 60s sync</dd></div>
+          <div class="spec__row"><dt>Match engine</dt><dd>Deterministic + rule overrides</dd></div>
+          <div class="spec__row"><dt>Entities per workspace</dt><dd>Unlimited books, one console</dd></div>
+          <div class="spec__row"><dt>Close schedule</dt><dd>06:00 UTC lock, configurable</dd></div>
+          <div class="spec__row"><dt>Ledger export</dt><dd>CSV · JSON · GAAP-mapped</dd></div>
+          <div class="spec__row"><dt>Review queue</dt><dd>Exceptions only, per rule</dd></div>
+          <div class="spec__row"><dt>Outbound transfers</dt><dd>Dual-control approval</dd></div>
+          <div class="spec__row"><dt>Audit references</dt><dd>Immutable, per line</dd></div>
+          <div class="spec__row"><dt>Feed connectors</dt><dd>Bank · card · ledger APIs</dd></div>
+          <div class="spec__row"><dt>Access model</dt><dd>SSO / SAML · scoped keys</dd></div>
+          <div class="spec__row"><dt>Data residency</dt><dd>US · EU regions</dd></div>
+          <div class="spec__row"><dt>Retention</dt><dd>7-year append-only log</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECURITY / TRUST -->
+  <section class="section" aria-labelledby="trust-h">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="eyebrow">Trust</p>
+        <h2 id="trust-h">Built for the people who sign off.</h2>
+        <p>Treasury software fails closed. These are the controls that let your auditors, your board, and your bank take Meridian at its word.</p>
+      </div>
+      <div class="trust__panel">
+        <div class="trust__row">
+          <p class="trust__label">Encryption</p>
+          <p><strong>AES-256 at rest, TLS 1.3 in transit.</strong> Keys are managed in a hardware security module and rotated on a fixed schedule. No customer data leaves an encrypted boundary.</p>
+        </div>
+        <div class="trust__row">
+          <p class="trust__label">Movement</p>
+          <p><strong>Dual-control on every outbound transfer.</strong> Initiation and approval are separated by role, and no single credential can move funds on its own.</p>
+        </div>
+        <div class="trust__row">
+          <p class="trust__label">Audit</p>
+          <p><strong>Append-only ledger with per-line references.</strong> Every match, override, and export is written to an immutable log that reconstructs any balance on demand.</p>
+        </div>
+        <div class="trust__row">
+          <p class="trust__label">Access</p>
+          <p><strong>SSO, SAML, and SCIM provisioning.</strong> Scoped API keys, granular roles, and session policies keep least-privilege the default rather than the exception.</p>
+        </div>
+      </div>
+      <div class="chips" aria-label="Compliance and standards">
+        <span class="chip">SOC 2 Type II</span>
+        <span class="chip">AES-256</span>
+        <span class="chip">TLS 1.3</span>
+        <span class="chip">SSO / SAML</span>
+        <span class="chip">SCIM</span>
+        <span class="chip">US / EU residency</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPEN ACCOUNT · the one teal CTA -->
+  <section class="section" id="open" aria-labelledby="open-h">
+    <div class="wrap">
+      <div class="callout">
+        <p class="eyebrow">Get started</p>
+        <h2 id="open-h">Open an account and close tonight.</h2>
+        <p>Connect your first feed in an afternoon. By the next lock at 06:00 UTC, your balance is reconciled and your close is done.</p>
+        <div class="callout__actions">
+          <a class="btn btn--accent" href="#open">Open an account</a>
+          <a class="btn btn--ghost" href="#how">Book a walkthrough</a>
+        </div>
+        <p class="callout__note">No card to start · your data stays in your region</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <span class="wordmark">Meridian</span>
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="#how">Product</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#how">Docs</a>
+        <a href="#trust-h">Security</a>
+        <a href="#open">Status</a>
+        <a href="#open">Privacy</a>
+      </nav>
+    </div>
+    <div class="footer__meta">
+      <span>Meridian Treasury, Inc. · Figures shown are sample data.</span>
+      <span><span class="ok">●</span> All systems operational · 06:00 UTC</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

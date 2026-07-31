@@ -402,7 +402,7 @@ em::after {
   text-transform: uppercase;
   color: var(--color-muted);
   z-index: 5;
-  padding: 2px 6px;
+  padding: 4px 8px;
   border: 1px solid var(--color-rule-2);
   background: oklch(13% 0.014 265 / 0.85);
   border-radius: 2px;
@@ -436,7 +436,7 @@ em::after {
 .callout--right { right: 0; padding-right: 0; flex-direction: row-reverse; }
 .callout span {
   background: oklch(15% 0.014 265 / 0.85);
-  padding: 3px 6px;
+  padding: 4px 8px;
   border: 1px solid var(--color-rule);
   border-radius: 2px;
 }

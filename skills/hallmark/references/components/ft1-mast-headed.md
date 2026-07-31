@@ -11,3 +11,16 @@ A wordmark and tagline anchor a single horizontal band. Two or three small links
   <p class="links muted">Imprint · Privacy · Contact</p>
 </footer>
 ```
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Wordmark size: display 3xl · display 2xl · xl
+- Tagline: italic serif · roman body · none
+- Links row: inline · 2-line stack
+
+## Mobile collapse
+
+- **Below 60rem:** links wrap to two lines; tagline below wordmark
+- **Below 40rem:** wordmark size step down; tagline italicises in if not already

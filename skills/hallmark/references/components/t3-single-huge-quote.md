@@ -9,3 +9,16 @@ One quote, set big, centered, taking a whole section. No supporting text, no att
   <p class="attribution"><span class="caps">— Name, Company</span></p>
 </section>
 ```
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Quote face: serif italic · roman display · italic mono
+- Width: full-bleed · 60ch · 40ch
+- Attribution position: same line · separate band
+
+## Mobile collapse
+
+- **Below 60rem:** quote remains full width; attribution wraps below
+- **Below 40rem:** quote size step down by 1.4×

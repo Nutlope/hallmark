@@ -184,6 +184,7 @@ Pick a ratio. The default for Hallmark work is **1.25** (major third). Build the
   --text-3xl:  3.0518rem;
   --text-4xl:  3.8147rem;
   --text-display: clamp(2.75rem, 5vw + 1rem, 5.25rem);
+  --text-display-s: clamp(2.2rem, 4vw + 0.75rem, 4.2rem); /* one 1.25 step below display at both ends; the step-down the headline brackets reference */
 }
 ```
 
@@ -203,6 +204,19 @@ Count characters in the rendered hero `h1`. Pick the cap by bucket — the rule 
 **Aggressive-display themes step down one rung when headline > 50 chars.** Brutal, Riso, and Manifesto clamp `--text-display` at 6.5–9rem — that ceiling is for ≤ 50-char statements only. Past 50 chars, route them to `--text-display-s` automatically. **When you write the headline yourself (no user-supplied copy), aim for ≤ 7 words and ≤ 50 chars from the start** — imperative or nominal phrase, never a gerund opener.
 
 Use no more than five sizes on a single page. If you need more hierarchy, use weight and colour, not another size.
+
+### Heading measure by size
+
+Max-width rides ON the heading element (never the wrapper), in `ch`; body keeps the 45-75ch envelope above:
+
+| Size | max-width |
+| --- | --- |
+| `--text-display` | ~20ch |
+| `--text-display-s` | ~24ch |
+| `--text-4xl` | ~30ch |
+| `--text-3xl` | ~35ch |
+| `--text-2xl` | ~40ch |
+| `--text-xl` | ~45ch |
 
 ## Weights
 

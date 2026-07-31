@@ -1,22 +1,22 @@
-# Theme — Lumen
+# Theme - Lumen
 
-Premium AI-tool register, built around a **hand-engineered apparatus** rather than a glowing orb. One precision SVG/CSS object per page, with leader-line callouts in mono micro-type, set against dead space alongside a **lowercase classical-serif headline** and a technical mono eyebrow. Three font families. Two palette drops (Night Foundry / Day Foundry) with different physics — Night emits, Day refracts — and entirely different visual languages, not the same shape in two colours.
+Premium AI-tool register, built around a **hand-engineered apparatus** rather than a glowing orb. One precision SVG/CSS object per page, with leader-line callouts in mono micro-type, set against dead space alongside a **lowercase classical-serif headline** and a technical mono eyebrow. Three font families. Two palette drops (Night Foundry / Day Foundry) with different physics - Night emits, Day refracts - and entirely different visual languages, not the same shape in two colours.
 
-Lumen runs a strict **two-register typography system**: all prose is **lowercase** (hero titles, section titles, lede, body, buttons, nav, brand, footer copy — even acronyms when they appear in body text); all mono labels are **UPPERCASE** (eyebrows, callouts, meter labels, stat labels). The contrast between quiet lowercase prose and loud UPPERCASE machine-readout is the typographic signature.
+Lumen runs a strict **two-register typography system**: all prose is **lowercase** (hero titles, section titles, lede, body, buttons, nav, brand, footer copy - even acronyms when they appear in body text); all mono labels are **UPPERCASE** (eyebrows, callouts, meter labels, stat labels). The contrast between quiet lowercase prose and loud UPPERCASE machine-readout is the typographic signature.
 
 Loaded eagerly by SKILL.md Step 3 whenever the catalog pick is `lumen`. Palettes + font stack live in [`site/css/tokens.css`](../../../../site/css/tokens.css) under `[data-theme="lumen"]` (Night, default) and `[data-theme="lumen"][data-drop="day"]` (Day). This file carries the drops + apparatus family + signature moves + motion + anti-patterns.
 
 ## Axes (diversification)
 
-- **Paper band** — Night: dark cool-violet (`L 13%, H 265`). Day: light cool bone with violet pull (`L 97%, H 265`). The 265° hue is deliberate — sits 25° from Midnight's 250 and 65° from Aurora's 200, so a Lumen page is not confusable with either neighbour at a glance.
-- **Display style** — **classical-serif-lowercase** (Instrument Serif 400, upright, **all-lowercase**, with verb landmark via accent colour + draw-in underline). No italic anywhere. Distinct from italic-serif (Specimen/Studio/Atelier ship italic as default) and from roman-serif (Newsprint uses sentence case). Lumen is the catalog's only lowercase-headline theme.
-- **Accent hue** — Night: **molten brass** (`H 50`, not amber). Day: **deep indigo with violet tilt** (`H 268`). Coral chord (`H 18`) sits behind both as the secondary chromatic.
+- **Paper band** - Night: dark cool-violet (`L 13%, H 265`). Day: light cool bone with violet pull (`L 97%, H 265`). The 265° hue is deliberate - sits 25° from Midnight's 250 and 65° from Aurora's 200, so a Lumen page is not confusable with either neighbour at a glance.
+- **Display style** - **classical-serif-lowercase** (Instrument Serif 400, upright, **all-lowercase**, with verb landmark via accent colour + draw-in underline). No italic anywhere. Distinct from italic-serif (Specimen/Studio/Atelier ship italic as default) and from roman-serif (Newsprint uses sentence case). Lumen is the catalog's only lowercase-headline theme.
+- **Accent hue** - Night: **molten brass** (`H 50`, not amber). Day: **deep indigo with violet tilt** (`H 268`). Coral chord (`H 18`) sits behind both as the secondary chromatic.
 
 ## Reference register
 
 Modal · Anthropic (Claude product surfaces) · Together AI · ElevenLabs · Cluely · Adept · Granola · Cohere · Inflection · Linear (premium pricing pages) · Vercel (design guidelines, frontier-AI sections) · Cursor (high-fidelity product mockup heroes).
 
-The aesthetic to match: a single hand-engineered artefact in dead space; a lowercase classical-serif headline with one accent-coloured verb; mono UPPERCASE technical labels that read as if pulled from an internal docs site; tabular numerals everywhere a number appears. The combination is what AI-tool defaults do not ship — and exactly the combination that breaks every default the model was trained on.
+The aesthetic to match: a single hand-engineered artefact in dead space; a lowercase classical-serif headline with one accent-coloured verb; mono UPPERCASE technical labels that read as if pulled from an internal docs site; tabular numerals everywhere a number appears. The combination is what AI-tool defaults do not ship - and exactly the combination that breaks every default the model was trained on.
 
 **Patron-saint reference (internal):** *Modal homepage rate sheet* (the receipt is the artwork) + *Together AI hero diagram* (annotated apparatus + leader lines + labelled callouts) + *Anthropic Claude landing typography* (transitional serif + humanist sans). When in doubt about restraint, ask "would Modal ship this much chrome?" If yes, you've gone too far.
 
@@ -26,32 +26,32 @@ A Lumen drop is a named palette + apparatus-physics pair. The structural signatu
 
 ### Drop 01 · Night Foundry *(default · canonical)*
 
-Cool-violet near-black canvas. Molten-brass accent that *emits*. The apparatus is an instrument — a filament-in-chamber, a circuit topology, a precision indicator — and it generates the light. Halos and inner-emit washes use `--color-glow` at 42% opacity.
+Cool-violet near-black canvas. Molten-brass accent that *emits*. The apparatus is an instrument - a filament-in-chamber, a circuit topology, a precision indicator - and it generates the light. Halos and inner-emit washes use `--color-glow` at 42% opacity.
 
-- `--color-paper: oklch(13% 0.014 265)` — late-night studio, violet tilt
-- `--color-ink: oklch(96% 0.006 262)` — near-white headlines
-- `--color-accent: oklch(76% 0.17 50)` — molten brass
-- `--color-accent-2: oklch(68% 0.16 18)` — coral chord
-- `--color-glow: oklch(80% 0.16 50 / 0.42)` — dense halo
-- `--color-paper-emit: oklch(76% 0.17 50 / 0.04)` — inner-emit canvas wash
-- `--rule-blueprint: oklch(96% 0.006 262 / 0.04)` — grid hairline
+- `--color-paper: oklch(13% 0.014 265)` - late-night studio, violet tilt
+- `--color-ink: oklch(96% 0.006 262)` - near-white headlines
+- `--color-accent: oklch(76% 0.17 50)` - molten brass
+- `--color-accent-2: oklch(68% 0.16 18)` - coral chord
+- `--color-glow: oklch(80% 0.16 50 / 0.42)` - dense halo
+- `--color-paper-emit: oklch(76% 0.17 50 / 0.04)` - inner-emit canvas wash
+- `--rule-blueprint: oklch(96% 0.006 262 / 0.04)` - grid hairline
 
-**Apparatus physics — emission.** The focal element is a built object (filament, circuit, indicator dial, layered lens stack) that *contains* the light source. Subtle pulse animation (`--dur-pulse: 4s`) suggests the instrument is *running*. Card shadows are soft depth (`0 24px 60px -28px oklch(0% 0 0 / 0.55)`), not glows — the apparatus is the only thing that emits.
+**Apparatus physics - emission.** The focal element is a built object (filament, circuit, indicator dial, layered lens stack) that *contains* the light source. Subtle pulse animation (`--dur-pulse: 4s`) suggests the instrument is *running*. Card shadows are soft depth (`0 24px 60px -28px oklch(0% 0 0 / 0.55)`), not glows - the apparatus is the only thing that emits.
 
 **When to pick:** inference platforms · serverless GPU · model APIs · AI coding agents · voice synthesis · agentic tools · developer infra · anything that wants to feel "after hours" and "instrument-grade." Default.
 
 ### Drop 02 · Day Foundry
 
-Cool-bone canvas with a violet pull. Deep indigo accent that *refracts*. The apparatus is a transparent prism / lens stack / chromatic dispersion element — light passes through and is *separated*, not generated. Spectrum exit-fan + measurement annotations + scale bar give it the feel of a calibrated optical instrument, not a vibey gradient.
+Cool-bone canvas with a violet pull. Deep indigo accent that *refracts*. The apparatus is a transparent prism / lens stack / chromatic dispersion element - light passes through and is *separated*, not generated. Spectrum exit-fan + measurement annotations + scale bar give it the feel of a calibrated optical instrument, not a vibey gradient.
 
-- `--color-paper: oklch(97% 0.008 265)` — cool bone, violet pull
-- `--color-ink: oklch(18% 0.014 265)` — near-black, cool
-- `--color-accent: oklch(46% 0.24 268)` — deep violet-indigo
-- `--color-accent-2: oklch(68% 0.16 18)` — coral chord (red end of spectrum)
-- `--color-glow: oklch(58% 0.22 268 / 0.28)` — indigo halo through prism
-- `--color-paper-emit: oklch(46% 0.24 268 / 0.03)` — canvas wash, faint
+- `--color-paper: oklch(97% 0.008 265)` - cool bone, violet pull
+- `--color-ink: oklch(18% 0.014 265)` - near-black, cool
+- `--color-accent: oklch(46% 0.24 268)` - deep violet-indigo
+- `--color-accent-2: oklch(68% 0.16 18)` - coral chord (red end of spectrum)
+- `--color-glow: oklch(58% 0.22 268 / 0.28)` - indigo halo through prism
+- `--color-paper-emit: oklch(46% 0.24 268 / 0.03)` - canvas wash, faint
 
-**Apparatus physics — refraction.** The focal element is *static at rest* with a 320ms reveal on first paint (the prism appears, the spectrum fans, both settle). No perpetual motion. The light is captured, not generated. Annotations carry mono micro-labels: `λ = 612 nm`, `θ_out = 38°`, etc. — the prism reads as a *measurement instrument*, not decoration.
+**Apparatus physics - refraction.** The focal element is *static at rest* with a 320ms reveal on first paint (the prism appears, the spectrum fans, both settle). No perpetual motion. The light is captured, not generated. Annotations carry mono micro-labels: `λ = 612 nm`, `θ_out = 38°`, etc. - the prism reads as a *measurement instrument*, not decoration.
 
 **When to pick:** AI for science · climate / research labs · document AI · typography / design tools · daytime productivity · briefs that want "considered" and "clear" rather than "after-dark and intense."
 
@@ -65,13 +65,13 @@ Lumen's identity is the apparatus, not the palette. Adding more drops would dilu
 
 ## The apparatus family
 
-Lumen's central commitment: **never a generic glowing orb**. The orb is the most overworked AI-tool tell of 2024–2025; every inference platform ships one. Lumen builds a *specific* hand-engineered object per page, chosen to reflect what the product *does*.
+Lumen's central commitment: **never a generic glowing orb**. The orb is the most overworked AI-tool tell of 2024-2025; every inference platform ships one. Lumen builds a *specific* hand-engineered object per page, chosen to reflect what the product *does*.
 
 The canonical family (pick one per build, in the order of preference for the brief):
 
 ### Apparatus type · Filament chamber *(Night Foundry, instrument-grade)*
 
-A vertical glowing rod inside a rounded-rect cylindrical chamber, crossed by 3–4 horizontal hairline "electrodes." Subtle pulse on the filament (3% intensity oscillation, 4s period). References vacuum tubes, Tesla coils, fusion experiments, mass spectrometers. Reads as a *machine*.
+A vertical glowing rod inside a rounded-rect cylindrical chamber, crossed by 3-4 horizontal hairline "electrodes." Subtle pulse on the filament (3% intensity oscillation, 4s period). References vacuum tubes, Tesla coils, fusion experiments, mass spectrometers. Reads as a *machine*.
 
 **When to pick:** inference, runtime, model serving, anything that *produces* output. Brand verbs: think, run, generate, infer, render, execute.
 
@@ -149,7 +149,7 @@ A vertical glowing rod inside a rounded-rect cylindrical chamber, crossed by 3�
 
 ### Apparatus type · Codebase graph / topology *(Night Foundry)*
 
-An annotated SVG graph: one central node + 5–7 satellite nodes connected by hairlines, each satellite labelled with a mono filename or symbol. Light "flows" along the connecting lines at a slow walk (subtle gradient dot moving along each path). References CAD schematics, dependency graphs, electrical circuits, knowledge graphs.
+An annotated SVG graph: one central node + 5-7 satellite nodes connected by hairlines, each satellite labelled with a mono filename or symbol. Light "flows" along the connecting lines at a slow walk (subtle gradient dot moving along each path). References CAD schematics, dependency graphs, electrical circuits, knowledge graphs.
 
 **When to pick:** AI coding agents, knowledge tools, anything that *traverses* a structured space. Brand verbs: read, trace, explore, connect.
 
@@ -169,8 +169,8 @@ A clip-path triangle (the prism) + an incoming beam from the left + a chromatic 
 
 - **Pure CSS + SVG.** Never `<img>`, never icon fonts, never SVG paths copied from Figma. The apparatus is *constructed*, not *placed*.
 - **One per page.** Never two apparatus objects on a single Lumen build.
-- **Leader-line callouts.** Every apparatus carries 3–5 mono micro-type annotations (`P50 · 28 ms`, `λ = 612 nm`, `→ refunds.ts`) on horizontal leader lines. The callouts MUST contain real values from the brief — never `LOREM · 000`.
-- **Size.** 240–480 px max dimension on desktop. Scales down to ~180 px on mobile but never disappears.
+- **Leader-line callouts.** Every apparatus carries 3-5 mono micro-type annotations (`P50 · 28 ms`, `λ = 612 nm`, `→ refunds.ts`) on horizontal leader lines. The callouts MUST contain real values from the brief - never `LOREM · 000`.
+- **Size.** 240-480 px max dimension on desktop. Scales down to ~180 px on mobile but never disappears.
 - **Pulse, not rotation.** Night apparatus *pulses* (3% intensity oscillation, 4s period). It does *not* rotate. Rotation was the orb's signature; the apparatus's signature is that it's clearly machined.
 - **Day Foundry: no perpetual motion.** Day apparatus reveals once on first paint (320ms) and stays static. The light is captured.
 - **`prefers-reduced-motion: reduce`:** all pulses freeze at maximum intensity, all reveals collapse to final state.
@@ -185,7 +185,7 @@ See § The apparatus family above. The single most important move.
 
 ### 2. Lowercase headline with verb-landmark (no italics)
 
-Classical Instrument Serif at `--text-display`, **all-lowercase, upright**, with **exactly one word** rendered in `--color-accent-2` (coral chord) — and that word is the verb. A 1px underline in the same accent draws in over 320ms on first paint and stays. **No `font-style: italic` is used anywhere** in Lumen — the verb landmark is built from colour + line, not from a glyph variation.
+Classical Instrument Serif at `--text-display`, **all-lowercase, upright**, with **exactly one word** rendered in `--color-accent-2` (coral chord) - and that word is the verb. A 1px underline in the same accent draws in over 320ms on first paint and stays. **No `font-style: italic` is used anywhere** in Lumen - the verb landmark is built from colour + line, not from a glyph variation.
 
 ```html
 <h1 class="hero__title">built to&nbsp;<em>think</em>&nbsp;in real time.</h1>
@@ -193,10 +193,10 @@ Classical Instrument Serif at `--text-display`, **all-lowercase, upright**, with
 
 ```css
 .hero__title {
-  text-transform: lowercase;  /* defensive — also applied at the prose level */
+  text-transform: lowercase;  /* defensive - also applied at the prose level */
 }
 .hero__title em {
-  font-style: normal;          /* explicit — em is repurposed as the verb landmark */
+  font-style: normal;          /* explicit - em is repurposed as the verb landmark */
   color: var(--color-accent-2);
   position: relative;
   white-space: nowrap;
@@ -218,15 +218,15 @@ Classical Instrument Serif at `--text-display`, **all-lowercase, upright**, with
 }
 ```
 
-**Rules:** the coloured word is the verb, never a noun. One word per headline, never two. The underline is the persistent landmark — once drawn, never animates again. `<em>` is repurposed semantically (still emphasis), but renders without italic.
+**Rules:** the coloured word is the verb, never a noun. One word per headline, never two. The underline is the persistent landmark - once drawn, never animates again. `<em>` is repurposed semantically (still emphasis), but renders without italic.
 
 ### 3. Mono eyebrow above every section
 
-`01 · INFERENCE` style — JetBrains Mono, uppercase, 11px, tracking `0.10em`, half-opacity. Numbered roman ordinal (01, 02, 03), middle-dot separator, then the section role. Sits directly above the heading on its own line. Cap at 6 per page.
+`01 · INFERENCE` style - JetBrains Mono, uppercase, 11px, tracking `0.10em`, half-opacity. Numbered roman ordinal (01, 02, 03), middle-dot separator, then the section role. Sits directly above the heading on its own line. Cap at 6 per page.
 
 ### 4. Blueprint grid background (4% opacity)
 
-The hero `<section>` and the meter strip both carry a **ruled grid background** at 4% opacity — 32px or 48px square cells, single hairline in `--rule-blueprint`. This is the "engineered, not vibed" signal. Aurora has blooms; Lumen has the grid. The grid sits beneath `--color-paper-emit` so the canvas appears to emit *through* the grid lines.
+The hero `<section>` and the meter strip both carry a **ruled grid background** at 4% opacity - 32px or 48px square cells, single hairline in `--rule-blueprint`. This is the "engineered, not vibed" signal. Aurora has blooms; Lumen has the grid. The grid sits beneath `--color-paper-emit` so the canvas appears to emit *through* the grid lines.
 
 ```css
 .hero {
@@ -240,7 +240,7 @@ The hero `<section>` and the meter strip both carry a **ruled grid background** 
 
 ### 5. Meter strip (below the hero)
 
-A full-bleed 32–48px band beneath the hero showing 60–80 thin vertical ticks (1px wide, varying height/opacity). Mono labels at each end name the readout (`SIGNAL · 12.4 KHZ` left, `DRIFT · 0.04 σ` right). Reads as spectrum analyser / oscilloscope output. The values match the brief — never invented.
+A full-bleed 32-48px band beneath the hero showing 60-80 thin vertical ticks (1px wide, varying height/opacity). Mono labels at each end name the readout (`SIGNAL · 12.4 KHZ` left, `DRIFT · 0.04 σ` right). Reads as spectrum analyser / oscilloscope output. The values match the brief - never invented.
 
 ```html
 <aside class="meter" aria-label="Signal readout">
@@ -270,15 +270,15 @@ A full-bleed 32–48px band beneath the hero showing 60–80 thin vertical ticks
 }
 ```
 
-The meter MUST be procedurally varied — never a flat row of equal ticks. Heights drawn from a clean envelope (sine, gaussian, log) so the strip reads as a *measurement*, not a decorative pattern.
+The meter MUST be procedurally varied - never a flat row of equal ticks. Heights drawn from a clean envelope (sine, gaussian, log) so the strip reads as a *measurement*, not a decorative pattern.
 
 ### 6. Hairline cards with inner emission
 
-Cards carry a 1px hairline border in `--color-rule` and an inner radial gradient at 4–6% accent opacity — they feel **lit from within**, not dropped. On hover, inner glow brightens to 10–12% and the card lifts 4px. Never drop-shadow cards (the shadow Lumen uses is for elevated chrome only).
+Cards carry a 1px hairline border in `--color-rule` and an inner radial gradient at 4-6% accent opacity - they feel **lit from within**, not dropped. On hover, inner glow brightens to 10-12% and the card lifts 4px. Never drop-shadow cards (the shadow Lumen uses is for elevated chrome only).
 
 ### 7. Three-stat row with Instrument Serif numerals + tabular-nums
 
-Stats display in Instrument Serif at large size (`clamp(2.5rem, 4vw + 1rem, 4.5rem)`), `font-variant-numeric: tabular-nums`, label in mono uppercase 11px. Hairline vertical dividers. **Always three cells** — never two (reads as comparison), never four (reads as bento). If the brief has fewer than three honest numbers, skip the row entirely.
+Stats display in Instrument Serif at large size (`clamp(2.5rem, 4vw + 1rem, 4.5rem)`), `font-variant-numeric: tabular-nums`, label in mono uppercase 11px. Hairline vertical dividers. **Always three cells** - never two (reads as comparison), never four (reads as bento). If the brief has fewer than three honest numbers, skip the row entirely.
 
 ## Motion direction
 
@@ -291,7 +291,7 @@ Lumen's motion stack is **lighter than Hum, heavier than Coral**.
 | Verb landmark | Color set permanently to accent-2; 1px underline draws in 320ms `delay: 900ms`. No font-style change. |
 | Cards | `translateY(-4px)` + inner-glow brighten on hover, 220ms `--ease-soft`. |
 | Section heads | Opacity 0→1 + translateY 12px→0 on view enter, 600ms, 60ms stagger. |
-| Meter strip | Static. No "live" animation — the strip is a printed readout, not a streaming feed. |
+| Meter strip | Static. No "live" animation - the strip is a printed readout, not a streaming feed. |
 | Scroll | Lenis optional (`duration: 0.7, lerp: 0.08`). |
 
 **No magnetic cursors. No bento tile flips. No flashy parallax. No particle systems. No rotating orbs.** If you reach for any of these, you've drifted out of Lumen.
@@ -312,27 +312,27 @@ Three families, three weights each at most. No fourth family.
 
 **Lumen loves these.**
 
-- **Marquee Hero** — canonical: apparatus at hero-right, italic-pivot headline at hero-left, meter strip below
-- **Workbench** — when the page has live product UI to show (used with annotated codebase graph)
-- **Stat-Led** — numbers carry the story (latency, throughput)
-- **Long Document** — technical narrative with the apparatus at hero (Day Foundry canonical)
-- **Specimen** — only when typography is the subject
+- **Marquee Hero** - canonical: apparatus at hero-right, italic-pivot headline at hero-left, meter strip below
+- **Workbench** - when the page has live product UI to show (used with annotated codebase graph)
+- **Stat-Led** - numbers carry the story (latency, throughput)
+- **Long Document** - technical narrative with the apparatus at hero (Day Foundry canonical)
+- **Specimen** - only when typography is the subject
 
 ## Macrostructure rejection
 
 **Lumen refuses these.**
 
-- **Bento Grid** — too playful; Lumen is one apparatus, not a tile collage
-- **Quote-Led** — too literary
-- **Conversational FAQ** — too soft
-- **Photographic** — Lumen is pure-code; no photographic anchor
-- **Catalogue** — one apparatus, not a grid of products
+- **Bento Grid** - too playful; Lumen is one apparatus, not a tile collage
+- **Quote-Led** - too literary
+- **Conversational FAQ** - too soft
+- **Photographic** - Lumen is pure-code; no photographic anchor
+- **Catalogue** - one apparatus, not a grid of products
 
 ## Voice fixtures
 
 Lumen voice is **direct, technical, slightly aphoristic**. Verbs over nouns. Mono labels read as if from internal docs. No marketing-ese.
 
-Headlines — **all lowercase**, with one verb in accent-2 colour (underlined):
+Headlines - **all lowercase**, with one verb in accent-2 colour (underlined):
 
 - "built to **think** in real time."
 - "inference, **rendered**."
@@ -341,20 +341,20 @@ Headlines — **all lowercase**, with one verb in accent-2 colour (underlined):
 - "models for a **moving** atmosphere."
 - "code that **knows** the codebase."
 
-Body patterns — also lowercase, including acronyms:
+Body patterns - also lowercase, including acronyms:
 
 - "p50 latency at 28 ms. p99 at 84. the numbers hold under load."
 - "one primitive. scales down to zero. scales up to a thousand replicas."
 - "three engineers built this in fourteen weeks."
 
-Mono eyebrows — UPPERCASE (these are tags, not language):
+Mono eyebrows - UPPERCASE (these are tags, not language):
 
 - `00 · INFERENCE`
 - `01 · RUNTIME`
 - `02 · PRICING`
 - `03 · CHANGELOG`
 
-Leader-line callouts (real values only) — UPPERCASE:
+Leader-line callouts (real values only) - UPPERCASE:
 
 - `P50 · 28 MS`
 - `Λ = 612 NM`
@@ -362,16 +362,16 @@ Leader-line callouts (real values only) — UPPERCASE:
 - `RX-04 · H100 80GB`
 - `INDEXED · 412 FILES`
 
-Brand wordmarks — lowercase: `cinder`, `wright`, `stratum`. Legal entity names and person names in fine print also lowercase (`cinder labs, inc.`, `maya okonkwo`). The lowercase commitment is total — only mono labels break it.
+Brand wordmarks - lowercase: `cinder`, `wright`, `stratum`. Legal entity names and person names in fine print also lowercase (`cinder labs, inc.`, `maya okonkwo`). The lowercase commitment is total - only mono labels break it.
 
 **Never any of:** experience, journey, elevate, curate, transform, holistic, mindful, ecosystem, platform, leverage, unlock, supercharge, revolutionize, ai-powered, intelligent.
 
 ## Anti-patterns (theme-specific)
 
-- **NEVER a glowing CSS orb / sphere / ring.** The single most reliable AI-tool tell of 2024–2025. Lumen explicitly refuses it. Pick from the apparatus family or build a new precision object — never a generic ball of light.
-- **NEVER `<img>` for the apparatus.** Pure CSS + SVG. Figma-exported SVG paths fail this — the apparatus is constructed in code.
+- **NEVER a glowing CSS orb / sphere / ring.** The single most reliable AI-tool tell of 2024-2025. Lumen explicitly refuses it. Pick from the apparatus family or build a new precision object - never a generic ball of light.
+- **NEVER `<img>` for the apparatus.** Pure CSS + SVG. Figma-exported SVG paths fail this - the apparatus is constructed in code.
 - **NEVER sentence-case or title-case prose.** All headlines, lede, body, buttons, nav, captions, brand wordmarks, footer copy, person names, place names, and legal-entity names are lowercase. Mono labels are the ONLY uppercase surface (eyebrows, callouts, meter labels, stat labels). This two-register split is non-negotiable.
-- **NEVER `font-style: italic` anywhere.** The previous italic-pivot signature is retired. The verb landmark is built from colour + a 1px underline, not from a glyph variation. Italic body emphasis, italic founder signatures, italic captions — all banned. `<em>` is repurposed as the verb landmark and renders upright.
+- **NEVER `font-style: italic` anywhere.** The previous italic-pivot signature is retired. The verb landmark is built from colour + a 1px underline, not from a glyph variation. Italic body emphasis, italic founder signatures, italic captions - all banned. `<em>` is repurposed as the verb landmark and renders upright.
 - **Never colour-emphasise a noun.** The verb landmark is the verb. Always.
 - **Never more than one accent-coloured word per headline.** Two is a marketing landing page; one is a design move.
 - **Never invent stats.** If the brief has no real numbers, skip the three-stat row entirely.
@@ -401,7 +401,7 @@ Brand wordmarks — lowercase: `cinder`, `wright`, `stratum`. Legal entity names
 | **Midnight** (atmospheric, closest) | Midnight is geometric Geist on cool dark (`H 250`), no apparatus, no italic pivot, no grid. Lumen sits 25° hue away (`H 265`) with classical Instrument Serif, hand-built apparatus + leader callouts, blueprint grid, meter strip. The differentiation is large at every signature axis. |
 | **Aurora** (atmospheric) | Aurora is cool cyan blooms on dark, Sentient serif body. Lumen is brass-on-violet apparatus + Instrument Serif headline. Different temperature, different focal-element philosophy (Aurora: ambient blooms; Lumen: built apparatus). |
 | **Bloom** (atmospheric) | Bloom is warm cream paper, expressive content (Suno/Runway). Lumen is dark or cool-bone, technical content (Modal/Anthropic). Different register entirely. |
-| **Atelier** (editorial) | Atelier is Playfair Display Didone on warm cream — luxury fashion. Lumen's Instrument Serif is a 1960s technical-journal serif. Atelier sells perfume; Lumen sells inference. |
+| **Atelier** (editorial) | Atelier is Playfair Display Didone on warm cream - luxury fashion. Lumen's Instrument Serif is a 1960s technical-journal serif. Atelier sells perfume; Lumen sells inference. |
 
 ## Test brief expectations
 
@@ -422,7 +422,7 @@ body {
   background: var(--color-paper); color: var(--color-ink-2);
   font-family: var(--font-body);
   font-variant-numeric: tabular-nums;
-  text-transform: lowercase;            /* prose default — the two-register foundation */
+  text-transform: lowercase;            /* prose default - the two-register foundation */
 }
 
 .eyebrow, .callout, .meter__label, .stat__label, .card__eyebrow {
@@ -455,12 +455,12 @@ The `text-transform: lowercase` on `<body>` + selective `text-transform: upperca
 
 ## What Lumen refuses (restated)
 
-Disqualifiers — if any appears in a Lumen build, the build is not Lumen:
+Disqualifiers - if any appears in a Lumen build, the build is not Lumen:
 
 - No glowing orb / sphere / ring of any kind.
 - No `font-style: italic` anywhere on the page.
-- No sentence-case or title-case prose — headlines, lede, body, buttons, nav, brand are all lowercase.
-- No lowercase mono labels — eyebrows, callouts, meter labels are all UPPERCASE.
+- No sentence-case or title-case prose - headlines, lede, body, buttons, nav, brand are all lowercase.
+- No lowercase mono labels - eyebrows, callouts, meter labels are all UPPERCASE.
 - No bento grids.
 - No glassmorphism / `backdrop-filter` blur.
 - No "trusted by" logo cloud as a full-width band.

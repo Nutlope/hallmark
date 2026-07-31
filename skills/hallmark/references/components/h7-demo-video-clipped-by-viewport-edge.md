@@ -25,3 +25,16 @@ See [`hero-enrichment.md`](../hero-enrichment.md) for the full E1 recipe (codec 
 .hero__media   { width: calc(100% + 12vw); aspect-ratio: 16 / 10; border-radius: 12px; overflow: hidden; }
 @media (max-width: 60rem) { .hero--clipped { grid-template-columns: 1fr; } .hero__media { width: 100%; } }
 ```
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Clip side: right · left · both
+- Aspect ratio: 16/10 · 16/9 · 4/3
+- Frame: hairline · browser chrome · none
+
+## Mobile collapse
+
+- **Below 60rem:** **drops the clip**; goes `1fr` stacked, full-width media; tilt removed (clipping at 375 px reads as broken)
+- **Below 40rem:** media reduces to 16/9; poster image used (auto-playing on cellular is hostile)

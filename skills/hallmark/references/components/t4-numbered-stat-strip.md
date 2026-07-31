@@ -12,3 +12,16 @@ A horizontal strip of 3–5 stats (count + qualifier) running across one row. Ta
 ```
 
 ---
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Layout: 3-up · 4-up · 5-up · 6-up
+- Number weight: display · body large
+- Qualifier position: under · inline · above
+
+## Mobile collapse
+
+- **Below 60rem:** strip 4-up → 2-up
+- **Below 40rem:** strip becomes vertical; 1 stat per row

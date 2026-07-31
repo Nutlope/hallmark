@@ -10,6 +10,8 @@ Brief mentions any of: *fun, consumer, casual, family, kids, friendly, approacha
 
 `Hum` (vibrant, alive) is the genre's canonical theme — the post-Brilliant-alive register: multi-accent cream + pear + cyan + coral, mandatory motion, a single character moment. Pick it when the brief wants "feels alive in the room with you." For the quieter, more restrained end of friendly — "friendly but soft" rather than "alive" — reach instead for modern-minimal (Coral): a single low-chroma accent on warm paper, smooth easings, motion optional.
 
+`Field` and `Arcade` join the cluster. `Field` is the warm-work-paper end: cream, a Source Serif display over humanist Public Sans, one marigold highlighter and hand-drawn ink - friendly but serious, the credible-SaaS register Hum is too loud for. `Arcade` is the retro-nostalgia end: violet-black, a pixel display over a readable sans, a magenta + cyan duo, scanlines and a starfield - playful and loud, but the re-drawn-chrome ban still holds (no fake OS windows or title bars; the retro comes from type and light). The three give the genre real range: alive (Hum), warm-serious (Field), retro-loud (Arcade).
+
 `Hum` is the catalog's only **rounded-sans-multi-accent** theme — it relaxes several playful defaults: bouncy spring easings are allowed (and canonical) on its primary CTA, accent chroma goes higher than 0.16, and motion is mandatory not optional. It answers a specific brief: a learning platform for curious adults, a daily-curiosity app, a habit tracker with character — products that should feel warm and alive, not merely tidy.
 
 ## Voice
@@ -51,7 +53,7 @@ Brief mentions any of: *fun, consumer, casual, family, kids, friendly, approacha
 
 ## Nav and footer voice
 
-- **Default nav:** N7 Brutal slab — heavy uppercase wordmark + tracked uppercase links + 2 px border-bottom. The voice is loud but composed.
+- **Default nav:** N7 Brutal slab — heavy uppercase wordmark + tracked uppercase links + 2 px border-bottom. The voice is loud but composed. (Authoritative table: component-cookbook.md § Routing.)
 - **Acceptable also:** N1 Wordmark + 2 links (when destinations are minimal); N3 Side-rail (when the page is long-scroll and section-numbered, e.g. Studio).
 - **Default footer:** Ft8 Marquee scroll — horizontal repeating tagline + dot separator. Honours `prefers-reduced-motion: reduce`.
 - **Acceptable also:** Ft5 Statement; Ft3 Index columns (only when the page is a hub).

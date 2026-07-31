@@ -20,3 +20,16 @@ A heavy, full-width nav with a 2 px solid border-bottom, all-caps wordmark and t
 ```
 
 *Anti-pattern:* combining N7 with rounded corners, soft shadows, or backdrop-blur — those vocabularies fight. If you reach for blur, drop to N5; if you reach for round, drop to N1.
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Border weight: 2 px · 3 px · 4 px
+- Letter-spacing: tracked uppercase · normal
+- CTA: filled slab · outline block · text-only
+
+## Mobile collapse
+
+- **Below 60rem:** links wrap to second line; CTA stays right-aligned
+- **Below 40rem:** links collapse to hamburger; wordmark + hamburger only

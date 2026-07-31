@@ -9,3 +9,16 @@ First-person opening — "Dear reader,". No buttons in fold. Reads as personal c
   <p class="lede">…</p>
 </section>
 ```
+
+## Knobs
+
+Vary at least one knob vs the last logged use of this archetype (gate 32):
+
+- Salutation: greeting · "Dear X," · time-stamp
+- Body length: 1 paragraph · 2 paragraphs · 3 paragraphs
+- Signoff: typed name · drawn signature SVG · initials
+
+## Mobile collapse
+
+- **Below 60rem:** unchanged single column; aside (if present) moves below body, divider becomes top border
+- **Below 40rem:** salutation size step down; signoff tightens

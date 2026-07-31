@@ -1,0 +1,10 @@
+{
+  "model": "black-forest-labs/FLUX.1.1-pro",
+  "prompt": "Watercolor wash field on white cold-press paper, prussian blue and payne's grey pigment pooling off-centre lower-right, two-thirds of the frame empty white paper, soft granulating dry-brush edges, no subject, no text, flat scan, even lighting",
+  "size": "1440x800",
+  "steps": 4,
+  "hash": "fd790a0f954850c3",
+  "generatedVia": "together",
+  "note": "generated asset; post-process before shipping; verify licensing",
+  "at": "2026-07-31"
+}

@@ -372,7 +372,7 @@
 
 /* — Banner pill per-theme shape + voice ————————————————————————
    The banner is the only fixed surface that crosses every theme. If
-   it stays the same shape on all 20 themes, the "switching themes
+   it stays the same shape on all 24 themes, the "switching themes
    rebuilds the page" claim leaks. Per-theme shape (border-radius) and
    font choice push the banner into the theme's register too. */
 
