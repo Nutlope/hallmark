@@ -15,6 +15,8 @@ Audit *also* checks structural fingerprint: if the page uses the AI template (ce
 
 **Genre-aware audit.** If the audited file's stamp names a genre (e.g. `genre: atmospheric`), apply the genre-scoped overrides from [`slop-test.md`](../slop-test.md) when grading. A radial-gradient background is a critical tell for editorial — but allowed for atmospheric. A pure-white paper is a tell for editorial — but allowed for modern-minimal. The audit verb must respect the genre the page declared.
 
+**No genre declaration.** If neither a CSS stamp nor `design.md` declares a genre, infer it from the page's visible product and design signals using the Design flow's genre-detection table. State `Inferred genre: <genre> (no declaration; <evidence>)` before the findings. If two non-default genres have comparable evidence, state `Genre ambiguous: <a> vs <b>` and apply only universal gates; do not escalate a genre-scoped gate until the page declares one.
+
 **`design.md` audit.** If the project root has a `design.md` (or `DESIGN.md`), read it before grading. Then check every audited page against the system:
 
 - **Theme drift.** Page uses tokens / fonts / accent that don't match `design.md`'s declared system → flag as `critical: design-system drift`. Per-page theme picks are slop on a system-managed project even if each page is internally fine.
