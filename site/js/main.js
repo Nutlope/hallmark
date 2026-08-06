@@ -795,9 +795,13 @@ const queried = (() => {
 const stored = (() => {
   try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; }
 })();
+// The pre-paint script in index.html sets data-theme from ?theme= /
+// localStorage without checking the registry, so validate it here too —
+// otherwise an unknown value survives and gets written back to storage.
 const initial = THEMES[queried] ? queried
   : THEMES[stored] ? stored
-    : (root.dataset.theme || "hum");
+    : THEMES[root.dataset.theme] ? root.dataset.theme
+      : "hum";
 
 // First paint — populate slots without a transition (no flash).
 // Run swapArchetypes BEFORE setPressed so the footer template is materialised
