@@ -503,8 +503,8 @@ const COPY = {
   hum: {
     eyebrow: "A design skill",
     title: "Make your AI agent a designer.",
-    lede: "The anti-slop design skill for Claude Code, Cursor, and Codex. Twenty themes with real structural variety, and a 57-gate check before anything ships.",
-    ctaLabel: "Install",
+    lede: "Hallmark gives Claude Code, Cursor, and Codex a design system for choosing structure, typography, color, motion, and interaction rules before the UI is built.",
+    ctaLabel: "Install Hallmark",
     proofLabel: "What's inside",
     proofA: "21 page-shapes · 50 archetypes",
     proofB: "9 heroes · 14 navs · 8 footers",

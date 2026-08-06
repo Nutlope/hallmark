@@ -760,6 +760,73 @@
 .code .prompt { color: var(--color-muted); user-select: none; }
 .code--block { white-space: pre; display: block; }
 
+.hero__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.hero__primary,
+.hero__secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: var(--space-sm) var(--space-lg);
+  font-family: var(--font-label);
+  font-size: var(--text-sm);
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  border-radius: var(--radius-pill);
+  transition: transform 120ms var(--ease-out),
+              color 160ms var(--ease-out),
+              background-color 160ms var(--ease-out),
+              border-color 160ms var(--ease-out);
+}
+
+.hero__primary {
+  color: var(--color-accent-ink);
+  background: var(--color-accent);
+  border: var(--rule-fine) solid var(--color-accent);
+}
+
+.hero__secondary {
+  color: var(--color-ink);
+  background: var(--color-paper);
+  border: var(--rule-fine) solid var(--color-rule-2);
+}
+
+.hero__primary:focus-visible,
+.hero__secondary:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hero__primary:hover,
+  .hero__secondary:hover {
+    transform: translateY(-1px);
+  }
+
+  .hero__secondary:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+}
+
+.hero__primary:active,
+.hero__secondary:active {
+  transform: translateY(1px);
+}
+
+.hero__command {
+  max-width: min(100%, 34rem);
+}
+
 /* — Copy-to-clipboard button (silent success pattern) ————— */
 .code__copy {
   position: absolute;

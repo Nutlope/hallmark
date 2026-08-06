@@ -165,6 +165,49 @@
   border-top: var(--rule-hair) solid var(--color-rule);
 }
 
+.proof-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-sm);
+  padding-block: var(--space-lg);
+  border-block: var(--rule-hair) solid var(--color-rule);
+}
+
+.proof-strip__item {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+  padding: var(--space-sm) var(--space-md);
+  border-left: var(--rule-fine) solid var(--color-accent);
+}
+
+.proof-strip__item strong {
+  font-family: var(--font-label);
+  font-size: var(--text-sm);
+  font-weight: 750;
+  line-height: 1.1;
+  color: var(--color-ink);
+}
+
+.proof-strip__item span {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  line-height: var(--lh-snug);
+  color: var(--color-muted);
+}
+
+@media (max-width: 58rem) {
+  .proof-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 34rem) {
+  .proof-strip {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* — 02 · Examples rail (full-bleed) ——————————————————— */
 /* The rail escapes the page gutter on both sides so tiles can flow
    past the max-width. The header above stays inside the gutter. */

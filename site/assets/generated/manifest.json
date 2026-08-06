@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-07-22",
+  "articles": 15,
+  "images": 75,
+  "pipeline": "cheap_api-inspired prompt enhancer + icon enhancer manifest, local deterministic bitmap rendering",
+  "articleWordCounts": {
+    "anti-ai-slop-design-system": 2765,
+    "macrostructures-beat-templates": 2744,
+    "writing-specific-product-copy": 2750,
+    "visual-proof-without-fake-metrics": 2750,
+    "infographic-sections-that-teach": 2749,
+    "chrome-devtools-visual-pass": 2749,
+    "story-architecture-for-landing-pages": 2756,
+    "component-variety-without-noise": 2753,
+    "mobile-responsiveness-as-taste": 2746,
+    "theme-systems-that-change-bones": 2752,
+    "cta-placement-as-environment-design": 2759,
+    "slop-test-as-editorial-gate": 2768,
+    "portfolio-of-examples-as-proof": 2746,
+    "how-to-brief-an-agent-for-design": 2772,
+    "design-system-final-verdict": 2748
+  }
+}
