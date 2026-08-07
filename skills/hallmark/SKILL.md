@@ -369,6 +369,7 @@ The non-negotiables live in [`references/`](references/). **Be precise about wha
 - [`microinteractions.md`](references/microinteractions.md) — load whenever the output has *any* interactive element (buttons, inputs, modals, tabs, dropdowns, toasts, drag handles, copy buttons). That is most pages.
 - [`interaction-and-states.md`](references/interaction-and-states.md) — load when the page has stateful UI (forms, command palettes, optimistic updates).
 - [`responsive.md`](references/responsive.md) — load when mobile is in scope.
+- [`seo.md`](references/seo.md) — load when the build emits a full page (i.e. it owns a `<head>`). Carries the head block, semantic skeleton, image attributes, and structured-data rules. Skip entirely on component-scope builds.
 - [`structure.md`](references/structure.md) — load only when deviating from a named macrostructure.
 - [`hero-enrichment.md`](references/hero-enrichment.md) — **do NOT load at Step 4 unless the image-need check in the next paragraph returns YES.** Most builds are typography-only and never touch this file. The decision is one quick read of the brief, not a defensive auto-load.
 - [`custom-craft.md`](references/custom-craft.md) — load only when an enrichment archetype requires construction (CSS art, SVG, declarative animation, etc.).
