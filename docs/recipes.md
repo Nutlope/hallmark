@@ -1,6 +1,6 @@
 # Recipes — copy-paste prompts that ship Hallmark output
 
-Eight worked briefs you can paste into Claude Code, Cursor, or Codex with the Hallmark skill installed. Each shows the prompt verbatim, the audience/use/tone the skill inferred, the macrostructure + theme + enrichment it picked, and a one-paragraph excerpt of the output. Live page links are included where the test exists in [`site/_tests/`](../../site/_tests/).
+Nine worked briefs you can paste into Claude Code, Cursor, or Codex with the Hallmark skill installed. Each shows the prompt verbatim, the audience/use/tone the skill inferred, the macrostructure + theme + enrichment it picked, and a one-paragraph excerpt of the output. Live page links are included where the test exists in [`site/_tests/`](../../site/_tests/).
 
 The first recipe is the **canonical try-it prompt** — paste it into a fresh project to verify the skill is installed and discover the flow before reading anything else.
 
