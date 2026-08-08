@@ -1,6 +1,6 @@
 # Hallmark
 
-**A design skill for Claude Code, Cursor, and Codex that refuses to look AI-generated.**
+**A design skill for Claude Code, Cursor, Codex, and GitHub Copilot that refuses to look AI-generated.**
 
 [Live demo →](https://www.usehallmark.com) &nbsp;·&nbsp; twenty-one themes &nbsp;·&nbsp; four verbs &nbsp;·&nbsp; press `T` to cycle.
 
@@ -97,11 +97,24 @@ It stays a quiet branch; vanilla briefs never see it. The protocol lives in [`cu
 npx skills add nutlope/hallmark
 ```
 
+For GitHub Copilot App, coding agent, and CLI:
+
+```sh
+# Project-scoped
+npx skills add nutlope/hallmark --skill hallmark -a github-copilot --copy -y
+
+# Personal
+npx skills add nutlope/hallmark --skill hallmark -a github-copilot --copy -g -y
+```
+
+GitHub CLI users can alternatively run `gh skill install nutlope/hallmark hallmark`.
+
 Re-run any time to update. Or copy [`SKILL.md`](skills/hallmark/SKILL.md) + [`references/`](skills/hallmark/references/) into:
 
 - **Claude Code**: `~/.claude/skills/hallmark/`
 - **Cursor**: `.cursor/rules/hallmark.mdc` (body of `SKILL.md`, no frontmatter)
 - **Codex**: `~/.codex/skills/hallmark/` (personal) or `.codex/skills/hallmark/` (project-scoped)
+- **GitHub Copilot**: `.github/skills/hallmark/` or `.agents/skills/hallmark/` (project-scoped), `~/.copilot/skills/hallmark/` (personal)
 
 The rule-set lives in [`SKILL.md`](skills/hallmark/SKILL.md) and [`references/`](skills/hallmark/references/). Worked examples in [`docs/recipes.md`](docs/recipes.md) and [`docs/study-examples.md`](docs/study-examples.md).
 
