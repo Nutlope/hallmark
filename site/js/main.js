@@ -139,7 +139,7 @@ const COPY = {
   specimen: {
     eyebrow: "A design skill",
     title: HERO_TITLE,
-    lede: "Hallmark is a skill for Claude Code, Cursor, and Codex. It encodes the anti-slop consensus — typography, colour, layout, motion, interaction — into one holistic ruleset your AI assistant will actually follow.",
+    lede: "Hallmark is a skill for Claude Code, Cursor, Codex, and GitHub Copilot. It encodes the anti-slop consensus — typography, colour, layout, motion, interaction — into one holistic ruleset your AI assistant will actually follow.",
     ctaLabel: "01 ⁄ Install",
     proofLabel: "Proof",
     proofA: "21 macrostructures · 50 archetypes",
@@ -503,7 +503,7 @@ const COPY = {
   hum: {
     eyebrow: "A design skill",
     title: "Make your AI agent a designer.",
-    lede: "The anti-slop design skill for Claude Code, Cursor, and Codex. Twenty themes with real structural variety, and a 57-gate check before anything ships.",
+    lede: "The anti-slop design skill for Claude Code, Cursor, Codex, and GitHub Copilot. Twenty themes with real structural variety, and a 57-gate check before anything ships.",
     ctaLabel: "Install",
     proofLabel: "What's inside",
     proofA: "21 page-shapes · 50 archetypes",
