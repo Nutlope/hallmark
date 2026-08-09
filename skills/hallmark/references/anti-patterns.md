@@ -120,6 +120,14 @@ A hero video that auto-plays with audio. Browsers block it anyway, but intent ma
 
 **Fix.** `fetchpriority="high"` and `preload="metadata"` on the LCP element. Lazy-load only below-the-fold media.
 
+### Rainbow dashboard charts
+
+A dashboard or metrics panel that paints every series a different saturated hue (classic categorical rainbow), uses 3D or exploded pies, dual Y-axes without a stated reason, gradient-filled bars, or a dense grid of identical chart cards. Often paired with invented `+47%` deltas and ALL-CAPS legend labels.
+
+**Why it fails.** Charts are half of every analytics surface, and the rainbow/3D/dual-axis stack is the fastest "this was generated" read after the purple hero. Magnitude is hard to compare; colour stops meaning anything past four series.
+
+**Fix.** Load [`data-viz.md`](data-viz.md). One question per chart; small multiples over dense singles; sequential or diverging ramps from the theme accent; ≤ 4 categorical colours (accent + tinted neutrals); no 3D; dual axes only when the user supplies both series and the comparison. Honest numbers only (gate 46). Every chart needs a text alternative (table or summary).
+
 ---
 
 ## Major (looks AI-generated)

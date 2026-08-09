@@ -22,7 +22,7 @@ What's next.
 
 **Tactile-rebellion reference.** Controlled imperfection — handmade textures, hand-drawn SVG paths, controlled-jitter typography (a 0.5° tilt on one mark is taste; on every word it's chaos). Where the field is going.
 
-**Charts reference for analytics pages.** AI-generated charts are an obvious tell — rainbow palettes, dense gridlines, 3D donuts, dual-axis line spaghetti. Add a `data-viz.md` that picks small multiples over single dense charts, restrains colour to one accent + neutrals, and bans the worst types outright. Half of every dashboard is chart-shaped, and Hallmark currently has nothing to say about it.
+**Charts reference for analytics pages.** ~~AI-generated charts are an obvious tell — rainbow palettes, dense gridlines, 3D donuts, dual-axis line spaghetti. Add a `data-viz.md` that picks small multiples over single dense charts, restrains colour to one accent + neutrals, and bans the worst types outright. Half of every dashboard is chart-shaped, and Hallmark currently has nothing to say about it.~~ **Done** — see [`skills/hallmark/references/data-viz.md`](skills/hallmark/references/data-viz.md) (wired from `SKILL.md` load-conditionally + `anti-patterns.md`).
 
 **Multi-page coherence.** The structural-variety rule is correct for variety, wrong for brand consistency inside a multi-page product. Lock the brand axes (type, colour, divider language); vary the page-voice axes (heading placement, body composition, button voice). Different *pages* of the same site, not different *sites*.
 
