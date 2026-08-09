@@ -31,5 +31,6 @@
   },
   "scripts": {
     "serve": "python3 -m http.server --directory site 4173"
-  }
+  },
+  "packageManager": "pnpm@11.7.0"
 }
