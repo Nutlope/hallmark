@@ -29,16 +29,14 @@ jobs:
       # The mechanically checkable slop-test gates, run over the committed
       # examples. Hard gates fail the build; advisories report.
       #
-      # NOTE: intentionally NOT gating on the historical examples yet — they
-      # carry 61 known hard failures (see tools/verify/gates.mjs commit). The
-      # baseline below only stops NEW regressions; ratchet down as examples
-      # are fixed.
-      - name: gates (regression baseline)
+      # The examples were brought to 0 hard failures on 2026-08-12 (they
+      # carried 61); the baseline is 0 and must never be raised.
+      - name: gates (examples must stay clean)
         run: |
           node tools/verify/gates.mjs site/examples > gates-report.txt || true
           tail -2 gates-report.txt
           HARD=$(grep -oE '[0-9]+ hard failure' gates-report.txt | grep -oE '[0-9]+')
-          BASELINE=61
+          BASELINE=0
           echo "hard failures: $HARD (baseline: $BASELINE)"
           if [ "$HARD" -gt "$BASELINE" ]; then
             echo "::error::gate regressions: $HARD hard failures exceeds the $BASELINE baseline"
