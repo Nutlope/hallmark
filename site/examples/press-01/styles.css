@@ -568,7 +568,8 @@ img, svg { display: block; max-width: 100%; }
 }
 .poem__title {
   font-family: var(--font-body);
-  font-style: italic;
+  font-style: normal;
+  font-weight: 600;
   font-size: var(--text-lg);
   color: var(--color-ink);
 }

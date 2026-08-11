@@ -231,9 +231,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   font-variation-settings: "wdth" 75, "opsz" 96;
 }
 
-.hero-title em {
+.hero-title em,
+.hero-title .em {
   font-family: var(--font-italic);
-  font-style: italic;
+  font-style: normal;
   font-weight: 300;
   color: var(--color-accent);
   letter-spacing: -0.02em;
@@ -676,9 +677,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   font-variation-settings: "wdth" 80, "opsz" 96;
 }
 
-.picks-head h2 em {
+.picks-head h2 em,
+.picks-head h2 .em {
   font-family: var(--font-italic);
-  font-style: italic;
+  font-style: normal;
   font-weight: 300;
   color: var(--color-accent);
   font-variation-settings: normal;
@@ -774,7 +776,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 .pick-title small {
   font-family: var(--font-italic);
-  font-style: italic;
+  font-style: normal;
   font-weight: 300;
   font-size: 0.65em;
   color: var(--color-ink-mute);
@@ -876,8 +878,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 .stage h3 {
   font-family: var(--font-italic);
-  font-style: italic;
-  font-weight: 400;
+  font-style: normal;
+  font-weight: 600;
   font-size: var(--text-xl);
   letter-spacing: -0.01em;
   margin: 0;
@@ -972,9 +974,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   font-variation-settings: "wdth" 80, "opsz" 96;
 }
 
-.final-cta h2 em {
+.final-cta h2 em,
+.final-cta h2 .em {
   font-family: var(--font-italic);
-  font-style: italic;
+  font-style: normal;
   font-weight: 300;
   color: var(--color-accent);
   font-variation-settings: normal;

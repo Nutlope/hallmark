@@ -55,15 +55,18 @@ button:focus-visible { outline: 1.5px solid var(--color-focus); outline-offset: 
 .eyebrow .ord { color: var(--color-accent); opacity: 1; }
 .eyebrow .dot-mid { color: var(--color-rule-2); opacity: 1; }
 
-/* Verb landmark: permanent accent-2 colour + underline draws in once. No italics. */
-em {
+/* Verb landmark: permanent accent-2 colour + underline draws in once. No italics.
+   .pivot is the in-heading variant (gate 38a: no <em>/<i> inside h1–h6). */
+em,
+.pivot {
   font-style: normal;
   font-weight: 400;
   color: var(--color-accent-2);
   position: relative;
   white-space: nowrap;
 }
-em::after {
+em::after,
+.pivot::after {
   content: "";
   position: absolute;
   left: 0.05em; right: 0.05em; bottom: 0.04em;
@@ -77,7 +80,7 @@ em::after {
   to   { transform: scaleX(1); }
 }
 @media (prefers-reduced-motion: reduce) {
-  em::after { animation: none; }
+  em::after, .pivot::after { animation: none; }
 }
 
 /* Buttons */
