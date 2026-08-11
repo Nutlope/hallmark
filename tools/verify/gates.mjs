@@ -58,9 +58,25 @@ for (const [dir, { html, css }] of [...pages].sort()) {
   const rawCss = css.map((f) => readFileSync(f, 'utf8').replace(/\r\n/g, '\n')).join('\n') + '\n' + inlineCss;
   const rules = parseCss(rawCss);
 
-  // Custom properties defined anywhere in the page, for one-level var() resolution.
+  // Custom properties for one-level var() resolution — respecting selector
+  // applicability. A [data-paper="dark"] block only applies when the document
+  // actually carries that attribute; naive last-write-wins would let a brand
+  // file's dark-paper overrides shadow the light values on a light page and
+  // fail B1 on a page a browser renders correctly.
+  const appliesToDocument = (sel) => {
+    for (const [, attr, val] of sel.matchAll(/\[([\w-]+)(?:="([^"]*)")?\]/g)) {
+      const needle = val === undefined ? `${attr}` : `${attr}="${val}"`;
+      if (!htmlText.includes(needle)) return false;
+    }
+    const cls = sel.match(/^\.([\w-]+)/)?.[1];
+    if (cls && !new RegExp(`class="[^"]*\\b${cls}\\b`).test(htmlText)) return false;
+    return true;
+  };
   const customProps = new Map();
-  for (const rule of rules) for (const d of rule.decls) if (d.prop.startsWith('--')) customProps.set(d.prop, d.value);
+  for (const rule of rules) {
+    if (!rule.selectors.some(appliesToDocument)) continue;
+    for (const d of rule.decls) if (d.prop.startsWith('--')) customProps.set(d.prop, d.value);
+  }
 
   const classNames = new Set();
   for (const m of htmlText.matchAll(/class="([^"]*)"/g)) for (const c of m[1].split(/\s+/)) if (c) classNames.add(c);
