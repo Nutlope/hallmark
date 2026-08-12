@@ -22,6 +22,7 @@ html {
   color: var(--color-ink-2);
   scroll-behavior: smooth;
   font-synthesis-weight: none;
+  overflow-x: clip;
   /* clean cool paper + hairlines — no background pattern */
 }
 @media (prefers-reduced-motion: reduce) {
@@ -34,7 +35,7 @@ body {
   font-weight: var(--weight-body);
   text-rendering: optimizeLegibility;
   font-feature-settings: "kern" 1, "liga" 1, "cv05" 1;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 code, kbd, pre { font-family: var(--font-mono); }

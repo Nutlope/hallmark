@@ -21,8 +21,8 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-body {
-  overflow-x: hidden;
+html, body {
+  overflow-x: clip;
 }
 
 a { color: inherit; text-decoration: none; }
@@ -166,7 +166,7 @@ img { max-width: 100%; display: block; }
   font-weight: 800;
   font-variation-settings: "wdth" 110, "wght" 800;
   font-size: var(--text-marquee);
-  line-height: 0.82;
+  line-height: 1.02;
   letter-spacing: -0.005em;
   margin: 0;
   text-transform: uppercase;
@@ -306,7 +306,7 @@ img { max-width: 100%; display: block; }
   font-size: var(--text-3xl);
   text-transform: uppercase;
   letter-spacing: 0.02em;
-  line-height: 0.92;
+  line-height: 1.05;
   margin: 0 0 var(--space-sm);
   color: var(--color-ink);
 }
@@ -375,7 +375,7 @@ img { max-width: 100%; display: block; }
   font-size: var(--text-display);
   text-transform: uppercase;
   letter-spacing: 0.02em;
-  line-height: 0.86;
+  line-height: 1.03;
   margin: 0 0 var(--space-md);
   color: var(--color-ink);
 }
@@ -454,11 +454,12 @@ img { max-width: 100%; display: block; }
   font-size: var(--text-display);
   text-transform: uppercase;
   letter-spacing: 0.02em;
-  line-height: 0.86;
+  line-height: 1.03;
   margin: 0;
   color: var(--color-ink);
 }
-.formats__head h2 em {
+.formats__head h2 em,
+.formats__head h2 .word--accent-2 {
   font-style: normal;
   color: var(--color-accent-2);
 }
@@ -519,7 +520,7 @@ img { max-width: 100%; display: block; }
   font-size: var(--text-2xl);
   text-transform: uppercase;
   letter-spacing: 0.02em;
-  line-height: 0.9;
+  line-height: 1.04;
   margin: 0;
 }
 .format__copy {
@@ -597,7 +598,7 @@ img { max-width: 100%; display: block; }
   font-size: clamp(2.5rem, 6vw + 1rem, 5.5rem);
   text-transform: uppercase;
   letter-spacing: 0.02em;
-  line-height: 0.86;
+  line-height: 1.03;
   margin: 0;
   text-wrap: balance;
   max-width: 18ch;
@@ -659,7 +660,7 @@ img { max-width: 100%; display: block; }
   text-transform: uppercase;
   letter-spacing: 0.02em;
   margin: 0 0 var(--space-md);
-  line-height: 0.9;
+  line-height: 1.04;
 }
 .foot__copy {
   margin: 0;

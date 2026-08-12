@@ -275,8 +275,9 @@ input, select { font: inherit; color: inherit; }
   color: var(--color-ink);
   text-wrap: balance;
 }
-.hero__h1 em {
-  font-style: italic;
+.hero__h1 em,
+.hero__h1 .em {
+  font-style: normal;
   color: var(--color-accent);
   font-weight: 800;
 }
@@ -287,7 +288,8 @@ input, select { font: inherit; color: inherit; }
   line-height: 1.4;
 }
 .hero__sub em {
-  font-style: italic;
+  font-style: normal;
+  font-weight: 500;
   color: var(--color-ink);
 }
 
@@ -508,8 +510,9 @@ input, select { font: inherit; color: inherit; }
   max-width: 18ch;
   text-wrap: balance;
 }
-.section__title em {
-  font-style: italic;
+.section__title em,
+.section__title .em {
+  font-style: normal;
   color: var(--color-accent);
 }
 .section__lede {
@@ -782,7 +785,8 @@ input, select { font: inherit; color: inherit; }
   letter-spacing: var(--track-display);
   text-wrap: balance;
 }
-.news__h em { font-style: italic; color: var(--color-accent); }
+.news__h em,
+.news__h .em { font-style: normal; color: var(--color-accent); }
 .news__p {
   color: var(--color-ink-soft);
   font-size: var(--text-md);

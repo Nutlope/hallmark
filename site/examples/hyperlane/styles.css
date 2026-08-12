@@ -354,9 +354,9 @@ a { color: inherit; text-decoration: none; }
 .hero__line:nth-child(2) { animation-delay: 160ms; }
 .hero__line:nth-child(3) { animation-delay: 260ms; }
 
-.hero__line em {
+.hero__line strong {
   font-family: var(--font-accent);
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
   font-size: 1.18em;
   letter-spacing: -0.02em;
@@ -985,7 +985,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .footer__statement em {
-  font-style: italic;
+  font-style: normal;
   color: var(--color-accent);
   font-weight: 600;
 }

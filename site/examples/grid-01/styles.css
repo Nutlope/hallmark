@@ -3,9 +3,9 @@
 /* Hallmark · direction contract: a wayfinding manual a poster artist got hold of; every band carries one constructed object on a visible 12-column grid; the single red plate is the only loud move */
 
 :root {
-  --color-paper: oklch(99% 0.003 255);
-  --color-paper-2: oklch(97.2% 0.003 255);
-  --color-paper-3: oklch(94.5% 0.004 255);
+  --color-paper: oklch(99% 0.005 255);
+  --color-paper-2: oklch(97.2% 0.005 255);
+  --color-paper-3: oklch(94.5% 0.006 255);
   --color-ink: oklch(16% 0.010 255);
   --color-muted: oklch(43% 0.012 255);
   --color-rule: oklch(88% 0.006 255);
