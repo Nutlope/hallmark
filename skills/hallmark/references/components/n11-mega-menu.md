@@ -1,7 +1,7 @@
 ### N11 · Mega-menu panel
 A standard top bar whose triggers open a **full-width multi-column panel** — icon · title · description per item, grouped under column headers, often with a promoted feature card on one side. The page dims behind a scrim. Vercel "Products", Figma "Products", Notion "Resources".
 *Use when:* the brand has many destinations that need grouping + explanation (a platform with 6+ products, or docs/resources hubs). The payload is the design problem, not the bar.
-*Don't confuse with:* N1b (small single-column dropdowns); N1a (no dropdowns at all).
+*Don't confuse with:* N1b (small single-column dropdowns); N1 (no dropdowns at all).
 
 ```html
 <header class="nav">

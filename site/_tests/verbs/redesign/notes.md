@@ -69,4 +69,4 @@ The `studied: no · context: redesign` flag tells the next Hallmark run that the
 
 The audit recommended `redesign` over `refine` because the page's structural fingerprint *was* the slop. `refine` would have left the centered-hero + 3-card + gradient-CTA shape intact — fixing the colour tokens and easings, but the page would still look AI-generated. `redesign` was the right call.
 
-If the user had said "I love the shape, just fix the colours" → `refine` (see [`../refine/`](../refine/)). If they say "throw it out, keep my words" → `redesign` (this page). The two verbs have surgical-vs-restructural roles, and the audit decides which.
+If the user had said "I love the shape, just fix the colours" → `refine`. If they say "throw it out, keep my words" → `redesign` (this page). The two verbs have surgical-vs-restructural roles, and the audit decides which.

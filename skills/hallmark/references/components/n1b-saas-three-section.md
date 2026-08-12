@@ -1,7 +1,7 @@
 ### N1b · Canonical SaaS three-section
 Wordmark hard-left · a centred cluster of 4–6 links (some opening hover dropdowns) · a sign-in text link + filled CTA hard-right. The dominant marketing-nav of 2024–26 (Stripe, Linear, Vercel, Figma, Notion, PostHog). The structural opposite of N1's *minimal* two-link variant — this one is dense and balanced.
 *Use when:* a SaaS / product / dev-tool page with several real destinations and a clear primary action. The default reach for modern-minimal and (Hum-styled) playful product pages.
-*Don't confuse with:* N1a (wordmark + 2 links, no centre cluster); N5 (detached pill); N11 (mega-menu panels, not small dropdowns).
+*Don't confuse with:* N1 (wordmark + 2 links, no centre cluster); N5 (detached pill); N11 (mega-menu panels, not small dropdowns).
 
 ```html
 <header class="nav"><div class="nav__inner">
@@ -31,5 +31,5 @@ Wordmark hard-left · a centred cluster of 4–6 links (some opening hover dropd
 
 **Knobs** — *Centre links:* 3 · 4 · 5–6 · *Dropdowns:* none · 1 · 2 · *Scroll state:* frost-on-scroll (default) · always-solid · transparent-fixed · *CTA pair:* sign-in + fill · fill only.
 *Scroll behaviour (default):* transparent at rest over the hero, frosts (blur backdrop + hairline border + soft shadow) past ~24px, and tightens height ~8px. Always rAF-throttle the scroll handler.
-*Anti-pattern:* don't let the centre cluster collide with brand/CTA — if it can't sit centred with breathing room, drop to 3 links or route to N1a. Never ship a dropdown that opens on click only with no hover/focus affordance.
+*Anti-pattern:* don't let the centre cluster collide with brand/CTA — if it can't sit centred with breathing room, drop to 3 links or route to N1. Never ship a dropdown that opens on click only with no hover/focus affordance.
 *Mobile:* hide `.nav__center` below ~900px; brand + CTA (or hamburger) remain.
