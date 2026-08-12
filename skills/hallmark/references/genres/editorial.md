@@ -10,7 +10,7 @@ Default. Pick editorial when the brief does not name a specialised aesthetic —
 
 ## Themes that belong
 
-`Specimen`, `Newsprint`, `Atelier`, `Garden`, `Almanac`, `Studio`, `Riso`, `Sport`, `Brutal`, `Manifesto`, `Editorial`, `Carnival`. Twelve themes — plenty of variety inside the genre.
+`Specimen`, `Newsprint`, `Atelier`, `Garden`, `Almanac`, `Studio`, `Riso`, `Sport`, `Brutal`, `Manifesto`, `Editorial`, `Carnival`, `Grid`. Thirteen themes — plenty of variety inside the genre.
 
 `Carnival` is the loud-maximalist editorial register — Dropout TV / Fly.io / Stones Throw / Third Man Records. Duo-tone accent system (mustard + oxblood), chunky variable display, decorative ornaments, hard-offset shadows. The loud sibling to Riso / Manifesto / Brutal.
 
