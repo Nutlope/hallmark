@@ -63,13 +63,17 @@ for (const [dir, { html, css }] of [...pages].sort()) {
   // actually carries that attribute; naive last-write-wins would let a brand
   // file's dark-paper overrides shadow the light values on a light page and
   // fail B1 on a page a browser renders correctly.
+  // Match against the MARKUP only: a page that inlines its CSS contains the
+  // literal selector text (e.g. data-paper="dark") inside <style>, which must
+  // not count as the document carrying that attribute.
+  const markupOnly = htmlText.replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, '');
   const appliesToDocument = (sel) => {
     for (const [, attr, val] of sel.matchAll(/\[([\w-]+)(?:="([^"]*)")?\]/g)) {
       const needle = val === undefined ? `${attr}` : `${attr}="${val}"`;
-      if (!htmlText.includes(needle)) return false;
+      if (!markupOnly.includes(needle)) return false;
     }
     const cls = sel.match(/^\.([\w-]+)/)?.[1];
-    if (cls && !new RegExp(`class="[^"]*\\b${cls}\\b`).test(htmlText)) return false;
+    if (cls && !new RegExp(`class="[^"]*\\b${cls}\\b`).test(markupOnly)) return false;
     return true;
   };
   const customProps = new Map();
