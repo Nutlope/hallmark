@@ -4,9 +4,9 @@
 
 ## Verbs loaded
 
-- [`anti-patterns.md`](../../../skills/hallmark/references/anti-patterns.md) — the named-tells library to score against
-- [`structure.md`](../../../skills/hallmark/references/structure.md) — for the structural-fingerprint check (gate 9)
-- [`microinteractions.md`](../../../skills/hallmark/references/microinteractions.md) — the timing/easing canon
+- [`anti-patterns.md`](../../../../skills/hallmark/references/anti-patterns.md) — the named-tells library to score against
+- [`structure.md`](../../../../skills/hallmark/references/structure.md) — for the structural-fingerprint check (gate 9)
+- [`microinteractions.md`](../../../../skills/hallmark/references/microinteractions.md) — the timing/easing canon
 
 (No write paths. `audit` does not edit.)
 

@@ -467,7 +467,7 @@ button, input, select { font: inherit; color: inherit; }
   margin: var(--space-sm) 0 0;
 }
 
-.section-head__title em { font-family: var(--font-italic); font-weight: 400; color: var(--color-accent); font-style: italic; }
+.section-head__title .em { font-family: var(--font-italic); font-weight: 400; color: var(--color-accent); font-style: normal; }
 
 .section-head__desc {
   font-size: var(--text-md);
@@ -1017,7 +1017,7 @@ button, input, select { font: inherit; color: inherit; }
   margin-inline: auto;
 }
 
-.cta__title em { font-family: var(--font-italic); font-weight: 400; font-style: italic; color: var(--color-companion); }
+.cta__title .em { font-family: var(--font-italic); font-weight: 400; font-style: normal; color: var(--color-companion); }
 
 .cta__sub {
   color: color-mix(in oklch, var(--color-paper-0) 75%, transparent);
@@ -1044,7 +1044,7 @@ button, input, select { font: inherit; color: inherit; }
   margin: 0 0 var(--space-2xl);
 }
 
-.footer__statement em { font-family: var(--font-italic); font-weight: 400; font-style: italic; color: var(--color-accent); }
+.footer__statement em { font-family: var(--font-italic); font-weight: 400; font-style: normal; color: var(--color-accent); }
 
 .footer__row {
   display: grid;

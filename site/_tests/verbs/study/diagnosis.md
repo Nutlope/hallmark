@@ -4,10 +4,10 @@
 
 ## References loaded
 
-- [`study.md`](../../../skills/hallmark/references/study.md) — the vision-extraction protocol + structured-fields schema + refusal heuristics
-- [`study-examples.md`](../../../skills/hallmark/references/study-examples.md) — three worked examples (Pentagram-style portfolio, Klim-specimen, Rauno-personal)
-- [`macrostructures.md`](../../../skills/hallmark/references/macrostructures.md) — to name the page-shape
-- [`component-cookbook.md`](../../../skills/hallmark/references/component-cookbook.md) — to name the hero / pitch / footer archetypes
+- [`study.md`](../../../../skills/hallmark/references/study.md) — the vision-extraction protocol + structured-fields schema + refusal heuristics
+- [`study-examples.md`](../../../../docs/study-examples.md) — three worked examples (Pentagram-style portfolio, Klim-specimen, Rauno-personal)
+- [`macrostructures.md`](../../../../skills/hallmark/references/macrostructures.md) — to name the page-shape
+- [`component-cookbook.md`](../../../../skills/hallmark/references/component-cookbook.md) — to name the hero / pitch / footer archetypes
 
 ## Diagnosis (10 structured fields)
 
@@ -33,7 +33,7 @@
 
 ## Anti-patterns the screenshot has — do NOT carry over
 
-> 1. The hover-state on the number-label uses a slow ease-in-out 800 ms colour fade. Per [`microinteractions.md`](../../../skills/hallmark/references/microinteractions.md) § The timing canon, hover state should be 150–200 ms. **Carry the *idea* (colour-shift on hover); shorten the *duration*.**
+> 1. The hover-state on the number-label uses a slow ease-in-out 800 ms colour fade. Per [`microinteractions.md`](../../../../skills/hallmark/references/microinteractions.md) § The timing canon, hover state should be 150–200 ms. **Carry the *idea* (colour-shift on hover); shorten the *duration*.**
 >
 > 2. The footer text is set at 11 px with 0.06 em tracking — under the 14 px floor for body copy. **Bump to 12–13 px on rebuild, keep the tracking.**
 

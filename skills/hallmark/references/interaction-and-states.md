@@ -173,7 +173,7 @@ The outline starts transparent at 2 px so when the focus ring appears, the box g
 Hallmark output must pass slop-test gates 40–41 before shipping. Compute contrast for every `(color, background-color)` pair on the page. The common failures Hallmark output trips on:
 
 1. **Text on a flipped surface.** `.section--ink { background: var(--color-ink); }` flips the surface dark; nested text still inherits `color: var(--color-ink)` → ink-on-ink. Fix: any rule that sets a dark `background` must *also* set `color: var(--color-paper)` in the same rule.
-2. **Button text on accent fill.** `background: var(--color-accent); color: white;` — but white is 4.5:1 against this accent only if `--color-accent` is dark enough. Use `var(--color-accent-ink)` instead, which the theme guarantees passes ≥ APCA Lc 60.
+2. **Button text on accent fill.** `background: var(--color-accent); color: white;` — but white is 4.5:1 against this accent only if `--color-accent` is dark enough. Use `var(--color-on-accent)` — the token whose job is text ON an accent fill. **Do not use `--color-accent-ink` here**: in every theme token file that token is the accent-as-text-on-paper variant (typically near-identical to the accent itself), and putting it on an accent fill renders the label invisible.
 3. **Muted text on tinted paper.** `color: var(--color-muted); background: var(--color-paper-3);` — both mid-lightness, often falls below 4.5:1. Use `--color-neutral` (darker) or lift the background to `--color-paper`.
 4. **Focus ring on accent-coloured button.** `outline: 2px solid var(--color-focus);` on a button whose fill is `--color-accent` — if `--color-focus = --color-accent`, the ring vanishes. Use the contrast pair: `--color-focus` set to a colour with ≥ 3:1 against both the element and the page.
 
@@ -188,7 +188,10 @@ For each `(text-colour, background-colour)` pair the page actually renders:
 
 ### Token contract
 
-Every theme MUST define `--color-accent-ink` — the text colour to use whenever `--color-accent` fills a surface that carries text. The accent-ink colour is verified ≥ APCA Lc 60 against the accent at the time the theme is built. Hallmark code that uses `background: var(--color-accent)` must also set `color: var(--color-accent-ink)`. Falling back to hardcoded `color: white` is a tell — the theme's accent could be a light colour, and white-on-light is the bug.
+Two accent-adjacent text tokens, and they are not interchangeable:
+
+- **`--color-accent-ink`** — the accent used AS text on the paper. Every theme token block in `site/css/tokens.css` defines it this way (a slightly adjusted accent that reads against `--color-paper` — e.g. Almanac's accent is `oklch(38% 0.135 250)` and its accent-ink `oklch(40% 0.13 250)`). It never goes on an accent fill: at those values the pairing is ~1:1.
+- **`--color-on-accent`** — the text colour whenever `--color-accent` fills a surface that carries text, verified ≥ 4.5:1 (≈ APCA Lc 60) against the accent. The themes do not currently ship this token, so any build that fills a surface with the accent must compute one and lift it into the build's token block before use. Falling back to hardcoded `color: white` is a tell — the theme's accent could be a light colour, and white-on-light is the bug.
 
 ### When the surface flips
 

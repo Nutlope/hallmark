@@ -173,4 +173,4 @@ Output: the user's actual name in italic-Fraunces top-left, their demo (e.g. an 
 3. **Refuses the obvious bad sources.** Paid-template-marketplace listings; copy-protected portfolios without permission.
 4. **Always disclosures the substitutions.** When the screenshot's font is paid (Tiempos / Söhne / Druk) and the user hasn't confirmed a licence, the skill names a free understudy (Fraunces / Inter Tight / Bricolage Grotesque) and *says it's substituting*.
 
-These three examples cover the most common categories of `study` request: an editorial portfolio, a type-specimen statement page, and a small personal site. The protocol is the same for every screenshot — refuse-or-proceed, diagnose, confirm, build. See [`study.md`](study.md) for the full protocol.
+These three examples cover the most common categories of `study` request: an editorial portfolio, a type-specimen statement page, and a small personal site. The protocol is the same for every screenshot — refuse-or-proceed, diagnose, confirm, build. See [`study.md`](../skills/hallmark/references/study.md) for the full protocol.

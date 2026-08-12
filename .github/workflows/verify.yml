@@ -1,0 +1,51 @@
+name: verify
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Every relative markdown link resolves. The skill's runtime is
+      # "read the index, load only the picks" — a broken link is a failed
+      # file read mid-build.
+      - name: links
+        run: node tools/verify/links.mjs
+
+      # Counted claims (gate totals, theme totals, gate allowlists, version)
+      # match the artifacts they describe.
+      - name: counts
+        run: node tools/verify/counts.mjs
+
+      # The mechanically checkable slop-test gates, run over the committed
+      # examples. Hard gates fail the build; advisories report.
+      #
+      # The examples were brought to 0 hard failures on 2026-08-12 (they
+      # carried 61); the baseline is 0 and must never be raised.
+      - name: gates (examples must stay clean)
+        run: |
+          node tools/verify/gates.mjs site/examples > gates-report.txt || true
+          tail -2 gates-report.txt
+          HARD=$(grep -oE '[0-9]+ hard failure' gates-report.txt | grep -oE '[0-9]+')
+          BASELINE=0
+          echo "hard failures: $HARD (baseline: $BASELINE)"
+          if [ "$HARD" -gt "$BASELINE" ]; then
+            echo "::error::gate regressions: $HARD hard failures exceeds the $BASELINE baseline"
+            exit 1
+          fi
+
+      - name: gates report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gates-report
+          path: gates-report.txt

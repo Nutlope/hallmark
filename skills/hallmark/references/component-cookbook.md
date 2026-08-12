@@ -71,7 +71,7 @@ The same macrostructure (e.g., Bento Grid) can be built from many different comb
 
 ### Navigation
 
-- **N1 (N1a) · Wordmark 2 links** — Top-of-page bar: wordmark on the left, two text links on the right ("Pricing" / "Sign in"). No logo image, no menu icon. The *minimal* variant — for the dense canonical SaaS bar use **N1b**. [`components/n1-wordmark-2-links.md`](components/n1-wordmark-2-links.md)
+- **N1 · Wordmark 2 links** — Top-of-page bar: wordmark on the left, two text links on the right ("Pricing" / "Sign in"). No logo image, no menu icon. The *minimal* variant — for the dense canonical SaaS bar use **N1b**. [`components/n1-wordmark-2-links.md`](components/n1-wordmark-2-links.md)
 - **N2 · Floating chip** — A small fixed chip in a corner — wordmark + a single action ("Try it"). Doesn't sit in document flow. [`components/n2-floating-chip.md`](components/n2-floating-chip.md)
 - **N3 · Side rail** — A thin vertical strip on the left edge — wordmark rotated, plus 2–3 dot-indicators for sections. Editorial / portfolio energy. [`components/n3-side-rail.md`](components/n3-side-rail.md)
 - **N4 · Hidden behind k** — No visible nav. The user opens a command palette via `⌘K` to get anywhere. Designed for keyboard-first audiences. [`components/n4-hidden-behind-k.md`](components/n4-hidden-behind-k.md)
@@ -81,7 +81,7 @@ The same macrostructure (e.g., Bento Grid) can be built from many different comb
 - **N8 · Terminal command** — A nav formatted as a CLI prompt: `> studio --catalog --voice --get▮`. The "links" are command flags. The blinking cursor (`▮`) is allowed *only here* (it has purpose — signals "you [`components/n8-terminal-command.md`](components/n8-terminal-command.md)
 - **N9 · Edge aligned minimal** — Wordmark hard-left, single CTA hard-right, vast empty space between, no link row at all. The *absence* is the design — Apple product pages, Carl Hauser, luxury sites. [`components/n9-edge-aligned-minimal.md`](components/n9-edge-aligned-minimal.md)
 - **N10 · Floating on scroll morph** — A sticky bar at the top that **morphs into a floating pill** as the user scrolls past a threshold. Two visual modes share one DOM — `.nav` (outer) owns the bar look, `.nav__inner`  [`components/n10-floating-on-scroll-morph.md`](components/n10-floating-on-scroll-morph.md)
-- **N1b · Canonical SaaS three-section** — Wordmark-left · centred 4–6-link cluster (some with hover dropdowns) · sign-in + filled CTA right. The dominant modern marketing nav; frosts on scroll. N1/N1a is the *minimal* two-link variant; this is the dense, balanced one. [`components/n1b-saas-three-section.md`](components/n1b-saas-three-section.md)
+- **N1b · Canonical SaaS three-section** — Wordmark-left · centred 4–6-link cluster (some with hover dropdowns) · sign-in + filled CTA right. The dominant modern marketing nav; frosts on scroll. N1 is the *minimal* two-link variant; this is the dense, balanced one. [`components/n1b-saas-three-section.md`](components/n1b-saas-three-section.md)
 - **N11 · Mega-menu panel** — Top bar whose triggers open a full-width multi-column panel (icon · title · description per item, grouped, + a feature card); page dims behind a scrim. For platforms/hubs with many grouped destinations. [`components/n11-mega-menu.md`](components/n11-mega-menu.md)
 - **N12 · Announcement banner + retracting nav** — A coloured promo banner stacked above one real nav; banner retracts on scroll-down, returns on scroll-up, dismisses via ×. Banner ≠ second nav (colour contrast keeps them distinct). [`components/n12-banner-retract.md`](components/n12-banner-retract.md)
 - **N13 · Inline ⌘K search pill** — A visible search pill in the bar (placeholder + `⌘K` hint) opening a spotlight modal with grouped, keyboard-navigable results. The *visible* opposite of N4. For search/docs-heavy products. [`components/n13-inline-cmdk-pill.md`](components/n13-inline-cmdk-pill.md)
@@ -172,17 +172,17 @@ When you pick an archetype, **state the knob values you chose** in the macrostru
 
 | Genre / cluster | Default nav | Acceptable also |
 | --- | --- | --- |
-| editorial (Newsprint · Garden · Atelier · Carnival · …) | **N6 Masthead** | N1a, N9, N12 |
+| editorial (Newsprint · Garden · Atelier · Carnival · …) | **N6 Masthead** | N1, N9, N12 |
 | modern-minimal (Coral · Cobalt) | **N1b SaaS three-section** | N5, N11, N13, N9 |
 | atmospheric (Bloom · Aurora · Midnight · Lumen) | **N5 Floating pill** (blur backdrop sells the mood) | N9, N4, N13, N1b |
 | playful (Hum) | **N1b SaaS three-section** | N5, N11, N12, N13, N7 (rounded) |
 | terminal / CLI (Terminal) | **N8 Terminal command** | N4 ⌘K-only, N13 |
-| docs / reference (Almanac) | **N3 Side-rail** | N13, N1a, N4 |
+| docs / reference (Almanac) | **N3 Side-rail** | N13, N1, N4 |
 | commerce / product launch | **N12 Banner + retract** | N1b, N11, N9 |
 
 **Diversification — state it out loud, every build.** Across consecutive Hallmark runs in the same project session (and across multiple test builds of the *same theme*), no two outputs may share the same nav archetype. Before writing nav markup, write one line: *"Previous nav: <X>. This build: <Y>, because <reason>."* This is the same accountability step as the macrostructure rotation. **A theme with 4 test builds should show 4 different navs** — e.g. Hum across Curio/Sprout/Tally/Mixtape uses N5 → N1b → N12 → N13. Reaching for the genre *default* on every build is exactly the failure this rule exists to prevent; rotate through the "Acceptable also" column deliberately.
 
-**Default away from N1a.** The most-recognised AI fingerprint is N1a (wordmark + inline link row + button-right) used reflexively. For a real product nav reach for **N1b** (the dense, balanced canonical bar) or N5/N11/N13 first; reach for N1a only when the page genuinely has 2 destinations.
+**Default away from N1.** The most-recognised AI fingerprint is N1 (wordmark + inline link row + button-right) used reflexively. For a real product nav reach for **N1b** (the dense, balanced canonical bar) or N5/N11/N13 first; reach for N1 only when the page genuinely has 2 destinations.
 
 ---
 

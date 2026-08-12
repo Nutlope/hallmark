@@ -10,7 +10,7 @@ Default. Pick editorial when the brief does not name a specialised aesthetic —
 
 ## Themes that belong
 
-`Specimen`, `Newsprint`, `Atelier`, `Garden`, `Almanac`, `Studio`, `Riso`, `Sport`, `Brutal`, `Manifesto`, `Editorial`, `Carnival`. Twelve themes — plenty of variety inside the genre.
+`Specimen`, `Newsprint`, `Atelier`, `Garden`, `Almanac`, `Studio`, `Riso`, `Sport`, `Brutal`, `Manifesto`, `Editorial`, `Carnival`, `Grid`. Thirteen themes — plenty of variety inside the genre.
 
 `Carnival` is the loud-maximalist editorial register — Dropout TV / Fly.io / Stones Throw / Third Man Records. Duo-tone accent system (mustard + oxblood), chunky variable display, decorative ornaments, hard-offset shadows. The loud sibling to Riso / Manifesto / Brutal.
 
@@ -56,7 +56,7 @@ Each macrostructure under editorial picks from these opening-line patterns. Imit
 ## Nav and footer voice
 
 - **Default nav:** N6 Newspaper masthead — full-width, large centred wordmark, thin issue/date row in serif small caps, double-rule below. Reads as broadsheet.
-- **Acceptable also:** N1a Wordmark + 2 links (when destinations are minimal); N9 Edge-aligned minimal (when the page is letter-shaped or atelier-quiet).
+- **Acceptable also:** N1 Wordmark + 2 links (when destinations are minimal); N9 Edge-aligned minimal (when the page is letter-shaped or atelier-quiet).
 - **Default footer:** Ft1 Mast-headed (wordmark anchors a single horizontal band, tagline + small links beside).
 - **Acceptable also:** Ft2 Inline single line; Ft4 Dense colophon (newsprint / almanac voices); Ft6 Letter close (atelier / garden / personal); Ft7 Newsletter-first (when the brand legitimately publishes).
 - **Banned for editorial:** N5 Floating pill (modern-minimal vocabulary), N7 Brutal slab (fights the restraint), Ft8 Marquee scroll (kinetic; wrong genre).
