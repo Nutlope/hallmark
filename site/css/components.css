@@ -542,7 +542,7 @@
   outline-offset: 2px;
 }
 
-.theme-dropdown__dot[aria-pressed="true"] {
+.theme-dropdown__dot[aria-selected="true"] {
   border-color: var(--color-ink);
   box-shadow: 0 0 0 2px var(--color-paper), 0 0 0 3px var(--color-ink);
 }

@@ -752,10 +752,10 @@ const ordinalEl   = document.querySelector("[data-theme-ordinal]");
 const themeKeys   = Object.keys(THEMES);
 const totalThemes = themeKeys.length;
 
-function setPressed(theme) {
+function setSelected(theme) {
   dots.forEach((btn) => {
     const active = btn.dataset.themeBtn === theme;
-    btn.setAttribute("aria-pressed", active ? "true" : "false");
+    btn.setAttribute("aria-selected", active ? "true" : "false");
   });
   const themeName = THEMES[theme] || "Specimen";
   const genre = THEME_GENRES[theme] || "editorial";
@@ -779,7 +779,7 @@ function applyTheme(theme) {
   const apply = () => {
     root.dataset.theme = theme;
     swapArchetypes(theme);
-    setPressed(theme);
+    setSelected(theme);
     try { localStorage.setItem(STORAGE_KEY, theme); } catch (e) { }
   };
   if (!reduced && document.startViewTransition) {
@@ -800,11 +800,11 @@ const initial = THEMES[queried] ? queried
     : (root.dataset.theme || "hum");
 
 // First paint — populate slots without a transition (no flash).
-// Run swapArchetypes BEFORE setPressed so the footer template is materialised
-// before setPressed writes the current-theme name into it.
+// Run swapArchetypes BEFORE setSelected so the footer template is materialised
+// before setSelected writes the current-theme name into it.
 root.dataset.theme = initial;
 swapArchetypes(initial);
-setPressed(initial);
+setSelected(initial);
 try { localStorage.setItem(STORAGE_KEY, initial); } catch (e) { }
 
 dots.forEach((btn) => {
