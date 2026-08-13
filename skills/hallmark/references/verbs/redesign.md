@@ -219,7 +219,7 @@ For each target page:
 
 ### 4. Diversification rule — INVERTED for multi-page
 
-Across pages of the same app, the diversification rule is *inverted*: consecutive pages MUST share theme, accent, type pairing. They may differ on macrostructure within the family. The 58 slop-test gates that check "differs from previous Hallmark run" are skipped for `designed-as-app` outputs — the system overrides the catalog rotation here.
+Across pages of the same app, the diversification rule is *inverted*: consecutive pages MUST share theme, accent, type pairing. They may differ on macrostructure within the family. The 57 slop-test gates that check "differs from previous Hallmark run" are skipped for `designed-as-app` outputs — the system overrides the catalog rotation here.
 
 Pages that drift from `design.md` are slop. The audit verb flags `design.md` drift as a critical structural finding (`stamp-vs-design.md disagreement`).
 
