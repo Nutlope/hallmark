@@ -1040,14 +1040,14 @@ dots.forEach((btn) => {
     lastConfirmed = root.dataset.theme;
     clearTimeout(previewTimer);
     previewTimer = setTimeout(() => {
+      // Theme changed mid-hover (T/R or a click) — keep the real name.
+      if (root.dataset.theme !== lastConfirmed) return;
       if (currentLabel) currentLabel.textContent = THEMES[btn.dataset.themeBtn];
     }, 80);
   });
   btn.addEventListener("mouseleave", () => {
     clearTimeout(previewTimer);
-    if (currentLabel && root.dataset.theme === lastConfirmed) {
-      currentLabel.textContent = THEMES[lastConfirmed];
-    }
+    if (currentLabel) currentLabel.textContent = THEMES[root.dataset.theme];
   });
 });
 
