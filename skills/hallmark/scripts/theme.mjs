@@ -344,6 +344,10 @@ async function photos() {
   if (!subjects.length) { usage(); process.exit(2); }
   const n = Math.max(1, Number(flag('n', 3)) || 3);
   const orient = flag('orient', '');
+  if (orient && !['landscape', 'portrait', 'square'].includes(orient)) {
+    console.error('--orient must be one of: landscape, portrait, square');
+    process.exit(2);
+  }
   const slug = flag('theme', '');
   let header = null, treat = { css: '', bad: [] };
   if (slug) {
