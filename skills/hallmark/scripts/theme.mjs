@@ -92,8 +92,18 @@ function addLog() {
   if (!entry.prompt && entry.brief) { entry.prompt = entry.brief; delete entry.brief; }
   const missing = [...(composed ? ['shape', 'axes', 'hero', 'nav', 'footer', 'imagery', 'entry', 'fingerprint', 'sections', 'signature'] : []), ...(entry.depth === 'polish' ? [] : ['theme']), 'prompt'].filter((k) => !entry[k]);
   if (entry.photos && !Array.isArray(entry.photos)) { console.error('photos is the list of photo ids the page used'); process.exit(2); }
-  if (existsSync(file)) { try { JSON.parse(readFileSync(file, 'utf8')); } catch { console.error(`${file} is not valid JSON; fix it or move it aside, nothing was written`); process.exit(1); } }
-  const next = [entry, ...readLog(file)].slice(0, 20);
+  let previous = [];
+  if (existsSync(file)) {
+    let saved;
+    try { saved = JSON.parse(readFileSync(file, 'utf8')); }
+    catch { console.error(`${file} is not valid JSON; fix it or move it aside, nothing was written`); process.exit(1); }
+    previous = Array.isArray(saved) ? saved : saved && saved.runs;
+    if (!Array.isArray(previous) || previous.some((run) => !run || typeof run !== 'object' || Array.isArray(run))) {
+      console.error(`${file} must contain an array of log entries or an object with a runs array; fix it or move it aside, nothing was written`);
+      process.exit(1);
+    }
+  }
+  const next = [entry, ...previous].slice(0, 20);
   mkdirSync(dirname(file), { recursive: true });
   const tmp = `${file}.${process.pid}.tmp`;
   writeFileSync(tmp, JSON.stringify(next, null, 1) + '\n');
