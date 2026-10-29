@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync, renameSync } from 'node:fs';
-import { join, dirname, basename, resolve } from 'node:path';
+import { join, dirname, basename, resolve, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash, randomBytes } from 'node:crypto';
 
@@ -416,7 +416,7 @@ async function photos() {
   for (const r of result) {
     console.log(`\n"${r.subject}"${r.picks.length ? '' : ': nothing in the library fits; try other words (the place, the material, the action), or leave a slot for the user\'s photo'}`);
     for (const p of r.picks) {
-      const src = p.saved || thumbOf(p, p.sizes.includes(1280) ? 1280 : p.sizes[p.sizes.length - 1]);
+      const src = p.saved ? relative(process.cwd(), p.saved).split(sep).map(encodeURIComponent).join('/') : thumbOf(p, p.sizes.includes(1280) ? 1280 : p.sizes[p.sizes.length - 1]);
       const set = p.saved ? '' : ` srcset="${p.sizes.map((w) => `${thumbOf(p, w)} ${w}w`).join(', ')}"`;
       const pos = p.fp ? ` style="object-position: ${Math.round(p.fp[0] * 100)}% ${Math.round(p.fp[1] * 100)}%"` : '';
       console.log(`  ${p.subject} · ${p.w}x${p.h} ${p.orient} · ${p.tone}, ${p.temp}${p.people !== 'none' ? `, ${p.people}` : ''}${p.match === 'partial' ? ` · partial match, no ${p.missing.join(', ')}` : ''}${p.error ? ` · not saved: ${p.error}` : ''}`);

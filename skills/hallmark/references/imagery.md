@@ -34,7 +34,7 @@ It ranks the library for each subject, steers away from the photos the last five
 - **Never write an image URL from memory or take one from a stock site** (Unsplash, Pexels and Pixabay bar AI-driven selection in their terms). Use only what the script printed or the user supplied (76).
 - **Credit every library photo:** one line in the footer marked `data-credits` (the word budget skips it), *Photographs:* then each printed credit, in the footer's small style. CC BY and CC BY-SA require it (76).
 - **Size and crop in CSS:** keep the printed `srcset`, set `sizes` to the layout (`50vw` for a half, `100vw` full-bleed), and crop with the frame: `aspect-ratio` on the slot, `object-fit: cover`, the printed `object-position` (or your own) to keep the subject in frame.
-- **For production,** `--save <dir>` downloads the picks into the project and prints local paths; drafts may link the Commons thumbnails.
+- **For production,** `--save <dir>` downloads the picks into the project. Its printed HTML uses URLs relative to the working directory, for a page served from the project root; JSON keeps absolute filesystem paths. Drafts may link the Commons thumbnails.
 - **The hero photograph is the LCP:** `fetchpriority="high"`, never `loading="lazy"`; every other image is lazy. A full-bleed or hero frame takes a photo 2400px or more on its long side; a smaller one goes soft at 1920.
 - **A stand-in stays swappable:** in its slot (§ 3), with `data-alt` naming what the user's own picture should show, listed in the handoff.
 - **No Node:** say so in the Picks block and use slots with the user's material only; never guess a file.
