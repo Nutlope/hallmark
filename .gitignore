@@ -40,8 +40,11 @@ build/
 skills-lock.json
 .agents/
 
-# Local agent / preview tooling config (Claude Code, etc.), not skill source
-.claude/
+# Local agent / preview tooling config (Claude Code, etc.), not skill source.
+# .claude/skills/ is kept: it links Hallmark in so Claude Code sessions on
+# this repo (cloud included) load it as /hallmark.
+.claude/*
+!.claude/skills/
 
 # Local leftover from the old test thumbnails, never published.
 site/_tests/_thumbs/hum-02.jpg
