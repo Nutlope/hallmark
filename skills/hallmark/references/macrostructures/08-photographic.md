@@ -9,6 +9,8 @@ Huge photographs lead the page. Text is small annotation, not headline. The desi
 - **Image:** the whole point: full-bleed, edge to edge, from the user; library photographs in slots until theirs arrive (`imagery.md` § 2).
 - **Reveal:** no spatial motion; the photographs do the work.
 
+**Fingerprint:** `Bottom-aligned|Full-bleed with margin reset|Negative space|Typographic only|Full-bleed|None`
+
 Reach for it for fashion, hospitality, photography portfolios, lifestyle commerce, any brand whose product is a feeling.
 
 Avoid when the subject has nothing to photograph.

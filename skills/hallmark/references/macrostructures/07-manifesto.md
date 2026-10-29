@@ -9,6 +9,8 @@ Polemical large type. The page tells the reader what to believe before it tells 
 - **Image:** none when the cause is an idea; when it is physical (repair, housing, a river), photographs of it in the theme's treatment, one a screen at most.
 - **Reveal:** one horizontal sweep, on the first claim below the fold; the rest is simply there.
 
+**Fingerprint:** `Centred display|Single column|Bleed-colour block|Solid|None|Horizontal sweep`
+
 Reach for it for repositioning announcements, mission-led indie products, a studio's beliefs page.
 
 Avoid for checkout, pricing or a product tour. Manifesto sells agreement; a call to show up, sign or join is its one action.

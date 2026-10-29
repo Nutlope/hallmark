@@ -9,6 +9,8 @@ Diptych. Every major block divides the screen, text on one side, proof on the ot
 - **Image:** on the proof side in every row: a real capture, or the product built in a slot (`imagery.md` § 4).
 - **Reveal:** the hero's two halves fade in once, 60 to 100ms apart; the rows below are simply there.
 
+**Fingerprint:** `Hanging|Two-column asymmetric|Negative space|Outlined|Margin-aligned|Fade-up stagger`
+
 Reach for it for SaaS feature pages, developer tools that pair explanation with code, anything where every claim wants a visual proof.
 
 Avoid for narrative or photographic brands. Split halves the attention; some pages need one focus.

@@ -9,6 +9,8 @@ Real product captures are the primary content. The page is a guided tour of the 
 - **Image:** the real capture, unframed, in a `<figure>`; until the user supplies it, the product built in a `data-slot` (`imagery.md` § 4). No browser or device chrome (47a, 47b).
 - **Reveal:** one type-unmask, on the first caption; the captures load instantly and the rest is simply there.
 
+**Fingerprint:** `Hanging|Single column|Negative space|Solid|Inline with the text|Type-unmask`
+
 Reach for it for SaaS, developer tools, editor extensions, anywhere seeing the product in use is the sale.
 
 Avoid when the product is conceptual or services-led. Workbench needs a UI to show.

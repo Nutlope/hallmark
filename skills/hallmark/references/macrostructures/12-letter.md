@@ -9,6 +9,8 @@ First-person, written, intimate. Opens with a greeting. Reads as a personal note
 - **Image:** one signature scan, or a quiet inline photograph, or nothing.
 - **Reveal:** none.
 
+**Fingerprint:** `Inline with the body|Single column|Negative space|Unstyled link|Inline with the text|None`
+
 Reach for it for personal brands, indie founder announcements, sabbatical or pivot pages, donation appeals.
 
 Avoid for transactional commerce. Letter is intimate; commerce is functional.

@@ -272,8 +272,73 @@ for (const f of themeFiles) {
   }
 }
 
-const exemplarDir = join(ROOT, 'scripts', 'fixtures', 'exemplars');
-const clean = [...(existsSync(exemplarDir) ? readdirSync(exemplarDir).filter((n) => n.endsWith('.html')).map((n) => join(exemplarDir, n)) : []),
+// The fingerprint: six axes, the vocabulary each answers in, and the twenty-one shapes that state one.
+// The tool reads the vocabulary out of theme.mjs and the shapes out of their files; macrostructures.md
+// writes the same vocabulary in prose. Keep the three in step, or gate 32 measures a ruler nobody else has.
+
+// A line of prose holds its list in the first sentence; a parenthesis or a backtick may hold a dot.
+function listSentence(text) {
+  let depth = 0, code = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (c === '`') { code = !code; continue; }
+    if (code) continue;
+    if (c === '(') { depth++; continue; }
+    if (c === ')') {
+      depth = Math.max(0, depth - 1);
+      if (depth === 0 && text[i + 1] === '.' && text[i + 2] === ' ' && /[A-Z]/.test(text[i + 3] || '')) return text.slice(0, i + 1);
+      continue;
+    }
+    if (c === '.' && depth === 0) {
+      if (i === text.length - 1) return text.slice(0, i + 1);
+      if (text[i + 1] === ' ' && /[A-Z]/.test(text[i + 2] || '')) return text.slice(0, i + 1);
+    }
+  }
+  return text;
+}
+
+function docAxes(src) {
+  const out = [];
+  for (const m of src.matchAll(/^\*\*\d\. ([^*]+)\.\*\* (.+)$/gm)) {
+    const values = listSentence(m[2]).split(' · ').map((v) => v.split(' (')[0].replace(/\.$/, '').trim()).filter(Boolean);
+    out.push({ axis: m[1].trim().toLowerCase(), values, at: m.index });
+  }
+  return out;
+}
+
+const macroDir = join(ROOT, 'references', 'macrostructures');
+const macroMd = join(ROOT, 'references', 'macrostructures.md');
+if (existsSync(macroDir) && existsSync(macroMd)) {
+  const macroSrc = read(macroMd);
+  const codeAxes = [...theme.matchAll(/\{ key: '([a-z]+)', values: \[([^\]]*)\] \}/g)].map((m) => ({ key: m[1], values: [...m[2].matchAll(/'([^']+)'/g)].map((x) => x[1]) }));
+  const docAxisList = docAxes(macroSrc);
+  if (codeAxes.length !== 6) add('error', join(ROOT, 'scripts', 'theme.mjs'), 1, 'fingerprint', `the tool reads ${codeAxes.length} fingerprint axes, not six`);
+  if (docAxisList.length !== 6) add('error', macroMd, 1, 'fingerprint', `macrostructures.md reads ${docAxisList.length} fingerprint axes, not six`);
+  for (const ax of codeAxes) {
+    const doc = docAxisList.find((d) => d.axis.startsWith(ax.key));
+    if (!doc) { add('error', macroMd, 1, 'fingerprint', `the tool reads a ${ax.key} axis, which macrostructures.md does not name`); continue; }
+    if (doc.values.join(' | ') !== ax.values.join(' | ')) add('error', macroMd, lineAt(macroSrc, doc.at), 'fingerprint', `the ${ax.key} axis differs: the tool reads ${ax.values.join(', ')}; macrostructures.md says ${doc.values.join(', ')}`);
+  }
+  const macroFiles = readdirSync(macroDir).filter((f) => /^\d\d-.*\.md$/.test(f));
+  if (macroFiles.length !== 21) add('error', macroDir, 1, 'fingerprint', `${macroFiles.length} shape files, not twenty-one`);
+  for (const f of macroFiles) {
+    const path = join(macroDir, f);
+    const src = read(path);
+    if (!macroSrc.includes(`macrostructures/${f}`)) add('error', macroMd, 1, 'fingerprint', `the index does not list ${f}`);
+    const m = /^\*\*Fingerprint:\*\*\s*`([^`]+)`/m.exec(src);
+    if (!m) { add('error', path, 1, 'fingerprint', 'the shape states no fingerprint, so the tool cannot keep clear of a repeat'); continue; }
+    const values = m[1].split('|').map((v) => v.trim());
+    if (values.length !== 6) { add('error', path, lineAt(src, m.index), 'fingerprint', `the fingerprint states ${values.length} choices, not six`); continue; }
+    codeAxes.forEach((ax, i) => { if (!ax.values.includes(values[i])) add('error', path, lineAt(src, m.index), 'fingerprint', `${ax.key} "${values[i]}" is not in the vocabulary: ${ax.values.join(', ')}`); });
+  }
+  const pool = (/shapes:\s*\{[\s\S]*?\n  \},/.exec(theme) || [])[0];
+  for (const m of (pool || '').matchAll(/'([^']+)'/g)) {
+    const name = m[1];
+    if (!macroFiles.some((f) => new RegExp(`^##\\s*\\d+\\s*·\\s*${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*$`, 'm').test(read(join(macroDir, f))))) add('error', join(ROOT, 'scripts', 'theme.mjs'), 1, 'fingerprint', `the draw can deal "${name}", which has no shape file in references/macrostructures`);
+  }
+}
+
+const exemplarDir = join(ROOT, 'scripts', 'fixtures', 'exemplars');const clean = [...(existsSync(exemplarDir) ? readdirSync(exemplarDir).filter((n) => n.endsWith('.html')).map((n) => join(exemplarDir, n)) : []),
   ...['eyebrow-pass', 'tailwind-pass'].map((n) => join(ROOT, 'scripts', 'fixtures', n)).filter(existsSync)];
 for (const target of clean) {
   const run = spawnSync(process.execPath, [join(ROOT, 'scripts', 'sloplint.mjs'), target, '--json'], { encoding: 'utf8' });

@@ -9,6 +9,8 @@ The hero is a quote the user supplied, with its attribution. The headline is som
 - **Image:** the real person's photograph or the company's mark beside the attribution, or nothing.
 - **Reveal:** none in the fold; below the fold may stagger.
 
+**Fingerprint:** `Bottom-aligned|Single column|Ornament|Typographic only|Margin-aligned|Fade-up stagger`
+
 Reach for it for B2B products with strong customer voices, agency case-study pages, fundraising sites, anywhere "people like me use this" is the unlock.
 
 Avoid when the user has not supplied the quote. The quote is the user's, verbatim, with the name, role and company as given, or the shape does not ship (46a). Never write one, never paraphrase one.

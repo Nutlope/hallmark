@@ -9,6 +9,8 @@ Bold questions, prompt answers. The page reads like an honest interview with the
 - **Image:** sparse; at most one diagram per long answer.
 - **Reveal:** none on load; a disclosure opens over `--dur-long` with `--ease-out` on `grid-template-rows` from `0fr` to `1fr`.
 
+**Fingerprint:** `Inline with the body|Single column|Hairline rule|Typographic only|None|None`
+
 Reach for it near pricing, for products that meet scepticism, for regulated or educational fields.
 
 As the primary page it opens with a hero that asks the first question; otherwise it pairs with another shape that opens the page.

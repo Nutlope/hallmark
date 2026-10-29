@@ -9,6 +9,8 @@ The typeface is the design. Foundry pages and design systems where a custom face
 - **Image:** none; the typography is the imagery.
 - **Reveal:** one type-unmask, on the first specimen as it paints; the rest is simply there.
 
+**Fingerprint:** `Hanging|Single column|Negative space|Outlined|None|Type-unmask`
+
 Reach for it for type foundries, design systems where a custom face is the differentiator, font product pages.
 
 Avoid when the brand uses an off-the-shelf face. Type Specimen needs something distinctive to celebrate.

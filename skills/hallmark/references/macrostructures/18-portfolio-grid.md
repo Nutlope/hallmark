@@ -9,6 +9,8 @@ Filterable cards of projects. Studio and designer homepages where the work is th
 - **Image:** a thumbnail per card, from the user's work; until it arrives, the projects are set in type with one slot at most (68).
 - **Reveal:** card fade on filter change.
 
+**Fingerprint:** `Hanging|Three equal columns|Negative space|Unstyled link|Tightly cropped to the grid|Fade-up stagger`
+
 Reach for it for design studios, agencies, photographer portfolios, any creative business where the work is the pitch.
 
 Avoid for products. Portfolio Grid is a service-business shape.

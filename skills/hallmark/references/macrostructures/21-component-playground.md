@@ -9,6 +9,8 @@ Interactive code-and-preview blocks are the page's primary content. Each block p
 - **Image:** the previews are the imagery; one photograph band of the real machines or setting at most.
 - **Reveal:** none.
 
+**Fingerprint:** `Hanging|Single column|Hairline rule|Outlined|Inline with the text|None`
+
 Reach for it for design systems, component libraries, snippet sites, framework documentation.
 
 Avoid for marketing pages. Playground is utility, not pitch.

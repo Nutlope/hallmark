@@ -9,6 +9,8 @@ The hero is a figure the user gave, with the line that says what it means. Every
 - **Image:** charts and data-viz per [`../data-viz.md`](../data-viz.md); product photographs only in the slots the user asked for.
 - **Reveal:** number-tick on the hero figure, from 0 to the target over `--dur-long`, legal only because the figure is real; the markup holds the final figure, so it reads with scripting off and under reduced motion (62).
 
+**Fingerprint:** `Bottom-aligned|Single column|Hairline rule|Outlined|Inline with the text|Number-tick`
+
 Reach for it when the prompt says "we have proof in numbers": enterprise and B2B, fundraising, climate and impact pages.
 
 Avoid when the user has not given a number. Every figure on this page is the user's, with its unit and its source (46a); a bare figure with no worded line fails 46b. A fake big number is worse than no number.
