@@ -80,7 +80,7 @@ Hallmark never starts on a design that already exists unless you name it:
 /hallmark audit ./index.html
 ```
 
-A full redesign keeps the content and the wiring and changes the system and the layout; say *keep the layout* for a restyle or *polish* for only the tells. `sloplint --before` records every link, field, handler and heading first, `sloplint --kept` fails the redesign if one went missing, and the handoff is a side-by-side before and after.
+A full redesign keeps the content and the wiring and changes the system and the layout; say *keep the layout* for a restyle or *polish* for only the tells. `sloplint --before` records every link, field, handler and heading first, `sloplint --kept` fails the redesign if one went missing, and the handoff is a side-by-side before and after. If a requested browser render fails or cannot run, `--before` exits 2 and preserves any existing `before.json`; rerun after fixing the render.
 
 ## Install
 
