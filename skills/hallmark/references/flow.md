@@ -52,7 +52,7 @@ A dashboard, an admin, a settings page, a tool: a screen someone works in rather
 
 What takes their place:
 
-- **The theme lends its palette, its faces, its radius and its surfaces,** never its layout, navigation or ornament. One family is often right, and a familiar sans or a system face is allowed here; the type scale is fixed, at a ratio of 1.125 to 1.2, with no fluid heads and no display face on labels, buttons or data (`theme.mjs scaffold --scope app` writes that scale and a stamp without the page's fields).
+- **The theme lends its palette, its faces, its radius and its surfaces,** never its layout, navigation or ornament. One family is often right, and a familiar sans or a system face is allowed here; the type scale is fixed, at a ratio of 1.125 to 1.2, with no fluid heads and no display face on labels, buttons or data (`theme.mjs scaffold <slug> --scope app` writes that scale and a stamp without the page's fields).
 - **Colour is restrained.** The accent marks the primary action, the current selection and state, nothing else; a second neutral carries sidebars, toolbars and panels.
 - **The shell is the project's own.** A new one is a top bar; a sidebar is earned by more than about seven destinations, never reached for by reflex, and it collapses to a menu under 60rem. Standard patterns (tabs, breadcrumbs, a command palette) beat invented ones, and a modal is the last answer, after inline editing and disclosure.
 - **Density is the design.** Controls 32 to 40px with a 44px hit target, one container recipe, tables before cards (a table may run wider than any prose measure), and `craft.md` § 9 for controls, inputs, tables and stat rows.
