@@ -49,6 +49,7 @@ if (has("--remove") && !existsSync(settingsPath)) {
 const settings = readSettings();
 if (!settings || typeof settings !== "object" || Array.isArray(settings)) { console.error(`refusing to rewrite ${settingsPath}: it is not a JSON object`); process.exit(1); }
 settings.hooks ??= {};
+if (typeof settings.hooks !== "object" || Array.isArray(settings.hooks)) { console.error(`refusing to rewrite ${settingsPath}: hooks is not a JSON object`); process.exit(1); }
 settings.hooks.PostToolUse ??= [];
 if (!Array.isArray(settings.hooks.PostToolUse)) { console.error(`refusing to rewrite ${settingsPath}: hooks.PostToolUse is not a list`); process.exit(1); }
 // Write beside the file and rename over it, so a crash never leaves settings.json half written.
