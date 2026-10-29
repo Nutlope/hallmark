@@ -13,6 +13,8 @@ jobs:
           node-version: 20
       - name: References, gates, fixtures, versions and links agree
         run: node skills/hallmark/scripts/refcheck.mjs
+      - name: Image generation cache regressions
+        run: node --test skills/hallmark/scripts/fixtures/imagegen/imagegen.test.mjs
       - name: Every theme validates
         run: node skills/hallmark/scripts/theme.mjs validate skills/hallmark/references/themes/*.md
       - name: The theme index is current
