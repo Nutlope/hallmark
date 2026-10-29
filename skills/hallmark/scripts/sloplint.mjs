@@ -4139,6 +4139,7 @@ for (const [key, ctx] of contexts) {
 }
 
 let renderNotRun = null;
+let renderFailed = false;
 let domInventories = {};
 if (opts.render) {
   const isShell = (f) => { try { const x = readFileSync(f, 'utf8'); return /<script\b[^>]*type\s*=\s*["']module["'][^>]*\bsrc\s*=\s*["'][^"']+\.(?:tsx?|jsx?|mjs|vue|svelte)["']/i.test(x); } catch { return false; } };
@@ -4148,6 +4149,7 @@ if (opts.render) {
     const mod = await import(new URL('./sloplint-render.mjs', import.meta.url).href);
     const extra = await mod.renderCheck([...htmlFiles, ...opts.urls], { genre: opts.genre, postureByFile, heroPostureByFile, photoShapeByFile, jobByFile, stage: opts.stage, selectors: opts.before || opts.kept ? Object.fromEntries([...new Set(contexts.flatMap(([, c]) => c.docs))].filter((d) => d.kind === 'html').map((d) => [d.file, scriptSelectors(d)])) : {}, scope: opts.scope === 'app' || [...waiversByKey.values()].some((x) => x.APPSCREEN) ? 'app' : opts.scope, before: opts.before });
     domInventories = extra.inventories || {};
+    renderFailed = !!extra.failed?.length;
     const allWaivers = { WAIVED: new Set([...waiversByKey.values()].flatMap((x) => [...x.WAIVED])), ANSWERED: new Set([...waiversByKey.values()].flatMap((x) => [...x.ANSWERED])), DISMISSED: new Set([...waiversByKey.values()].flatMap((x) => [...(x.DISMISSED || [])])), VERBATIM: [...waiversByKey.values()].some((x) => x.VERBATIM), APPSCREEN: [...waiversByKey.values()].some((x) => x.APPSCREEN), LAYOUT_KEPT: [...waiversByKey.values()].map((x) => x.LAYOUT_KEPT).find(Boolean) || false };
     for (const f of extra) {
       const w = /^https?:/.test(f.file) ? allWaivers : (waiversByKey.get(f.file) || waiversByKey.get(dirname(f.file)));
@@ -4164,6 +4166,11 @@ if (opts.render) {
   } catch (e) {
     renderNotRun = e.message;
   }
+}
+
+if (opts.before && opts.render && (renderNotRun || renderFailed)) {
+  console.error('sloplint: before inventory not recorded: the requested render was incomplete; fix it and rerun. Any existing before.json is unchanged.');
+  process.exit(2);
 }
 
 const SNAP = join(process.cwd(), '.hallmark', 'before.json');
