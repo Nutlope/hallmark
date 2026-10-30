@@ -19,3 +19,6 @@ jobs:
         run: |
           node skills/hallmark/scripts/theme.mjs index
           git diff --exit-code -- skills/hallmark/references/themes/index.json
+
+      - name: Hue checks reject invalid angles
+        run: node --test skills/hallmark/scripts/hue-validation.test.mjs
