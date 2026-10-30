@@ -102,9 +102,12 @@
   }))));
   const warm = () => D.forEach(fetchPair);
   if ('requestIdleCallback' in window) requestIdleCallback(warm, { timeout: 3000 }); else setTimeout(warm, 1500);
+  let selection = 0;
   HM.tabs(document.querySelector('[data-cmp-tabs]'), (n) => {
+    const generation = ++selection;
     const p = D[n];
     const swap = (srcs) => {
+      if (generation !== selection) return;
       bare.src = srcs[0] || `assets/cmp/${p.id}-bare-full.webp`; bare.height = p.bareH;
       hm.src = srcs[1] || `assets/cmp/${p.id}-hallmark-full.webp`; hm.height = p.hmH;
       bare.alt = `Without Hallmark: the whole ${p.label.toLowerCase()} page Opus 5.5 on low effort built from the prompt alone.`;
@@ -112,11 +115,12 @@
       fBare.textContent = say(p.bare); fHm.textContent = say(p.hm);
       pair = p; fit();
     };
-    if (reduce.matches) { fetchPair(p).then(swap); return; }
+    if (reduce.matches) { stage.classList.remove('is-swap'); fetchPair(p).then(swap); return; }
     stage.classList.add('is-swap');
     Promise.all([fetchPair(p), new Promise((r) => setTimeout(r, 180))]).then(([srcs]) => {
+      if (generation !== selection) return;
       swap(srcs);
-      Promise.all([bare, hm].map((im) => (im.decode ? im.decode().catch(() => {}) : null))).then(() => stage.classList.remove('is-swap'));
+      Promise.all([bare, hm].map((im) => (im.decode ? im.decode().catch(() => {}) : null))).then(() => { if (generation === selection) stage.classList.remove('is-swap'); });
     });
   });
 })();
