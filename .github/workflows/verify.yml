@@ -19,3 +19,6 @@ jobs:
         run: |
           node skills/hallmark/scripts/theme.mjs index
           git diff --exit-code -- skills/hallmark/references/themes/index.json
+
+      - name: Comparison tabs preserve the latest selection
+        run: node --test site/js/compare.test.mjs
