@@ -4,6 +4,10 @@ on:
   schedule:
     - cron: "0 8 * * 1"
   workflow_dispatch:
+    inputs:
+      taste_base:
+        description: "Commit base de taste-skill a usar en esta ejecución (solo para pruebas; vacío = el de env)"
+        required: false
 
 permissions:
   contents: read
@@ -13,7 +17,7 @@ env:
   HALLMARK_REPO: Nutlope/hallmark
   HALLMARK_BRANCH: main
   TASTE_REPO: Leonxlnx/taste-skill
-  TASTE_BASE: 12af471f627f866411b4bd785b19646d3672784c
+  TASTE_BASE: ${{ inputs.taste_base || '12af471f627f866411b4bd785b19646d3672784c' }}
   TASTE_FILES: |
     skills/taste-skill/references/app-screens.md
     skills/taste-skill/references/critique.md
