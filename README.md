@@ -56,11 +56,11 @@ The gates come in tiers. The **Floor** never ships (contrast, focus, reduced mot
   </tr>
 </table>
 
-Ten of the fifty. A theme is a material, not a plan: it never says what a page contains or in what order, so two prompts in one theme make two different pages. Each is one file of at most 8 KB in [`references/themes/`](skills/hallmark/references/themes/) with a picture beside it; a build reads exactly one. See them all at [usehallmark.com](https://www.usehallmark.com).
+Ten of the fifty. A theme is a material, not a plan: it never says what a page contains or in what order, so two prompts in one theme make two different pages. Each is one file of at most 8 KB in [`references/themes/`](skills/ms-web-design/references/themes/) with a picture beside it; a build reads exactly one. See them all at [usehallmark.com](https://www.usehallmark.com).
 
 ## Custom
 
-Say **custom** and Hallmark drops the themes: no plan, no components, no palette recipe, only the floor, the gates and a short direction in [`direction.md`](skills/hallmark/references/direction.md) to find one idea that only this client has and let it run the page.
+Say **custom** and Hallmark drops the themes: no plan, no components, no palette recipe, only the floor, the gates and a short direction in [`direction.md`](skills/ms-web-design/references/direction.md) to find one idea that only this client has and let it run the page.
 
 ## How a build runs
 
@@ -99,8 +99,8 @@ npx skills add nutlope/hallmark -g
 
 - **One harness only:** `npx skills add nutlope/hallmark -g --agent claude-code` (or `codex`, `opencode`, `cursor`, `github-copilot`).
 - **As a Claude Code plugin:** `/plugin marketplace add nutlope/hallmark`, then `/plugin install hallmark@hallmark` (invoked as `/hallmark:hallmark`).
-- **From a clone:** `node skills/hallmark/scripts/install.mjs` validates every theme and reference before it copies; `install-hook.mjs` adds an edit-time Floor check to Claude Code.
-- **Lint any page:** `node skills/hallmark/scripts/sloplint.mjs <file-or-dir> --render`.
+- **From a clone:** `node skills/ms-web-design/scripts/install.mjs` validates every theme and reference before it copies; `install-hook.mjs` adds an edit-time Floor check to Claude Code.
+- **Lint any page:** `node skills/ms-web-design/scripts/sloplint.mjs <file-or-dir> --render`.
 - **If it does not fire on its own,** name it: *use hallmark to build ...*.
 
 ## Inspired by
@@ -111,4 +111,4 @@ npx skills add nutlope/hallmark -g
 
 MIT. Use it, fork it, ship it.
 
-The photo library (`skills/hallmark/scripts/photos.json`) lists photographs hosted on Wikimedia Commons and holds no image files. Each keeps its own licence (CC0, public domain, CC BY or CC BY-SA), and Hallmark credits every one it uses on the page. It does not use stock sites (Unsplash, Pexels, Pixabay), whose terms bar AI tools from picking their images.
+The photo library (`skills/ms-web-design/scripts/photos.json`) lists photographs hosted on Wikimedia Commons and holds no image files. Each keeps its own licence (CC0, public domain, CC BY or CC BY-SA), and Hallmark credits every one it uses on the page. It does not use stock sites (Unsplash, Pexels, Pixabay), whose terms bar AI tools from picking their images.

@@ -23,8 +23,8 @@
     "skills"
   ],
   "skill": {
-    "entry": "skills/hallmark/SKILL.md",
-    "references": "skills/hallmark/references",
+    "entry": "skills/ms-web-design/SKILL.md",
+    "references": "skills/ms-web-design/references",
     "harnesses": [
       "claude-code",
       "codex",

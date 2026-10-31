@@ -38,3 +38,8 @@ Al adoptar una versión nueva de cualquiera de las dos fuentes, actualiza el com
 
 | Archivo | Origen | Commit | Cambio |
 |---|---|---|---|
+| `skills/hallmark/` → `skills/ms-web-design/` | Hallmark | `4f6a46c` | Carpeta renombrada; contenido intacto |
+| `skills/ms-web-design/SKILL.md` | Hallmark | `4f6a46c` | `name: hallmark` → `name: ms-web-design` en el frontmatter |
+| `.github/workflows/verify.yml` | Hallmark | `4f6a46c` | Rutas `skills/hallmark` → `skills/ms-web-design` |
+| `README.md` | Hallmark | `4f6a46c` | Rutas del repo `skills/hallmark` → `skills/ms-web-design` (no las rutas de instalación `~/.claude/skills/hallmark`) |
+| `package.json` | Hallmark | `4f6a46c` | `entry` y `references` apuntan a `skills/ms-web-design` |

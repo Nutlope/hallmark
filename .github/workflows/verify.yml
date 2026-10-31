@@ -12,10 +12,10 @@ jobs:
         with:
           node-version: 20
       - name: References, gates, fixtures, versions and links agree
-        run: node skills/hallmark/scripts/refcheck.mjs
+        run: node skills/ms-web-design/scripts/refcheck.mjs
       - name: Every theme validates
-        run: node skills/hallmark/scripts/theme.mjs validate skills/hallmark/references/themes/*.md
+        run: node skills/ms-web-design/scripts/theme.mjs validate skills/ms-web-design/references/themes/*.md
       - name: The theme index is current
         run: |
-          node skills/hallmark/scripts/theme.mjs index
-          git diff --exit-code -- skills/hallmark/references/themes/index.json
+          node skills/ms-web-design/scripts/theme.mjs index
+          git diff --exit-code -- skills/ms-web-design/references/themes/index.json
