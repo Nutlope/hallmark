@@ -611,7 +611,7 @@ function validate(files) {
         if (ls && parseFloat(ls[1]) > 0.045) problems.push(`uppercase tracked ${ls[1]}em in the build hint (gate 67)`);
         else if (!isDisplay && /label|caption|meta|\bth\b|small|tag|chip|badge|nav|count/.test(line)) problems.push(`uppercase label rule in the build hint: ${line.trim().slice(0, 60)} (gate 67)`);
       }
-      const hint = (/## Build hint[\s\S]*?```css\n([\s\S]*?)```/.exec(src) || [])[1] || '';
+      const hint = (/## Build hint[\s\S]*?```css\r?\n([\s\S]*?)```/.exec(src) || [])[1] || '';
       for (const m of hint.matchAll(/(?:transition|animation)[^;{}]*?\b(\d{2,3})ms\b/g)) problems.push(`raw duration ${m[1]}ms in the build hint (use --dur-micro, --dur-short or --dur-long)`);
       if (/(?:transition|animation)[^;{}]*(?<![-\w])ease(?:-in-out|-in|-out)?\b/.test(hint)) problems.push('bare ease keyword in the build hint (use --ease-out, --ease-in or --ease-in-out)');
       for (const m of hint.matchAll(/(?<![-\w])(black|white)\b(?!-)/g)) problems.push(`named colour ${m[1]} in the build hint (route it through a token)`);
