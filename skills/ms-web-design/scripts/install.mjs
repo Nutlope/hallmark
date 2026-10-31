@@ -13,18 +13,18 @@ const PAYLOAD = ["SKILL.md", "LICENSE", "references", "scripts", "agents"];
 const TARGETS = {
   claude: {
     label: "Claude Code",
-    dir: path.join(HOME, ".claude", "skills", "hallmark"),
+    dir: path.join(HOME, ".claude", "skills", "ms-web-design"),
     detect: () => fs.existsSync(path.join(HOME, ".claude")),
   },
   codex: {
     label: "Codex CLI and Cursor",
-    dir: path.join(HOME, ".agents", "skills", "hallmark"),
+    dir: path.join(HOME, ".agents", "skills", "ms-web-design"),
     detect: () => [".codex", ".agents", ".cursor"].some((d) => fs.existsSync(path.join(HOME, d))),
-    legacy: path.join(HOME, ".codex", "skills", "hallmark"),
+    legacy: path.join(HOME, ".codex", "skills", "ms-web-design"),
   },
   opencode: {
     label: "OpenCode",
-    dir: path.join(HOME, ".config", "opencode", "skills", "hallmark"),
+    dir: path.join(HOME, ".config", "opencode", "skills", "ms-web-design"),
     detect: () => fs.existsSync(path.join(HOME, ".config", "opencode")) || fs.existsSync(path.join(HOME, ".opencode")),
   },
 };
@@ -138,4 +138,4 @@ for (const key of picked) {
   }
 }
 
-console.log(`\nDone. Invoke as: /hallmark (Claude Code) · $hallmark (Codex) · /hallmark (Cursor, OpenCode).`);
+console.log(`\nDone. Invoke as: /ms-web-design (Claude Code) · $ms-web-design (Codex) · /ms-web-design (Cursor, OpenCode).`);

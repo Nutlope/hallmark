@@ -50,6 +50,8 @@ Stamp: `/* Hallmark · component: <type> · genre: <genre> · theme: <theme> · 
 
 A dashboard, an admin, a settings page, a tool: a screen someone works in rather than reads. Signals: the prompt says app, dashboard, admin, console, settings or tool; the target sits behind a sign-in; the screen is tables, forms and controls. The bar is earned familiarity: the tool disappears into the task, and someone fluent in the category trusts it at once. The marketing rules step aside: no shape from `macrostructures.md`, no hero or fold, no screen word budget, no section rhythm, no stand-in photographs, no reveal on load. `sloplint --scope app` skips their gates (1, 6, 8, 9, 32, 42, 44, 46b, 58, 59, 66, 68, 77 to 79 and 81 to 83, and F8, F15 and F20) and reads control heights on the app range. Everything else binds, the Floor first: tokens, contrast, focus, states, no eyebrow, no tracked-caps label on a table head, no invented figure.
 
+**ms-web-design:** read `ms-app-screens.md` and the file it guides (taste-skill's measured rules for working screens) before building.
+
 What takes their place:
 
 - **The theme lends its palette, its faces, its radius and its surfaces,** never its layout, navigation or ornament. One family is often right, and a familiar sans or a system face is allowed here; the type scale is fixed, at a ratio of 1.125 to 1.2, with no fluid heads and no display face on labels, buttons or data (`theme.mjs scaffold --scope app` writes that scale and a stamp without the page's fields).

@@ -1,28 +1,27 @@
 {
-  "name": "hallmark",
+  "name": "ms-web-design",
   "owner": {
-    "name": "Nutlope",
-    "url": "https://github.com/Nutlope"
+    "name": "MagicalScreen",
+    "url": "https://github.com/MagicalScreen"
   },
   "metadata": {
-    "description": "Hallmark, the design skill that ends AI slop."
+    "description": "ms-web-design: Sergio's web design skill, based on Hallmark."
   },
   "plugins": [
     {
-      "name": "hallmark",
+      "name": "ms-web-design",
       "source": "./skills",
       "strict": false,
       "skills": [
-        "./hallmark"
+        "./ms-web-design"
       ],
-      "description": "A design skill for Claude Code, Codex, Cursor and OpenCode that refuses to look AI-generated. Powered by Together AI.",
+      "description": "Design skill for new websites and app screens, based on Hallmark (Nutlope/hallmark, MIT) with taste-skill's app-screen rules.",
       "version": "2.0.0",
       "author": {
-        "name": "Nutlope",
-        "url": "https://github.com/Nutlope"
+        "name": "MagicalScreen",
+        "url": "https://github.com/MagicalScreen"
       },
-      "homepage": "https://www.usehallmark.com",
-      "repository": "https://github.com/Nutlope/hallmark",
+      "repository": "https://github.com/MagicalScreen/ms-web-design",
       "license": "MIT",
       "category": "design"
     }

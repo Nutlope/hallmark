@@ -6,6 +6,8 @@ First line: one of `recapture` (a screenshot is missing, blank or shows the wron
 
 Then the findings, ranked by cost to the page, at most eight, one line each: the gate or the plain defect, where it is, what you would do. Not findings: a direction you would not have chosen; what the theme file prescribes or refuses (its blooms, a glow on a theme with none); an element the hero review settled, unless you name a new reason. The theme's picture is the bar for finish and never a model: is this page as finished as that one, in a composition of its own?
 
+**ms-web-design:** before ranking, make the passes in `ms-critica.md` on the screenshots, each on its own; a failed pass is a finding.
+
 Scroll the 1440 full page one screen at a time before ranking: a screen with nothing big enough to be its reason (a head and a line adrift, a narrow column beside an empty half, a section head under 40px, an empty coloured box or a drawn illustration where a photograph or the product should be, a row of counting marks) outranks every detail finding (`layout.md` § 8). Then the copy: name any head that would pass unchanged on a competitor's page (`craft.md` § 6).
 
 Then one answer to the question no gate can: does the stamp's idea or theme describe the page in front of you? Name the largest gap, or say there is none.

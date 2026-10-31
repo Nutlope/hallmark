@@ -15,7 +15,7 @@ function walk(dir, out = []) {
     if (name === 'node_modules' || name === '.hallmark' || name.startsWith('.')) continue;
     const p = join(dir, name);
     const st = statSync(p);
-    if (st.isDirectory()) { if (name !== 'fixtures') walk(p, out); }
+    if (st.isDirectory()) { if (name !== 'fixtures' && name !== 'vendor') walk(p, out); }
     else out.push(p);
   }
   return out;
