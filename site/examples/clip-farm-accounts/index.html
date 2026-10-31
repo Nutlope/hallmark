@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Clip Farm Account Blueprint</title>
+  <meta name="description" content="A practical frontend blueprint for setting up TikTok and Instagram clipping accounts using your ClipFarmBot workflow." />
+  <style>
+    /* Macrostructure: control-room brief with split platform lanes and launch checklist */
+    :root {
+      --bg: #07090f;
+      --panel: #0f1320;
+      --panel-soft: #141a2a;
+      --line: #2a334d;
+      --ink: #e7edf8;
+      --muted: #9aa9c5;
+      --neon: #65e3ff;
+      --magenta: #c58cff;
+      --lime: #7dffb2;
+      --danger: #ff7686;
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      background: radial-gradient(1600px 1200px at 80% -20%, #1a2350 0%, transparent 55%), var(--bg);
+      color: var(--ink);
+      font: 500 16px/1.45 Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    .shell {
+      width: min(1120px, 92vw);
+      margin: 0 auto;
+    }
+
+    .top {
+      padding: 5rem 0 2rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      margin: 0 0 0.9rem;
+      font-size: 0.76rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--neon);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 1.04;
+      max-width: 16ch;
+    }
+
+    .sub {
+      margin: 1.1rem 0 0;
+      max-width: 62ch;
+      color: var(--muted);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin: 1.5rem 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .chip {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 100px;
+      padding: 0.38rem 0.78rem;
+      font-size: 0.78rem;
+      color: #c8d3ea;
+    }
+
+    main {
+      padding: 2.5rem 0 4rem;
+      display: grid;
+      gap: 1.1rem;
+    }
+
+    .grid-two {
+      display: grid;
+      gap: 1.1rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 1.15rem 1.2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .panel h2, .panel h3 {
+      margin: 0;
+      font-size: 1.08rem;
+      letter-spacing: 0.01em;
+    }
+
+    .muted { color: var(--muted); }
+
+    .steps {
+      margin: 0.8rem 0 0;
+      padding-left: 1.2rem;
+    }
+
+    .steps li { margin: 0.42rem 0; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.85rem;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 0.58rem 0.45rem;
+      border-bottom: 1px solid #27324d;
+      vertical-align: top;
+    }
+
+    th {
+      color: #d2dcf3;
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 0.12rem 0.46rem;
+      border-radius: 99px;
+      font-size: 0.73rem;
+      font-weight: 650;
+      letter-spacing: 0.02em;
+      border: 1px solid transparent;
+    }
+
+    .tiktok { color: #8ff3ff; background: #12273f; border-color: #2e6ea2; }
+    .insta { color: #ffc3f0; background: #321a40; border-color: #7e4098; }
+    .high { color: #bdffd7; background: #133328; border-color: #2d7a59; }
+    .mid { color: #ffe8bb; background: #3b2d12; border-color: #8a6830; }
+
+    code, pre {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.82rem;
+    }
+
+    pre {
+      margin: 0.6rem 0 0;
+      padding: 0.75rem;
+      background: #0b0f1c;
+      border: 1px solid #22304b;
+      border-radius: 11px;
+      overflow: auto;
+      color: #c7d9ff;
+    }
+
+    .checks {
+      list-style: none;
+      margin: 0.8rem 0 0;
+      padding: 0;
+      display: grid;
+      gap: 0.48rem;
+    }
+
+    .checks li {
+      border: 1px solid #24314f;
+      border-radius: 11px;
+      padding: 0.55rem 0.7rem;
+      background: var(--panel-soft);
+    }
+
+    .danger { color: var(--danger); font-weight: 600; }
+
+    .foot {
+      padding: 1.2rem 0 3rem;
+      color: #91a3c4;
+      font-size: 0.84rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="shell">
+      <p class="eyebrow">Clip Farm Setup Frontend</p>
+      <h1>TikTok + Instagram Clipping Account Blueprint</h1>
+      <p class="sub">
+        Built from your ClipFarmBot workflow so you can launch a clean, niche-based account farm,
+        post on rhythm, and keep campaign output mapped to the right channels.
+      </p>
+      <ul class="chips">
+        <li class="chip">4 clips / account / day</li>
+        <li class="chip">180 min posting interval</li>
+        <li class="chip">Peak slots: 09:00, 12:00, 17:00, 20:00, 22:00</li>
+        <li class="chip">Niches: music, entertainment, sports, gaming</li>
+        <li class="chip">Clip format: 9:16 vertical</li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="panel">
+      <h2>1) Account architecture (full example: 16 accounts)</h2>
+      <p class="muted">Run 4 accounts per niche: 2 TikTok + 2 Instagram Reels accounts per niche.</p>
+      <table aria-label="Recommended account map">
+        <thead>
+          <tr>
+            <th>Handle Pattern</th>
+            <th>Platform</th>
+            <th>Niche</th>
+            <th>Daily Clips</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>@clips_music_01</td><td><span class="tag tiktok">TikTok</span></td><td>Music</td><td>4</td><td><span class="tag high">High CPM first</span></td></tr>
+          <tr><td>@clips_music_02</td><td><span class="tag tiktok">TikTok</span></td><td>Music</td><td>4</td><td><span class="tag high">High CPM first</span></td></tr>
+          <tr><td>@clips.music.01</td><td><span class="tag insta">Instagram</span></td><td>Music</td><td>4</td><td><span class="tag high">High CPM first</span></td></tr>
+          <tr><td>@clips.music.02</td><td><span class="tag insta">Instagram</span></td><td>Music</td><td>4</td><td><span class="tag high">High CPM first</span></td></tr>
+          <tr><td>@sports_clips_01</td><td><span class="tag tiktok">TikTok</span></td><td>Sports</td><td>4</td><td><span class="tag high">High CPM first</span></td></tr>
+          <tr><td>@sports_clips_02</td><td><span class="tag tiktok">TikTok</span></td><td>Sports</td><td>4</td><td><span class="tag high">High CPM first</span></td></tr>
+          <tr><td>@sports.reels.01</td><td><span class="tag insta">Instagram</span></td><td>Sports</td><td>4</td><td><span class="tag high">High CPM first</span></td></tr>
+          <tr><td>@sports.reels.02</td><td><span class="tag insta">Instagram</span></td><td>Sports</td><td>4</td><td><span class="tag high">High CPM first</span></td></tr>
+          <tr><td>@entertainment_clips_01</td><td><span class="tag tiktok">TikTok</span></td><td>Entertainment</td><td>4</td><td><span class="tag mid">Secondary</span></td></tr>
+          <tr><td>@entertainment_clips_02</td><td><span class="tag tiktok">TikTok</span></td><td>Entertainment</td><td>4</td><td><span class="tag mid">Secondary</span></td></tr>
+          <tr><td>@entertainment.reels.01</td><td><span class="tag insta">Instagram</span></td><td>Entertainment</td><td>4</td><td><span class="tag mid">Secondary</span></td></tr>
+          <tr><td>@entertainment.reels.02</td><td><span class="tag insta">Instagram</span></td><td>Entertainment</td><td>4</td><td><span class="tag mid">Secondary</span></td></tr>
+          <tr><td>@gaming_clips_01</td><td><span class="tag tiktok">TikTok</span></td><td>Gaming</td><td>4</td><td><span class="tag mid">Secondary</span></td></tr>
+          <tr><td>@gaming_clips_02</td><td><span class="tag tiktok">TikTok</span></td><td>Gaming</td><td>4</td><td><span class="tag mid">Secondary</span></td></tr>
+          <tr><td>@gaming.reels.01</td><td><span class="tag insta">Instagram</span></td><td>Gaming</td><td>4</td><td><span class="tag mid">Secondary</span></td></tr>
+          <tr><td>@gaming.reels.02</td><td><span class="tag insta">Instagram</span></td><td>Gaming</td><td>4</td><td><span class="tag mid">Secondary</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="grid-two">
+      <article class="panel">
+        <h3>2) First-day setup sequence</h3>
+        <ol class="steps">
+          <li>Create all handles using one naming system (niche + type + number).</li>
+          <li>Set matching profile photos and short bios by niche.</li>
+          <li>Register accounts in ClipFarmBot so queue rotation can assign clips safely.</li>
+          <li>Run one campaign first, post manually, then scale to batch mode.</li>
+        </ol>
+        <pre>./clipbot accounts add "@clips_music_01" tiktok music
+./clipbot accounts add "@clips_music_02" tiktok music
+./clipbot accounts add "@clips.music.01" instagram music
+./clipbot accounts add "@clips.music.02" instagram music
+./clipbot accounts add "@sports_clips_01" tiktok sports
+./clipbot accounts add "@sports_clips_02" tiktok sports
+./clipbot accounts add "@sports.reels.01" instagram sports
+./clipbot accounts add "@sports.reels.02" instagram sports
+./clipbot accounts add "@entertainment_clips_01" tiktok entertainment
+./clipbot accounts add "@entertainment_clips_02" tiktok entertainment
+./clipbot accounts add "@entertainment.reels.01" instagram entertainment
+./clipbot accounts add "@entertainment.reels.02" instagram entertainment
+./clipbot accounts add "@gaming_clips_01" tiktok gaming
+./clipbot accounts add "@gaming_clips_02" tiktok gaming
+./clipbot accounts add "@gaming.reels.01" instagram gaming
+./clipbot accounts add "@gaming.reels.02" instagram gaming</pre>
+      </article>
+
+      <article class="panel">
+        <h3>3) Posting clock</h3>
+        <p class="muted">Use your current scheduler defaults as the baseline cadence.</p>
+        <table aria-label="Posting rhythm">
+          <thead>
+            <tr><th>Time Slot</th><th>Use Case</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>09:00</td><td>Fresh first drop of the day</td></tr>
+            <tr><td>12:00</td><td>Lunch scroll window</td></tr>
+            <tr><td>17:00</td><td>Commute / after school traffic</td></tr>
+            <tr><td>20:00</td><td>Prime entertainment window</td></tr>
+            <tr><td>22:00</td><td>Late-night engagement burst</td></tr>
+          </tbody>
+        </table>
+      </article>
+    </section>
+
+    <section class="grid-two">
+      <article class="panel">
+        <h3>4) Frontend profile examples (copy/paste setup)</h3>
+        <p class="muted">Use these as your exact profile templates when creating each account.</p>
+        <table aria-label="Profile examples for all accounts">
+          <thead>
+            <tr><th>Handle</th><th>Bio Example</th><th>Content Angle</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>@clips_music_01</td><td>Daily music moments. New viral clips every 3h.</td><td>Live sets, artist moments, hooks</td></tr>
+            <tr><td>@clips_music_02</td><td>Music clip drops all day. Follow for daily bangers.</td><td>Performance cuts, fan reactions</td></tr>
+            <tr><td>@clips.music.01</td><td>Reels for trending music clips and stage highlights.</td><td>Concert snippets, emotional hooks</td></tr>
+            <tr><td>@clips.music.02</td><td>Viral music reels posted daily. Turn notifications on.</td><td>Remix moments, drop reveals</td></tr>
+            <tr><td>@sports_clips_01</td><td>Top goals, knockouts, and game winners every day.</td><td>Goals, comebacks, clutch plays</td></tr>
+            <tr><td>@sports_clips_02</td><td>Sports clips on repeat. Best moments every 3h.</td><td>Underdogs, rivalries, reactions</td></tr>
+            <tr><td>@sports.reels.01</td><td>Sports reels: game-changing moments daily.</td><td>Last-minute winners, celebrations</td></tr>
+            <tr><td>@sports.reels.02</td><td>Fresh sports reels all day. Follow for highlights.</td><td>Big hits, saves, fan angles</td></tr>
+            <tr><td>@entertainment_clips_01</td><td>Internet moments clipped daily. Trending now.</td><td>Celebrity clips, pop-culture hooks</td></tr>
+            <tr><td>@entertainment_clips_02</td><td>Viral entertainment moments every few hours.</td><td>Interviews, funny moments, reveals</td></tr>
+            <tr><td>@entertainment.reels.01</td><td>Reels for trending entertainment clips daily.</td><td>TV moments, crowd reactions</td></tr>
+            <tr><td>@entertainment.reels.02</td><td>Pop culture reels posted throughout the day.</td><td>Red-carpet clips, viral quotes</td></tr>
+            <tr><td>@gaming_clips_01</td><td>Top gaming highlights, fails, and clutches daily.</td><td>Clutches, funny fails, reactions</td></tr>
+            <tr><td>@gaming_clips_02</td><td>Gaming moments that hit hard. New clips all day.</td><td>Speedruns, ranked plays, endings</td></tr>
+            <tr><td>@gaming.reels.01</td><td>Gaming reels with viral moments every day.</td><td>Boss fights, streamer reactions</td></tr>
+            <tr><td>@gaming.reels.02</td><td>Daily gaming reels. Turn on alerts for drop times.</td><td>Patch highlights, meta plays</td></tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article class="panel">
+        <h3>5) Campaign intake and batching</h3>
+        <p class="muted">Fill high-CPM campaigns first, then spread clips across account niches.</p>
+        <pre># edit campaign list
+config/batch_campaigns.txt
+
+# process all active campaigns
+./scripts/batch_run.sh
+
+# review queue before posting
+./clipbot queue status</pre>
+      </article>
+
+      <article class="panel">
+        <h3>6) Launch checklist</h3>
+        <ul class="checks">
+          <li>Each niche has 2 TikTok + 2 Instagram accounts live.</li>
+          <li>Profile bio mentions niche + posting frequency expectation.</li>
+          <li>First 24 clips are queued before public launch.</li>
+          <li>Track which campaign/niche pair gets highest view velocity.</li>
+          <li><span class="danger">Security:</span> move API secrets to environment variables before sharing this setup.</li>
+        </ul>
+      </article>
+    </section>
+  </main>
+
+  <footer class="shell foot">
+    Frontend blueprint generated from your ClipFarmBot defaults: 9:16 clips, 4 clips/account/day,
+    180-minute interval, and niche-based account rotation.
+  </footer>
+</body>
+</html>
