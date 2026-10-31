@@ -1,0 +1,97 @@
+name: upstream-watch
+
+on:
+  schedule:
+    - cron: "0 8 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+env:
+  HALLMARK_REPO: Nutlope/hallmark
+  HALLMARK_BRANCH: main
+  TASTE_REPO: Leonxlnx/taste-skill
+  TASTE_BASE: 12af471f627f866411b4bd785b19646d3672784c
+  TASTE_FILES: |
+    skills/taste-skill/references/app-screens.md
+    skills/taste-skill/references/critique.md
+  LABEL: upstream-sync
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: upstream
+          fetch-depth: 0
+
+      - name: Compare upstream with Hallmark
+        run: |
+          git fetch --quiet "https://github.com/$HALLMARK_REPO.git" "$HALLMARK_BRANCH"
+          {
+            git log --reverse --format="- [\`%h\`](https://github.com/$HALLMARK_REPO/commit/%H) %s" HEAD..FETCH_HEAD
+          } > hallmark-commits.md
+          git diff --name-status HEAD...FETCH_HEAD | sed 's/^/- /' > hallmark-files.md
+          echo "HALLMARK_HEAD=$(git rev-parse --short FETCH_HEAD)" >> "$GITHUB_ENV"
+
+      - name: Compare taste-skill files with their base
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          : > taste.md
+          since=$(gh api "repos/$TASTE_REPO/commits/$TASTE_BASE" --jq .commit.committer.date)
+          while IFS= read -r file; do
+            [ -z "$file" ] && continue
+            new=""
+            while IFS= read -r sha; do
+              { [ -z "$sha" ] || [ "$sha" = "$TASTE_BASE" ]; } && continue
+              # Solo commits posteriores a la base (no ramas paralelas con fecha posterior).
+              [ "$(gh api "repos/$TASTE_REPO/compare/$TASTE_BASE...$sha" --jq .status)" = "ahead" ] || continue
+              msg=$(gh api "repos/$TASTE_REPO/commits/$sha" --jq '.commit.message | split("\n")[0]')
+              new+="  - [\`${sha:0:7}\`](https://github.com/$TASTE_REPO/commit/$sha) $msg"$'\n'
+            done < <(gh api "repos/$TASTE_REPO/commits?path=$file&since=$since&per_page=100" --jq '.[].sha')
+            if [ -n "$new" ]; then
+              printf -- '- `%s`\n%s' "$file" "$new" >> taste.md
+            fi
+          done <<< "$TASTE_FILES"
+
+      - name: Open or update issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ ! -s hallmark-commits.md ] && [ ! -s taste.md ]; then
+            echo "Sin cambios."
+            exit 0
+          fi
+          {
+            echo "Revisión automática del $(date -u +%Y-%m-%d)."
+            echo
+            if [ -s hallmark-commits.md ]; then
+              echo "## Hallmark: commits nuevos en \`$HALLMARK_REPO@$HALLMARK_BRANCH\` (\`$HALLMARK_HEAD\`) que no están en \`upstream\`"
+              echo
+              cat hallmark-commits.md
+              echo
+              echo "### Archivos afectados"
+              echo
+              cat hallmark-files.md
+              echo
+            fi
+            if [ -s taste.md ]; then
+              echo "## taste-skill: archivos seguidos con cambios desde \`${TASTE_BASE:0:7}\`"
+              echo
+              cat taste.md
+              echo
+            fi
+            echo "Al adoptar los cambios, avanza \`upstream\` y actualiza \`ORIGEN.md\` y este workflow."
+          } > body.md
+          gh label create "$LABEL" --color FBCA04 --description "Cambios en las fuentes originales" 2>/dev/null || true
+          existing=$(gh issue list --label "$LABEL" --state open --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue edit "$existing" --body-file body.md
+            gh issue comment "$existing" --body "Lista actualizada el $(date -u +%Y-%m-%d)."
+          else
+            gh issue create --title "Cambios en las fuentes originales" --label "$LABEL" --body-file body.md
+          fi
