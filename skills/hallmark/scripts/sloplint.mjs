@@ -2456,7 +2456,8 @@ function check63(ctx) {
       const text = plainText(inner.inner);
       if (!text) continue;
       const dots = (text.match(/\s[·•]\s/g) || []).length;
-      if (dots >= 2 && !dotLines.has(t.line)) { dotLines.add(t.line); report(63, 'FAIL', doc.file, t.line, `middle-dot meta string "${trunc(text, 50)}"`, 'Line breaks, columns or hairlines; one dot in a byline at most'); }
+      const joinedJsxMeta = doc.kind === 'jsx' && /\{[^{}]+\}\s*[·•]\s*[^<{}]*\{[^{}]+\}/.test(doc.raw.slice(t.end, inner.endPos));
+      if ((dots >= 2 || joinedJsxMeta) && !dotLines.has(t.line)) { dotLines.add(t.line); report(63, 'FAIL', doc.file, t.line, `middle-dot meta string "${trunc(text, 50)}"`, 'Line breaks, columns or hairlines; one dot in a byline at most'); }
       if ((t.name === 'a' || t.name === 'button') && /(\u2192|->|\u203a|\u00bb|\u27f6)\s*$/.test(text) && !arrowLines.has(t.line)) { arrowLines.add(t.line); report(63, 'FAIL', doc.file, t.line, `arrow glued to the label "${trunc(text, 40)}"`, 'A verb as the label; the link already says it goes somewhere'); }
       if (/^[A-Z]{3,}\s+-\s+\S/.test(text) && text.length < 60) report(63, 'FAIL', doc.file, t.line, `WORD - fragment label "${trunc(text, 40)}"`, 'Say the thing as a sentence or a heading');
     }
