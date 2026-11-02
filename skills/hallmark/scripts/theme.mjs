@@ -342,7 +342,8 @@ async function photos() {
   const lib = JSON.parse(readFileSync(PHOTOS, 'utf8')).photos;
   const subjects = positional();
   if (!subjects.length) { usage(); process.exit(2); }
-  const n = Math.max(1, Number(flag('n', 3)) || 3);
+  const n = Number(has('n') ? flag('n') : 3);
+  if (!Number.isSafeInteger(n) || n < 1) { console.error('photos --n must be a positive safe integer'); process.exit(2); }
   const orient = flag('orient', '');
   const slug = flag('theme', '');
   let header = null, treat = { css: '', bad: [] };
