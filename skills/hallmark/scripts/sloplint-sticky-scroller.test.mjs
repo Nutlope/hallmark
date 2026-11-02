@@ -19,3 +19,7 @@ test('gate 56 ignores a sticky table header in its own overflow-x scroller', () 
 test('gate 56 still catches overlapping stickies in the page scroll', () => {
   assert.equal(failures('.sidebar { position:sticky; top:0; } .content th { position:sticky; top:0; }').length, 1);
 });
+
+test('gate 56 keeps clip-only containers in the page scroll context', () => {
+  assert.equal(failures('.sidebar { position:sticky; top:0; } .content { overflow-x:clip; } .content th { position:sticky; top:0; }').length, 1);
+});

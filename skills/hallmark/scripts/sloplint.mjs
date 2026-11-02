@@ -2370,7 +2370,7 @@ function check56(ctx) {
     // overlap a sticky page-level header (issue #114).
     const isolatedScroller = bySel.some((parent) => {
       if (parent === r) return false;
-      const hasScroll = parent.decls.some((d) => /^overflow(?:-[xy])?$/.test(d.prop) && /\b(?:auto|scroll|hidden|clip)\b/.test(d.value));
+      const hasScroll = parent.decls.some((d) => /^overflow(?:-[xy])?$/.test(d.prop) && /\b(?:auto|scroll|hidden)\b/.test(d.value));
       return hasScroll && r.selector.split(',').every((sel) =>
         parent.selector.split(',').some((ancestor) =>
           sel.trim().startsWith(ancestor.trim() + ' ') || sel.trim().startsWith(ancestor.trim() + ' >')
