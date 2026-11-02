@@ -29,7 +29,7 @@ Hallmark carries 755 verified photographs from Wikimedia Commons, each CC0, publ
 node <skill-dir>/scripts/theme.mjs photos "apple orchard in autumn" "hands picking apples" --theme <slug> [--n 3] [--orient portrait|landscape|square] [--seed <draw seed>] [--log .hallmark/log.json]
 ```
 
-It ranks the library for each subject, steers away from the photos the last five builds used, and prints for each pick what it shows, its size, a ready `<img>` with its `srcset`, and its credit. Keep only picks that fit the sentence the section makes; re-ask in other words (the place, the material, the action) before settling for a near miss.
+It ranks the library for each subject, steers away from the photos the last five builds used, and prints for each pick what it shows, its size, a ready `<img>` with its `srcset`, and its credit. `--n` is the maximum number of picks per subject (default 3); it must be a positive safe integer. Invalid or missing values exit 2 before saving any images. Keep only picks that fit the sentence the section makes; re-ask in other words (the place, the material, the action) before settling for a near miss.
 
 - **Never write an image URL from memory or take one from a stock site** (Unsplash, Pexels and Pixabay bar AI-driven selection in their terms). Use only what the script printed or the user supplied (76).
 - **Credit every library photo:** one line in the footer marked `data-credits` (the word budget skips it), *Photographs:* then each printed credit, in the footer's small style. CC BY and CC BY-SA require it (76).
