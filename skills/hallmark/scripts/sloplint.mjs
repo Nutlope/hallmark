@@ -2366,7 +2366,18 @@ function check56(ctx) {
   for (const r of bySel) {
     const isSticky = r.decls.some((d) => d.prop === 'position' && /sticky/.test(d.value));
     const topZero = r.decls.some((d) => d.prop === 'top' && /^(0|0px|0rem|-1px)$/.test(resolveVars(d.value, ctx.tokens).trim()));
-    if (isSticky && topZero) sticky.push(r);
+    // Sticky descendants of a separate overflow scroll container cannot
+    // overlap a sticky page-level header (issue #114).
+    const isolatedScroller = bySel.some((parent) => {
+      if (parent === r) return false;
+      const hasScroll = parent.decls.some((d) => /^overflow(?:-[xy])?$/.test(d.prop) && /\b(?:auto|scroll|hidden|clip)\b/.test(d.value));
+      return hasScroll && r.selector.split(',').every((sel) =>
+        parent.selector.split(',').some((ancestor) =>
+          sel.trim().startsWith(ancestor.trim() + ' ') || sel.trim().startsWith(ancestor.trim() + ' >')
+        )
+      );
+    });
+    if (isSticky && topZero && !isolatedScroller) sticky.push(r);
   }
   if (sticky.length >= 2) {
     const sels = sticky.map((r) => r.selector).join(' + ');
