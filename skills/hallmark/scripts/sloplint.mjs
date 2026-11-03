@@ -49,11 +49,13 @@ function collectFiles(paths) {
     let st;
     let real;
     try { st = statSync(abs); real = realpathSync(abs); } catch { console.error(`sloplint: cannot read ${p}`); if (top) process.exit(2); return; }
-    if (seen.has(real)) return;
-    seen.add(real);
     if (st.isDirectory()) {
       const base = basename(abs);
       if (base === 'node_modules' || base.startsWith('.') || (!top && BUILD_DIRS.has(base))) return;
+    }
+    if (seen.has(real)) return;
+    seen.add(real);
+    if (st.isDirectory()) {
       for (const e of readdirSync(abs)) visit(join(abs, e), false);
     } else {
       const ext = extname(abs).toLowerCase();

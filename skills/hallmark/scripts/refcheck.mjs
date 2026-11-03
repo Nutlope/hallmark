@@ -301,6 +301,29 @@ const FIX = join(ROOT, 'scripts', 'fixtures');
     if (!report || report.summary.files !== 1) add('error', SKILL, 1, 'fixture', 'directory symlink cycles must terminate and each real file must be linted once');
   } finally { rmSync(tmp, { recursive: true, force: true }); }
 }
+{
+  const tmp = mkdtempSync(join(tmpdir(), 'hallmark-build-targets-'));
+  try {
+    writeFileSync(join(tmp, 'source.css'), ':root { --paper: #f3f2ef; }');
+    for (const dir of ['dist', 'build', 'coverage']) {
+      mkdirSync(join(tmp, dir));
+      writeFileSync(join(tmp, dir, 'page.css'), 'body { background: #fff; color: #000; }');
+    }
+    const cases = [['.']];
+    for (const dir of ['dist', 'build', 'coverage']) cases.push([dir], ['.', dir], [dir, '.']);
+    for (const paths of cases) {
+      const run = spawnSync(process.execPath, [join(ROOT, 'scripts', 'sloplint.mjs'), ...paths, '--json'], { cwd: tmp, encoding: 'utf8', timeout: 5000 });
+      let report = null;
+      try { report = JSON.parse(run.stdout); } catch {}
+      const explicitBuild = paths.find((p) => p !== '.');
+      const files = paths.length > 1 ? 2 : 1;
+      if (!report || report.summary.files !== files || run.status !== (explicitBuild ? 1 : 0)
+        || (explicitBuild && !report.findings.some((f) => f.file === join(explicitBuild, 'page.css')))) {
+        add('error', SKILL, 1, 'fixture', `explicit build targets must be linted in either argument order, while nested build folders stay skipped: ${paths.join(' ')}`);
+      }
+    }
+  } finally { rmSync(tmp, { recursive: true, force: true }); }
+}
 const lintJson = (t) => { const r = spawnSync(process.execPath, [join(ROOT, 'scripts', 'sloplint.mjs'), t, '--json'], { encoding: 'utf8' }); try { return JSON.parse(r.stdout); } catch { return null; } };
 const gatesOf = (j) => new Set(j.findings.map((x) => String(x.gate)));
 const expectations = [
