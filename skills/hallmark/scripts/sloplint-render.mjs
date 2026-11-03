@@ -19,27 +19,43 @@ function contrast(a, b) {
   return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05);
 }
 
+// Keep the original element and each property's priority across asynchronous screenshots.
+async function hideStyles(el, props) {
+  const saved = await el.evaluate((node, entries) => {
+    const previous = { hadStyle: node.hasAttribute('style'), props: entries.map(([k]) => [k, node.style.getPropertyValue(k), node.style.getPropertyPriority(k)]) };
+    for (const [k, v] of entries) node.style.setProperty(k, v, 'important');
+    return previous;
+  }, props);
+  return () => el.evaluate((node, previous) => {
+    for (const [k, value, priority] of previous.props) {
+      if (value) node.style.setProperty(k, value, priority);
+      else node.style.removeProperty(k);
+    }
+    if (!previous.hadStyle && !node.style.length) {
+      // Synchronize the CSSOM's lazy attribute before removing its empty shell.
+      node.getAttribute('style');
+      node.removeAttribute('style');
+    }
+  }, saved).catch(() => {});
+}
+
 async function pixelBehind(page, probe) {
-  const HIDE = [['color', 'transparent'], ['text-shadow', 'none'], ['-webkit-text-stroke', '0'], ['text-decoration-color', 'transparent']];
-  const restore = () => page.evaluate((n, props) => {
-    const el = document.querySelector(`[data-hm-probe="${n}"]`);
-    if (el) for (const [k] of props) el.style.removeProperty(k);
-    window.scrollTo(0, 0);
-  }, probe, HIDE).catch(() => {});
+  // Change the stroke width alone so a pre-existing stroke color is never overwritten.
+  const HIDE = [['color', 'transparent'], ['text-shadow', 'none'], ['-webkit-text-stroke-width', '0'], ['text-decoration-color', 'transparent']];
+  let el, restore;
   try {
-    const rect = await page.evaluate((n, props) => {
-      const el = document.querySelector(`[data-hm-probe="${n}"]`);
-      if (!el) return null;
-      el.scrollIntoView({ block: 'center', behavior: 'instant' });
-      for (const [k, v] of props) el.style.setProperty(k, v, 'important');
-      const r = el.getBoundingClientRect();
+    el = await page.$(`[data-hm-probe="${probe}"]`);
+    if (!el) return null;
+    restore = await hideStyles(el, HIDE);
+    const rect = await el.evaluate((node) => {
+      node.scrollIntoView({ block: 'center', behavior: 'instant' });
+      const r = node.getBoundingClientRect();
       const x = Math.max(0, r.left), y = Math.max(0, r.top);
       return { x: x + scrollX, y: y + scrollY, width: Math.min(r.right, innerWidth) - x, height: Math.min(r.bottom, innerHeight) - y };
-    }, probe, HIDE);
-    if (!rect || rect.width < 2 || rect.height < 2) { await restore(); return null; }
+    });
+    if (!rect || rect.width < 2 || rect.height < 2) return null;
     await frames(page);
     const data = await page.screenshot({ clip: rect, encoding: 'base64' });
-    await restore();
     return await page.evaluate(async (b64) => {
       const img = new Image();
       img.src = 'data:image/png;base64,' + b64;
@@ -53,7 +69,12 @@ async function pixelBehind(page, probe) {
       for (let i = 0; i < d.length; i += 4) { ch[0].push(d[i]); ch[1].push(d[i + 1]); ch[2].push(d[i + 2]); }
       return ch.map((a) => a.sort((p, q) => p - q)[a.length >> 1] / 255);
     }, data);
-  } catch { await restore(); return null; }
+  } catch { return null; }
+  finally {
+    if (restore) await restore();
+    if (el) await el.dispose().catch(() => {});
+    await page.evaluate(() => window.scrollTo(0, 0)).catch(() => {});
+  }
 }
 
 async function shoot(page, file, tag, fullPage) {
@@ -388,8 +409,16 @@ function focusRing() {
 }
 
 async function pixelsAroundRing(page, ring) {
+  let handle, restore;
   try {
-    await page.evaluate(() => { let el = document.activeElement; if (el) { const b = el.getBoundingClientRect(); if (b.width < 4 || b.height < 4) el = el.closest('label') || el.parentElement; } if (el) { el.setAttribute('data-hm-ring', ''); el.style.setProperty('outline-style', 'none', 'important'); el.style.setProperty('box-shadow', 'none', 'important'); } });
+    handle = await page.evaluateHandle(() => {
+      let el = document.activeElement;
+      if (el) { const b = el.getBoundingClientRect(); if (b.width < 4 || b.height < 4) el = el.closest('label') || el.parentElement; }
+      return el;
+    });
+    const el = handle.asElement();
+    if (!el) return null;
+    restore = await hideStyles(el, [['outline-style', 'none'], ['box-shadow', 'none']]);
     await frames(page);
     const vw = await page.evaluate(() => [innerWidth, innerHeight, scrollX, scrollY]);
     const x = Math.max(0, ring.rect.x - ring.pad), y = Math.max(0, ring.rect.y - ring.pad);
@@ -397,8 +426,6 @@ async function pixelsAroundRing(page, ring) {
     if (clip.width < 4 || clip.height < 4) return null;
     const data = await page.screenshot({ clip, encoding: 'base64' });
     return await page.evaluate(async (b64, inner) => {
-      const el = document.querySelector('[data-hm-ring]');
-      if (el) { el.removeAttribute('data-hm-ring'); el.style.removeProperty('outline-style'); el.style.removeProperty('box-shadow'); }
       const img = new Image(); img.src = 'data:image/png;base64,' + b64; await img.decode();
       const c = document.createElement('canvas'); c.width = img.width; c.height = img.height;
       const x = c.getContext('2d'); x.drawImage(img, 0, 0);
@@ -412,6 +439,10 @@ async function pixelsAroundRing(page, ring) {
       return ch.map((a) => a.sort((p, q) => p - q)[a.length >> 1] / 255);
     }, data, { l: ring.rect.x - x, t: ring.rect.y - y, r: ring.rect.x - x + ring.rect.w, b: ring.rect.y - y + ring.rect.h });
   } catch { return null; }
+  finally {
+    if (restore) await restore();
+    if (handle) await handle.dispose().catch(() => {});
+  }
 }
 
 function observe(checkFold, meta) {
