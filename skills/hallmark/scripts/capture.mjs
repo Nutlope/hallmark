@@ -98,6 +98,11 @@ try {
       if (!to) { console.log(`skip ${route}: not on ${new URL(target).origin}`); await p.close(); continue; }
       const res = await p.goto(to, { waitUntil: 'networkidle2', timeout: 45000 }).catch((e) => ({ err: e.message }));
       if (res && res.err) { console.log(`skip ${route} at ${size}: ${res.err}`); await p.close(); continue; }
+      if (isUrl && res && !res.ok() && res.status() !== 304) {
+        console.log(`skip ${route} at ${size}: HTTP ${res.status()} from ${res.url()}`);
+        await p.close();
+        continue;
+      }
       await p.evaluate(async () => { if (document.fonts) await document.fonts.ready; for (const i of document.querySelectorAll('img[loading="lazy"]')) i.loading = 'eager'; await Promise.race([Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; }))), new Promise((r) => setTimeout(r, 6000))]); }).catch(() => {});
       await new Promise((r) => setTimeout(r, wait));
       await p.bringToFront();
