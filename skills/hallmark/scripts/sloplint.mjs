@@ -53,7 +53,7 @@ function collectFiles(paths) {
     seen.add(real);
     if (st.isDirectory()) {
       const base = basename(abs);
-      if (base === 'node_modules' || base.startsWith('.') || (!top && BUILD_DIRS.has(base))) return;
+      if (base === 'node_modules' || (!top && (base.startsWith('.') || BUILD_DIRS.has(base)))) return;
       for (const e of readdirSync(abs)) visit(join(abs, e), false);
     } else {
       const ext = extname(abs).toLowerCase();
