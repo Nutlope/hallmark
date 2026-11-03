@@ -273,7 +273,11 @@ function check() {
     : !ACCENT_BAND.test(ab || '') ? `accent band "${ab}" (valid: warm, cool, neutral, chromatic-<hue name>)` : null;
   if (unknown) { console.error(`unknown ${unknown}`); process.exit(2); }
   const face = (flag('face', '') || '').toLowerCase().trim();
-  const hue = flag('hue') != null ? Number(flag('hue')) : null;
+  const hueValue = flag('hue');
+  const hue = hueValue != null ? Number(hueValue) : null;
+  if (has('hue') && (hueValue == null || !hueValue.trim() || !Number.isFinite(hue))) {
+    console.error('--hue takes a finite angle in degrees'); process.exit(2);
+  }
   const themes = loadIndex();
   const log = readLog(flag('log', '.hallmark/log.json'));
   let bad = 0, near = 0;
