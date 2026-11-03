@@ -9,6 +9,8 @@ Multiple discovery surfaces: featured, latest, by category, by people. The platf
 - **Image:** thumbnails throughout; the page is dense imagery, all of it the platform's real content.
 - **Reveal:** none.
 
+**Fingerprint:** `Hanging|Single column|Hairline rule|Unstyled link|Tightly cropped to the grid|None`
+
 Reach for it for community platforms, content marketplaces, asset stores, any curated catalogue front page.
 
 Avoid for single-product pages. Ecosystem needs several things to surface.

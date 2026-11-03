@@ -2,6 +2,8 @@
 
 Twenty-one named landing-page shapes. Each is a complete fingerprint (heading placement, body composition, divider language, button voice, image treatment, reveal pattern) bundled under one name. **This is a vocabulary, not a menu.** Design the page the prompt asks for, then name the shape you designed so Rotation and gate 32 have something to read; reaching in here first and building whatever comes back is how twenty-one shapes collapse into the same three. When nothing here fits what you designed, say so, describe the shape as a fingerprint (§ The fingerprint, below), and give it a short name for the stamp and the log (*a season page*).
 
+Every shape file states its fingerprint as one line, in the vocabulary below, so the tool can read it: `**Fingerprint:** \`Hanging|Asymmetric spans|Negative space|Outlined|Tightly cropped to the grid|None\``. That line is the shape's default, not a rule: a page that bends an axis bends it on purpose, and the log carries the page's own fingerprint.
+
 ## The 21 macrostructures, index
 
 **Read only the one file** for the shape you landed on, from `references/macrostructures/`. Do not load the whole catalogue. Slugs are stable; Rotation reads the shape from the stamp and the log. Nav and footer are part of the shape, settled with the hero. Each shape file names the `layout.md` compositions it is built from; the code is yours.
@@ -94,6 +96,14 @@ Two pages Hallmark builds for two different prompts must look like different sit
 **6. Reveal pattern.** Fade-up stagger (once, orchestrated) · Horizontal sweep · Type-unmask (a clip-path opening over text) · Number-tick (counters, only on real figures) · Typewriter (a terminal only, the caret inside a typed command) · None.
 
 Fingerprint: one choice per axis, written `Hanging|Asymmetric spans|Hairline|Outlined|Margin-aligned|None`. Two rules: coherence (choices from the same world; a justified newspaper body wants a typographic CTA, not an oversized solid) and anti-repetition (no more than three of six axes shared with any of the last three logged entries; a None on Image or Reveal that the theme or the material forces is not a shared choice).
+
+**The tool reads it.** The log's `fingerprint` field is the page's six choices, and three commands use it:
+
+```
+node <skill-dir>/scripts/theme.mjs check --fingerprint "Hanging|Single column|Hairline rule|Outlined|Tightly cropped to the grid|None"
+```
+
+prints the similarity against each of the last three logged builds, names the axes they share and exits 1 when more than three of the six are shared. `theme.mjs draw` reads the shape's own fingerprint and keeps clear of a shape that repeats the last three builds. `theme.mjs log` refuses a build whose fingerprint is the one already logged, and warns when more than three axes are shared. The value of the log is the comparison it makes possible: read it, never memory (gate 32).
 
 ## Domain to trio, when the prompt names no shape
 

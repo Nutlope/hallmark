@@ -9,6 +9,8 @@ Sticky left pane holding the heading, scroll-synced right pane cycling through r
 - **Image:** the scrolling column is real captures, or the product built in slots until they arrive (`imagery.md` § 4); never a run of empty frames (68).
 - **Reveal:** none of the fade kind; the sticky scroll is the motion. Choreograph it with [`../scroll-choreography.md`](../scroll-choreography.md) § 4 Sticky diptych with the pane kept on the left, or § 1 Pinned chapter: one pattern per page.
 
+**Fingerprint:** `Sticky or pinned|Two-column asymmetric|Bleed-colour block|Solid|Margin-aligned|None`
+
 Reach for it for premium products, complex feature stories, anywhere the pacing should be controlled as the visitor scrolls.
 
 Avoid for mobile-first audiences without a strong fallback. Sticky scroll-sync is rough on small screens.

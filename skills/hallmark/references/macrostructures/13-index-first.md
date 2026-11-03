@@ -9,6 +9,8 @@ The page is a list of links. No hero image, no narrative flow. Navigation as des
 - **Image:** none, or one photograph of the collection itself, and a small mark by each entry.
 - **Reveal:** none.
 
+**Fingerprint:** `Hanging|Single column|Hairline rule|Unstyled link|None|None`
+
 Reach for it for documentation hubs, knowledge bases, archive front pages, design-system entries, link pages with substance.
 
 Avoid for a hard sell (a launch, a checkout). Index-First serves a browsing audience; a personal site that offers its owner's time is fine.

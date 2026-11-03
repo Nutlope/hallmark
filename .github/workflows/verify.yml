@@ -13,6 +13,8 @@ jobs:
           node-version: 20
       - name: References, gates, fixtures, versions and links agree
         run: node skills/hallmark/scripts/refcheck.mjs
+      - name: The tool holds to its own rules
+        run: node --test skills/hallmark/scripts/tests/*.test.mjs
       - name: Every theme validates
         run: node skills/hallmark/scripts/theme.mjs validate skills/hallmark/references/themes/*.md
       - name: The theme index is current

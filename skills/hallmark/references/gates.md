@@ -168,7 +168,7 @@ One line each. `a`/`b` clauses share a number and carry their own tier. Genre no
 | 48 | Floor | M | A colour or `font-family` literal outside the token block | lift it into the tokens |
 | 49a | Floor | M/R | A button label or primary nav link wrapping at any width 320 to 1920 | shorten it; `white-space: nowrap` |
 | 49b | Reflex | M/R | A footer link, tab or breadcrumb wrapping. Guard: a real phrase that cannot shorten, two lines at most | shorten it |
-| 32 | Ledger | J | The same section compositions in the same order as a logged build; a fingerprint sharing more than three of six axes with a logged entry | change a composition or the order; say the delta in the stamp |
+| 32 | Ledger | J | The same section compositions in the same order as a logged build; a fingerprint sharing more than three of six axes with a logged entry | change a composition or the order; say the delta in the stamp; `theme.mjs check --fingerprint "<six choices>"` measures it |
 
 ## 5. Finish checks and judged clauses
 
@@ -184,7 +184,7 @@ The gates above that a script cannot settle, with enough to judge them well.
 
 **6b, the hero shape.** A hero built around one centred object is a composition; four things stacked on the centre line is a default. Prefer at most two centred elements with one breaking alignment (margin-aligned, right-flush, numeral-anchored). A hero with a stamped posture fills its screen (`layout.md` § 6); an unstamped one stops short of 92dvh.
 
-**8 and 32, repetition.** Read `.hallmark/log.json` newest first. The page's shape must differ from the last three; the six structural axes in `macrostructures.md` § The fingerprint are the ruler, and the log's `fingerprint` field is what you compare against, never memory. The same composition twice in a row on one page is the template; across pages, a different order or a different lead composition is enough.
+**8 and 32, repetition.** Read `.hallmark/log.json` newest first. The page's shape must differ from the last three; the six structural axes in `macrostructures.md` § The fingerprint are the ruler, and the log's `fingerprint` field is what you compare against, never memory. The same composition twice in a row on one page is the template; across pages, a different order or a different lead composition is enough. `theme.mjs check --fingerprint "<six choices>"` makes the comparison a number instead of a memory.
 
 **9, section rhythm.** Whitespace, hairline, tinted well, card: the surface ladder in `craft.md`. A page that climbs the same rung at every seam reads as a template; one that climbs different rungs in different places reads as set.
 

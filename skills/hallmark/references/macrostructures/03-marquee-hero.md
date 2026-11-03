@@ -9,6 +9,8 @@ The hero is the page above the fold. A single statement or visual fills the view
 - **Image:** none in the fold (typography is the visual), or a single full-bleed photograph as the fold's background.
 - **Reveal:** the fold is static; below-fold may sweep in horizontally.
 
+**Fingerprint:** `Hanging|Single column|Bleed-colour block|Typographic only|Full-bleed|Horizontal sweep`
+
 Reach for it when the brand or the person is the message: designer and director portfolios, indie products with one declarative voice, any "this is who we are" page.
 
 Avoid for products whose value needs explaining in seconds. Marquee makes the visitor scroll before they understand.

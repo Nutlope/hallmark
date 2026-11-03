@@ -9,6 +9,8 @@ A single large spatial diagram organises the page: flowchart, floor plan, networ
 - **Image:** the map is the image: SVG drawn from the real places or the real system, with hover states, labelled or `aria-hidden` with a text legend carrying every fact (33). Geometry that is geometry is a first-class medium (47c).
 - **Reveal:** node-by-node ink-on as the map enters the viewport, capped at five nodes, once.
 
+**Fingerprint:** `Hanging|Single column|Negative space|Unstyled link|Inline with the text|Fade-up stagger`
+
 Reach for it for system overviews, ecosystem maps, process diagrams, organisation charts.
 
 Avoid as a substitute for narrative. Some stories should not be read spatially.

@@ -9,6 +9,8 @@ Reads like a memo, a letter or a journal entry. No marketing structure. Continuo
 - **Image:** inline, sized to the measure; never full-bleed.
 - **Reveal:** none. The page is simply there.
 
+**Fingerprint:** `Inline with the body|Single column|Negative space|Typographic only|Inline with the text|None`
+
 Reach for it for case studies, founder posts, mission pages, products whose sale is philosophical. The prompt says "tell a story", not "list features".
 
 Avoid when there is one decisive action to take. Long Document hides its actions inside sentences, which is wrong for a transactional page.

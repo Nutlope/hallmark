@@ -9,6 +9,8 @@ Numbered stages tell the story of how the user uses the product over time. Each 
 - **Image:** a real capture per stage, often annotated, in a `<figure>` or a slot; with one screen or none, never a slot per stage (68).
 - **Reveal:** one horizontal sweep, on the first stage, when the theme allows a reveal; the later stages are simply there. A scrub-linked stage sequence may use [`../scroll-choreography.md`](../scroll-choreography.md) § 1 Pinned chapter instead: one pattern per page.
 
+**Fingerprint:** `Numbered by structure|Single column|Hairline rule|Solid|Inline with the text|Horizontal sweep`
+
 Reach for it for products with explicit workflows: project management, design-to-dev pipelines, writing tools.
 
 Avoid for tools that work in one moment. Narrative Workflow needs a real sequence.

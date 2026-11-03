@@ -9,6 +9,8 @@ Modular blocks of varying sizes laid out as an irregular grid. Each block is a f
 - **Image:** tightly cropped inside individual blocks; never full-bleed.
 - **Reveal:** none, or one one-shot fade as the grid enters.
 
+**Fingerprint:** `Hanging|Asymmetric spans|Negative space|Outlined|Tightly cropped to the grid|None`
+
 Reach for it when the prompt is "many small things to show": a feature page, a SaaS landing, anywhere visitors have several equally valid entry points. A block holding a figure or a quote exists only when the user supplied it (46a).
 
 Avoid when the message is one hero idea. Bento spreads attention; a one-idea page wants Marquee or Stat-Led.

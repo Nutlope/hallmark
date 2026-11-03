@@ -65,7 +65,7 @@ Say **custom** and Hallmark drops the themes: no plan, no components, no palette
 ## How a build runs
 
 1. Pre-flight reads the project (fonts, palette, framework, a locked `design.md`) and asks once for the material: photos, screenshots, real numbers. Nothing is invented.
-2. `scripts/theme.mjs deal` offers three themes that fit the prompt and clear the log; `draw` deals the page's anatomy from its job.
+2. `scripts/theme.mjs deal` offers three themes that fit the prompt and clear the log; `draw` deals the page's anatomy from its job, and the fingerprint it states keeps the page clear of the last three builds ([what a repeat looks like](docs/screenshots/similarity-check.png)).
 3. The hero is built alone, rendered and reviewed cold before the rest of the page exists.
 4. `scripts/sloplint.mjs --render` checks the page at eight widths, then a subagent reviews it with fresh eyes.
 

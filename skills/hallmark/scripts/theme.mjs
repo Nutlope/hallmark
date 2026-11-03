@@ -18,18 +18,86 @@ const positional = () => { const out = []; for (let i = 1; i < args.length; i++)
 const GENRES = ['editorial', 'modern-minimal', 'atmospheric', 'playful'];
 // A theme slug names a file in references/themes, so it is a plain name, never a path.
 const isSlug = (s) => /^[a-z0-9][a-z0-9-]*$/.test(s);
+const MACROS = join(HERE, '..', 'references', 'macrostructures');
+
+// The fingerprint: six axes, one choice each, the ruler gate 32 measures a build against.
+// The vocabulary is written in macrostructures.md § The fingerprint; refcheck keeps the two in step.
+const FINGERPRINT_AXES = [
+  { key: 'heading', values: ['Left-margin', 'Hanging', 'Centred display', 'Bottom-aligned', 'Overlapping', 'Sticky or pinned', 'Numbered by structure', 'Inline with the body'] },
+  { key: 'body', values: ['Single column', 'Two-column asymmetric', 'Multi-column justified with hyphenation', 'Marginalia', 'Three equal columns', 'Full-bleed with margin reset', 'Asymmetric spans'] },
+  { key: 'divider', values: ['Hairline rule', 'Ornament', 'Negative space', 'Bleed-colour block', 'Double rule'] },
+  { key: 'button', values: ['Solid', 'Outlined', 'Unstyled link', 'Oversized solid', 'Typographic only', 'Form as CTA'] },
+  { key: 'image', values: ['Full-bleed', 'Tightly cropped to the grid', 'Inline with the text', 'Margin-aligned', 'None'] },
+  { key: 'reveal', values: ['Fade-up stagger', 'Horizontal sweep', 'Type-unmask', 'Number-tick', 'Typewriter', 'None'] },
+];
+// Gate 32: no more than three of the six axes may be shared with any of the last three logged entries.
+const FINGERPRINT_LIMIT = 3;
+const FINGERPRINT_HINT = 'Hanging|Single column|Hairline rule|Outlined|Tightly cropped to the grid|None';
+
+function parseFingerprint(text) {
+  const parts = String(text == null ? '' : text).split('|').map((s) => s.trim());
+  if (parts.length !== FINGERPRINT_AXES.length) return { error: `a fingerprint is ${FINGERPRINT_AXES.length} choices, one per axis, pipe-separated; ${parts.length} given` };
+  const bad = [];
+  parts.forEach((v, i) => { if (!FINGERPRINT_AXES[i].values.includes(v)) bad.push(`${FINGERPRINT_AXES[i].key} "${v}" is not one of: ${FINGERPRINT_AXES[i].values.join(', ')}`); });
+  if (bad.length) return { error: bad.join('; ') };
+  return { values: parts };
+}
+
+// A None on Image or Reveal is the absence of a choice, not a choice, so it never counts as a shared axis.
+function sharedAxes(mine, theirs) {
+  const shared = [];
+  FINGERPRINT_AXES.forEach((ax, i) => {
+    if (mine[i] !== theirs[i]) return;
+    if ((ax.key === 'image' || ax.key === 'reveal') && mine[i] === 'None') return;
+    shared.push({ axis: ax.key, value: mine[i] });
+  });
+  return shared;
+}
+
+function similarity(mine, theirs) {
+  const shared = sharedAxes(mine, theirs);
+  return { shared, count: shared.length, percent: Math.round((shared.length / FINGERPRINT_AXES.length) * 100) };
+}
+
+// The last three logged builds that carry a readable fingerprint, oldest name last.
+function recentFingerprints(log, n = 3) {
+  const out = [];
+  for (const r of log.slice(0, n)) {
+    if (!r || !r.fingerprint) continue;
+    const p = parseFingerprint(r.fingerprint);
+    if (p.error) continue;
+    out.push({ entry: r, values: p.values });
+  }
+  return out;
+}
+
+// Each shape file states its fingerprint, so the draw knows the page it is dealing before the page exists.
+function loadShapeFingerprints() {
+  const out = new Map();
+  if (!existsSync(MACROS)) return out;
+  for (const f of readdirSync(MACROS).filter((n) => /^\d\d-.*\.md$/.test(n)).sort()) {
+    const src = readFileSync(join(MACROS, f), 'utf8');
+    const name = (/^##\s*\d+\s*·\s*(.+)$/m.exec(src) || [])[1];
+    const fp = (/^\*\*Fingerprint:\*\*\s*`([^`]+)`/m.exec(src) || [])[1];
+    if (name && fp) out.set(name.trim(), fp.trim());
+  }
+  return out;
+}
 
 function usage() {
   console.error(`usage:
   node theme.mjs deal --genre <g> --prompt "<prompt>" [--log .hallmark/log.json] [--n 3] [--reroll 0] [--json]
   node theme.mjs scaffold <slug> [--dealt "<n>/3, seed <seed>"] [--redesign polish|restyle|full] [--scope app] [--dir <beside the stylesheet>] [--force]
   node theme.mjs scaffold --custom | --brand [--redesign polish|restyle|full] [--scope app] [--dir <beside the stylesheet>] [--force]
-  node theme.mjs check [--axes "<paper>/<display>/<accent>"] [--face "<display face>"] [--hue <accent hue>] [--log .hallmark/log.json]
+  node theme.mjs check [--axes "<paper>/<display>/<accent>"] [--face "<display face>"] [--hue <accent hue>] [--fingerprint "<six choices>"] [--log .hallmark/log.json]
       paper: light | mid | dark · accent: warm | cool | neutral | chromatic-<hue name>
       display: roman-serif | high-contrast-serif | slab-serif | grotesk-sans | grotesk-heavy | geometric-sans | rounded-sans | display-condensed | display-heavy | mono | pixel | handwritten | blackletter
+      fingerprint: heading|body|divider|button|image|reveal, one choice each, for example "${FINGERPRINT_HINT}"
   node theme.mjs draw --material photo|product|words --job <subscribe|book|visit|attend|buy|try|sign up|hire|join|listen> [--theme <slug>] [--log .hallmark/log.json] [--seed <hex>]
   node theme.mjs photos "<subject>" ["<subject>" ...] [--theme <slug>] [--n 3] [--orient landscape|portrait|square] [--log .hallmark/log.json] [--avoid <file naming photos>] [--save <dir>] [--json]
   node theme.mjs log --entry '<one JSON object>' [--log .hallmark/log.json]
+  node theme.mjs fingerprint [--json]
+      the six axes and the twenty-one shapes, as the log and gate 32 read them
   node theme.mjs index
   node theme.mjs list
   node theme.mjs validate <files...>`);
@@ -92,6 +160,21 @@ function addLog() {
   if (!entry.prompt && entry.brief) { entry.prompt = entry.brief; delete entry.brief; }
   const missing = [...(composed ? ['shape', 'axes', 'hero', 'nav', 'footer', 'imagery', 'entry', 'fingerprint', 'sections', 'signature'] : []), ...(entry.depth === 'polish' ? [] : ['theme']), 'prompt'].filter((k) => !entry[k]);
   if (entry.photos && !Array.isArray(entry.photos)) { console.error('photos is the list of photo ids the page used'); process.exit(2); }
+  if (entry.fingerprint) {
+    const p = parseFingerprint(entry.fingerprint);
+    if (p.error) { console.error(`the fingerprint is not a fingerprint: ${p.error}`); process.exit(2); }
+    const mine = p.values;
+    const recent = recentFingerprints(readLog(file), 3);
+    const same = recent.find((r) => r.values.join('|') === mine.join('|'));
+    if (same && entry.mode === 'build') {
+      console.error(`this fingerprint is the one logged on ${same.entry.date || 'a past build'} (${same.entry.shape || '?'})${same.entry.theme ? ` in ${same.entry.theme}` : ''}; a build never repeats a fingerprint, change one axis and log it again`);
+      process.exit(2);
+    }
+    const clash = recent.map((r) => ({ r, ...similarity(mine, r.values) })).sort((a, b) => b.count - a.count)[0];
+    if (clash && clash.count > FINGERPRINT_LIMIT) {
+      console.log(`warning: ${clash.count} of ${FINGERPRINT_AXES.length} axes are shared with the ${clash.r.entry.shape || '?'} logged on ${clash.r.entry.date || 'a past build'} (${clash.percent}%): ${clash.shared.map((s) => `${s.axis} ${s.value}`).join(', ')}; gate 32 asks for a different composition or a different shape, and the stamp says the delta`);
+    }
+  }
   if (existsSync(file)) { try { JSON.parse(readFileSync(file, 'utf8')); } catch { console.error(`${file} is not valid JSON; fix it or move it aside, nothing was written`); process.exit(1); } }
   const next = [entry, ...readLog(file)].slice(0, 20);
   mkdirSync(dirname(file), { recursive: true });
@@ -192,7 +275,21 @@ function draw() {
   const recent = (k, n) => log.slice(0, n).map((r) => low(r[k]));
   const near = (opts, n, k, extra = []) => { const bad = new Set([...recent(k, n), ...extra]); const ok = opts.filter((o) => ![...bad].some((b) => b && b.includes(low(o)))); return ok.length ? ok : opts; };
   const take = (opts, m = 1) => { const pool = [...new Set(opts)]; const out = []; while (out.length < m && pool.length) out.push(pool.splice(Math.floor(rand() * pool.length), 1)[0]); return out; };
-  const shapes = take(near(DRAW.shapes[material], 3, 'shape', pictured), 1);
+  // The shape carries the page's fingerprint, so the draw can keep clear of the last three logged builds
+  // before the page exists rather than after it has been built.
+  const shapePrints = loadShapeFingerprints();
+  const recentPrints = recentFingerprints(log, 3);
+  const printOf = (name) => { const raw = shapePrints.get(name); if (!raw) return null; const p = parseFingerprint(raw); return p.error ? null : p.values; };
+  const clashOf = (name) => {
+    const mine = printOf(name);
+    if (!mine) return null;
+    const hit = recentPrints.map((r) => ({ ...r, ...similarity(mine, r.values) })).sort((a, b) => b.count - a.count)[0];
+    return hit && hit.count > FINGERPRINT_LIMIT ? hit : null;
+  };
+  const shapePool = [...new Set(near(DRAW.shapes[material], 3, 'shape', pictured))];
+  const clear = shapePool.filter((n) => !clashOf(n));
+  const shapes = [take(clear.length ? clear : shapePool, 1)[0]];
+  const clash = clashOf(shapes[0]);
   const jobName = low(flag('job', '')).replace(/download|app/, 'try').replace(/software|saas/, 'sign up').replace(/newsletter|waitlist/, 'subscribe').replace(/watch|read/, 'listen');
   const job = DRAW.jobs[jobName] || null;
   const [hero] = take(near(job ? [...job.heroes, ...job.heroes, ...DRAW.heroes[material].filter((h) => !/settled|stage/i.test(h) || job.heroes.includes(h))] : DRAW.heroes[material], 1, 'hero', pictured));
@@ -205,9 +302,12 @@ function draw() {
   const [opener] = take((job ? job.open : DRAW.openers).filter((o) => !lastOpen.includes(low(o))));
   const skip = take(['Split', 'Grid', 'Band', 'Statement', 'Steps', 'Figures'].filter((o) => o !== opener), 2);
   const [lead] = take(DRAW.leads[material]);
-  if (has('json')) { console.log(JSON.stringify({ seed, material, job: jobName || null, shapes, hero, nav, footer, opener, skip, lead, action, native, close })); return; }
+  if (has('json')) { console.log(JSON.stringify({ seed, material, job: jobName || null, shapes, hero, nav, footer, opener, skip, lead, action, native, close, fingerprint: (printOf(shapes[0]) || []).join('|') || null, clash: clash ? { count: clash.count, percent: clash.percent, shape: clash.entry.shape, date: clash.entry.date } : null })); return; }
   console.log(`draw ${seed} (fresh each build; --seed ${seed} repeats it)${pictured.length ? ` · clear of the theme picture's ${pictured.join(' and ')}` : ''}`);
   console.log(`shape: ${shapes[0]} · hero: ${hero} · nav: ${nav} · footer: ${footer}`);
+  const print = printOf(shapes[0]);
+  if (print) console.log(`fingerprint: ${print.join('|')}`);
+  if (clash) console.log(`note: this shape shares ${clash.count} of ${FINGERPRINT_AXES.length} axes (${clash.percent}%) with the ${clash.entry.shape || '?'} logged on ${clash.entry.date || 'a past build'} and no shape in the draw was clear of it; change an axis before the page is built`);
   console.log(`${job ? '' : `first section after the hero: ${opener} · `}leave out this time: ${skip.join(' and ')} · the hero leads with ${lead}, if the prompt has it`);
   console.log(job ? `job: ${jobName} · the action: ${action}\nbuild these, in the order the shape suits (the first right after the hero): ${native.join('; ')} · close on: ${close} (anatomy.md § ${jobName})` : 'no --job given: name the page\'s job (subscribe, book, visit, attend, buy, try, sign up, hire, join, listen) and draw again with --job');
   console.log(`photos: pass --seed ${seed} to every theme.mjs photos call, so this build's picks are its own, and take its first fitting pick for the hero rather than hunting for the library's single best frame`);
@@ -266,7 +366,37 @@ const listOf = (set) => [...set].join(', ');
 
 function check() {
   const axes = flag('axes');
-  if (!axes && !flag('face') && flag('hue') == null) { usage(); process.exit(2); }
+  const fingerprint = flag('fingerprint');
+  if (!axes && !flag('face') && flag('hue') == null && !fingerprint) { usage(); process.exit(2); }
+  if (fingerprint) {
+    const p = parseFingerprint(fingerprint);
+    if (p.error) { console.error(`--fingerprint is not a fingerprint: ${p.error}`); process.exit(2); }
+    const mine = p.values;
+    const rows = recentFingerprints(readLog(flag('log', '.hallmark/log.json')), 3)
+      .map((r) => ({ ...r, ...similarity(mine, r.values) }))
+      .sort((a, b) => b.count - a.count);
+    console.log(`fingerprint: ${mine.join('|')}`);
+    if (!rows.length) {
+      console.log(`structural similarity: nothing to compare against, no logged build carries a fingerprint`);
+      console.log(`action: log this build's fingerprint and the next one can be measured against it`);
+      return;
+    }
+    const worst = rows[0];
+    const same = worst.entry.fingerprint === mine.join('|');
+    console.log(`structural similarity: ${worst.percent}% against ${worst.entry.shape || '?'}${worst.entry.theme ? ` in ${worst.entry.theme}` : ''} (${worst.entry.date || 'a past build'}) · ${worst.count} of ${FINGERPRINT_AXES.length} axes shared${same ? ' · the same fingerprint' : ''}`);
+    if (worst.count) {
+      console.log('repeated patterns:');
+      for (const s of worst.shared) console.log(`- ${s.axis}: ${s.value}`);
+    }
+    for (const r of rows.slice(1)) console.log(`against ${r.entry.shape || '?'}${r.entry.theme ? ` in ${r.entry.theme}` : ''} (${r.entry.date || 'a past build'}): ${r.percent}% · ${r.count} of ${FINGERPRINT_AXES.length} axes shared`);
+    if (worst.count > FINGERPRINT_LIMIT) {
+      console.log(`action: ${worst.count} of ${FINGERPRINT_AXES.length} axes are shared with the ${worst.entry.shape || '?'} logged on ${worst.entry.date || 'a past build'}; change a composition, the order or the shape, and say the delta in the stamp`);
+      process.exitCode = 1;
+      return;
+    }
+    console.log(`action: clear, no more than ${FINGERPRINT_LIMIT} of ${FINGERPRINT_AXES.length} axes are shared with any of the last three logged builds`);
+    return;
+  }
   const [pb, dc, ab] = (axes || '//').split('/').map((s) => s.trim());
   const unknown = !axes ? null : !PAPER_BANDS.has(pb) ? `paper band "${pb}" (valid: ${listOf(PAPER_BANDS)})`
     : !DISPLAY_CLASSES.has(dc) ? `display class "${dc}" (valid: ${listOf(DISPLAY_CLASSES)})`
@@ -301,6 +431,17 @@ function check() {
 
 function list() {
   for (const t of loadIndex()) console.log(`${t.name.padEnd(12)} ${triple(t).padEnd(38)} ${t.genre.padEnd(15)} ${t.material}`);
+}
+
+// The six axes and the twenty-one shapes, so a build can read the ruler it is measured against.
+function fingerprintCommand() {
+  const shapes = loadShapeFingerprints();
+  if (has('json')) { console.log(JSON.stringify({ axes: FINGERPRINT_AXES, limit: FINGERPRINT_LIMIT, shapes: Object.fromEntries(shapes) }, null, 1)); return; }
+  console.log('the six axes, one choice each:');
+  for (const ax of FINGERPRINT_AXES) console.log(`  ${ax.key}: ${ax.values.join(', ')}`);
+  console.log(`no more than ${FINGERPRINT_LIMIT} of the six may be shared with any of the last three logged builds`);
+  console.log('the twenty-one shapes:');
+  for (const [name, fp] of shapes) console.log(`  ${name}: ${fp}`);
 }
 
 const TREATMENTS = { natural: {}, warm: { sepia: 0.28, saturate: 0.94 }, muted: { saturate: 0.65, contrast: 0.97 }, mono: { grayscale: 1, contrast: 1.18 } };
@@ -639,6 +780,7 @@ try {
   else if (cmd === 'photos') await photos();
   else if (cmd === 'index') { const e = buildIndex(); console.log(`indexed ${e.length} themes into ${INDEX}`); }
   else if (cmd === 'list') list();
+  else if (cmd === 'fingerprint') fingerprintCommand();
   else if (cmd === 'validate') {
     const files = args.slice(1).filter((a) => !a.startsWith('--') && basename(a) !== 'README.md');
     if (!files.length) { usage(); process.exit(2); }

@@ -33,6 +33,8 @@
     ]
   },
   "scripts": {
+    "test": "node --test skills/hallmark/scripts/tests/*.test.mjs",
+    "verify": "node skills/hallmark/scripts/refcheck.mjs && node --test skills/hallmark/scripts/tests/*.test.mjs && node skills/hallmark/scripts/theme.mjs validate skills/hallmark/references/themes/*.md",
     "serve": "python3 -m http.server --directory site 4173"
   }
 }

@@ -9,6 +9,8 @@ Uniform grid of variations of the same thing: typefaces, palettes, SKUs. The pag
 - **Image:** a specimen thumbnail or a swatch per card when the user gave the images; otherwise a library photograph of the kind of thing, or each card set in type (the name, the one fact, the price, a colour swatch where colour is the variant), never a row of empty frames (68).
 - **Reveal:** none.
 
+**Fingerprint:** `Hanging|Three equal columns|Hairline rule|Unstyled link|Tightly cropped to the grid|None`
+
 Reach for it for foundries, palette tools, font shops, colour systems, capsule collections.
 
 Avoid for narrative brands. Catalogue treats every item as equal, wrong for a product with hierarchy.
