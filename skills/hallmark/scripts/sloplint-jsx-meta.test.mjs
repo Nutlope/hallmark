@@ -22,5 +22,7 @@ test('gate 63 catches a single separator joining JSX meta expressions', () => {
 
 test('gate 63 keeps ordinary prose and a single static byline dot', () => {
   assert.equal(inspect('export const C = () => <p>Alex · 2026</p>;').length, 0);
+  assert.equal(inspect('export const C = ({ firstName, lastName }) => <p>{firstName} · {lastName}</p>;').length, 0);
+  assert.equal(inspect('export const C = ({ author, year }) => <p className="byline">{author} · {year}</p>;').length, 0);
   assert.equal(inspect('export const C = ({ user }) => <p>Hello {user}, welcome back.</p>;').length, 0);
 });
