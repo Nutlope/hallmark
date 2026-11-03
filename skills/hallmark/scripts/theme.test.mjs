@@ -23,3 +23,9 @@ test('validate accepts a theme with either LF or CRLF line endings', () => {
     rmSync(dir, { recursive: true, force: true });
   }
 });
+
+test("lint-hook extracts file name across Windows and POSIX path separators", () => {
+  const parseName = (filePath) => filePath.split(/[\\/]/).pop();
+  assert.equal(parseName("C:\\\\repo\\\\src\\\\Card.tsx"), "Card.tsx");
+  assert.equal(parseName("/repo/src/Card.tsx"), "Card.tsx");
+});

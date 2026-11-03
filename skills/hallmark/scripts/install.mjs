@@ -72,7 +72,16 @@ function installTo(dir) {
   }
   fs.rmSync(dir, { recursive: true, force: true });
   fs.mkdirSync(path.dirname(dir), { recursive: true });
-  fs.renameSync(tmp, dir);
+  try {
+    fs.renameSync(tmp, dir);
+  } catch (err) {
+    if (err?.code === "EXDEV") {
+      copyDir(tmp, dir);
+      fs.rmSync(tmp, { recursive: true, force: true });
+    } else {
+      throw err;
+    }
+  }
   console.log(`  installed -> ${dir}`);
 }
 

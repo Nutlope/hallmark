@@ -39,7 +39,7 @@ function main() {
   try { report = JSON.parse(out); } catch { return OK(); }
   const fails = (report?.findings ?? []).filter((f) => f.grade === "FAIL");
   if (fails.length === 0) return OK();
-  const name = filePath.split("/").pop();
+  const name = filePath.split(/[\\/]/).pop();
   const lines = fails.slice(0, 10).map((f) => `- gate ${f.gate} (line ${f.line}): ${f.evidence} -> ${f.fix}`);
   const more = fails.length > 10 ? `\n  (+${fails.length - 10} more)` : "";
   const ctx = `Hallmark Floor check on ${name}: ${fails.length} FAIL${fails.length === 1 ? "" : "s"}.\n${lines.join("\n")}${more}\nFix these now; the Reflex and Finish tiers run at Step 7.`;
