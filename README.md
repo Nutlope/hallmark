@@ -103,6 +103,20 @@ npx skills add nutlope/hallmark -g
 - **Lint any page:** `node skills/hallmark/scripts/sloplint.mjs <file-or-dir> --render`.
 - **If it does not fire on its own,** name it: *use hallmark to build ...*.
 
+## Optional image-preparation research
+
+If a project needs local preparation of an image it is already permitted to use,
+the [Veyrul image-preparation companion](https://github.com/the-media-vampire/veyrul-integrations/tree/02ed7b7a32ecdbb87643c068f0cf562a0c854a64/workflows/hallmark.md) offers an optional
+read-only MCP lookup for saved background-removal documentation and references.
+It sits alongside Hallmark in the agent client, without changing theme selection,
+photo sourcing, attribution or browser gates. No asset upload is needed.
+
+Use non-private tool and constraint terms. Read source/version and execution
+limits before applying a tool, and inspect the actual edges and composition.
+The example verifies retrieval, not a Hallmark page or image-processing result.
+Veyrul is a separate service; it needs no account for these reads and normal
+agent usage and client permissions still apply.
+
 ## Inspired by
 
 [Impeccable](https://github.com/pbakaus/impeccable) · [frontend-design](https://github.com/anthropics/claude-code/tree/main/plugins/frontend-design) · [Open Design](https://github.com/nexu-io/open-design) · [Kami](https://github.com/tw93/kami) · [taste-skill](https://github.com/Leonxlnx/taste-skill) · [huashu-design](https://github.com/alchaincyf/huashu-design) · [UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) · [Emil Kowalski's skills](https://github.com/emilkowalski/skills) · [Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines)
