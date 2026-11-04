@@ -135,8 +135,8 @@
     </div>
     <form class="booking" data-endpoint="" novalidate>
       <div class="field">
-        <label for="night">Night</label>
-        <select id="night" name="night" required>
+        <label for="night-pick">Night</label>
+        <select id="night-pick" name="night" required>
           <option value="">Choose a night</option>
           <option>Tuesday</option><option>Wednesday</option><option>Thursday</option>
           <option>Friday</option><option>Saturday</option><option>Sunday</option>
@@ -181,7 +181,7 @@
 </footer>
 
 <script>
-document.querySelectorAll('[data-night]').forEach((a) => a.addEventListener('click', () => { const s = document.getElementById('night'); if (s) s.value = a.dataset.night; }));
+document.querySelectorAll('[data-night]').forEach((a) => a.addEventListener('click', () => { const s = document.getElementById('night-pick'); if (s) s.value = a.dataset.night; }));
 document.querySelectorAll('form[data-endpoint]').forEach((form) => {
   const help = form.querySelector('[aria-live]');
   form.addEventListener('submit', (e) => {
