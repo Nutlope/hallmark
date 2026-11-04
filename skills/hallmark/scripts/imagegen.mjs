@@ -81,6 +81,7 @@ try {
   const data = await res.json();
   const images = (data?.data ?? []).map((d) => d?.b64_json).filter(Boolean);
   if (!images.length) out({ error: "no-image", message: "image API returned no b64_json payload" }, 1);
+  if (images.length !== n) out({ error: "image-count", message: `image API returned ${images.length} images; requested ${n}. No files were written.` }, 1);
 
   mkdirSync(cacheDir, { recursive: true });
   const paths = [];

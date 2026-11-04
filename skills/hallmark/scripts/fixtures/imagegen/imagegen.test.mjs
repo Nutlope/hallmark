@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import { mkdtempSync, mkdirSync, writeFileSync, rmSync, realpathSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { spawnSync } from 'node:child_process';
 
 const script = fileURLToPath(new URL('../../imagegen.mjs', import.meta.url));
@@ -47,6 +47,45 @@ for (const explicit of [false, true]) {
   });
 }
 const resolvePath = (path) => realpathSync(path);
+
+for (const [label, response] of [
+  ['partial batch', [{ b64_json: png.toString('base64') }]],
+  ['missing payload', [{ b64_json: png.toString('base64') }, {}]],
+  ['excess batch', Array.from({ length: 3 }, () => ({ b64_json: png.toString('base64') }))],
+]) {
+  test('reject ' + label + ' before overwriting output', () => {
+    withCache(2, true, ({ paths, metadata }) => {
+      const before = [metadata, ...paths].map((file) => readFileSync(file));
+      const preload = join(dirname(metadata), 'response.mjs');
+      writeFileSync(preload, `globalThis.fetch = async () => ({ ok: true, json: async () => (${JSON.stringify({ data: response })}) });`);
+      const result = spawnSync(process.execPath, ['--import', pathToFileURL(preload).href, script, prompt, '--n', '2', '--force', '--out', join(dirname(metadata), 'chosen.png'), '--json'], {
+        cwd: dirname(metadata), env: { ...process.env, TOGETHER_API_KEY: 'offline-test-key' }, encoding: 'utf8', timeout: 5000,
+      });
+      assert.equal(result.error, undefined);
+      assert.equal(result.status, 1, result.stdout);
+      assert.equal(JSON.parse(result.stdout).error, 'image-count');
+      assert.deepEqual([metadata, ...paths].map((file) => readFileSync(file)), before);
+    });
+  });
+}
+
+test('complete generated batch writes every requested image', () => {
+  withCache(2, true, ({ paths, metadata }) => {
+    const preload = join(dirname(metadata), 'response.mjs');
+    const generated = Buffer.from('offline image bytes');
+    writeFileSync(preload, `globalThis.fetch = async () => ({ ok: true, json: async () => ({ data: Array.from({ length: 2 }, () => ({ b64_json: '${generated.toString('base64')}' })) }) });`);
+    const result = spawnSync(process.execPath, ['--import', pathToFileURL(preload).href, script, prompt, '--n', '2', '--force', '--out', join(dirname(metadata), 'chosen.png'), '--json'], {
+      cwd: dirname(metadata), env: { ...process.env, TOGETHER_API_KEY: 'offline-test-key' }, encoding: 'utf8', timeout: 5000,
+    });
+    assert.equal(result.error, undefined);
+    assert.equal(result.status, 0, result.stderr);
+    const report = JSON.parse(result.stdout);
+    assert.equal(report.cached, false);
+    assert.equal(report.paths.length, 2);
+    for (const file of paths) assert.deepEqual(readFileSync(file), generated);
+    assert.equal(JSON.parse(readFileSync(metadata, 'utf8')).files.length, 2);
+  });
+});
 
 test('single-image cache continues to use unnumbered output', () => {
   withCache(1, true, ({ run, paths }) => {
