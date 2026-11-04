@@ -13,7 +13,7 @@ const args = process.argv.slice(2);
 const cmd = args[0];
 const flag = (k, d = null) => { const i = args.indexOf('--' + k); const v = i >= 0 ? args[i + 1] : undefined; return v !== undefined && !String(v).startsWith('--') ? v : d; };
 const has = (k) => args.includes('--' + k);
-const VALUED = new Set(['genre', 'prompt', 'brief', 'log', 'n', 'reroll', 'dealt', 'dir', 'axes', 'face', 'hue', 'entry', 'redesign', 'theme', 'orient', 'save', 'avoid', 'material', 'seed', 'job']);
+const VALUED = new Set(['genre', 'prompt', 'brief', 'log', 'n', 'reroll', 'dealt', 'dir', 'axes', 'face', 'hue', 'entry', 'redesign', 'scope', 'theme', 'orient', 'save', 'avoid', 'material', 'seed', 'job']);
 const positional = () => { const out = []; for (let i = 1; i < args.length; i++) { const a = args[i]; if (a.startsWith('--')) { if (VALUED.has(a.slice(2))) i++; continue; } out.push(a); } return out; };
 const GENRES = ['editorial', 'modern-minimal', 'atmospheric', 'playful'];
 // A theme slug names a file in references/themes, so it is a plain name, never a path.
