@@ -585,7 +585,9 @@ function validate(files) {
   let bad = 0;
   for (const f of files) {
     try {
-      const src = readFileSync(f, 'utf8');
+      // Frontmatter accepts CRLF, so the CSS Build hint matchers must see the same
+      // normalised text; a raw CRLF file silently skipped every hint check.
+      const src = readFileSync(f, 'utf8').replace(/\r\n?/g, '\n');
       const e = parseHeader(src, f);
       const problems = [];
       if (!PAPER_BANDS.has(e.paper.band)) problems.push(`paper band ${e.paper.band}`);

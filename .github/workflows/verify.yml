@@ -17,6 +17,8 @@ jobs:
         run: node --test skills/hallmark/scripts/fixtures/imagegen/imagegen.test.mjs
       - name: Every theme validates
         run: node skills/hallmark/scripts/theme.mjs validate skills/hallmark/references/themes/*.md
+      - name: Theme validation is line-ending independent
+        run: node --test skills/hallmark/scripts/theme.test.mjs
       - name: The theme index is current
         run: |
           node skills/hallmark/scripts/theme.mjs index
