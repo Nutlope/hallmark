@@ -324,6 +324,19 @@ const FIX = join(ROOT, 'scripts', 'fixtures');
     }
   } finally { rmSync(tmp, { recursive: true, force: true }); }
 }
+{
+  const tmp = mkdtempSync(join(tmpdir(), 'hallmark-dot-'));
+  try {
+    const theme = join(tmp, '.vitepress');
+    mkdirSync(join(theme, '.cache'), { recursive: true });
+    writeFileSync(join(theme, 'style.css'), 'p { color: var(--color-text); }');
+    writeFileSync(join(theme, '.cache', 'style.css'), 'p { color: var(--color-text); }');
+    const run = spawnSync(process.execPath, [join(ROOT, 'scripts', 'sloplint.mjs'), theme, '--scope', 'component', '--json'], { encoding: 'utf8', timeout: 5000 });
+    let report = null;
+    try { report = JSON.parse(run.stdout); } catch {}
+    if (!report || report.summary.files !== 1) add('error', SKILL, 1, 'fixture', 'a dot folder named on the command line must be linted, while dot folders inside it stay skipped');
+  } finally { rmSync(tmp, { recursive: true, force: true }); }
+}
 const lintJson = (t) => { const r = spawnSync(process.execPath, [join(ROOT, 'scripts', 'sloplint.mjs'), t, '--json'], { encoding: 'utf8' }); try { return JSON.parse(r.stdout); } catch { return null; } };
 const gatesOf = (j) => new Set(j.findings.map((x) => String(x.gate)));
 const expectations = [
