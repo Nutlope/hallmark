@@ -1,4 +1,5 @@
-# Hallmark
+
+![Hallmark](https://capsule-render.vercel.app/api?type=blur&height=300&color=gradient&section=footer&reversal=false&text=Hallmark&textBg=false&fontSize=70&fontAlign=50&fontAlignY=50&rotate=0&strokeWidth=0&desc=Anti-AI-slop+design+skill+for+Claude+Code%2C+Cursor%2C+and+Codex.&descSize=20&descAlign=50&descAlignY=60)
 
 **A design skill for Claude Code, Codex, Cursor and OpenCode that refuses to look AI-generated.**
 
