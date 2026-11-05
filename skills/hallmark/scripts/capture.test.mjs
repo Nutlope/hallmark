@@ -13,7 +13,7 @@ async function capture(routes, prepare, check) {
   const dir = mkdtempSync(join(tmpdir(), 'hallmark-capture-'));
   const server = createServer((req, res) => {
     if (req.url === '/redirect') { res.writeHead(302, { Location: '/ok' }); res.end(); return; }
-    const status = req.url === '/ok' ? 200 : req.url === '/missing' ? 404 : 500;
+    const status = ['/ok', '/', '/home', '/a/b', '/a-b', '/a-b-2'].includes(req.url) ? 200 : req.url === '/missing' ? 404 : 500;
     res.writeHead(status, { 'Content-Type': 'text/html' });
     res.end(`<html><title>${status}</title><h1>${status === 200 ? 'Owned product fixture' : 'Error document'}</h1></html>`);
   });
@@ -61,3 +61,16 @@ test('capture accepts a redirect to a successful document', { skip }, async () =
     assert.match(result.stdout, /<img /);
   });
 });
+
+for (const routes of ['/a/b,/a-b', '/,/home', '/a/b,/a-b,/a/b', '/a/b,/a-b,/a-b-2', '/a-b-2,/a-b,/a/b']) {
+  test(`capture keeps distinct files for colliding routes ${routes}`, { skip }, async () => {
+    await capture(routes, null, (dir, result) => {
+      assert.equal(result.status, 0, result.stdout + result.stderr);
+      const files = readdirSync(dir);
+      assert.equal(files.length, routes.split(',').length);
+      for (const file of files) assert.deepEqual([...readFileSync(join(dir, file)).subarray(0, 8)], [137, 80, 78, 71, 13, 10, 26, 10]);
+      const sources = [...result.stdout.matchAll(/<img src="([^"]+)"/g)].map((m) => m[1]);
+      assert.equal(new Set(sources).size, files.length);
+    });
+  });
+}

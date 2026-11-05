@@ -107,7 +107,9 @@ try {
       await new Promise((r) => setTimeout(r, wait));
       await p.bringToFront();
       const slug = route === '/' ? 'home' : route.replace(/^\/|\/$/g, '').replace(/[^\w-]+/g, '-');
-      const file = join(out, `${name}-${slug}-${size}${selector ? '-part' : ''}.png`);
+      const stem = join(out, `${name}-${slug}-${size}${selector ? '-part' : ''}`);
+      let file = `${stem}.png`, suffix = 2;
+      while (made.some((m) => m.file === file)) file = `${stem}-${suffix++}.png`;
       let shot;
       if (selector) {
         const el = await p.$(selector);
