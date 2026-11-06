@@ -1,5 +1,7 @@
 [English](README.md) | [Português (Brasil)](README.pt-BR.md) | **Español**
 
+> Traducción del [README en inglés](README.md), que es la fuente de verdad. Si ambos difieren, manda el inglés.
+
 # Hallmark
 
 **Una skill de diseño para Claude Code, Codex, Cursor y OpenCode que se niega a parecer generada por IA.**
