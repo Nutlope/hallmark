@@ -1,3 +1,5 @@
+**English** | [Português (Brasil)](README.pt-BR.md) | [Español](README.es.md)
+
 # Hallmark
 
 **A design skill for Claude Code, Codex, Cursor and OpenCode that refuses to look AI-generated.**
