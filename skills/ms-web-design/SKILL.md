@@ -36,7 +36,7 @@ Binds every output in every harness, waivable only by a client brand (below), ev
 15. The first non-empty line of the CSS source is the Hallmark stamp, then the critique line, then any waivers. (20)
 16. If Node is available, run `node <skill-dir>/scripts/ms-sloplint.mjs <output> --render` before handing back. Fix every `FAIL`; fix or waive every `REFLEX`.
 
-**Client brand.** A `design.md` or `.hallmark/brand-spec.md` that specifies the treatment overrides items 3 (gate 38i), 9 (54, 67), 10 (63) and 11's gradient (2a), no others: declare each after the stamp, `/* ms · marca · <gate> · <file:line> */`.
+**Client brand.** A client `design.md` (never one with the `Origen` line of `ms-arte.md`) or `.hallmark/brand-spec.md` that specifies the treatment overrides items 3 (38i), 9 (54, 67), 10 (63) and 11's gradient (2a), no others: declare each after the stamp, `/* ms · marca · <gate> · <file:line> */`.
 
 Above the Floor, a **Reflex** gate is a default a model falls into, waivable on the record with a real reason, and a **Finish** check is craft detail, answered, never blocking ([`references/gates.md`](references/gates.md) § 1 and § 2).
 
@@ -53,13 +53,13 @@ Above the Floor, a **Reflex** gate is a default a model falls into, waivable on 
 
 **Verbs,** only when the user names ms-web-design: `redesign <target>` (a full redesign keeping content and wiring) and `audit <target>` (a report); read [`references/redesign.md`](references/redesign.md) first. Any other change to an existing design is not a Hallmark run: do it as asked, in the project's own system.
 
-Codex CLI and OpenCode read `references/flow.md` § Harnesses first; other harnesses run this file as written.
+Codex CLI and OpenCode read `references/flow.md` § Harnesses first.
 
 ### 0. Pre-flight
 
 Signals, in order: `design.md` or `DESIGN.md` at the root (a locked system: it overrides everything below, and pages share it); `.hallmark/brand-spec.md` or a prompt naming a real brand (run [`references/brand-truth.md`](references/brand-truth.md); never theme a real brand from memory); the project's fonts, palette, spacing, motion libraries and framework (`package.json`, Tailwind config, `:root`, tokens, font links); **the product itself**: a URL, a running dev server, a project that starts with one command or an app on the machine, which the build captures with `scripts/capture.mjs` (`imagery.md` § 4); an Inspo MCP server (`mcp__inspo__*` tools: signal 8, `flow.md` § Signal 8; a `/ms-web-design` prompt, the skill named or a custom ask beats it); `TOGETHER_API_KEY` set (signal 9, the comp step).
 
-Output one block (file:line citations, what is preserved, what is introduced), cached in `.hallmark/preflight.json` (`flow.md` § Pre-flight).
+Output one block (file:line citations, what is preserved, what is introduced), cached in `.hallmark/preflight.json` (`flow.md` § Pre-flight). References, a named aesthetic, or a request for direction or inspiration: [`references/ms-arte.md`](references/ms-arte.md) first.
 
 ### 1. Ask once
 
@@ -91,9 +91,10 @@ Hold all of it; it is said once, at Step 5.
 
 The first match wins.
 
-1. **The user named a theme** → build it (stamp `theme: <name> (by request)`).
-2. **The user asked for custom** ("custom", "derive it", "bespoke", "no theme", "a world of its own") → [`references/direction.md`](references/direction.md): the design is yours. It replaces the draw, the shapes, `layout.md`, the genre file and Step 6's composition and fold rules; the Floor, the gates and the sweep hold. Silence never takes this route.
-3. **Everything else deals a theme:**
+1. **`design.md` names a base in `## Dirección`** → build it.
+2. **The user named a theme** → build it (stamp `theme: <name> (by request)`).
+3. **The user asked for custom** ("custom", "derive it", "bespoke", "no theme", "a world of its own") → [`references/direction.md`](references/direction.md): the design is yours. It replaces the draw, the shapes, `layout.md`, the genre file and Step 6's composition and fold rules; the Floor, the gates and the sweep hold. Silence never takes this route.
+4. **Everything else deals a theme:**
 
 ```
 node <skill-dir>/scripts/theme.mjs deal --genre <genre> --prompt "<the prompt>" [--log .hallmark/log.json]
@@ -118,17 +119,17 @@ The run's only recital of its decisions, and the user's redirect window:
 ```markdown
 **Hallmark · v2.0.0**
 
-- **Shape** · Workbench, from draw 7f3a2c · genre modern-minimal · job: sign up, the action in the hero and beside the price
-- **Theme** · Coral, dealt 2/3 (warm grey, one coral signal, General Sans, soft pills) · clears Cobalt on paper band
-- **Chrome** · nav: edge-aligned, a wordmark and one action · footer: a mast, the wordmark over the links
-- **Hero** · Stage: head on columns 1 to 5, the slot on 6 to 12 at 560px, centred
-- **Signature** · the invoice list chasing a late payment, built live in the hero
-- **Sections** · Hero (the invoice list) · Pinned (one late payment, chased in three panels) · Switcher (the client's view and yours) · Table (pricing) · Footer
-- **Material** · real: the 2-minute setup, the CSV import, Lisbon · pictures: the invoice list built in the hero, library photos of a Lisbon studio (muted) · absent: logos, quotes, metrics
+- **Shape** · Workbench, draw 7f3a2c · modern-minimal · job: sign up, the action in the hero and by the price
+- **Theme** · Coral, dealt 2/3 (warm grey, one coral signal, General Sans) · clears Cobalt
+- **Chrome** · nav: edge-aligned, wordmark and one action · footer: the wordmark over the links
+- **Hero** · Stage: head on columns 1 to 5, the slot on 6 to 12
+- **Signature** · the invoice list chasing a late payment, live in the hero
+- **Sections** · Hero · Pinned (one late payment, three panels) · Switcher · Table (pricing) · Footer
+- **Material** · real: the 2-minute setup, Lisbon · pictures: the invoice list in the hero, library photos (muted) · absent: logos, quotes, metrics
 - **Sweep** · run after build
 ```
 
-A custom run's rows are in `direction.md`. Then one quiet line, skipped in component scope or when `design.md` exists: *System portable? Say `lock the system` for a `design.md`.* On signal 9, `comp.md` runs here.
+A custom run's rows are in `direction.md`. Motion-led material or references add a **Movimiento** row (`ms-movimiento.md`). Then one quiet line, skipped in component scope or when `design.md` exists: *System portable? Say `lock the system` for a `design.md`.* On signal 9, `comp.md` runs here.
 
 ### 6. Build
 
@@ -141,7 +142,7 @@ A custom run's rows are in `direction.md`. Then one quiet line, skipped in compo
 - **Type and motion** (`craft.md` § 1 and § 5). The theme's faces, two families at most (three with one outlier role); body 16px or more; heads one weight and one colour (38iii); labels never mono unless mono is the material (64). Eight states on every control; `transform` and `opacity` only; one reveal at most, none where the theme keeps still, visible by default.
 - **Stamp.** Line 1 of CSS is the scaffold's stamp skeleton with every field filled, then the critique line (`gates.md` § 3), then any `waive` and `answered` lines, all within the first 40 lines.
 - **Existing stylesheets are append-only:** the imports go right after the last `@import`, never below a rule or a `@tailwind` directive; reuse the project's token names ([`references/export-formats.md`](references/export-formats.md)).
-- **Log.** `node <skill-dir>/scripts/theme.mjs log --entry '<json>'` puts the build atop `.hallmark/log.json` with the fields rotation reads (`shape`, `theme`, `axes`, `hero`, `nav`, `footer`, `imagery`, `photos`, `entry`, `fingerprint`, `sections`, `signature`, `waived`, `prompt`) and names any you left out.
+- **Log.** `node <skill-dir>/scripts/theme.mjs log --entry '<json>'` puts the build atop `.hallmark/log.json` with the fields rotation reads, and names any you left out.
 
 ### 7. Sweep
 

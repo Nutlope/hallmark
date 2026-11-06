@@ -1,0 +1,6 @@
+html { scroll-snap-type: y mandatory; }
+body { overflow: hidden; cursor: url(cursor.png), auto; }
+.project .meta { opacity: 0; }
+.project:hover .meta { opacity: 1; }
+.preloader { position: fixed; inset: 0; z-index: 99; }
+.dot { cursor: none; }

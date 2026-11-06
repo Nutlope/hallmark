@@ -48,6 +48,8 @@ The spacing scale, the type scale, the easings and the durations are the scaffol
 `tokens.css` in this project. Tailwind, DTCG or shadcn blocks are added here on request, per `export-formats.md`.
 ````
 
+**ms-web-design:** when `ms-arte.md` ran first, the file already opens with its `Origen` line and `## Dirección`; keep both above `## System` and add the sections below them.
+
 ## After the file exists
 
 The pre-flight finds it on every later run (SKILL.md Step 0). From then on every pick defers to it, the variety rule inverts (pages share the system rather than differ), and a page that genuinely needs something else amends `design.md` with a `## Variants` section instead of overriding it locally.

@@ -1,0 +1,7 @@
+html, body { overflow-x: clip; }
+html { scroll-snap-type: y proximity; }
+.project .meta { opacity: 0; }
+.project:hover .meta, .project:focus-within .meta { opacity: 1; }
+.slot .loader { position: absolute; inset: 0; }
+.button:disabled { cursor: not-allowed; }
+.viewer { overflow: hidden; }

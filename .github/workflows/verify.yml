@@ -19,3 +19,5 @@ jobs:
         run: |
           node skills/ms-web-design/scripts/theme.mjs index
           git diff --exit-code -- skills/ms-web-design/references/themes/index.json
+      - name: ms-sloplint additions behave
+        run: node skills/ms-web-design/scripts/ms-test.mjs
