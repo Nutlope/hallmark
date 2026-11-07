@@ -30,7 +30,8 @@
   if ('ResizeObserver' in window) new ResizeObserver(fit).observe(frame);
   const dOpen = dlg.querySelector('[data-th-dlg-open]');
   let from, cur;
-  const visible = () => [...grid.querySelectorAll('.th:not([hidden]) .th__link')];
+  const visible = () => [...grid.querySelectorAll('.th:not([hidden]) .th__link')]
+    .filter((link) => link.getClientRects().length > 0);
   const fillDlg = (b) => {
     cur = b;
     dName.textContent = b.dataset.name;
