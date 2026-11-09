@@ -374,6 +374,32 @@ if (existsSync(keptDir)) {
   } finally { rmSync(tmp, { recursive: true, force: true }); }
 }
 
+{
+  const tmp = mkdtempSync(join(tmpdir(), 'hallmark-kept-pages-'));
+  try {
+    const page = (body, css = '') => `<!doctype html><html lang="en"><head><title>Pages</title><style>${css}</style></head><body>${body}</body></html>`;
+    const link = '<a href="/checkout">Checkout</a>';
+    const write = (name, src) => writeFileSync(join(tmp, name), src);
+    const fails = () => {
+      const r = spawnSync(process.execPath, [join(ROOT, 'scripts', 'sloplint.mjs'), '.', '--kept', '--json'], { encoding: 'utf8', cwd: tmp });
+      try { return JSON.parse(r.stdout).findings.filter((x) => x.gate === 'kept' && x.grade === 'FAIL').map((x) => x.evidence).join(' | '); } catch { return null; }
+    };
+    write('a.html', page(link));
+    write('b.html', page(link));
+    spawnSync(process.execPath, [join(ROOT, 'scripts', 'sloplint.mjs'), '.', '--before', '--json'], { encoding: 'utf8', cwd: tmp });
+    const here = 'skills/hallmark/scripts/refcheck.mjs';
+    if (fails() !== '') add('error', here, 1, 'fixture', 'two unchanged pages sharing a link must not fail --kept');
+    write('a.html', page('<p>Gone</p>'));
+    const lost = fails();
+    if (!lost || !lost.includes('/checkout on a.html')) add('error', here, 1, 'fixture', 'a link lost from one page must fail --kept and name that page, even when another page keeps the href');
+    write('Nav.jsx', `export const Nav = () => ${link};\n`);
+    if (fails() !== '') add('error', here, 1, 'fixture', 'a link a component took over from the page must not fail --kept');
+    rmSync(join(tmp, 'Nav.jsx'));
+    write('a.html', page('<p>Gone</p>', '/* Hallmark · dropped /checkout · checkout now lives on one page only */'));
+    if (fails() !== '') add('error', here, 1, 'fixture', 'a link recorded as dropped in the stamp must not fail --kept on any one page');
+  } finally { rmSync(tmp, { recursive: true, force: true }); }
+}
+
 const REPO = resolve(ROOT, '..', '..');
 const pkgFile = join(REPO, 'package.json');
 if (existsSync(pkgFile)) {
