@@ -285,6 +285,24 @@ for (const target of clean) {
 
 const FIX = join(ROOT, 'scripts', 'fixtures');
 {
+  // A font token names a face only when it holds a family: weight, stretch and size tokens beside
+  // one family are not more families (37), while four real families still are.
+  const tmp = mkdtempSync(join(tmpdir(), 'hallmark-font-tokens-'));
+  const gate37 = (css) => {
+    writeFileSync(join(tmp, 'tokens.css'), css);
+    const run = spawnSync(process.execPath, [join(ROOT, 'scripts', 'sloplint.mjs'), tmp, '--json'], { encoding: 'utf8', timeout: 5000 });
+    let report = null;
+    try { report = JSON.parse(run.stdout); } catch {}
+    return report ? report.findings.filter((f) => String(f.gate) === '37').length : null;
+  };
+  try {
+    const oneFace = gate37(":root { --font-display: 'Archivo', system-ui, sans-serif; --font-body: 'Archivo', system-ui, sans-serif; --font-display-weight: 800; --font-display-stretch: 125%; --font-heading-weight: 700; --font-heading-stretch: 100%; --font-label-size: 0.875rem; --font-caption-style: italic; }");
+    if (oneFace !== 0) add('error', SKILL, 1, 'fixture', `font weight, stretch, size and style tokens must not count as families (37), got ${oneFace} finding(s)`);
+    const fourFaces = gate37(":root { --font-display: 'Fraunces', serif; --font-body: 'Inter Tight', sans-serif; --font-label: 'IBM Plex Mono', monospace; --font-outlier: 'Caveat', cursive; }");
+    if (!fourFaces) add('error', SKILL, 1, 'fixture', 'four font families must still fail 37');
+  } finally { rmSync(tmp, { recursive: true, force: true }); }
+}
+{
   const tmp = mkdtempSync(join(tmpdir(), 'hallmark-links-'));
   try {
     const project = join(tmp, 'project');
