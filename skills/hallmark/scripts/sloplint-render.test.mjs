@@ -9,8 +9,8 @@ import test from 'node:test';
 const dir = mkdtempSync(join(tmpdir(), 'hallmark-render-'));
 const source = readFileSync(new URL('./sloplint-render.mjs', import.meta.url), 'utf8');
 const modulePath = join(dir, 'render.mjs');
-writeFileSync(modulePath, source + '\nexport { pixelBehind, pixelsAroundRing };\n');
-const { pixelBehind, pixelsAroundRing } = await import(pathToFileURL(modulePath));
+writeFileSync(modulePath, source + '\nexport { pixelBehind, pixelsAroundRing, offScreenFocus };\n');
+const { pixelBehind, pixelsAroundRing, offScreenFocus } = await import(pathToFileURL(modulePath));
 rmSync(dir, { recursive: true, force: true });
 const puppeteerPath = process.env.HALLMARK_TEST_PUPPETEER;
 const chromePath = process.env.HALLMARK_TEST_CHROME;
@@ -63,4 +63,26 @@ test('text probe preserves absence of an inline style attribute', { skip }, asyn
   const before = await styles(page);
   await pixelBehind(page, 1);
   assert.deepEqual(await styles(page), before);
+}));
+
+const drawer = (attrs) => `<style>.drawer{position:fixed;left:0;top:0;width:200px;transform:translateX(-110%)}</style><a href="#a">Home</a><aside class="drawer" ${attrs}><button class="close">Close</button></aside>`;
+test('focus on a control in a closed off-canvas drawer is reported', { skip }, async () => withPage(async (page) => {
+  await page.setContent(drawer(''));
+  assert.deepEqual(await offScreenFocus(page), ['button.close "Close"']);
+}));
+test('an inert drawer keeps focus on the page', { skip }, async () => withPage(async (page) => {
+  await page.setContent(drawer('inert'));
+  assert.deepEqual(await offScreenFocus(page), []);
+}));
+test('a skip link that slides into view on focus passes', { skip }, async () => withPage(async (page) => {
+  await page.setContent('<style>.skip{position:fixed;left:0;top:0;transform:translateY(-200%);transition:transform .3s}.skip:focus{transform:none}</style><a class="skip" href="#m">Skip</a><main id="m">Main</main>');
+  assert.deepEqual(await offScreenFocus(page), []);
+}));
+test('a control below the fold passes once focus has scrolled to it', { skip }, async () => withPage(async (page) => {
+  await page.setContent('<style>html{scroll-behavior:smooth}</style><div style="height:2000px"></div><a href="#x">Far down</a>');
+  assert.deepEqual(await offScreenFocus(page), []);
+}));
+test('a parked input whose label is in view passes', { skip }, async () => withPage(async (page) => {
+  await page.setContent('<input id="c" type="checkbox" style="position:absolute;left:-9999px"><label for="c">Accept</label>');
+  assert.deepEqual(await offScreenFocus(page), []);
 }));
