@@ -9,7 +9,7 @@ import test from 'node:test';
 
 const skip = !process.env.HALLMARK_PUPPETEER || !process.env.CHROME_PATH ? 'set HALLMARK_PUPPETEER and CHROME_PATH for real-browser regressions' : false;
 const script = fileURLToPath(new URL('./capture.mjs', import.meta.url));
-async function capture(routes, prepare, check) {
+async function capture(routes, prepare, check, out) {
   const dir = mkdtempSync(join(tmpdir(), 'hallmark-capture-'));
   const server = createServer((req, res) => {
     if (req.url === '/redirect') { res.writeHead(302, { Location: '/ok' }); res.end(); return; }
@@ -21,7 +21,7 @@ async function capture(routes, prepare, check) {
   try {
     prepare?.(dir);
     const result = await new Promise((resolve, reject) => {
-      const p = spawn(process.execPath, [script, `http://127.0.0.1:${server.address().port}`, '--routes', routes, '--sizes', 'desktop', '--wait', '0', '--scale', '1', '--out', dir], { env: process.env });
+      const p = spawn(process.execPath, [script, `http://127.0.0.1:${server.address().port}`, '--routes', routes, '--sizes', 'desktop', '--wait', '0', '--scale', '1', '--out', out || dir], { cwd: dir, env: process.env });
       let stdout = '', stderr = '';
       p.stdout.on('data', (s) => { stdout += s; });
       p.stderr.on('data', (s) => { stderr += s; });
@@ -53,6 +53,12 @@ test('capture keeps successful routes when another route fails', { skip }, async
     assert.match(result.stdout, /1 screenshot\./);
     assert.deepEqual([...readFileSync(join(dir, 'screen-ok-desktop.png')).subarray(0, 8)], [137, 80, 78, 71, 13, 10, 26, 10]);
   });
+});
+test('capture prints the <img> src with forward slashes', { skip }, async () => {
+  await capture('/ok', null, (dir, result) => {
+    assert.equal(result.status, 0, result.stderr);
+    assert.match(result.stdout, /<img src="images\/screens\/screen-ok-desktop\.png" /);
+  }, 'images/screens');
 });
 test('capture accepts a redirect to a successful document', { skip }, async () => {
   await capture('/redirect', null, (dir, result) => {
