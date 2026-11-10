@@ -15,7 +15,7 @@
 // of the viewport; --full captures the whole scroll height. It never draws a browser bar or a device
 // frame: the page frames the picture in the theme's material.
 import { mkdirSync, existsSync, writeFileSync } from 'node:fs';
-import { join, dirname, resolve, relative } from 'node:path';
+import { join, dirname, resolve, relative, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createRequire } from 'node:module';
 
@@ -70,7 +70,7 @@ if (has('cdp')) {
   const dpr = await page.evaluate(() => devicePixelRatio).catch(() => 1);
   const rel = relative(process.cwd(), file);
   console.log(`${rel}  ${Math.round(box.width * dpr)} x ${Math.round(box.height * dpr)}  (app window)`);
-  console.log(`  <img src="${rel}" width="${Math.round(box.width * dpr)}" height="${Math.round(box.height * dpr)}" alt="" loading="lazy">`);
+  console.log(`  <img src="${rel.split(sep).join('/')}" width="${Math.round(box.width * dpr)}" height="${Math.round(box.height * dpr)}" alt="" loading="lazy">`);
   await app.disconnect();
   process.exit(0);
 }
@@ -126,7 +126,7 @@ try {
 for (const m of made) {
   const rel = relative(process.cwd(), m.file);
   console.log(`${rel}  ${m.w} x ${m.h}  (${m.route}, ${m.size})`);
-  console.log(`  <img src="${rel}" width="${m.w}" height="${m.h}" alt="" loading="lazy">`);
+  console.log(`  <img src="${rel.split(sep).join('/')}" width="${m.w}" height="${m.h}" alt="" loading="lazy">`);
 }
 if (!made.length) process.exitCode = 1;
 else console.log(`\n${made.length} screenshot${made.length > 1 ? 's' : ''}. Look at each one before placing it: sample data only, nothing personal (names, emails, tokens), the screen in the state that tells the page's story.`);
