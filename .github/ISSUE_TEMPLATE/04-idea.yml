@@ -1,0 +1,19 @@
+name: Idea or question
+description: Suggest a feature, a gate or a theme, or ask how something works.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A proposed gate or theme is easier to judge with a real page that shows it. For larger changes, please agree on the idea here before you open a pull request.
+  - type: textarea
+    id: goal
+    attributes:
+      label: What are you trying to do?
+      description: The problem or the question, in your own words.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would help?
+      description: Your idea, an example page, or anything you have already tried.

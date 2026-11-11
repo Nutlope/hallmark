@@ -1,0 +1,43 @@
+name: A page still looks generated
+description: Hallmark built a page that still has a tell of AI-made design.
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Hallmark is meant to build pages that look designed. If one of yours still gives itself away, show us what it was asked for and where it slipped.
+  - type: textarea
+    id: prompt
+    attributes:
+      label: Prompt
+      description: What you asked for, word for word.
+    validations:
+      required: true
+  - type: input
+    id: theme
+    attributes:
+      label: Theme
+      description: The theme Hallmark dealt, or "custom". The stamp at the top of the page's stylesheet names it.
+    validations:
+      required: true
+  - type: textarea
+    id: tell
+    attributes:
+      label: What looks generated?
+      description: Point at the part of the page and say what gives it away.
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Drag images in here. A screenshot of the whole page helps most.
+    validations:
+      required: true
+  - type: input
+    id: setup
+    attributes:
+      label: Agent and model
+      description: The agent you ran Hallmark in, its version, and the model.
+    validations:
+      required: true

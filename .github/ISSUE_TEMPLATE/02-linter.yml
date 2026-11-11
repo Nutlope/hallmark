@@ -1,0 +1,55 @@
+name: Linter false alarm or miss
+description: sloplint flags something that is fine, or misses a real problem.
+title: "sloplint: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        sloplint should fail real tells and pass good pages. The smaller your example, the faster we can fix it.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What went wrong?
+      options:
+        - It flagged something that is fine
+        - It missed a real problem
+        - It crashed or gave no result
+    validations:
+      required: true
+  - type: input
+    id: gate
+    attributes:
+      label: Gate
+      description: The gate number from the output or from `references/gates.md`, if you know it.
+      placeholder: "37"
+  - type: textarea
+    id: snippet
+    attributes:
+      label: Smallest page that shows it
+      description: HTML, CSS or a component, cut down as far as you can.
+      render: html
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command and output
+      description: For example `node skills/hallmark/scripts/sloplint.mjs page.html --render`. Outside a clone, the scripts are in the `scripts` folder of your installed copy.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why is the result wrong?
+      description: For a false alarm, say why the page is fine. For a miss, say what a visitor would notice.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Hallmark version
+      description: The commit (`git rev-parse --short HEAD` in a clone) or the date you installed.
+    validations:
+      required: true

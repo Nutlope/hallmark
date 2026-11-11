@@ -1,0 +1,59 @@
+name: Bug report
+description: A script, the installer or the skill itself does something wrong.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Please check that it still happens on the latest `main` first, by running `npx skills add nutlope/hallmark -g` again.
+        For a linter false alarm or miss, or a page that still looks generated, pick one of the other forms.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: Describe what went wrong.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: How can we reproduce it?
+      description: The exact command and the smallest input that shows the problem. Outside a clone, the scripts are in the `scripts` folder of your installed copy.
+      placeholder: |
+        node skills/hallmark/scripts/install.mjs --dry-run
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Output
+      description: The full output or error. It is shown as code, so no backticks are needed.
+      render: text
+  - type: input
+    id: setup
+    attributes:
+      label: Your setup
+      description: Your operating system, Node version (`node -v`), and the agent and model if one was involved.
+      placeholder: macOS 15, Node 22.11
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Hallmark version
+      description: The commit (`git rev-parse --short HEAD` in a clone) or the date you installed.
+    validations:
+      required: true
+  - type: checkboxes
+    id: searched
+    attributes:
+      label: Before you send
+      options:
+        - label: I searched the open issues and this has not been reported yet.
+          required: true
