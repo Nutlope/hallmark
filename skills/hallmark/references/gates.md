@@ -147,6 +147,7 @@ One line each. `a`/`b` clauses share a number and carry their own tier. Genre no
 | 18 | Floor | M | Auto-rotating content with no pause on hover and focus | pause on hover and focus, and a visible pause control on anything moving past 5 seconds |
 | 26a | Floor | M/R | An interactive element with no `:focus-visible`, a ring under 3:1 against what it is drawn over, or an outline removed with nothing in its place | a ring at 3:1 or better, instant |
 | 26b | Reflex | M | Missing `:active` or `:disabled`. Guard: not a form control, no `aria-disabled` anywhere | all eight states |
+| 26c | Floor | R | Keyboard focus reaches a control entirely outside the viewport once focus scrolling has settled, at 375, 768 or 1440 wide. A control that moves into view on focus, or a hidden input whose label is in view, passes | `inert` or `hidden` on closed drawers and off-canvas panels |
 | 27 | Floor | M | A keyframe or transform transition without a `prefers-reduced-motion: reduce` fallback (`transition: all` over a hover transform counts) | add it |
 | 28a | Floor | M | A video autoplaying without `muted`; `loading="lazy"` on the LCP element | `autoplay muted loop playsinline`; `fetchpriority="high"` on an LCP image, a preloaded poster for an LCP video |
 | 28b | Reflex | M | Video without `poster` or a priority hint. Guard: below the fold and not the LCP | add them |

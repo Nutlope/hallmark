@@ -222,6 +222,12 @@ export async function renderCheck(htmlFiles, metaIn) {
             if (ring.ratio != null && ring.ratio < 2.95) findings.push({ gate: '26a', grade: 'FAIL', file, line: 1, evidence: `[1440px] focus ring ${ring.ratio.toFixed(2)}:1 against what is behind it on ${ring.key}`, fix: 'A ring at 3:1 or better against the surface it is drawn over: --color-focus, or a ring colour per band' });
           }
           if (bare.length) findings.push({ gate: '26a', grade: 'FAIL', file, line: 1, evidence: `[1440px] nothing shows keyboard focus on ${bare.join(', ')}`, fix: 'Give every control a :focus-visible ring; never remove an outline without putting one back' });
+          for (const [w, h] of [[375, 800], [768, 1024], [1440, 900]]) {
+            await page.setViewport({ width: w, height: h });
+            await frames(page);
+            const lost = await offScreenFocus(page);
+            if (lost.length) findings.push({ gate: '26c', grade: 'FAIL', file, line: 1, evidence: `[${w}px] keyboard focus lands off-screen on ${lost.join(', ')}`, fix: 'Put inert (or hidden) on closed drawers and off-canvas panels, and lift it when they open' });
+          }
         }
         if (!heroOnly) {
           await page.setViewport({ width: 1440, height: 900 });
@@ -406,6 +412,36 @@ function focusRing() {
   const r = el.getBoundingClientRect();
   const pad = Math.max(0, parseFloat(cs.outlineOffset)) + parseFloat(cs.outlineWidth) + 3;
   return { key, ring: ring.slice(0, 3), ratio: (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05), rect: { x: r.left, y: r.top, w: r.width, h: r.height }, pad };
+}
+
+function focusAt(recheck) {
+  const el = document.activeElement;
+  if (!el || el === document.body || el === document.documentElement) return { done: true };
+  const seen = window.__hmTabbed || (window.__hmTabbed = new WeakSet());
+  if (!recheck) { if (seen.has(el)) return { done: true }; seen.add(el); }
+  const outside = (n) => { const r = n.getBoundingClientRect(); return (r.width > 0 || r.height > 0) && (r.right <= 0 || r.bottom <= 0 || r.left >= window.innerWidth || r.top >= window.innerHeight); };
+  const label = el.labels && el.labels[0];
+  if (!outside(el) || (label && !outside(label))) return {};
+  return { key: el.tagName.toLowerCase() + (el.classList[0] ? '.' + el.classList[0] : '') + ((el.textContent || '').trim() ? ` "${el.textContent.trim().slice(0, 18)}"` : '') };
+}
+
+// Tabs through the page and names controls focus reached but the viewport does not show. A control off-screen after the first look gets time for a smooth scroll or a sliding skip link to finish.
+async function offScreenFocus(page) {
+  const reset = () => page.evaluate(() => { delete window.__hmTabbed; window.scrollTo(0, 0); if (document.activeElement && document.activeElement.blur) document.activeElement.blur(); });
+  await reset();
+  const lost = [];
+  for (let i = 0; i < 60 && lost.length < 4; i++) {
+    await page.keyboard.press('Tab');
+    await frames(page);
+    const at = await page.evaluate(focusAt, false);
+    if (at.done) break;
+    if (!at.key) continue;
+    await new Promise((r) => setTimeout(r, 600));
+    const after = await page.evaluate(focusAt, true);
+    if (after.key && !lost.includes(after.key)) lost.push(after.key);
+  }
+  await reset();
+  return lost;
 }
 
 async function pixelsAroundRing(page, ring) {
