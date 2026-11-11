@@ -187,6 +187,9 @@ export async function renderCheck(htmlFiles, metaIn) {
             else f.evidence = f.evidence.replace(/computed contrast [\d.]+:1/, `contrast ${real.toFixed(2)}:1 against the pixels behind`).replace(/\([\d.]+:1\)$/, `(${real.toFixed(2)}:1)`);
           }
           for (const f of res) if (!f.drop) { const { probe, fg, threshold, drop, ...rest } = f; findings.push({ ...rest, file, line: 1, evidence: `[${width}px] ${f.evidence}` }); }
+          if (!heroOnly && !meta.before && [375, 768, 1440].includes(width)) {
+            for (const f of await navigationDisclosures(page)) findings.push({ ...f, file, line: 1 });
+          }
         }
         for (const [w, h] of [[1440, 900], [1920, 1080]]) {
           await page.setViewport({ width: w, height: h });
@@ -1280,4 +1283,177 @@ if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1]
   const res = await renderCheck(process.argv.slice(2).filter((p) => isUrl(p)).concat(htmls.map((p) => resolve(process.cwd(), p))));
   console.log(JSON.stringify(res, null, 2));
   process.exit(0);
+}
+
+// Only explicit, collapsed native navigation buttons are probed.
+function disclosureState(index) {
+  const boxVisible = el => {
+    if (!el || el.closest('[hidden], [inert], [aria-hidden="true"]')) return false;
+    for (let p = el; p; p = p.parentElement) {
+      const s = getComputedStyle(p);
+      if (s.display === 'none' || s.visibility === 'hidden' || Number(s.opacity) === 0) return false;
+    }
+    const r = el.getBoundingClientRect();
+    return r.width > 1 && r.height > 1 && r.right > 0 && r.left < innerWidth && r.bottom > 0 && r.top < innerHeight;
+  };
+  const opaque = s => Number(s.opacity) === 1 && /(?:rgb\([^/]+\)|rgba\([^,]+,[^,]+,[^,]+,\s*1\))$/.test(s.backgroundColor);
+  const exposed = panel => {
+    if (!boxVisible(panel)) return false;
+    for (const link of [...panel.querySelectorAll('a[href]')].slice(0, 8)) {
+      if (!boxVisible(link)) continue;
+      for (const r of link.getClientRects()) for (const fx of [0.15, 0.5, 0.85]) for (const fy of [0.25, 0.75]) {
+        const x = r.left + r.width * fx, y = r.top + r.height * fy;
+        if (x < 0 || y < 0 || x >= innerWidth || y >= innerHeight) continue;
+        let reached = false, covered = false;
+        for (const top of document.elementsFromPoint(x, y)) {
+          // A positioned opaque pseudo-element can cover its own descendants.
+          for (const pseudo of ['::before', '::after']) {
+            const s = getComputedStyle(top, pseudo), b = top.getBoundingClientRect();
+            if (!['none', 'normal'].includes(s.content) && s.position === 'absolute' && opaque(s)) {
+              const left = b.left + (parseFloat(s.left) || 0), right = b.right - (parseFloat(s.right) || 0);
+              const up = b.top + (parseFloat(s.top) || 0), down = b.bottom - (parseFloat(s.bottom) || 0);
+              if (x >= left && x <= right && y >= up && y <= down) covered = true;
+            }
+          }
+          if (covered) break;
+          if (top === link || link.contains(top)) { reached = true; break; }
+          if (!top.contains(link) && opaque(getComputedStyle(top))) { covered = true; break; }
+        }
+        if (reached && !covered) return true;
+      }
+    }
+    return false;
+  };
+  const buttons = [...document.querySelectorAll('button')];
+  const state = (b, i) => {
+    const id = (b.getAttribute('aria-controls') || '').trim(), panel = id && document.getElementById(id);
+    const eligible = b.getAttribute('type') === 'button' && b.closest('nav, [role="navigation"]') && !b.closest('form, [aria-disabled="true"]') && !b.form && !b.matches(':disabled') && (!b.getAttribute('role') || b.getAttribute('role') === 'button') && !b.hasAttribute('aria-haspopup') && boxVisible(b) && id && !/\s/.test(id) && (!panel || (panel.querySelector('a[href]') && !panel.matches('[role="dialog"], [role="tablist"], [role="menu"], [role="tree"]')));
+    return { index: i, eligible: !!eligible, id, exists: !!panel, visible: exposed(panel), expanded: b.getAttribute('aria-expanded'), key: `button${b.id ? '#' + b.id : ''} "${(b.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 32)}"` };
+  };
+  if (index != null) return buttons[index] ? state(buttons[index], index) : null;
+  return buttons.map(state).filter(s => s.eligible && s.expanded === 'false' && !s.visible).slice(0, 3);
+}
+
+// Race browser operations as well as polling. Closing the disposable context
+// interrupts pending renderer work; this is a watchdog, not a real-time guarantee.
+async function disclosureDeadline(operation, ms) {
+  let timer;
+  try { return await Promise.race([operation, new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('disclosure deadline exceeded')), ms); })]); }
+  finally { clearTimeout(timer); }
+}
+
+async function disclosureListeners(session, index, sources = new Map()) {
+  const object = await session.send('Runtime.evaluate', { expression: `document.querySelectorAll('button')[${index}]` });
+  if (!object.result.objectId) return [];
+  try {
+    const { listeners } = await session.send('DOMDebugger.getEventListeners', { objectId: object.result.objectId });
+    const signatures = [];
+    for (const listener of listeners.filter(l => l.type === 'click')) {
+      if (!sources.has(listener.scriptId)) sources.set(listener.scriptId, (await session.send('Debugger.getScriptSource', { scriptId: listener.scriptId })).scriptSource);
+      // Inline-script columns change when HTML is serialized into a probe page.
+      // Compare script contents, not document-relative CDP source coordinates.
+      signatures.push(sources.get(listener.scriptId));
+    }
+    return signatures.sort();
+  } finally { await session.send('Runtime.releaseObject', { objectId: object.result.objectId }); }
+}
+
+async function navigationDisclosures(page) {
+  const candidates = await page.evaluate(disclosureState), findings = [];
+  const width = page.viewport().width;
+  const push = (s, grade, reason) => findings.push({ gate: '26d', grade, evidence: `[${width}px] ${s.key}: ${reason}`, fix: 'Wire the navigation button to its aria-controls panel; show the panel and set aria-expanded="true" together' });
+  for (const candidate of candidates) {
+    let context;
+    try {
+      const originalSession = await page.createCDPSession();
+      let originalListeners;
+      try { await originalSession.send('Debugger.enable'); originalListeners = await disclosureDeadline(disclosureListeners(originalSession, candidate.index), 1000); }
+      finally { await originalSession.detach(); }
+      const browser = page.browser();
+      context = await (browser.createBrowserContext ? browser.createBrowserContext() : browser.createIncognitoBrowserContext());
+      const probe = await context.newPage();
+      probe.setDefaultTimeout(1500);
+      await probe.setViewport(page.viewport());
+      await probe.setBypassServiceWorker(true);
+      await probe.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
+      probe.on('dialog', dialog => dialog.dismiss().catch(() => {}));
+      let armed = false, activating = false, blocked = false, readinessRequest = false;
+      await probe.setRequestInterception(true);
+      probe.on('request', request => {
+        if (armed || request.method() !== 'GET') {
+          if (activating) blocked = true;
+          else if (['fetch', 'xhr'].includes(request.resourceType())) readinessRequest = true;
+          request.abort().catch(() => {});
+        }
+        else request.continue().catch(() => {});
+      });
+      const guard = () => {
+        window.__hmDisclosureSideEffect = false;
+        window.open = () => { window.__hmDisclosureSideEffect = true; return null; };
+        HTMLFormElement.prototype.submit = HTMLFormElement.prototype.requestSubmit = () => { window.__hmDisclosureSideEffect = true; };
+        document.addEventListener('submit', e => { e.preventDefault(); window.__hmDisclosureSideEffect = true; }, true);
+        document.addEventListener('click', e => { if (e.target.closest?.('a[href]')) { e.preventDefault(); window.__hmDisclosureSideEffect = true; } }, true);
+        document.addEventListener('securitypolicyviolation', () => { window.__hmDisclosureSideEffect = true; });
+        window.__hmDisclosureMutation = 0;
+        new MutationObserver(() => window.__hmDisclosureMutation++).observe(document, { subtree: true, childList: true, attributes: true });
+      };
+      await probe.evaluateOnNewDocument(guard);
+      if (page.url() === 'about:blank') { await probe.evaluate(guard); await probe.setContent(await page.content()); }
+      else await probe.goto(page.url(), { waitUntil: 'load', timeout: 5000 });
+      await probe.evaluate(guard);
+      // Hydration observation must not replay background analytics after load.
+      armed = true;
+      await probe.evaluate(() => { const m = document.createElement('meta'); m.httpEquiv = 'Content-Security-Policy'; m.content = "connect-src 'none'"; document.head.appendChild(m); });
+      const session = await probe.createCDPSession();
+      await session.send('Debugger.enable');
+      const sources = new Map();
+      // Generic delegated hydration cannot be proven. Wait for a direct handler
+      // and stable DOM/listener identities, or retain an inconclusive readiness.
+      const ready = await disclosureDeadline((async () => {
+        const until = Date.now() + 2000;
+        let previous = '', stableSince = Date.now();
+        do {
+          const listeners = await disclosureListeners(session, candidate.index, sources);
+          const mutation = await probe.evaluate(() => window.__hmDisclosureMutation);
+          const signature = JSON.stringify([mutation, listeners]);
+          if (signature !== previous) { previous = signature; stableSince = Date.now(); }
+          if (listeners.length && Date.now() - stableSince >= 250) return !originalListeners.length || JSON.stringify(listeners) === JSON.stringify(originalListeners);
+          await new Promise(r => setTimeout(r, 50));
+        } while (Date.now() < until);
+        return false;
+      })(), 2500);
+      const before = await probe.evaluate(disclosureState, candidate.index);
+      if (!before || !before.eligible || before.id !== candidate.id || before.expanded !== 'false' || before.visible) { push(candidate, 'WARN', 'isolated page state differs; not evaluated'); continue; }
+      if (!before.exists) { push(candidate, ready ? 'FAIL' : 'WARN', `aria-controls target #${candidate.id} is missing${ready ? '' : '; readiness unconfirmed'}`); continue; }
+      // Start the watchdog BEFORE querying/clicking the control. All subsequent
+      // renderer evaluations share this budget, including synchronous handlers.
+      const after = await disclosureDeadline((async () => {
+        const until = Date.now() + 1700;
+        const readinessSideEffect = await probe.evaluate(() => { const prior = window.__hmDisclosureSideEffect; window.__hmDisclosureSideEffect = false; return prior; });
+        activating = true;
+        const buttons = await probe.$$('button');
+        await buttons[candidate.index].click();
+        let state, stable = 0;
+        do {
+          await new Promise(r => setTimeout(r, 50));
+          state = await probe.evaluate(disclosureState, candidate.index);
+          stable = state?.visible && state.expanded === 'true' ? stable + 1 : 0;
+          if (stable === 3) return { state, readinessSideEffect, sideEffect: await probe.evaluate(() => window.__hmDisclosureSideEffect) };
+        } while (Date.now() < until);
+        return { state, readinessSideEffect, sideEffect: await probe.evaluate(() => window.__hmDisclosureSideEffect) };
+      })(), 2000);
+      if (after.state?.visible && after.state.expanded === 'true') continue;
+      if (!ready || readinessRequest || after.readinessSideEffect || blocked || after.sideEffect) push(candidate, 'WARN', 'readiness unconfirmed or activation attempted a blocked side effect; not evaluated');
+      else if (!after.state?.visible) push(candidate, 'FAIL', 'controlled panel did not open or its links are not visibly exposed');
+      else push(candidate, 'FAIL', 'panel opened but aria-expanded is not true');
+    } catch (e) {
+      push(candidate, 'WARN', `${e.message === 'disclosure deadline exceeded' ? 'activation/readiness deadline exceeded' : 'isolated activation could not be completed'}; not evaluated`);
+    } finally {
+      if (context) {
+        try { await disclosureDeadline(context.close(), 2000); }
+        catch { push(candidate, 'WARN', 'isolated context cleanup did not complete within watchdog'); }
+      }
+    }
+  }
+  return findings;
 }
