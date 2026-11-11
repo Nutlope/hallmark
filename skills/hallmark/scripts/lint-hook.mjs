@@ -21,7 +21,7 @@ function main() {
   try { src = readFileSync(filePath, "utf8"); } catch { return OK(); }
   if (src.length === 0) return OK();
   const inHallmarkProject = () => { let d = dirname(filePath); for (let i = 0; i < 8; i++) { if (existsSync(join(d, ".hallmark"))) return true; const up = dirname(d); if (up === d) break; d = up; } return false; };
-  const looksHallmark = markup ? /\/\*\s*Hallmark/.test(src) : inHallmarkProject();
+  const looksHallmark = (markup && /\/\*\s*Hallmark/.test(src)) || inHallmarkProject();
   if (!looksHallmark) return OK();
   const gm = src.match(/genre:\s*(editorial|modern-minimal|atmospheric|playful)/i);
   const args = [filePath, "--json", "--tier", "floor"];
