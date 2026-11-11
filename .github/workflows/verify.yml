@@ -13,16 +13,11 @@ jobs:
           node-version: 20
       - name: References, gates, fixtures, versions and links agree
         run: node skills/hallmark/scripts/refcheck.mjs
-      - name: Image generation cache regressions
-        run: node --test skills/hallmark/scripts/fixtures/imagegen/imagegen.test.mjs
       - name: Every theme validates
         run: node skills/hallmark/scripts/theme.mjs validate skills/hallmark/references/themes/*.md
-      - name: Theme validation is line-ending independent
-        run: node --test skills/hallmark/scripts/theme.test.mjs
       - name: The theme index is current
         run: |
           node skills/hallmark/scripts/theme.mjs index
           git diff --exit-code -- skills/hallmark/references/themes/index.json
-
-      - name: Exhausted theme deals terminate
-        run: node --test skills/hallmark/scripts/reroll-exhaustion.test.mjs
+      - name: Every test file passes
+        run: node --test skills/hallmark/scripts/*.test.mjs skills/hallmark/scripts/fixtures/*/*.test.mjs
