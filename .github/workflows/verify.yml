@@ -11,6 +11,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+      - name: Theme log preserves valid history and rejects invalid data
+        run: node --test skills/hallmark/scripts/theme-log.test.mjs
       - name: References, gates, fixtures, versions and links agree
         run: node skills/hallmark/scripts/refcheck.mjs
       - name: Every theme validates
