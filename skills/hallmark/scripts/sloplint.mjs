@@ -4269,6 +4269,15 @@ if (opts.kept) {
     const soft = { headings: new Set(), figures: new Set(), images: new Set(), ids: new Set() };
     const total = { links: new Set(was.wiring.links), fields: new Set(was.wiring.fields), handlers: new Set(was.wiring.handlers), 'test hooks': new Set(was.wiring.hooks), headings: new Set(), figures: new Set() };
     for (const x of gone(was.wiring.links, now.wiring.links, 'links')) hard.links.add(x);
+    // The union cannot see a link lost from one page while another page keeps it. A component or script may have taken the link over, and a rendered page may carry it in its DOM.
+    const isPage = (f) => /\.html?$/i.test(f);
+    const shared = Object.entries(now.files).filter(([f]) => !isPage(f)).flatMap(([, w]) => w.links || []);
+    const lostFrom = new Map();
+    for (const [f, w] of Object.entries(was.files || {})) {
+      if (!isPage(f) || !now.files[f]) continue;
+      for (const x of gone(w.links, [...(now.files[f].links || []), ...shared, ...((now.pages[f] || {}).links || [])], 'links')) if (!hard.links.has(x)) lostFrom.set(x, [...(lostFrom.get(x) || []), f]);
+    }
+    for (const [x, pages] of lostFrom) hard.links.add(`${x} on ${pages.join(', ')}`);
     for (const x of gone(was.wiring.fields, now.wiring.fields, 'fields')) hard.fields.add(x);
     for (const x of gone(was.wiring.handlers, now.wiring.handlers, 'handlers')) hard.handlers.add(x);
     for (const x of gone(was.wiring.hooks, now.wiring.hooks, 'test hooks')) hard['test hooks'].add(x);
