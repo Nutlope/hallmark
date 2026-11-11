@@ -21,7 +21,7 @@ What is next for Hallmark.
 - **Theme-aware motion tokens.** Per-theme `--dur-micro`, `--dur-short` and `--dur-long` from each theme's motion character, so a severe theme moves faster than a calm one without hand-tuning.
 - **Multi-page coherence.** Lock the brand axes in a `design.md`, vary the page-voice axes: different pages of one site, not different sites.
 - **Brand-first flow.** From a short product description, a complete brand (palette, type, voice, imagery through the image hook) locked into a `design.md`, then every page built against it.
-- **The edit-time hook on by default.** `scripts/install-hook.mjs` is opt-in today; a Claude Code plugin could ship it wired, so small edits to a Hallmark page keep the Floor without calling the skill.
+- **The edit-time hook on by default.** The Claude Code plugin ships it wired; `scripts/install-hook.mjs` is still opt-in for every other install.
 - **App screens in depth.** The app scope skips the landing-page gates and names what replaces them; next are checks of its own (the four data states, table figures, a control vocabulary that holds across screens).
 
 ---

@@ -98,7 +98,7 @@ npx skills add nutlope/hallmark -g
 | OpenCode | finds the copies above | `/hallmark <prompt>` or describe a new build |
 
 - **One harness only:** `npx skills add nutlope/hallmark -g --agent claude-code` (or `codex`, `opencode`, `cursor`, `github-copilot`).
-- **As a Claude Code plugin:** `/plugin marketplace add nutlope/hallmark`, then `/plugin install hallmark@hallmark` (invoked as `/hallmark:hallmark`).
+- **As a Claude Code plugin:** `/plugin marketplace add nutlope/hallmark`, then `/plugin install hallmark@hallmark` (invoked as `/hallmark:hallmark`). The plugin wires the edit-time Floor check for you; if you added it earlier with `install-hook.mjs`, take that copy out with `--remove` so it does not run twice.
 - **From a clone:** `node skills/hallmark/scripts/install.mjs` validates every theme and reference before it copies; `install-hook.mjs` adds an edit-time Floor check to Claude Code.
 - **Lint any page:** `node skills/hallmark/scripts/sloplint.mjs <file-or-dir> --render`.
 - **If it does not fire on its own,** name it: *use hallmark to build ...*.

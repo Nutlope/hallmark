@@ -15,6 +15,20 @@
       "skills": [
         "./hallmark"
       ],
+      "hooks": {
+        "PostToolUse": [
+          {
+            "matcher": "Write|Edit|MultiEdit",
+            "hooks": [
+              {
+                "type": "command",
+                "command": "node \"${CLAUDE_PLUGIN_ROOT}/hallmark/scripts/lint-hook.mjs\"",
+                "timeout": 10
+              }
+            ]
+          }
+        ]
+      },
       "description": "A design skill for Claude Code, Codex, Cursor and OpenCode that refuses to look AI-generated. Powered by Together AI.",
       "version": "2.0.0",
       "author": {
