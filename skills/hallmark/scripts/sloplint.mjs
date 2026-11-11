@@ -782,6 +782,19 @@ function firstFamily(value) {
   return first;
 }
 
+/** Font tokens that set something other than the face: `--font-display-weight: 800`, `--font-heading-stretch: 125%`. */
+const NON_FAMILY_FONT_TOKEN = /^--font-.+-(weight|stretch|width|size|style|variant|feature-settings|variation-settings|optical-sizing|synthesis|kerning|leading|line-height|tracking|letter-spacing)$/;
+/** Values a font property takes that are never a family name. */
+const FONT_VALUE_KEYWORDS = new Set(['normal', 'bold', 'bolder', 'lighter', 'italic', 'oblique', 'small-caps', 'none', 'auto',
+  'ultra-condensed', 'extra-condensed', 'condensed', 'semi-condensed', 'semi-expanded', 'expanded', 'extra-expanded', 'ultra-expanded']);
+
+/** Whether a `--font-*` token names a face (a family), not its weight, stretch, size or style. */
+function isFamilyToken(prop, value) {
+  if (!/^--font-/.test(prop) || NON_FAMILY_FONT_TOKEN.test(prop)) return false;
+  const first = firstFamily(value);
+  return !!first && !/^-?\d*\.?\d+(%|px|rem|em|ch|pt|deg)?$/.test(first) && !FONT_VALUE_KEYWORDS.has(first);
+}
+
 function pxOf(value) {
   const m = /^(-?\d+(?:\.\d+)?)(px|rem|em)$/.exec(value.trim());
   if (!m) return null;
@@ -835,7 +848,8 @@ function tierOf(gate) {
 function fontFamilyCount(ctx) {
   const fams = new Set();
   for (const [prop, val] of Object.entries(ctx.tokens || {})) {
-    if (/^--font-/.test(prop)) fams.add(famKey(firstFamily(resolveVars(val, ctx.tokens))));
+    const resolved = resolveVars(val, ctx.tokens);
+    if (isFamilyToken(prop, resolved)) fams.add(famKey(firstFamily(resolved)));
   }
   return fams.size;
 }
@@ -1112,7 +1126,7 @@ function check1(ctx) {
     }
   };
   for (const [prop, val] of Object.entries(ctx.tokens)) {
-    if (/^--font-(display|heading|title|hero)/.test(prop)) {
+    if (/^--font-(display|heading|title|hero)/.test(prop) && isFamilyToken(prop, resolveVars(val, ctx.tokens))) {
       const tr = ctx.rules.find((r) => isTokenRule(r) && r.decls.some((d) => d.prop === prop));
       flag(firstFamily(resolveVars(val, ctx.tokens)), tr ? tr.file : ctx.rules[0]?.file || '?', tr ? tr.decls.find((d) => d.prop === prop)?.line : 1, prop);
     }
@@ -1806,6 +1820,7 @@ function check37(ctx) {
     for (const d of r.decls) {
       if (d.prop !== 'font-family' && !/^--font-/.test(d.prop)) continue;
       if (/^--font-/.test(d.prop) && !isTokenRule(r)) continue;
+      if (/^--font-/.test(d.prop) && !isFamilyToken(d.prop, resolveVars(d.value, ctx.tokens))) continue;
       const fam = firstFamily(resolveVars(d.value, ctx.tokens));
       if (!fam || generic.has(fam) || fam.startsWith('var(')) continue;
       if (![...families.keys()].some((k) => famKey(k) === famKey(fam))) families.set(fam, { file: r.file, line: d.line });
