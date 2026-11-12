@@ -28,7 +28,8 @@ function readSettings() {
   }
 }
 
-const ourHook = (h) => typeof h?.command === "string" && /hallmark[\\/]scripts[\\/]lint-hook\.mjs/.test(h.command);
+const ourHook = (h) => typeof h?.command === "string"
+  && (h.command === HOOK_CMD || /hallmark[\\/]scripts[\\/]lint-hook\.mjs/.test(h.command));
 const withoutOurs = (list) => list.flatMap((e) => {
   if (!Array.isArray(e?.hooks) || !e.hooks.some(ourHook)) return [e];
   const rest = e.hooks.filter((h) => !ourHook(h));
