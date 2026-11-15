@@ -2,6 +2,14 @@
 
 **A design skill for Claude Code, Codex, Cursor and OpenCode that refuses to look AI-generated.**
 
+<!-- gitreels:start -->
+<p align="center">
+  <a href="https://gitreels.com/Nutlope/hallmark"><img src="https://gitreels.com/Nutlope/hallmark.webp?lang=ko" alt="Nutlope/hallmark in 15 seconds" width="100%"></a>
+  <br>
+  <a href="https://gitreels.com"><img src="https://gitreels.com/badge.svg" alt="Made with GitReels" height="24"></a>
+</p>
+<!-- gitreels:end -->
+
 [usehallmark.com](https://www.usehallmark.com) &nbsp;·&nbsp; fifty themes &nbsp;·&nbsp; custom on request &nbsp;·&nbsp; redesign and audit by name
 
 Made by Together AI.
