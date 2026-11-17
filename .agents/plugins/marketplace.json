@@ -1,0 +1,20 @@
+{
+  "name": "hallmark",
+  "interface": {
+    "displayName": "Hallmark"
+  },
+  "plugins": [
+    {
+      "name": "hallmark",
+      "source": {
+        "source": "local",
+        "path": "./skills"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Design"
+    }
+  ]
+}
