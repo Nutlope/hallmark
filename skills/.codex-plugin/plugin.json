@@ -1,0 +1,43 @@
+{
+  "name": "hallmark",
+  "version": "2.0.0",
+  "description": "A design skill for Claude Code, Codex, Cursor and OpenCode that refuses to look AI-generated. Powered by Together AI.",
+  "author": {
+    "name": "Nutlope",
+    "url": "https://github.com/Nutlope"
+  },
+  "homepage": "https://www.usehallmark.com",
+  "repository": "https://github.com/Nutlope/hallmark",
+  "license": "MIT",
+  "keywords": [
+    "design",
+    "ui",
+    "landing-page",
+    "redesign",
+    "anti-ai-slop",
+    "themes",
+    "together-ai"
+  ],
+  "skills": "./hallmark/",
+  "interface": {
+    "displayName": "Hallmark",
+    "shortDescription": "Design pages that look made, not AI-generated",
+    "longDescription": "Hallmark is a design skill for coding agents. It deals themes from a catalog of fifty materials, builds the page around the visitor's job, and lints the result against the tells that read as machine-made. Use it to build a new page, redesign an existing one while keeping content and wiring, or audit a page for Floor and Reflex issues. Powered by Together AI.",
+    "developerName": "Nutlope",
+    "category": "Design",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://www.usehallmark.com",
+    "defaultPrompt": [
+      "Build a landing page with Hallmark",
+      "Redesign this page with Hallmark",
+      "Audit this page with Hallmark"
+    ],
+    "brandColor": "#FC4C02",
+    "composerIcon": "https://www.usehallmark.com/favicon.svg",
+    "logo": "https://www.usehallmark.com/favicon.svg"
+  }
+}

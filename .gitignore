@@ -38,7 +38,9 @@ build/
 # `skills` CLI install lockfile: generated whenever 'skills add' runs in this
 # directory, not part of the skill source.
 skills-lock.json
-.agents/
+.agents/*
+!.agents/plugins/
+!.agents/plugins/**
 
 # Local agent / preview tooling config (Claude Code, etc.), not skill source
 .claude/

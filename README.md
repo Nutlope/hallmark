@@ -99,6 +99,8 @@ npx skills add nutlope/hallmark -g
 
 - **One harness only:** `npx skills add nutlope/hallmark -g --agent claude-code` (or `codex`, `opencode`, `cursor`, `github-copilot`).
 - **As a Claude Code plugin:** `/plugin marketplace add nutlope/hallmark`, then `/plugin install hallmark@hallmark` (invoked as `/hallmark:hallmark`).
+- **As an agents marketplace plugin:** `codex plugin marketplace add nutlope/hallmark`, then install `hallmark@hallmark`.
+- **As a Codex plugin:** the repo ships `.codex-plugin` under `skills/` (same source as the Claude marketplace).
 - **From a clone:** `node skills/hallmark/scripts/install.mjs` validates every theme and reference before it copies; `install-hook.mjs` adds an edit-time Floor check to Claude Code.
 - **Lint any page:** `node skills/hallmark/scripts/sloplint.mjs <file-or-dir> --render`.
 - **If it does not fire on its own,** name it: *use hallmark to build ...*.
