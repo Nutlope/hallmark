@@ -114,6 +114,11 @@ function contrastOf(f, b) {
 }
 
 const triple = (t) => `${t.paper.band}/${t.display.class}/${t.accent.band}`;
+// A build records its theme as the stamp writes it, "Kiln (by request)" or "Paste-up (deal 1/3,
+// seed x)", so compare names and slugs with the parenthetical and punctuation dropped. Its axes may
+// carry the stamp's "· posture: ..." after the triple.
+const themeKey = (v) => String(v || '').toLowerCase().replace(/\([^)]*\)/g, ' ').replace(/[^a-z0-9]+/g, '');
+const axesTriple = (v) => String(v).split('·')[0].trim().toLowerCase();
 const words = (s) => (s || '').toLowerCase().replace(/[^a-z0-9\s-]/g, ' ').split(/\s+/).filter((w) => w.length > 2);
 const ASK = new Set(['build', 'make', 'create', 'design', 'need', 'want', 'please', 'page', 'site', 'website', 'landing', 'called', 'for', 'and', 'the', 'with', 'that', 'this', 'our', 'your']);
 const promptWords = (s) => words(s).filter((w) => !ASK.has(w));
@@ -227,9 +232,13 @@ function deal() {
   const log = readLog(flag('log', '.hallmark/log.json'));
   const themes = loadIndex();
   const recent = log.slice(0, 3);
-  const recentNames = new Set(recent.map((r) => String(r.theme || '').toLowerCase()));
-  const lastAxes = recent[0] && recent[0].axes ? String(recent[0].axes) : null;
-  const occupiedAxes = new Set(recent.map((r) => r.axes).filter(Boolean));
+  // A log's theme arrives as the stamp writes it, "Kiln (by request)" or "Kiln (deal 1/3, seed x)",
+  // and its axes may carry the stamp's "· posture: ..." after the triple. Read both the way the
+  // catalog and triple() write them, or rotation never recognises the builds it just logged.
+  const recentThemes = recent.map((r) => String(r.theme || '')).filter(Boolean);
+  const recentKeys = new Set(recentThemes.map(themeKey));
+  const lastAxes = recent[0] && recent[0].axes ? axesTriple(recent[0].axes) : null;
+  const occupiedAxes = new Set(recent.map((r) => r.axes).filter(Boolean).map(axesTriple));
   const bw = new Set(promptWords(prompt).map(stem));
   const slug = `${promptWords(prompt).slice(0, 4).join('-') || 'prompt'}-${createHash('sha1').update(prompt.trim().toLowerCase()).digest('hex').slice(0, 4)}`;
   const seedBase = `${slug}·${projectSalt()}·${new Date().toISOString().slice(0, 10)}`;
@@ -242,7 +251,7 @@ function deal() {
     let fit = 0; const hits = [];
     for (const k of t.keywords) { const kw = k.toLowerCase().split(/\s+/).map(stem); if (kw.every((w) => bw.has(w))) { const d = df.get(k.toLowerCase()); fit += d <= 2 ? 3 : d <= 4 ? 2 : 1; hits.push(k); } }
     if (t.genre === genre) fit += 2; else fit -= 1;
-    const blocked = recentNames.has(t.name.toLowerCase()) || (lastAxes && lastAxes === triple(t));
+    const blocked = recentKeys.has(themeKey(t.name)) || recentKeys.has(themeKey(t.slug)) || (lastAxes && lastAxes === triple(t));
     const sibling = occupiedAxes.has(triple(t));
     if (sibling && !blocked) fit -= 1;
     return { t, fit, hits, blocked, sibling, r: rand() };
@@ -257,7 +266,7 @@ function deal() {
   const picked = pickFrom(pool, n, previously);
   if (!picked.length) { console.error(`nothing left to deal at reroll ${reroll}; use a lower --reroll`); process.exit(1); }
 
-  if (has('json')) { console.log(JSON.stringify({ seed: seedKey, genre, deal: picked.map((s) => ({ ...s.t, fit: s.fit, hits: s.hits })), avoided: [...recentNames] })); return; }
+  if (has('json')) { console.log(JSON.stringify({ seed: seedKey, genre, deal: picked.map((s) => ({ ...s.t, fit: s.fit, hits: s.hits })), avoided: recentThemes })); return; }
   console.log(`deal: ${seedKey} · genre ${genre}${reroll ? ` · reroll ${reroll}` : ''}`);
   picked.forEach((s, i) => {
     const why = s.hits.length ? `fits: ${s.hits.slice(0, 4).join(', ')}` : (s.t.genre === genre ? 'genre fit' : 'adjacent genre');
