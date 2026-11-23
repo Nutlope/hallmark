@@ -84,11 +84,13 @@ A full redesign keeps the content and the wiring and changes the system and the 
 
 ## Install
 
-```
+The `npx skills` installer requires Node.js 22.20.0 or later. Check with `node --version`.
+
+```sh
 npx skills add nutlope/hallmark -g
 ```
 
-`-g` installs for every project; leave it off to install into the current one. Needs Node 18 or later. The browser checks (`sloplint --render`, screenshots) also need `npm i -g puppeteer-core` and Chrome; without them the static checks still run.
+`-g` installs for every project. Leave it off to install into the current one. Hallmark's own scripts, including the installer you can run from a clone, work on Node.js 18 or later. The browser checks (`sloplint --render`, screenshots) also need Chrome and `npm i -g puppeteer-core`. Without them the static checks still run.
 
 | Harness | Lands in | Invoke |
 | --- | --- | --- |
