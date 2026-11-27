@@ -15,7 +15,7 @@ const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR
 function withCache(n, explicit, check) {
   const dir = mkdtempSync(join(tmpdir(), 'hallmark-image-cache-'));
   try {
-    const hash = createHash('sha256').update([model, prompt, '1024x1024', 4, n].join('|')).digest('hex').slice(0, 16);
+    const hash = createHash('sha256').update([model, prompt, '1024x1024', 4, n, 'png'].join('|')).digest('hex').slice(0, 16);
     const output = explicit ? join(dir, 'chosen.png') : join(dir, '.hallmark', 'img-cache', hash + '.png');
     mkdirSync(dirname(output), { recursive: true });
     const stem = output.replace(/\.png$/, '');
@@ -73,12 +73,20 @@ test('complete generated batch writes every requested image', () => {
   withCache(2, true, ({ paths, metadata }) => {
     const preload = join(dirname(metadata), 'response.mjs');
     const generated = Buffer.from('offline image bytes');
-    writeFileSync(preload, `globalThis.fetch = async () => ({ ok: true, json: async () => ({ data: Array.from({ length: 2 }, () => ({ b64_json: '${generated.toString('base64')}' })) }) });`);
+    writeFileSync(preload, `
+      import assert from 'node:assert/strict';
+      globalThis.fetch = async (_url, options) => {
+        const request = JSON.parse(options.body);
+        assert.equal(request.response_format, 'base64');
+        assert.equal(request.output_format, 'png');
+        return { ok: true, json: async () => ({ data: Array.from({ length: 2 }, () => ({ b64_json: '${generated.toString('base64')}' })) }) };
+      };
+    `);
     const result = spawnSync(process.execPath, ['--import', pathToFileURL(preload).href, script, prompt, '--n', '2', '--force', '--out', join(dirname(metadata), 'chosen.png'), '--json'], {
       cwd: dirname(metadata), env: { ...process.env, TOGETHER_API_KEY: 'offline-test-key' }, encoding: 'utf8', timeout: 5000,
     });
     assert.equal(result.error, undefined);
-    assert.equal(result.status, 0, result.stderr);
+    assert.equal(result.status, 0, result.stdout || result.stderr);
     const report = JSON.parse(result.stdout);
     assert.equal(report.cached, false);
     assert.equal(report.paths.length, 2);
