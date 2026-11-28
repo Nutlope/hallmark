@@ -5,6 +5,9 @@ import { join, dirname, basename } from "node:path";
 
 const ENDPOINT = "https://api.together.xyz/v1/images/generations";
 const DEFAULT_MODEL = "black-forest-labs/FLUX.1.1-pro";
+// Bump when the transport or output encoding changes, so images cached under
+// the previous response contract are regenerated instead of reused.
+const FORMAT_CONTRACT = "together-base64-png-1";
 
 function parseArgs(argv) {
   const a = { _: [] };
@@ -37,7 +40,7 @@ if (!w || !h) out({ error: `bad --size ${size} (want WxH, e.g. 1536x1024)` }, 2)
 const steps = parseInt(args.steps ?? "4", 10);
 
 const n = Math.max(1, parseInt(args.n ?? "1", 10) || 1);
-const hash = createHash("sha256").update([model, prompt, size, steps, n].join("|")).digest("hex").slice(0, 16);
+const hash = createHash("sha256").update([FORMAT_CONTRACT, model, prompt, size, steps, n].join("|")).digest("hex").slice(0, 16);
 const cacheDir = args.out ? dirname(args.out) : join(process.cwd(), ".hallmark", "img-cache");
 const cachePath = args.out ?? join(cacheDir, `${hash}.png`);
 const stem = cachePath.replace(/\.png$/, "");
@@ -71,7 +74,7 @@ try {
   const res = await fetch(ENDPOINT, {
     method: "POST",
     headers: { "content-type": "application/json", authorization: `Bearer ${key}` },
-    body: JSON.stringify({ model, prompt, width: w, height: h, steps, n, response_format: "b64_json" }),
+    body: JSON.stringify({ model, prompt, width: w, height: h, steps, n, response_format: "base64", output_format: "png" }),
     signal: AbortSignal.timeout(180000),
   });
   if (!res.ok) {

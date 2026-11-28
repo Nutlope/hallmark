@@ -15,7 +15,7 @@ const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR
 function withCache(n, explicit, check) {
   const dir = mkdtempSync(join(tmpdir(), 'hallmark-image-cache-'));
   try {
-    const hash = createHash('sha256').update([model, prompt, '1024x1024', 4, n].join('|')).digest('hex').slice(0, 16);
+    const hash = createHash('sha256').update(['together-base64-png-1', model, prompt, '1024x1024', 4, n].join('|')).digest('hex').slice(0, 16);
     const output = explicit ? join(dir, 'chosen.png') : join(dir, '.hallmark', 'img-cache', hash + '.png');
     mkdirSync(dirname(output), { recursive: true });
     const stem = output.replace(/\.png$/, '');
@@ -115,6 +115,44 @@ test('explicit output from a different request is not reused', () => {
     assert.equal(code, 3);
     assert.equal(report.error, 'no-key');
   });
+});
+
+test('requests base64 transport with PNG encoding and ignores legacy cache', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'hallmark-image-contract-'));
+  try {
+    const output = join(dir, 'chosen.png');
+    const legacyHash = createHash('sha256').update([model, prompt, '1024x1024', 4, 1].join('|')).digest('hex').slice(0, 16);
+    const legacyPath = join(dir, '.hallmark', 'img-cache', legacyHash + '.png');
+    mkdirSync(dirname(legacyPath), { recursive: true });
+    writeFileSync(legacyPath, png);
+    writeFileSync(legacyPath.replace(/\.png$/, '.json'), JSON.stringify({ hash: legacyHash, files: [legacyPath.split(/[\\/]/).pop()] }));
+
+    const preload = join(dir, 'request-body.mjs');
+    writeFileSync(preload, [
+      "import { writeFileSync } from 'node:fs';",
+      'globalThis.fetch = async (url, init) => {',
+      "  writeFileSync(new URL('./request.json', import.meta.url), init.body);",
+      "  return { ok: true, json: async () => ({ data: [{ b64_json: '" + png.toString('base64') + "' }] }) };",
+      '};',
+    ].join('\n'));
+    const result = spawnSync(process.execPath, ['--import', pathToFileURL(preload).href, script, prompt, '--force', '--out', output, '--json'], {
+      cwd: dir, env: { ...process.env, TOGETHER_API_KEY: 'offline-test-key' }, encoding: 'utf8', timeout: 5000,
+    });
+    assert.equal(result.error, undefined);
+    assert.equal(result.status, 0, result.stdout + result.stderr);
+    const body = JSON.parse(readFileSync(join(dir, 'request.json'), 'utf8'));
+    assert.equal(body.response_format, 'base64');
+    assert.equal(body.output_format, 'png');
+
+    const env = { ...process.env };
+    delete env.TOGETHER_API_KEY;
+    const legacy = spawnSync(process.execPath, [script, prompt, '--out', legacyPath, '--json'], {
+      cwd: dir, env, encoding: 'utf8', timeout: 5000,
+    });
+    assert.equal(legacy.error, undefined);
+    assert.equal(legacy.status, 3, legacy.stdout);
+    assert.equal(JSON.parse(legacy.stdout).error, 'no-key');
+  } finally { rmSync(dir, { recursive: true, force: true }); }
 });
 
 test('large image count with no cache remains a bounded no-key miss', () => {
